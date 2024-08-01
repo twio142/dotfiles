@@ -1,0 +1,29 @@
+#!/bin/zsh
+info=${1:a}/info.plist
+[ -f $info ] && {
+    cacheDir=~/Library/Caches/com.runningwithcrayons.Alfred/Workflow\ Data
+    dataDir=~/Library/Application\ Support/Alfred/Workflow\ Data
+    cd $1 &> /dev/null
+    unset alfred_workflow_name
+    unset alfred_workflow_uid
+    unset alfred_workflow_bundleid
+    unset alfred_workflow_cache
+    unset alfred_workflow_data
+    export alfred_workflow_name="$(defaults read $info name)"
+    export alfred_workflow_uid=${1:t}
+    export alfred_workflow_bundleid=$(defaults read $info bundleid)
+    echo Workflow: $alfred_workflow_name
+    [ -z $alfred_workflow_bundleid ] || {
+        export alfred_workflow_cache=$cacheDir/$alfred_workflow_bundleid
+            export alfred_workflow_data=$dataDir/$alfred_workflow_bundleid
+        }
+        defaults read $info variables 2> /dev/null | sed "1d" | sed "$ d" | while read l; do
+        eval "export ${l/ = /=}" 2> /dev/null
+    done
+}
+prefs=${1:a}/prefs.plist
+[ -f $prefs ] && {
+    defaults read $prefs 2> /dev/null | sed "1d" | sed "$ d" | while read l; do
+    eval "export ${l/ = /=}" 2> /dev/null
+done
+}

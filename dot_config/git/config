@@ -1,0 +1,20 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	email = 64556708+twio142@users.noreply.github.com
+	name = twio142
+	signingkey = 44703707F9B90BDE
+[color]
+	ui = true
+[core]
+	autocrlf = input
+	quotepath = false
+	excludesfile = .gitignore_global
+	pager = bat --paging=always --style=plain --tabs 2
+[fetch]
+	recurseSubmodules = true
+[diff]
+	tool = nvimdiff

@@ -1,0 +1,62 @@
+#!/bin/zsh
+
+export TERM=xterm-256color
+source ~/.zshrc &> /dev/null
+cd &> /dev/null
+
+# 调用 `brew upgrade`, `brew cleanup`
+brew cu -a -y
+brew update
+brew cleanup
+brew bundle dump --describe --force --file=${XDG_CONFIG_HOME:-~/.config}/bootstrap/Brewfile
+# encstr -d $(security find-generic-password -a nsdr57 -w) | sudo -S brew upgrade
+brew upgrade
+
+# 文件计数
+file_count=0
+link_count=0
+incomplete_count=0
+
+# 清理 HomeBrew Cask 下载缓存
+for cask_link in $(find ~/Library/Caches/Homebrew/Cask -type l)
+do
+    # 将 Cask 软件包移至废纸篓
+    let file_count++
+    trash "$(realpath $cask_link)"
+    let link_count++
+    rm $cask_link
+done
+
+# 清理 HomeBrew 下载缓存
+for link in $(find ~/Library/Caches/Homebrew -type l)
+do
+    let file_count++
+    trash "$(realpath $link)"
+    let link_count++
+    rm $link
+done
+
+# 获取 *.incomplete 文件数量
+incomplete_count=$(ls -l ~/Library/Caches/Homebrew/downloads/*.incomplete 2> /dev/null | wc -l)
+# 清理未完成的下载
+[ $incomplete_count -gt 0 ] && rm ~/Library/Caches/Homebrew/downloads/*.incomplete
+
+# 复数输出函数
+plural() {
+    if [ $1 -gt 1 ]
+    then
+        echo "$1 $2s"
+    else
+        echo "$1 $2"
+    fi
+}
+
+# 输出消息提示
+echo "Pruned $(plural $link_count "symbolic link"), $(plural $file_count "file") and $(plural $incomplete_count "incomplete download") from ~/Library/Caches/Homebrew"
+
+git -C ~/.config/SpaceVim fetch
+git -C ~/Projects/ProperTree pull
+mas upgrade
+omz update
+ncu -u
+npm i

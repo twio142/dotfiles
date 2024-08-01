@@ -1,0 +1,42 @@
+#!/bin/zsh
+
+export PATH=$PATH:/opt/homebrew/bin
+
+case $1 in
+    light|dark) mode=$1;;
+    *)          exit 1 ;;
+esac
+
+# Nvim
+find $TMPDIR -type s -name 'nvim.*' -or -name '*treemux*' 2> /dev/null | while read -r socket; do
+  if [[ $socket != *treemux* ]]; then
+    pid=$(echo ${socket:t:r} | grep -oE '\d+')
+    ps -p $pid &> /dev/null || continue
+  fi
+  ~/bin/py3 <<EOF
+import pynvim
+nvim = pynvim.attach('socket', path='$socket')
+nvim.command('set background=$mode')
+EOF
+done
+
+# Tmux
+[ $mode = light ] && flavour=latte || flavour=frappe 
+tmux set -g @catppuccin_flavour "$flavour"
+tmux run-shell ~/.config/tmux/plugins/tmux/catppuccin.tmux
+
+# Hammerspoon
+/usr/local/bin/hs -A -c "consoleDM()"
+
+# colorls theme
+orig=$(dirname $(/opt/homebrew/opt/ruby/bin/gem which colorls))/yaml/${mode:l}_colors.yaml
+ln -sf $orig ~/.config/colorls/dark_colors.yaml
+
+mode=${mode:0:1:u}${mode:1}
+
+# Marta theme
+sed -i '' "s/theme \".*\"/theme \"T $mode\"/" ~/Library/Application\ Support/org.yanex.marta/conf.marco
+
+# Terminal theme
+defaults write com.apple.Terminal 'Default Window Settings' "T $mode"
+defaults write com.apple.Terminal 'Startup Window Settings' "T $mode"

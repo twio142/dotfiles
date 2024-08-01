@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+if [[ $1 = -d || $1 = --decrypt ]]; then
+    output=$(echo $2 | base64 -d | openssl rsautl -decrypt -inkey ~/.ssh/PrivateKey.pem) 
+elif [[ $1 = -e || $1 = --encrypt ]]; then
+    output=$(echo $2 | openssl rsautl -encrypt -pubin -inkey ~/.ssh/PublicKey.pub | base64)
+else
+    echo "Usage: $0 [-d|--decrypt] [-e|--encrypt] <string>"
+    exit 1
+fi
+[ -z $output ] || echo -n $output

@@ -1,0 +1,265 @@
+" CONFIGURATION FILE FOR VIM
+
+if exists('s:script_full_name')
+	let script_path = s:script_full_name
+else
+	let script_path = expand('<sfile>:p')
+endif
+
+" let g:indent_blankline_use_treesitter = v:true
+" let g:indent_blankline_context_char = '│'
+" let g:indent_blankline_show_current_context = v:true
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+
+execute "source " . expand('<sfile>:p:h') . "/custom_one.vim"
+
+fu! s:firstInsertEnter()
+	if s:fi == 1
+    luafile $XDG_CONFIG_HOME/SpaceVim.d/lua/nvim-cmp.lua
+		map / <C-/>
+		map ? <C-?>
+		let s:fi = 0
+	endif
+endfunction
+
+let s:fi = 1
+augroup FirstInsertEnter
+	autocmd!
+	autocmd InsertEnter * call s:firstInsertEnter()
+augroup END
+
+augroup BackgroundChange
+	autocmd!
+	autocmd OptionSet background call CustomOne()
+augroup END
+
+" Don't write backup file
+augroup NoBackup
+	autocmd!
+	au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+	au BufWrite /private/etc/pw.* set nowritebackup nobackup
+augroup END
+
+if exists(':NERDTree') == 2
+  execute "source " . expand('<sfile>:p:h') . "/nerdtree.vim"
+endif
+
+" markdown 折行设置
+augroup Markdown
+	autocmd!
+	au FileType markdown setlocal wrapmargin=2
+	au FileType markdown setlocal matchpairs+=（:）,「:」
+	au FileType markdown setlocal tabstop=4 | setlocal shiftwidth=4
+  au FileType markdown setlocal spell
+augroup END
+
+" When opening a new buffer, set copilot_workspace_folders to project root
+if exists(':Copilot')
+  augroup Copilot
+    autocmd!
+    autocmd BufNew * let b:copilot_workspace_folders = [getcwd()]
+  augroup END
+endif
+
+set mouse=nicrv
+
+let backspace=2
+
+set foldmethod=manual
+
+set encoding=utf-8
+set fileencodings=utf-8,gb18030,default
+
+" 滚动时光标与边缘的距离
+set scrolloff=5
+set sidescrolloff=15
+set listchars+=precedes:<,extends:>
+
+" tab size
+set tabstop=2
+
+" 每级缩进的长度
+" set shiftwidth=2
+
+" 启用 256 色
+set t_Co=256
+
+fu! Tab(len)
+	if a:len == ''
+		let len = 4
+	else
+		let len = a:len
+	endif
+	execute 'set shiftwidth='.len
+	execute 'set tabstop='.len
+endfunction
+
+fu! Retab(len)
+  if a:len != ''
+    execute 'setlocal shiftwidth='.a:len
+    execute 'setlocal tabstop='.a:len
+  endif
+	setlocal noexpandtab
+	retab!
+	setlocal shiftwidth=2
+	setlocal tabstop=2
+endfunction
+
+function! GetSelection()
+    let start_pos = getpos("'<")
+    let end_pos = getpos("'>")
+    let start_line = start_pos[1]
+    let start_col = start_pos[2]
+    let end_line = end_pos[1]
+    let end_col = end_pos[2]
+    echo start_line . ',' . start_col . ' ' . end_line . ' ' . end_col
+    let selected_text = ""
+    if start_line == end_line
+      let selected_text = getline(start_line)[start_col-1:end_col-1]
+      return selected_text
+    endif
+    for line in range(start_line, end_line)
+        if line == start_line
+            let line_text = getline(line)[start_col-1:]
+        elseif line == end_line
+            let line_text = getline(line)[:end_col-1]
+        else
+            let line_text = getline(line)
+        endif
+        let selected_text .= line_text
+        if line != end_line
+            let selected_text .= "\n"
+        endif
+    endfor
+    return selected_text
+endfunction
+
+if exists('$TMUX') && $TMUX != ''
+  fu! YankToTmux()
+    let @o = GetSelection()
+    let tmux_sess = system('tmux display -p \#S')
+    silent execute '! ~/bin/altr -w com.nyako520.tmux -t reg2buf -v reg=o -v "socket='. v:servername .'" -v sess=' . tmux_sess
+  endfunction
+
+  fu! PasteInTmux(pane, run)
+    " run selected code in tmux pane
+    let @o = GetSelection()
+    let tmux_pane = system('tmux display -p "#S:#W"')
+    let tmux_pane = substitute(tmux_pane, '\n', '', '') . '.' . a:pane
+    silent execute '! ~/bin/altr -w com.nyako520.tmux -t vim2tmux -v reg=o -v "socket='. v:servername .'" -v "pane=' . tmux_pane . '" -v run=' . a:run
+  endfunction
+
+  xnoremap <silent> gy :<C-u>cal YankToTmux()<CR>
+  xnoremap <silent> <Space>- :<C-u>call PasteInTmux(v:count, 1)<CR>
+  xnoremap <silent> <Space>_ :<C-u>call PasteInTmux(v:count, 0)<CR>
+endif
+
+" 对于只有一个大写字母的搜索词大小写敏感；其他情况大小写不敏感
+set ignorecase
+set smartcase
+
+" 命令模式下，底部操作指令按 Tab 自动补全
+" set wildmenu
+set wildmode=longest:list,full
+
+" 开启文件类型检查，并载入对应的缩进规则
+filetype plugin indent on
+
+set splitbelow
+set splitright
+
+" neovim specific configs
+if has('nvim')
+else
+endif
+
+" terminal app specific configs
+if getenv('TERM_PROGRAM') == "Apple_Terminal"
+	set notermguicolors
+	let g:spacevim_enable_guicolors = 0
+else
+	set termguicolors
+	let g:spacevim_enable_guicolors = 1
+endif
+
+" dir of current file
+cnoremap ;d <C-r>=expand('%:p:h').'/'<CR>
+" name of current file
+cnoremap ;f <C-r>=expand('%')<CR>
+cnoremap ;/ \{-}
+command EF execute "tabe " . script_path
+command! ER execute "source " . script_path
+command P execute 'tabe '.@+
+" browse current file in alfred
+command AF execute "!alfred " . shellescape(expand("%:p"), 1)
+command VS execute "!code " . shellescape(getcwd()) . " && sleep 1 && code -g " . shellescape(expand("%:p"))
+command -nargs=* TA cal Tab(<q-args>)
+command -nargs=* TR cal Retab(<q-args>)
+command -nargs=+ Se cal SpaceVim#plugins#iedit#start({'expr': <q-args>, 'selectall': 1})
+command -nargs=+ SE cal SpaceVim#plugins#iedit#start({'expr': <q-args>, 'selectall': 0})
+command -nargs=+ Sw cal SpaceVim#plugins#iedit#start({'word': <q-args>, 'selectall': 1})
+command -nargs=+ SW cal SpaceVim#plugins#iedit#start({'word': <q-args>, 'selectall': 0})
+command -nargs=1 SL setlocal spelllang=<args>
+command TES execute '20sp +ter'
+command TER execute '65vsp +ter'
+command PER execute '!chmod +x "%:p"'
+
+nnoremap <Up> gk
+nnoremap <Down> gj
+nnoremap <A-k> 12k
+nnoremap <A-j> 12j
+nnoremap <A-p> :vs <C-r>+<CR><CR>
+nnoremap <A-P> :tabe <C-r>+<CR><CR>
+noremap gj [e
+noremap gk ]e
+nnoremap g. gi
+nnoremap <Space>/ :nohl<CR>
+nnoremap <Space>x= =`]
+nnoremap <Space>w\| :vsp<CR>
+map <silent> <f1> <Space>ft
+noremap <silent><buffer> <f4> :TES<CR>
+map <silent> <f4> :TES<CR>
+silent! nunmap ma
+nnoremap ml :<C-U>BookmarkShowAll<CR>
+
+xnoremap <Up> gk
+xnoremap <Down> gj
+xnoremap <A-k> 12k
+xnoremap <A-j> 12j
+xnoremap C "+y
+xnoremap X "+x
+xnoremap p "_dP
+xnoremap <silent> <CR> "oy<ESC>:let $VIM_URL=getreg('o')<CR>:!open $VIM_URL<CR>
+xnoremap <silent> O "oy<ESC>:tabe <C-r>o<CR>
+xnoremap gs "1y/<C-r>1<CR>
+xnoremap <silent> g<CR> "os<CR><ESC>k:r!<C-r>o<CR>kJJ
+xnoremap <silent> <Space>se "1y:Sw <C-r>1<CR><CR>
+xnoremap <silent> <Space>sE "1y:SW <C-r>1<CR><CR>
+
+tmap <ESC> <C-\><C-n>
+tmap <silent> <f4> <ESC>:q<CR>
+tmap <C-J> <C-Down>
+tmap <C-K> <C-Up>
+tmap <C-H> <C-Left>
+tmap <C-L> <C-Right>
+tmap <A-Left> <A-b>
+tmap <A-Right> <A-f>
+
+" EasyMotion
+let g:EasyMotion_leader_key=";"
+let g:EasyMotion_skipfoldedline=0
+let g:EasyMotion_space_jump_first=1
+let g:EasyMotion_move_highlight=0
+let g:EasyMotion_use_migemo=1
+let g:EasyMotion_startofline = 0
+noremap ; <Plug>(easymotion-prefix)
+noremap s <Plug>(easymotion-overwin-f2)
+" `s` 和 surround 冲突, 比如 ds
+onoremap z <Plug>(easymotion-f2)
+noremap ;/ <Plug>(easymotion-sn)
+" noremap ;. <Plug>(easymotion-repeat)
+noremap ;; <Plug>(easymotion-next)
+noremap ;, <Plug>(easymotion-prev)
+
+imap <silent><script><expr> <Plug>(vimrc:copilot-dummy-map) copilot#Accept("\<Tab>")

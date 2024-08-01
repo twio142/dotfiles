@@ -1,0 +1,40 @@
+### AutoRaise config file ###
+
+pollMillis=100
+# How often to poll the mouse position and consider a raise/focus. Lower values increase responsiveness but also CPU load. Minimum = 20 and default = 50.
+
+delay=1
+# Raise delay, specified in units of pollMillis. Disabled if 0. A delay > 1 requires the mouse to stop for a moment before raising.
+
+focusDelay=1.5
+# Focus delay, specified in units of pollMillis. Disabled if 0. A delay > 1 requires the mouse to stop for a moment before focusing.
+
+warpX=0.5
+# A Factor between 0 and 1. Makes the mouse jump horizontally to the activated window. By default disabled.
+
+warpY=0.3
+# A Factor between 0 and 1. Makes the mouse jump vertically to the activated window. By default disabled.
+
+scale=1.0
+# Enlarge the mouse for a short period of time after warping it. The default is 2.0. To disable set it to 1.0.
+
+altTaskSwitcher=false
+# Set to true if you use 3rd party tools to switch between applications (other than standard command-tab).
+
+ignoreSpaceChanged=false
+# Do not immediately raise/focus after a space change. The default is false.
+
+# ignoreApps="App1,App2"
+# Comma separated list of apps for which you would like to disable focus/raise.
+
+stayFocusedBundleIds="com.runningwithcrayons.Alfred,com.eusoft.dehelper.LightPeek"
+# Comma separated list of app bundle identifiers that shouldn’t lose focus even when hovering the mouse over another window.
+
+disableKey="option"
+# Set to control, option or disabled. This will temporarily disable AutoRaise while holding the specified key. The default is control.
+
+mouseDelta=0.5
+# Requires the mouse to move a certain distance. 0.0 = most sensitive whereas higher values decrease sensitivity.
+
+verbose=false
+# Set to true to make AutoRaise show a log of events when started in a terminal.

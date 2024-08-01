@@ -1,0 +1,28 @@
+{
+  "picBed": {
+    "uploader": "imgur",
+    "current": "imgur",
+    "github": {
+      "repo": "twio142/image-host",
+      "branch": "master",
+      "token": "***REMOVED***",
+      "path": "",
+      "customUrl": ""
+    },
+    "imgur": {
+      "clientId": "75b397ca68fc6e1",
+      "proxy": ""
+    },
+    "transformer": "path"
+  },
+  "picgoPlugins": {
+    "picgo-plugin-autocopy": true,
+    "picgo-plugin-rename-file": true
+  },
+  "picgo-plugin-autocopy": {
+    "template": "URL"
+  },
+  "picgo-plugin-rename-file": {
+    "format": "IMG_{hash}"
+  }
+}

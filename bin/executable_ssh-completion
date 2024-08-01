@@ -1,0 +1,10 @@
+#!/bin/bash
+
+_ssh_hosts() {
+  local config_file="$HOME/.ssh/config"
+  [ -f "$config_file" ] || return
+  local hosts=$(grep "^Host" "$config_file" | awk '{print $2}' | grep -v '*')
+  COMPREPLY=($(compgen -W "$hosts" -- "${COMP_WORDS[COMP_CWORD]}"))
+}
+
+complete -F _ssh_hosts ssh

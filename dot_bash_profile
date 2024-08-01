@@ -1,0 +1,4 @@
+export LC_CTYPE="UTF-8"
+export HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/bash/history
+alias tput=/usr/bin/tput
+export PS1='$(tput setaf 26)\t \e[1m\u\e[0m$(tput sgr0) $ \n'

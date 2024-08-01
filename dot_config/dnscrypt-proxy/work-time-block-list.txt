@@ -1,0 +1,15 @@
+## WORK-TIME-BLOCK-LIST-START
+
+# *.youtube.com
+*.iyf.tv
+*.amazon.de
+*.iconfinder.com
+*.weibo.com
+*.douban.com
+*.bilibili.com
+*.facebook.com
+*.kleinanzeigen.de
+*.ebay.de
+*.hammerspoon.org
+
+## WORK-TIME-BLOCK-LIST-END

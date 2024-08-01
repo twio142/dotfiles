@@ -1,0 +1,2 @@
+#!/bin/zsh
+(defaults read -g AppleInterfaceStyle &> /dev/null) && echo -n dark || echo -n light

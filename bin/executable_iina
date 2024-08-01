@@ -1,0 +1,15 @@
+#!/bin/zsh
+export PATH=/opt/homebrew/bin:$PATH
+if [ -z $1 ]; then
+    echo 'Usage: iina [-g <property>] [-s <property> <value>] [<command>]'; exit 1
+elif [[ $1 = -g && ! -z $2 ]]; then
+    1=get_property
+elif [[ $1 = -s && ! -z $2 && ! -z $3 ]]; then 
+    1=set_property
+fi
+output=$(jq -cn '{command: $ARGS.positional}' --args "$@" | socat - /tmp/iina.sock 2>/dev/null)
+[ $? -ne 0 ] && echo 'Failed to connect to IINA' >&2 && exit 1
+data=$(echo $output | jq -r 'if .data? != null then .data else "" end') || exit 1
+[ -z $data ] || { echo $data; exit 0; }
+error=$(echo $output | jq -r 'if .error != "success" then .error else "" end')
+[ -z $error ] || { echo $error >&2; exit 1; }

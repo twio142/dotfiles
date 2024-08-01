@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+1="$@"
+if [[ ! -z $1 && -e $1 ]]; then
+  1=${1:a}
+fi
+
+osascript -l JavaScript -e 'run=a=>Application("com.runningwithcrayons.Alfred").search(a.join(" "))' "${1}"
