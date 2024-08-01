@@ -42,6 +42,8 @@ brew "glib"
 brew "libxcb"
 # X.Org: Core X11 protocol client library
 brew "libx11"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
 # Tool for emulating mouse and keyboard events
 brew "cliclick"
 # Get a file from an HTTP, HTTPS or FTP server
@@ -176,10 +178,16 @@ brew "tmux"
 brew "trash"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Check your $HOME for unwanted files and directories
+brew "xdg-ninja"
 # JavaScript package manager
 brew "yarn"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
+# Real-time type-ahead completion for Zsh
+brew "zsh-autocomplete"
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
 # Watcher for macOS 10.14+ light/dark mode changes
 brew "cormacrelf/tap/dark-notify"
 # Switch your input method through terminal

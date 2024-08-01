@@ -8,7 +8,7 @@ window_count=$(tmux list-windows -t $session_id | wc -l)
 
 # If there's only one window, create a new one
 if [ "$window_count" -eq 1 ]; then
-  tmux new-window -c "~/"
+  tmux new-window -c "$HOME"
 else
   # Switch to the next window
   tmux next-window

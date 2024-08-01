@@ -212,6 +212,10 @@ export FZF_COMPLETION_TRIGGER='~~'
 export FZF_COMPLETION_OPTS='--border --info=inline'
 . ~/.config/fzf/fzf-git.sh
 
+if [[ -z $TMUX && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 [[ -z $TMUX ]] && test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
 alias it2api='~/Library/Application\ Support/iTerm2/iterm2env/versions/3.10.4/bin/python3 ~/.iterm2/it2api'
 
