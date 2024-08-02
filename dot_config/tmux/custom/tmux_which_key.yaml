@@ -50,7 +50,7 @@ items:
         command: "run-shell ~/.config/tmux/scripts/next_window.sh" 
       - name: New
         key: c
-        command: "neww -c '~/'"
+        command: neww -c "$HOME"
       - name: Copy
         key: C
         command: copy-window 
@@ -189,6 +189,10 @@ items:
   - name: +Git
     key: g
     menu:
+      - name: Lazygit
+        key: g
+        command:
+          run-shell -b "~/.config/tmux/scripts/open_lazygit.sh &>/dev/null"
       - name: Files
         key: f
         command:

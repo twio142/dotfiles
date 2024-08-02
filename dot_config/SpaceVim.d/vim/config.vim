@@ -225,8 +225,8 @@ nnoremap ml :<C-U>BookmarkShowAll<CR>
 
 xnoremap <Up> gk
 xnoremap <Down> gj
-xnoremap <A-k> 12k
-xnoremap <A-j> 12j
+xnoremap <M-k> 12k
+xnoremap <M-j> 12j
 xnoremap C "+y
 xnoremap X "+x
 xnoremap p "_dP

@@ -19,7 +19,7 @@ cmp.setup({
 		['<Tab>'] = cmp.mapping(function(fallback)
 			vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
 		end),
-		['<C-Space>'] = smart_tab,
+		['<C-n>'] = smart_tab,
 	},
 	experimental = {
 		ghost_text = false -- this feature conflicts with copilot.vim's preview.

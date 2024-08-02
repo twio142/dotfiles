@@ -1,0 +1,27 @@
+disableStartupPopups: true
+promptToReturnFromSubprocess: false
+quitOnTopLevelReturn: true
+gui:
+  shortTimeFormat: "15:04"
+  showBottomLine: false
+  nerdFontsVersion: "3"
+  showFileIcons: false
+  theme:
+    activeBorderColor:
+      - default
+      - bold
+    selectedLineBgColor:
+      - underline
+os:
+  # editPreset: "nvim-remote"
+  editInTerminal: true
+  edit: "$XDG_CONFIG_HOME/lazygit/edit.sh {{filename}}"
+  editAtLine: "$XDG_CONFIG_HOME/lazygit/edit.sh {{filename}} +{{line}}"
+  copyToClipboardCmd: "echo -n {{text}} | tmux load-buffer -"
+git: 
+  colorArg: always
+  pager: "bat --pager=never --style=plain --tabs 2"
+keybinding:
+  universal:
+    optionMenu: '?'
+    optionMenu-alt1: '?'

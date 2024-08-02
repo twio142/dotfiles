@@ -74,16 +74,23 @@ _fzf_git_files() {
 }
 
 open_in_nvim() {
-  pid=$(pgrep -P "$(pgrep -P $pid)")
-  socket=$(find $TMPDIR -type s -path "*nvim.$pid.*" 2> /dev/null)
-  if [ -z "$socket" ]; then
-    scpt="vim "
-    for file in $@; do
-      scpt+="${file:q} "
+  local cmd pid socket
+  cmd=$(tmux display -p "#{pane_current_command}")
+  pid=$(tmux display -p "#{pane_pid}")
+  if [ "$cmd" = "nvim" ]; then
+    until (ps -o command= -p $pid | grep -Eq "^nvim --embed"); do
+      pid=$(pgrep -P $pid 2> /dev/null)
+      [ -z "$pid" ] && break
     done
-    tmux send-keys "$scpt" Enter
-  else
-    nvim --server "$socket" --remote-tab $@
+    socket=$(find $TMPDIR -type s -path "*nvim.$pid.*" 2> /dev/null)
+    [ -n "$socket" ] &&
+      nvim --server "$socket" --remote-tab $@
+  elif [ "$cmd" = "zsh" ]; then
+    cmd="vim"
+    for file in $@; do
+      cmd+=" ${file:q}"
+    done
+    tmux send-keys "$cmd" Enter
   fi
 }
 
@@ -313,15 +320,11 @@ elif [[ -n "$type" && -n "$TMUX" ]]; then
   case $type in
     files)
       pane=$(tmux display -p "#P")
-      pid=$(tmux display -p "#{pane_pid}")
-      cmd=$(tmux display -p "#{pane_current_command}")
       files=()
       _fzf_git_files | while read -r file; do
         files+=("$file")
       done
-      [ -z $files ] && exit 0
-      [[ $cmd = nvim || $cmd = zsh ]] || exit 0
-      open_in_nvim $files
+      [ -n "$files" ] && open_in_nvim $files
       ;;
     *)
       _fzf_git_$type ;;

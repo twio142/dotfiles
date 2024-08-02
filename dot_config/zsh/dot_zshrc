@@ -137,6 +137,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
+export PAGER='bat --style=plain --color=always'
 
 # Compilation flags
 export ARCHFLAGS=$(uname -m)
