@@ -8,7 +8,7 @@ cd &> /dev/null
 brew cu -a -y
 brew update
 brew cleanup
-brew bundle dump --describe --force --file=${XDG_CONFIG_HOME:-~/.config}/bootstrap/Brewfile
+brew bundle dump --describe --force --file=${XDG_DATA_HOME:-~/.local/share}/chezmoi/bootstrap/Brewfile
 # encstr -d $(security find-generic-password -a nsdr57 -w) | sudo -S brew upgrade
 brew upgrade
 

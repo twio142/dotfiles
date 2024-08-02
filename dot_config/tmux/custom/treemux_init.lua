@@ -164,7 +164,8 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.del("n", "<C-r>", { buffer = bufnr })
   vim.keymap.set("n", "<C-r>", api.tree.reload, opts "Refresh")
   vim.keymap.del("n", "R", { buffer = bufnr })
-  vim.keymap.set("n", "R", api.fs.rename_sub, opts "Refresh")
+  vim.keymap.set("n", "R", api.fs.rename_sub, opts "Rename")
+  vim.keymap.set("n", "B", api.tree.toggle_no_bookmark_filter, opts "Toggle bookmark filter")
 
   vim.keymap.set("n", "<C-d>", ":qa!<CR>", opts "Exit nvim tree")
 

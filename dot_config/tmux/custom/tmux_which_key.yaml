@@ -301,10 +301,10 @@ items:
             command:
               run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/clean_plugins
       - name: Detach
-        key: D
+        key: d
         command: detach
       - name: Suspend
-        key: Z
+        key: z
         command: suspendc
       - separator: true
       - name: Reload config

@@ -9,7 +9,7 @@ endfunction
 
 function! vimrc#before() abort
 	call SetBackground()
-  if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
+  if !has('nvim') | set shadafile=$XDG_STATE_HOME/vim/viminfo | endif
 	let g:python3_host_prog='~/miniconda3/envs/py3/bin/python'
 	let g:python_host_prog='~/miniconda3/envs/py2/bin/python'
 	let g:node_host_prog='/usr/local/bin/node'

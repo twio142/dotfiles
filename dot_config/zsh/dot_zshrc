@@ -194,6 +194,7 @@ export PATH="$HOME/Projects/netzwerk/accounting/bin:$PATH"
 export PATH=~/.local/bin:$PATH
 export PATH="$PATH:$HOME/.local/bin"
 
+export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
@@ -212,10 +213,6 @@ export FZF_COMPLETION_TRIGGER='~~'
 # Options to fzf command
 export FZF_COMPLETION_OPTS='--border --info=inline'
 . ~/.config/fzf/fzf-git.sh
-
-if [[ -z $TMUX && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 [[ -z $TMUX ]] && test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
 alias it2api='~/Library/Application\ Support/iTerm2/iterm2env/versions/3.10.4/bin/python3 ~/.iterm2/it2api'

@@ -324,7 +324,7 @@ elif [[ -n "$type" && -n "$TMUX" ]]; then
       _fzf_git_files | while read -r file; do
         files+=("$file")
       done
-      [ -n "$files" ] && open_in_nvim $files
+      [ -n "$files" ] && open_in_nvim $files || exit 0
       ;;
     *)
       _fzf_git_$type ;;
