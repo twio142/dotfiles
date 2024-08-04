@@ -58,7 +58,7 @@ DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
-CORRECT_IGNORE_FILE="go|.build|.ssh"
+CORRECT_IGNORE_FILE="go|.build|.ssh|.config"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
@@ -198,7 +198,7 @@ export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
-# export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
 export GOPATH=$XDG_DATA_HOME/go
 export PATH=$PATH:$GOPATH/bin
