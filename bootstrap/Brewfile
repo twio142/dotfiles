@@ -1,13 +1,11 @@
-tap "buo/cask-upgrade"
 tap "cormacrelf/tap"
 tap "daipeihust/tap"
 tap "dimentium/autoraise"
-tap "ggozad/formulas"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "homebrew/test-bot"
+tap "jesseduffield/lazygit"
 tap "joelekstrom/repo"
-tap "nikitabobko/tap"
 tap "owo-network/brew"
 tap "yt-dlp/taps"
 # TIFF library and utilities
@@ -122,8 +120,6 @@ brew "libconfig"
 brew "libxt"
 # Package manager for the Lua programming language
 brew "luarocks"
-# Fast and simple video downloader
-brew "lux"
 # Language Server Protocol for Markdown
 brew "marksman"
 # Mac App Store command-line interface
@@ -194,8 +190,8 @@ brew "cormacrelf/tap/dark-notify"
 brew "daipeihust/tap/im-select"
 # Focus-follows-mouse for MacOS
 brew "dimentium/autoraise/autoraise", args: ["with-dexperimental_focus_first"]
-# Text-based terminal client for Ollama
-brew "ggozad/formulas/oterm"
+# A simple terminal UI for git commands, written in Go
+brew "jesseduffield/lazygit/lazygit"
 # An ncurses-based minesweeper game
 brew "joelekstrom/repo/terminal-mines"
 # DeepLX is a permanently free DeepL API client written in Golang.

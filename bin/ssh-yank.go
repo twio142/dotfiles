@@ -1,77 +1,85 @@
-/* Open a TCP listener on a port and copy the received data to the clipboard.
-   Requires `ssh -R` to forward a port from the remote machine to the local machine.
-   Default port is 54321, but can be overridden by setting the `PORT` env var. */
+/*
+ * This program listens on a TCP port and copies the data it receives to the clipboard.
+ *
+ * If the remote machine can access your local port directly, you can use this to copy
+ *   echo "Hello, world" | nc -w 1 $(echo $SSH_CLIENT | cut -d' ' -f1) 54321
+ *
+ * Otherwise, use SSH port forwarding to log in to the remote machine:
+ *   ssh -R 54321:localhost:54321 user@remote
+ * And copy data using:
+ *   echo "Hello, world" | nc -w 1 localhost 54321
+ */
 
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"io"
+	"log"
 	"net"
 	"os"
 	"os/exec"
-	"strings"
 	"time"
 )
 
-func writeToClipboard(data string) error {
-	cmd := exec.Command("pbcopy")
-	cmd.Stdin = strings.NewReader(data)
-	return cmd.Run()
-}
-
 func handleConnection(conn net.Conn) {
-	defer conn.Close()
+	// Create a pipe for connecting to pbcopy
+	r, w := io.Pipe()
 
-	reader := bufio.NewReader(conn)
-	var buffer strings.Builder
+	// Start pbcopy command
+	cmd := exec.Command("pbcopy")
+	cmd.Stdin = r
+	cmd.Stdout = io.Discard // Discard stdout as we don't need it
+	cmd.Stderr = io.Discard // Discard stderr
 
-	for {
-		line, err := reader.ReadString('\n')
-		if err != nil {
-			if err == io.EOF {
-				buffer.WriteString(line)
-				break
-			}
-			fmt.Fprintln(os.Stderr, "Error reading from connection:", err)
-			return
-		}
-		buffer.WriteString(line)
+	// Start the pbcopy command
+	err := cmd.Start()
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error starting pbcopy:", err)
+		conn.Close()
+		return
 	}
 
-	data := buffer.String()
-	fmt.Println(data)
-	if err := writeToClipboard(data); err != nil {
-		fmt.Fprintln(os.Stderr, "Error writing to clipboard:", err)
+	// Copy data from the connection to the pipe
+	go func() {
+		defer conn.Close()
+		defer w.Close()
+		_, err := io.Copy(w, conn)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "Error copying data:", err)
+		}
+	}()
+
+	// Wait for pbcopy to finish
+	err = cmd.Wait()
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error running pbcopy:", err)
 	}
 }
 
 func runListener() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "54321"
-	}
-	address := "127.0.0.1:" + port
-	listener, err := net.Listen("tcp", address)
+	// Listen on TCP port 54321
+	listener, err := net.Listen("tcp", ":54321")
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "Error starting TCP listener:", err)
-		return
+		log.Fatalf("Error creating listener: %v", err)
 	}
 	defer listener.Close()
+	log.Println("Listening on port 54321")
 
 	for {
 		if !isSSHRunning() {
 			os.Exit(0)
 		}
+		// Accept new connections
 		conn, err := listener.Accept()
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "Error accepting connection:", err)
 			continue
 		}
 
+		// Handle each connection concurrently
 		go handleConnection(conn)
-		time.Sleep(30 * time.Second)
+		time.Sleep(10 * time.Second)
 	}
 }
 

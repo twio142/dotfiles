@@ -12,7 +12,7 @@
 [core]
 	autocrlf = input
 	quotepath = false
-	excludesfile = .gitignore_global
+	excludesfile = /Users/***REMOVED***/.config/git/.gitignore_global
 	pager = bat --paging=always --style=plain --tabs 2
 [fetch]
 	recurseSubmodules = true

@@ -332,9 +332,7 @@ items:
       - name: Man page
         key: m
         command: man
-  - name: +Show
-    key: "."
-    menu:
+        separator: true
       - name: Messages
         key: m
         command: show-messages
@@ -344,6 +342,6 @@ items:
       - name: Window options
         key: w
         command: show-window-options -g
-      - name: Environ
+      - name: Environment
         key: e
         command: show-environment

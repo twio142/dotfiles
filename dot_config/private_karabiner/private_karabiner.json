@@ -442,7 +442,7 @@
 						]
 					},
 					{
-						"description": "MOD → ⇪, MOD C/D/E → Select Input Method, MOD H/J/K/L → Switch Window, MOD ␣ → ↵, MOD X → ⌫, MOD ` → ~, Paired Marks",
+						"description": "MOD → ⇪, MOD C/D/E → Select Input Method, MOD H/J/K/L → Switch Window, MOD X → ⌫, MOD ` → ~, Paired Marks",
 						"manipulators": [
 							{
 								"from": {
@@ -589,22 +589,6 @@
 								"to": [
 									{
 										"key_code": "delete_or_backspace"
-									}
-								],
-								"type": "basic"
-							},
-							{
-								"from": {
-									"key_code": "spacebar",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
-								},
-								"to": [
-									{
-										"key_code": "return_or_enter"
 									}
 								],
 								"type": "basic"

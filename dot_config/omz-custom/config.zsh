@@ -50,8 +50,8 @@ export PYTHON_HOST_PROG=$HOME/bin/py2
 ### FZF OPTIONS ###
 export FZF_DEFAULT_OPTS='--layout=reverse --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer=➤'
 
-# Use ~~ as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER='~~'
+# Use `` as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER="\`\`"
 # Options to fzf command
 export FZF_COMPLETION_OPTS="$FZF_DEFAULT_OPTS"
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
@@ -108,6 +108,9 @@ zle -N _autojump_fzf
 [[ -n "$TMUX" ]] && {
   bindkey "^[[1;3C" forward-word;
   bindkey "^[[1;3D" backward-word;
+  _tmux_wk_menu() { tmux show-wk-menu-root }
+  zle -N _tmux_wk_menu
+  bindkey "^[ " _tmux_wk_menu;
 } || {
   bindkey "^[[1;9C" forward-word;
   bindkey "^[[1;9D" backward-word;

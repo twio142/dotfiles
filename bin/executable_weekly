@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 export TERM=xterm-256color
-source ~/.zshrc &> /dev/null
+source ${XDG_CONFIG_HOME:-~/.config}/zsh/.zshrc &> /dev/null
 cd &> /dev/null
 
 # 调用 `brew upgrade`, `brew cleanup`
@@ -9,7 +9,6 @@ brew cu -a -y
 brew update
 brew cleanup
 brew bundle dump --describe --force --file=${XDG_DATA_HOME:-~/.local/share}/chezmoi/bootstrap/Brewfile
-# encstr -d $(security find-generic-password -a nsdr57 -w) | sudo -S brew upgrade
 brew upgrade
 
 # 文件计数
@@ -54,9 +53,8 @@ plural() {
 # 输出消息提示
 echo "Pruned $(plural $link_count "symbolic link"), $(plural $file_count "file") and $(plural $incomplete_count "incomplete download") from ~/Library/Caches/Homebrew"
 
-git -C ~/.config/SpaceVim fetch
+git -C ${XDG_CONFIG_HOME:-~/.config}/SpaceVim fetch
 git -C ~/Projects/ProperTree pull
 mas upgrade
 omz update
-ncu -u
-npm i
+command -v gh && gh extension upgrade --all

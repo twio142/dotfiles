@@ -112,7 +112,7 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 
 export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_AUTOCONNECT=false
-[[ "$TERM_PROGRAM" == "vscode" ]] || export ZSH_TMUX_AUTOQUIT=true
+export ZSH_TMUX_AUTOQUIT=true
 
 if [[ -z "$TMUX" && -z "$alfred_version" ]]; then
   if [[ -n "$SSH_CONNECTION" ]]; then
@@ -208,16 +208,12 @@ export PATH=$PATH:$GOPATH/bin
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-# Use ~~ as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER='~~'
-# Options to fzf command
-export FZF_COMPLETION_OPTS='--border --info=inline'
-. ~/.config/fzf/fzf-git.sh
+[ -z $alfred_version ] && . ${XDG_CONFIG_HOME:-~/.config}/fzf/fzf-git.sh
 
-[[ -z $TMUX ]] && test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
+[ -z $TMUX ] && test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
 alias it2api='~/Library/Application\ Support/iTerm2/iterm2env/versions/3.10.4/bin/python3 ~/.iterm2/it2api'
 
-[[ -z $alfred_version ]] && {
+[ -z $alfred_version ] && {
   local h=$(date +%H)
   local t=$([[ $h -ge 3 && $h -lt 12 ]] && echo morning || ([[ $h -ge 12 && $h -lt 17 ]] && echo afternoon || echo evening))
   tput setaf 57; echo "\e[1mGood $t, Shin ฅ^•ﻌ•^ฅ\e[0m"; tput sgr0
