@@ -43,7 +43,7 @@ async def isUsable(window):
 
 async def checkTmux(session):
     pid = await session.async_get_variable("jobPid")
-    script = os.getenv("HOME") + "/.config/tmux/scripts/find_empty_shell.sh"
+    script = os.getenv("XDG_CONFIG_HOME") + "/tmux/scripts/find_empty_shell.sh"
     return run([script, str(pid)]).returncode == 0
 
 

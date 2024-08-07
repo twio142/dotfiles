@@ -6,24 +6,28 @@
 open_in_existing_pane() {
   pane=$1
   shift
-  local id=$(echo $pane | cut -f1)
-  local cmd=$(echo $pane | cut -f2)
-  local pane_pid=$(echo $pane | cut -f3)
+  local win cmd pid
+  read win cmd pid <<< $pane
   case $cmd in
     nvim)
-      local shell_pid=$(pgrep -P $pane_pid)
-      local nvim_pid=$(pgrep -P $shell_pid)
-      local socket_pid=$(pgrep -P $nvim_pid)
-      local nvim_socket=$(find $TMPDIR -type s -name "nvim.${socket_pid}.*" 2>/dev/null | head -n 1)
-      [ -z "$nvim_socket" ] || {
-        [ $# -gt 0 ] && nvim --server $nvim_socket --remote-tab "$@";
+      until (ps -o command= -p $pid | grep -Eq "^nvim --embed"); do
+        pid=$(pgrep -P $pid 2> /dev/null)
+        [ -z "$pid" ] && break
+      done
+      local socket=$(find $TMPDIR -type s -path "*nvim.$pid.*" 2> /dev/null)
+      [ -n "$socket" ] && {
+        [ $# -gt 0 ] && nvim --server $socket --remote-tab "$@";
         exit 0;
       }
       ;;
     zsh)
-      line=$(tmux capture-pane -p -t $id -E - | grep -v '^\s*$' | tail -n1)
+      local line=$(tmux capture-pane -p -t $win -E - | grep -v '^\s*$' | tail -n1)
       if [[ "$line" = ❯ ]]; then
-        tmux send-keys -t $id "$2"
+        cmd="vim"
+        for file in $@; do
+          cmd+=" ${file:q}"
+        done
+        tmux send-keys -t $win "$cmd" Enter
         exit 0
       fi
       ;;
@@ -35,21 +39,26 @@ open_in_new_window() {
   shift
   tmux new-window -t "$session"
   local pane=$(tmux display -t "$session" -p "#P")
-  tmux send-keys -t "$pane" "nvim $@" Enter
+  local cmd="vim"
+  for file in $@; do
+    cmd+=" ${file:q}"
+  done
+  tmux send-keys -t $pane "$cmd" Enter
 }
 
-tmux list-sessions -F "#{session_name}" | while read session; do
-  tmux list-windows -t "$session" -F "#{window_index}	#{window_active}	#{window_panes}" | while read window; do
-    window_active=$(echo $window | cut -f2)
-    window_panes=$(echo $window | cut -f3)
-    window=$(echo $window | cut -f1)
-    if [[ "$window_active" = 1 && "$window_panes" = 1 ]]; then
-      tmux list-panes -t "$session:$window" -F "#S:#{window_index}.#P	#{pane_current_command}	#{pane_pid}" | while read pane; do
-        open_in_existing_pane $pane "$@"
-      done
-    fi
+getSession() {
+  tmux lsc -F '#{client_pid}	#{client_session}' | awk -F '\t' -v pid="$1" '$1 == pid {print $2}'
+}
+
+session=$(getSession $1)
+[ -z "$session" ] && exit 1
+shift
+
+tmux list-windows -t "$session" -F "#{window_active}	#{window_panes}	#{window_index}" | awk -F '\t' '$1 == "1" && $2 == "1" {print $3}' | while read window; do
+  tmux list-panes -t "$session:$window" -F "#S:#{window_index}.#P	#{pane_current_command}	#{pane_pid}" | while read pane; do
+    open_in_existing_pane $pane "$@"
   done
-  open_in_new_window $session "$@" && exit 0;
 done
+open_in_new_window $session "$@" && exit 0;
 
 exit 1;

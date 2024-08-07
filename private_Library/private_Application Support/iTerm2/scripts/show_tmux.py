@@ -13,7 +13,7 @@ def getClients(session_name):
         'tmux',
         'list-clients',
         '-F',
-        '#{client_pid},#{session_name}'
+        '#{client_pid},#{client_session}'
     ], stdout=PIPE, text=True).stdout.split("\n")
     clients = list(filter(
         lambda x: x and x.split(",")[1] == session_name, clients

@@ -301,3 +301,4 @@ vim.keymap.set("n", "<F13>", set_background, { noremap = true, silent = true })
 vim.o.cursorline = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.fillchars = "eob: "

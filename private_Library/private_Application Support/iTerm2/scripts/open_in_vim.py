@@ -59,7 +59,8 @@ async def openInVim(connection, files):
         raise Exception("No nvim or tmux session found")
     if job == "tmux":
         code = run([
-            os.getenv("HOME") + "/.config/tmux/scripts/open_in_vim.sh",
+            os.getenv("XDG_CONFIG_HOME") + "/tmux/scripts/open_in_vim.sh",
+            str(await session.async_get_variable("jobPid")),
             *files
         ]).returncode
         if code != 0:

@@ -119,6 +119,9 @@ if [[ -z "$TMUX" && -z "$alfred_version" ]]; then
     tmux new-session -A -s ssh
   elif [[ "$ITERM_PROFILE" == "Hotkey Window" ]]; then
     tmux new-session -A -s hotkey
+  elif [[ "$TERM_PROGRAM" == vscode ]]; then
+    local sess=$(tmux ls -F "#{session_attached}	#{session_name}	#{session_path}" | awk -F '\t' -v cwd="$(pwd)" '$1 == 0 && $3 == cwd {print $2}' | head -n1)
+    [ -z "$sess" ] && tmux || tmux attach -t "$sess"
   else
     tmux
   fi

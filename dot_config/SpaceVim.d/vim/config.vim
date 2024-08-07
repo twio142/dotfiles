@@ -145,7 +145,7 @@ if exists('$TMUX') && $TMUX != ''
   fu! PasteInTmux(pane, run)
     " run selected code in tmux pane
     let @o = GetSelection()
-    let tmux_pane = system('tmux display -p "#S:#W"')
+    let tmux_pane = system('tmux display -p "#S:#{window_index}"')
     let tmux_pane = substitute(tmux_pane, '\n', '', '') . '.' . a:pane
     silent execute '! ~/bin/altr -w com.nyako520.tmux -t vim2tmux -v reg=o -v "socket='. v:servername .'" -v "pane=' . tmux_pane . '" -v run=' . a:run
   endfunction
