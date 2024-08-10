@@ -47,6 +47,16 @@ local function treemux_open(v, p)
   os.execute('tmux send-keys "'..cmd..'" Enter')
 end
 
+local function system_open()
+  local api = require "nvim-tree.api"
+  local path = api.tree.get_node_under_cursor().absolute_path
+  if not path then
+    return
+  end
+  path = escape(path)
+  os.execute('open '..path)
+end
+
 local function copy_path(b)
   local api = require "nvim-tree.api"
   local path = api.tree.get_node_under_cursor().absolute_path
@@ -76,12 +86,18 @@ end
 local function preview()
   local api = require "nvim-tree.api"
   local path = api.tree.get_node_under_cursor().absolute_path
-  local type = api.tree.get_node_under_cursor().type
-  if not path or type == "directory" then
+  if not path then
     return
   end
   path = vim.fn.shellescape(path)
-  os.execute('tmux popup -w 75% -h 90% -x 30% -y 54% -E "bat -n --color=always '..path..'"')
+  local cmd
+  local type = api.tree.get_node_under_cursor().type
+  if type == "directory" then
+    cmd = 'tmux popup -w 75% -h 90% -x 30% -y 54% "tree -C '..path..' | head -200"'
+  else
+    cmd = 'tmux popup -w 75% -h 90% -x 30% -y 54% "bat -n --color=always '..path..'"'
+  end
+  os.execute(cmd)
 end
 
 local function fzf()
@@ -142,6 +158,8 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.set("n", "q", function()
     vim.cmd "quitall!"
   end, opts "Quit nvim tree")
+  vim.keymap.del("n", "p", { buffer = bufnr })
+  vim.keymap.set("n", "p", api.node.navigate.parent, opts "Parent directory")
   vim.keymap.set("n", "i", function() treemux_open(nil,'v') end, opts "Open in new pane")
   vim.keymap.set("n", "vi", function() treemux_open(1,'v') end, opts "Open in vim in new pane")
   vim.keymap.set("n", "s", function() treemux_open(nil,'h') end, opts "Open in new vertical pane")
@@ -173,10 +191,15 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.del("n", "-", { buffer = bufnr })
   vim.keymap.set("n", "<C-k>", "", { buffer = bufnr })
   vim.keymap.del("n", "<C-k>", { buffer = bufnr })
-  vim.keymap.set("n", "O", "", { buffer = bufnr })
   vim.keymap.del("n", "O", { buffer = bufnr })
+  vim.keymap.set("n", "g<CR>", system_open, opts "Open in system")
+  vim.keymap.del("n", "gy", { buffer = bufnr })
 
-  api.tree.find_file({ buf = prev_pane_path(), update_root = true, focus = true }) 
+  vim.keymap.set("n", "<Space>\\", function()
+    vim.cmd [[ set nohlsearch ]]
+  end, opts "No highlight")
+
+  api.tree.find_file({ buf = prev_pane_path(), update_root = true, focus = true })
 end
 
 require("lazy").setup {
@@ -185,9 +208,9 @@ require("lazy").setup {
     keys = {
       { "-", "<Plug>(tmuxsend-smart)", mode = { "n", "x" } },
       { "_", "<Plug>(tmuxsend-plain)", mode = { "n", "x" } },
-      { "<space>-", "<Plug>(tmuxsend-uid-smart)", mode = { "n", "x" } },
-      { "<space>_", "<Plug>(tmuxsend-uid-plain)", mode = { "n", "x" } },
-      { "<C-_>", "<Plug>(tmuxsend-tmuxbuffer)", mode = { "n", "x" } },
+      { "<space>-", "<Plug>(tmuxsend-smart)", mode = { "n", "x" } },
+      { "<space>_", "<Plug>(tmuxsend-plain)", mode = { "n", "x" } },
+      { "gy", "<Plug>(tmuxsend-tmuxbuffer)", mode = { "n", "x" } },
     },
   },
   "kiyoon/nvim-tree-remote.nvim",
@@ -243,12 +266,16 @@ require("lazy").setup {
           },
         },
         view = {
-          width = 24,
+          width = 20,
           side = "left",
         },
         filters = {
-          custom = { ".git" },
+          custom = { "^\\.git" },
         },
+        sort = {
+          folders_first = true,
+          sorter = "modification_time",
+        }
       }
     end,
   },
@@ -273,10 +300,11 @@ require("lazy").setup {
 
 local function custom_one()
   if vim.api.nvim_get_option('background') == 'dark' then
-    vim.cmd [[ hi Normal guibg=#101020 ]]
+    -- vim.cmd [[ hi Normal guibg=#101020 ]]
   else
     vim.cmd [[ hi PmenuSel guifg=#e6e6e6 ]]
   end
+  vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
 end
 
 local function set_background()

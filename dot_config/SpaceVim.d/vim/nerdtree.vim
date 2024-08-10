@@ -1,4 +1,7 @@
 let g:NERDTreeBookmarksFile = expand('$XDG_STATE_HOME') . '/nerdtree/bookmarks'
+let g:NERDTreeSortOrder = ['\/$', '*', '\.swp$', '\.bak$', '\~$', '[[-timestamp]]']
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 
 fu! NERDTreeBookmark(action)
   let l:key = nr2char(getchar())
@@ -39,7 +42,18 @@ call NERDTreeAddKeyMap({
   \ 'scope': 'Node' })
 
 function! NERDTreeOpenInAlfred(node)
-    execute "!~/bin/alfred " . shellescape(a:node.path.str(), 1)
+  call system("~/bin/alfred " . shellescape(a:node.path.str(), 1))
+endfunction
+
+call NERDTreeAddKeyMap({
+  \ 'key': 'g<CR>',
+  \ 'callback': 'NERDTreeSystemOpen',
+  \ 'quickhelpText': 'open in system',
+  \ 'scope': 'Node' })
+
+function! NERDTreeSystemOpen(node)
+  let cmd = has('mac') ? 'open' : 'xdg-open'
+  call system(cmd . ' ' . shellescape(a:node.path.str(), 1))
 endfunction
 
 call NERDTreeAddKeyMap({

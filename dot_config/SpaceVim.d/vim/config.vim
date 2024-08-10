@@ -9,10 +9,8 @@ endif
 " let g:indent_blankline_use_treesitter = v:true
 " let g:indent_blankline_context_char = '│'
 " let g:indent_blankline_show_current_context = v:true
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
 
-execute "source " . expand('<sfile>:p:h') . "/custom_one.vim"
+execute 'source ' . expand('<sfile>:p:h') . '/custom_one.vim'
 
 fu! s:firstInsertEnter()
 	if s:fi == 1
@@ -42,7 +40,14 @@ augroup NoBackup
 augroup END
 
 if exists(':NERDTree') == 2
-  execute "source " . expand('<sfile>:p:h') . "/nerdtree.vim"
+  execute 'source ' . expand('<sfile>:p:h') . '/nerdtree.vim'
+endif
+
+if exists(':Telescope') == 2
+  augroup TelescopeConfig
+    autocmd!
+    autocmd User TelescopePreviewerLoaded execute 'source ' . expand('<sfile>:p:h') . '/telescope.vim' 
+  augroup END
 endif
 
 " markdown 折行设置
@@ -70,6 +75,8 @@ set foldmethod=manual
 
 set encoding=utf-8
 set fileencodings=utf-8,gb18030,default
+
+set fillchars=vert:│,fold:·,eob:\ 
 
 " 滚动时光标与边缘的距离
 set scrolloff=5
@@ -217,6 +224,7 @@ nnoremap g. gi
 nnoremap <Space>/ :nohl<CR>
 nnoremap <Space>x= =`]
 nnoremap <Space>w\| :vsp<CR>
+nnoremap <silent> <Space>fO :call system('open ' . shellescape(expand('%:p')))<CR>
 map <silent> <f1> <Space>ft
 noremap <silent><buffer> <f4> :TES<CR>
 map <silent> <f4> :TES<CR>
@@ -230,9 +238,9 @@ xnoremap <M-j> 12j
 xnoremap C "+y
 xnoremap X "+x
 xnoremap p "_dP
-xnoremap <silent> <CR> "oy<ESC>:let $VIM_URL=getreg('o')<CR>:!open $VIM_URL<CR>
-xnoremap <silent> O "oy<ESC>:tabe <C-r>o<CR>
-xnoremap gs "1y/<C-r>1<CR>
+xnoremap <silent> <CR> "oy<ESC>:call system('open ' . shellescape(getreg('o')))<CR>
+xnoremap <silent> <C-t> "oy<ESC>:tabe <C-r>o<CR>
+xnoremap gs "oy/<C-r>o<CR>
 xnoremap <silent> g<CR> "os<CR><ESC>k:r!<C-r>o<CR>kJJ
 xnoremap <silent> <Space>se "1y:Sw <C-r>1<CR><CR>
 xnoremap <silent> <Space>sE "1y:SW <C-r>1<CR><CR>
@@ -247,17 +255,21 @@ tmap <A-Left> <A-b>
 tmap <A-Right> <A-f>
 
 " EasyMotion
-let g:EasyMotion_leader_key=";"
-let g:EasyMotion_skipfoldedline=0
-let g:EasyMotion_space_jump_first=1
-let g:EasyMotion_move_highlight=0
-let g:EasyMotion_use_migemo=1
+let g:EasyMotion_verbose = 0
+let g:EasyMotion_leader_key = ";"
+let g:EasyMotion_skipfoldedline = 0
+let g:EasyMotion_space_jump_first = 1
+let g:EasyMotion_move_highlight = 0
+let g:EasyMotion_use_migemo = 1
 let g:EasyMotion_startofline = 0
+noremap s <Plug>(easymotion-fl2)
 noremap ; <Plug>(easymotion-prefix)
-noremap s <Plug>(easymotion-overwin-f2)
+noremap ;f <Plug>(easymotion-fl)
+noremap ;s <Plug>(easymotion-overwin-f2)
 " `s` 和 surround 冲突, 比如 ds
 onoremap z <Plug>(easymotion-f2)
 noremap ;/ <Plug>(easymotion-sn)
+noremap ;L <Plug>(easymotion-overwin-line)
 " noremap ;. <Plug>(easymotion-repeat)
 noremap ;; <Plug>(easymotion-next)
 noremap ;, <Plug>(easymotion-prev)

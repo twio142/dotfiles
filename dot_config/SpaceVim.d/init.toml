@@ -32,12 +32,16 @@
 	statusline_unicode_symbols = true
 	statusline_left = [
     "winnr",
-    "filename",
+    # "filename",
     "major mode",
     "syntax_checking",
-		# "version control info",
+    "version control info",
 		"search count",
 	]
+  statusline_right = [
+    "cursorpos",
+    "percentage",
+  ]
 	# Enable vim compatible mode, avoid changing origin vim key bindings
 	vimcompatible = false
 	# automatic_update = true
@@ -57,7 +61,7 @@
 	todo_labels = ["DIGIN", "TEST", "TODO", "BUG", "HERE", "EDITED", "FINDOUT", "fixme", "digin", "here", "edited", "test", "debug", "findout"]
 	todo_prefix = "@"
 
-	project_rooter_patterns = ['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', 'info.plist', 'Packsge.swift', 'go.mod']
+	project_rooter_patterns = ['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', 'info.plist', 'Package.swift', 'go.mod']
 	project_rooter_outermost = false
 
 [[layers]]
