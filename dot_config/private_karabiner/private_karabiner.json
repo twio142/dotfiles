@@ -1,20 +1,15 @@
 {
 	"global": {
-		"ask_for_confirmation_before_quitting": true,
 		"check_for_updates_on_startup": false,
-		"show_in_menu_bar": false,
-		"show_profile_name_in_menu_bar": false,
-		"unsafe_ui": false
+		"show_in_menu_bar": false
 	},
+	"machine_specific": { "krbn-empty-machine-identifier": { "enable_multitouch_extension": true } },
 	"profiles": [
 		{
 			"complex_modifications": {
 				"parameters": {
 					"basic.simultaneous_threshold_milliseconds": 100,
-					"basic.to_delayed_action_delay_milliseconds": 500,
-					"basic.to_if_alone_timeout_milliseconds": 500,
-					"basic.to_if_held_down_threshold_milliseconds": 500,
-					"mouse_motion_to_scroll.speed": 100
+					"basic.to_if_alone_timeout_milliseconds": 500
 				},
 				"rules": [
 					{
@@ -30,9 +25,7 @@
 										"type": "frontmost_application_if"
 									}
 								],
-								"from": {
-									"key_code": "right_shift"
-								},
+								"from": { "key_code": "right_shift" },
 								"to": [
 									{
 										"set_variable": {
@@ -40,9 +33,7 @@
 											"value": 1
 										}
 									},
-									{
-										"key_code": "right_shift"
-									}
+									{ "key_code": "right_shift" }
 								],
 								"to_delayed_action": {
 									"to_if_canceled": [
@@ -65,9 +56,7 @@
 								"to_if_alone": [
 									{
 										"key_code": "y",
-										"modifiers": [
-											"command"
-										]
+										"modifiers": ["command"]
 									}
 								],
 								"type": "basic"
@@ -83,19 +72,12 @@
 								],
 								"from": {
 									"key_code": "c",
-									"modifiers": {
-										"mandatory": [
-											"left_option"
-										]
-									}
+									"modifiers": { "mandatory": ["left_option"] }
 								},
 								"to": [
 									{
 										"key_code": "c",
-										"modifiers": [
-											"left_command",
-											"left_option"
-										]
+										"modifiers": ["left_command", "left_option"]
 									}
 								],
 								"type": "basic"
@@ -109,18 +91,10 @@
 										"type": "frontmost_application_if"
 									}
 								],
-								"from": {
-									"key_code": "k"
-								},
+								"from": { "key_code": "k" },
 								"to": [
-									{
-										"key_code": "k"
-									},
-									{
-										"mouse_key": {
-											"vertical_wheel": -30
-										}
-									}
+									{ "key_code": "k" },
+									{ "mouse_key": { "vertical_wheel": -30 } }
 								],
 								"type": "basic"
 							},
@@ -133,18 +107,10 @@
 										"type": "frontmost_application_if"
 									}
 								],
-								"from": {
-									"key_code": "j"
-								},
+								"from": { "key_code": "j" },
 								"to": [
-									{
-										"key_code": "j"
-									},
-									{
-										"mouse_key": {
-											"vertical_wheel": 30
-										}
-									}
+									{ "key_code": "j" },
+									{ "mouse_key": { "vertical_wheel": 30 } }
 								],
 								"type": "basic"
 							},
@@ -159,24 +125,14 @@
 								],
 								"from": {
 									"key_code": "k",
-									"modifiers": {
-										"mandatory": [
-											"right_shift"
-										]
-									}
+									"modifiers": { "mandatory": ["right_shift"] }
 								},
 								"to": [
 									{
 										"key_code": "k",
-										"modifiers": [
-											"right_shift"
-										]
+										"modifiers": ["right_shift"]
 									},
-									{
-										"mouse_key": {
-											"vertical_wheel": -90
-										}
-									}
+									{ "mouse_key": { "vertical_wheel": -90 } }
 								],
 								"type": "basic"
 							},
@@ -191,24 +147,14 @@
 								],
 								"from": {
 									"key_code": "j",
-									"modifiers": {
-										"mandatory": [
-											"right_shift"
-										]
-									}
+									"modifiers": { "mandatory": ["right_shift"] }
 								},
 								"to": [
 									{
 										"key_code": "j",
-										"modifiers": [
-											"right_shift"
-										]
+										"modifiers": ["right_shift"]
 									},
-									{
-										"mouse_key": {
-											"vertical_wheel": 90
-										}
-									}
+									{ "mouse_key": { "vertical_wheel": 90 } }
 								],
 								"type": "basic"
 							},
@@ -223,17 +169,9 @@
 								],
 								"from": {
 									"key_code": "up_arrow",
-									"modifiers": {
-										"mandatory": [
-											"right_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["right_gui"] }
 								},
-								"to": [
-									{
-										"key_code": "page_up"
-									}
-								],
+								"to": [{ "key_code": "page_up" }],
 								"type": "basic"
 							},
 							{
@@ -247,17 +185,9 @@
 								],
 								"from": {
 									"key_code": "down_arrow",
-									"modifiers": {
-										"mandatory": [
-											"right_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["right_gui"] }
 								},
-								"to": [
-									{
-										"key_code": "page_down"
-									}
-								],
+								"to": [{ "key_code": "page_down" }],
 								"type": "basic"
 							}
 						]
@@ -280,14 +210,8 @@
 										"type": "frontmost_application_if"
 									}
 								],
-								"from": {
-									"key_code": "right_shift"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.chromehp -t chrome_ext"
-									}
-								],
+								"from": { "key_code": "right_shift" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.chromehp -t chrome_ext" }],
 								"type": "basic"
 							},
 							{
@@ -307,24 +231,17 @@
 										"type": "frontmost_application_if"
 									}
 								],
-								"from": {
-									"key_code": "right_shift"
-								},
+								"from": { "key_code": "right_shift" },
 								"to": [
 									{
 										"key_code": "p",
-										"modifiers": [
-											"left_command",
-											"left_shift"
-										]
+										"modifiers": ["left_command", "left_shift"]
 									}
 								],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "right_shift"
-								},
+								"from": { "key_code": "right_shift" },
 								"to": [
 									{
 										"set_variable": {
@@ -332,9 +249,7 @@
 											"value": 1
 										}
 									},
-									{
-										"key_code": "right_shift"
-									}
+									{ "key_code": "right_shift" }
 								],
 								"to_delayed_action": {
 									"to_if_canceled": [
@@ -370,14 +285,8 @@
 										"type": "frontmost_application_if"
 									}
 								],
-								"from": {
-									"key_code": "left_shift"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.chromehp -t chrome_share"
-									}
-								],
+								"from": { "key_code": "left_shift" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.chromehp -t chrome_share" }],
 								"type": "basic"
 							},
 							{
@@ -394,20 +303,12 @@
 										"type": "frontmost_application_if"
 									}
 								],
-								"from": {
-									"key_code": "left_shift"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.folded.menubar -t match_click -a 'Copy URL as Markdown'; sleep 0.5; ~/bin/altr -w com.nyako520.chromehp -t chrome_share"
-									}
-								],
+								"from": { "key_code": "left_shift" },
+								"to": [{ "shell_command": "~/bin/altr -w com.folded.menubar -t match_click -a 'Copy URL as Markdown'; sleep 0.5; ~/bin/altr -w com.nyako520.chromehp -t chrome_share" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_shift"
-								},
+								"from": { "key_code": "left_shift" },
 								"to": [
 									{
 										"set_variable": {
@@ -415,9 +316,7 @@
 											"value": 1
 										}
 									},
-									{
-										"key_code": "left_shift"
-									}
+									{ "key_code": "left_shift" }
 								],
 								"to_delayed_action": {
 									"to_if_canceled": [
@@ -445,9 +344,7 @@
 						"description": "MOD → ⇪, MOD C/D/E → Select Input Method, MOD H/J/K/L → Switch Window, MOD X → ⌫, MOD ` → ~, Paired Marks",
 						"manipulators": [
 							{
-								"from": {
-									"key_code": "right_control"
-								},
+								"from": { "key_code": "right_control" },
 								"to": [
 									{
 										"key_code": "right_control",
@@ -463,151 +360,79 @@
 							{
 								"from": {
 									"key_code": "c",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.alfredapp.snippettrigger -t im-select -a com.apple.inputmethod.SCIM.Shuangpin"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.alfredapp.snippettrigger -t im-select -a com.apple.inputmethod.SCIM.Shuangpin" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "d",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.alfredapp.snippettrigger -t im-select -a com.apple.keylayout.German"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.alfredapp.snippettrigger -t im-select -a com.apple.keylayout.German" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "e",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.alfredapp.snippettrigger -t im-select -a com.apple.keylayout.US"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.alfredapp.snippettrigger -t im-select -a com.apple.keylayout.US" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "h",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://focus_win?d=w"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://focus_win?d=w" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "j",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://focus_win?d=s"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://focus_win?d=s" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "k",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://focus_win?d=n"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://focus_win?d=n" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "l",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://focus_win?d=e"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://focus_win?d=e" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "x",
 									"modifiers": {
-										"mandatory": [
-											"right_control"
-										],
-										"optional": [
-											"command",
-											"fn",
-											"option"
-										]
+										"mandatory": ["right_control"],
+										"optional": ["command", "fn", "option"]
 									}
 								},
-								"to": [
-									{
-										"key_code": "delete_or_backspace"
-									}
-								],
+								"to": [{ "key_code": "delete_or_backspace" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "grave_accent_and_tilde",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control"] }
 								},
 								"to": [
 									{
 										"key_code": "grave_accent_and_tilde",
-										"modifiers": [
-											"left_shift"
-										]
+										"modifiers": ["left_shift"]
 									}
 								],
 								"type": "basic"
@@ -615,84 +440,41 @@
 							{
 								"from": {
 									"key_code": "quote",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://surround?with=quotes"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://surround?with=quotes" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "quote",
-									"modifiers": {
-										"mandatory": [
-											"right_control",
-											"shift"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control", "shift"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://surround?with=double_quotes"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://surround?with=double_quotes" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "open_bracket",
-									"modifiers": {
-										"mandatory": [
-											"right_control"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://surround?with=brackets"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://surround?with=brackets" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "open_bracket",
-									"modifiers": {
-										"mandatory": [
-											"right_control",
-											"shift"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control", "shift"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://surround?with=braces"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://surround?with=braces" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "9",
-									"modifiers": {
-										"mandatory": [
-											"right_control",
-											"right_shift"
-										]
-									}
+									"modifiers": { "mandatory": ["right_control", "right_shift"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://surround?with=parentheses"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://surround?with=parentheses" }],
 								"type": "basic"
 							}
 						]
@@ -703,221 +485,105 @@
 							{
 								"from": {
 									"key_code": "h",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://move_win?d=w"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://move_win?d=w" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "j",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://move_win?d=s"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://move_win?d=s" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "k",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://move_win?d=n"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://move_win?d=n" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "l",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://move_win?d=e"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://move_win?d=e" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "m",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://move_win?d=m"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://move_win?d=m" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "h",
-									"modifiers": {
-										"mandatory": [
-											"control",
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["control", "fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://extend_win?d=w"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://extend_win?d=w" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "j",
-									"modifiers": {
-										"mandatory": [
-											"control",
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["control", "fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://extend_win?d=s"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://extend_win?d=s" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "k",
-									"modifiers": {
-										"mandatory": [
-											"control",
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["control", "fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://extend_win?d=n"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://extend_win?d=n" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "l",
-									"modifiers": {
-										"mandatory": [
-											"control",
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["control", "fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://extend_win?d=e"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://extend_win?d=e" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "h",
-									"modifiers": {
-										"mandatory": [
-											"control",
-											"option",
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["control", "option", "fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://contract_win?d=w"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://contract_win?d=w" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "j",
-									"modifiers": {
-										"mandatory": [
-											"control",
-											"option",
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["control", "option", "fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://contract_win?d=s"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://contract_win?d=s" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "k",
-									"modifiers": {
-										"mandatory": [
-											"control",
-											"option",
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["control", "option", "fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://contract_win?d=n"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://contract_win?d=n" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "l",
-									"modifiers": {
-										"mandatory": [
-											"control",
-											"option",
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["control", "option", "fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -g hammerspoon://contract_win?d=e"
-									}
-								],
+								"to": [{ "shell_command": "open -g hammerspoon://contract_win?d=e" }],
 								"type": "basic"
 							}
 						]
@@ -935,17 +601,9 @@
 								],
 								"from": {
 									"key_code": "a",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "open -F -b com.runningwithcrayons.Alfred"
-									}
-								],
+								"to": [{ "shell_command": "open -F -b com.runningwithcrayons.Alfred" }],
 								"type": "basic"
 							},
 							{
@@ -958,17 +616,9 @@
 								],
 								"from": {
 									"key_code": "c",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "open hammerspoon://clipboard_merge -g"
-									}
-								],
+								"to": [{ "shell_command": "open hammerspoon://clipboard_merge -g" }],
 								"type": "basic"
 							},
 							{
@@ -981,17 +631,9 @@
 								],
 								"from": {
 									"key_code": "d",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.aria2 -t save_url"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.aria2 -t save_url" }],
 								"type": "basic"
 							},
 							{
@@ -1004,17 +646,9 @@
 								],
 								"from": {
 									"key_code": "p",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.folded.menubar -t match_click -a - 'Edit\tAutoFill\tPasswords…' '编辑\t自动填充\t密码…'"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.folded.menubar -t match_click -a - 'Edit\tAutoFill\tPasswords…' '编辑\t自动填充\t密码…'" }],
 								"type": "basic"
 							},
 							{
@@ -1027,17 +661,9 @@
 								],
 								"from": {
 									"key_code": "r",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "open hammerspoon://reload -g"
-									}
-								],
+								"to": [{ "shell_command": "open hammerspoon://reload -g" }],
 								"type": "basic"
 							},
 							{
@@ -1050,28 +676,16 @@
 								],
 								"from": {
 									"key_code": "s",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to_after_key_up": [
-									{
-										"key_code": "return_or_enter"
-									}
-								],
+								"to_after_key_up": [{ "key_code": "return_or_enter" }],
 								"to_if_alone": [
 									{
 										"halt": true,
 										"shell_command": "/usr/sbin/screencapture -c -i -o"
 									}
 								],
-								"to_if_held_down": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.syspre -t screenshot"
-									}
-								],
+								"to_if_held_down": [{ "shell_command": "~/bin/altr -w com.nyako520.syspre -t screenshot" }],
 								"type": "basic"
 							},
 							{
@@ -1084,17 +698,9 @@
 								],
 								"from": {
 									"key_code": "v",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t paste_plain"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t paste_plain" }],
 								"type": "basic"
 							},
 							{
@@ -1107,17 +713,9 @@
 								],
 								"from": {
 									"key_code": "w",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.syspre -t close_without_save"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.syspre -t close_without_save" }],
 								"type": "basic"
 							},
 							{
@@ -1130,17 +728,9 @@
 								],
 								"from": {
 									"key_code": "return_or_enter",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.passwords -t %unlock"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.passwords -t %unlock" }],
 								"type": "basic"
 							}
 						]
@@ -1156,14 +746,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "1"
-								},
-								"to": [
-									{
-										"shell_command": "open hammerspoon://stage_manager?i=1 -g"
-									}
-								],
+								"from": { "key_code": "1" },
+								"to": [{ "shell_command": "open hammerspoon://stage_manager?i=1 -g" }],
 								"type": "basic"
 							},
 							{
@@ -1176,17 +760,9 @@
 								],
 								"from": {
 									"key_code": "1",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "open 'hammerspoon://stage_manager?i=1&mod=drag' -g"
-									}
-								],
+								"to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=1&mod=drag' -g" }],
 								"type": "basic"
 							},
 							{
@@ -1197,14 +773,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "2"
-								},
-								"to": [
-									{
-										"shell_command": "open hammerspoon://stage_manager?i=2 -g"
-									}
-								],
+								"from": { "key_code": "2" },
+								"to": [{ "shell_command": "open hammerspoon://stage_manager?i=2 -g" }],
 								"type": "basic"
 							},
 							{
@@ -1217,17 +787,9 @@
 								],
 								"from": {
 									"key_code": "2",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "open 'hammerspoon://stage_manager?i=2&mod=drag' -g"
-									}
-								],
+								"to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=2&mod=drag' -g" }],
 								"type": "basic"
 							},
 							{
@@ -1238,14 +800,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "3"
-								},
-								"to": [
-									{
-										"shell_command": "open hammerspoon://stage_manager?i=3 -g"
-									}
-								],
+								"from": { "key_code": "3" },
+								"to": [{ "shell_command": "open hammerspoon://stage_manager?i=3 -g" }],
 								"type": "basic"
 							},
 							{
@@ -1258,17 +814,9 @@
 								],
 								"from": {
 									"key_code": "3",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "open 'hammerspoon://stage_manager?i=3&mod=drag' -g"
-									}
-								],
+								"to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=3&mod=drag' -g" }],
 								"type": "basic"
 							},
 							{
@@ -1279,14 +827,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "4"
-								},
-								"to": [
-									{
-										"shell_command": "open hammerspoon://stage_manager?i=4 -g"
-									}
-								],
+								"from": { "key_code": "4" },
+								"to": [{ "shell_command": "open hammerspoon://stage_manager?i=4 -g" }],
 								"type": "basic"
 							},
 							{
@@ -1299,17 +841,9 @@
 								],
 								"from": {
 									"key_code": "4",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "open 'hammerspoon://stage_manager?i=4&mod=drag' -g"
-									}
-								],
+								"to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=4&mod=drag' -g" }],
 								"type": "basic"
 							},
 							{
@@ -1320,14 +854,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "5"
-								},
-								"to": [
-									{
-										"shell_command": "open hammerspoon://stage_manager?i=5 -g"
-									}
-								],
+								"from": { "key_code": "5" },
+								"to": [{ "shell_command": "open hammerspoon://stage_manager?i=5 -g" }],
 								"type": "basic"
 							},
 							{
@@ -1340,17 +868,9 @@
 								],
 								"from": {
 									"key_code": "5",
-									"modifiers": {
-										"mandatory": [
-											"left_gui"
-										]
-									}
+									"modifiers": { "mandatory": ["left_gui"] }
 								},
-								"to": [
-									{
-										"shell_command": "open 'hammerspoon://stage_manager?i=5&mod=drag' -g"
-									}
-								],
+								"to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=5&mod=drag' -g" }],
 								"type": "basic"
 							}
 						]
@@ -1366,17 +886,11 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "b"
-								},
+								"from": { "key_code": "b" },
 								"to": [
 									{
 										"key_code": "b",
-										"modifiers": [
-											"left_control",
-											"left_option",
-											"left_shift"
-										]
+										"modifiers": ["left_control", "left_option", "left_shift"]
 									}
 								],
 								"type": "basic"
@@ -1389,17 +903,11 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "d"
-								},
+								"from": { "key_code": "d" },
 								"to": [
 									{
 										"key_code": "d",
-										"modifiers": [
-											"left_control",
-											"left_option",
-											"left_shift"
-										]
+										"modifiers": ["left_control", "left_option", "left_shift"]
 									}
 								],
 								"type": "basic"
@@ -1412,18 +920,11 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "e"
-								},
+								"from": { "key_code": "e" },
 								"to": [
 									{
 										"key_code": "e",
-										"modifiers": [
-											"left_control",
-											"left_option",
-											"left_shift",
-											"left_command"
-										]
+										"modifiers": ["left_control", "left_option", "left_shift", "left_command"]
 									}
 								],
 								"type": "basic"
@@ -1436,14 +937,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "f"
-								},
-								"to": [
-									{
-										"shell_command": "osascript -l JavaScript -e \"Application('System Events').processes['Fantastical Helper'].menuBars[1].menuBarItems[0].click();\""
-									}
-								],
+								"from": { "key_code": "f" },
+								"to": [{ "shell_command": "osascript -l JavaScript -e \"Application('System Events').processes['Fantastical Helper'].menuBars[1].menuBarItems[0].click();\"" }],
 								"type": "basic"
 							},
 							{
@@ -1454,17 +949,11 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "g"
-								},
+								"from": { "key_code": "g" },
 								"to": [
 									{
 										"key_code": "close_bracket",
-										"modifiers": [
-											"right_command",
-											"right_shift",
-											"left_control"
-										]
+										"modifiers": ["right_command", "right_shift", "left_control"]
 									}
 								],
 								"type": "basic"
@@ -1477,16 +966,11 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "h"
-								},
+								"from": { "key_code": "h" },
 								"to": [
 									{
 										"key_code": "tab",
-										"modifiers": [
-											"left_control",
-											"left_shift"
-										]
+										"modifiers": ["left_control", "left_shift"]
 									}
 								],
 								"type": "basic"
@@ -1499,15 +983,11 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "l"
-								},
+								"from": { "key_code": "l" },
 								"to": [
 									{
 										"key_code": "tab",
-										"modifiers": [
-											"left_control"
-										]
+										"modifiers": ["left_control"]
 									}
 								],
 								"type": "basic"
@@ -1520,18 +1000,11 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "p"
-								},
+								"from": { "key_code": "p" },
 								"to": [
 									{
 										"key_code": "p",
-										"modifiers": [
-											"control",
-											"option",
-											"shift",
-											"command"
-										]
+										"modifiers": ["control", "option", "shift", "command"]
 									}
 								],
 								"type": "basic"
@@ -1544,14 +1017,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "q"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.folded.menubar -t search"
-									}
-								],
+								"from": { "key_code": "q" },
+								"to": [{ "shell_command": "~/bin/altr -w com.folded.menubar -t search" }],
 								"type": "basic"
 							},
 							{
@@ -1568,18 +1035,11 @@
 										"type": "frontmost_application_unless"
 									}
 								],
-								"from": {
-									"key_code": "v"
-								},
+								"from": { "key_code": "v" },
 								"to": [
 									{
 										"key_code": "v",
-										"modifiers": [
-											"left_control",
-											"left_option",
-											"left_command",
-											"left_shift"
-										]
+										"modifiers": ["left_control", "left_option", "left_command", "left_shift"]
 									}
 								],
 								"type": "basic"
@@ -1598,16 +1058,10 @@
 										"type": "frontmost_application_if"
 									}
 								],
-								"from": {
-									"key_code": "v"
-								},
+								"from": { "key_code": "v" },
 								"to": [
-									{
-										"key_code": "escape"
-									},
-									{
-										"key_code": "v"
-									}
+									{ "key_code": "escape" },
+									{ "key_code": "v" }
 								],
 								"type": "basic"
 							},
@@ -1619,18 +1073,11 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "w"
-								},
+								"from": { "key_code": "w" },
 								"to": [
 									{
 										"key_code": "w",
-										"modifiers": [
-											"left_control",
-											"left_option",
-											"left_shift",
-											"left_command"
-										]
+										"modifiers": ["left_control", "left_option", "left_shift", "left_command"]
 									}
 								],
 								"type": "basic"
@@ -1643,14 +1090,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "x"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.program -t '>'"
-									}
-								],
+								"from": { "key_code": "x" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.program -t '>'" }],
 								"type": "basic"
 							},
 							{
@@ -1661,14 +1102,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "tab"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/alfred '``'"
-									}
-								],
+								"from": { "key_code": "tab" },
+								"to": [{ "shell_command": "~/bin/alfred '``'" }],
 								"type": "basic"
 							},
 							{
@@ -1679,18 +1114,11 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "spacebar"
-								},
+								"from": { "key_code": "spacebar" },
 								"to": [
 									{
 										"key_code": "spacebar",
-                    "modifiers": [
-                      "left_command",
-                      "left_shift",
-                      "left_option",
-                      "left_control"
-                    ]
+										"modifiers": ["left_command", "left_shift", "left_option", "left_control"]
 									}
 								],
 								"type": "basic"
@@ -1703,14 +1131,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "grave_accent_and_tilde"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/alfred '~'"
-									}
-								],
+								"from": { "key_code": "grave_accent_and_tilde" },
+								"to": [{ "shell_command": "~/bin/alfred '~'" }],
 								"type": "basic"
 							}
 						]
@@ -1721,23 +1143,15 @@
 							{
 								"conditions": [
 									{
-										"input_sources": [
-											{
-												"language": "zh-Hans"
-											}
-										],
+										"input_sources": [{ "language": "zh-Hans" }],
 										"type": "input_source_if"
 									}
 								],
-								"from": {
-									"key_code": "open_bracket"
-								},
+								"from": { "key_code": "open_bracket" },
 								"to": [
 									{
 										"key_code": "open_bracket",
-										"modifiers": [
-											"right_shift"
-										]
+										"modifiers": ["right_shift"]
 									}
 								],
 								"type": "basic"
@@ -1745,23 +1159,15 @@
 							{
 								"conditions": [
 									{
-										"input_sources": [
-											{
-												"language": "zh-Hans"
-											}
-										],
+										"input_sources": [{ "language": "zh-Hans" }],
 										"type": "input_source_if"
 									}
 								],
-								"from": {
-									"key_code": "close_bracket"
-								},
+								"from": { "key_code": "close_bracket" },
 								"to": [
 									{
 										"key_code": "close_bracket",
-										"modifiers": [
-											"right_shift"
-										]
+										"modifiers": ["right_shift"]
 									}
 								],
 								"type": "basic"
@@ -1769,74 +1175,42 @@
 							{
 								"conditions": [
 									{
-										"input_sources": [
-											{
-												"language": "zh-Hans"
-											}
-										],
+										"input_sources": [{ "language": "zh-Hans" }],
 										"type": "input_source_if"
 									},
-                  {
-                    "name": "space_held",
-                    "type": "variable_unless",
-                    "value": 1
-                  }
-								],
-								"from": {
-									"key_code": "backslash"
-								},
-								"to": [
 									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- '\\'"
+										"name": "space_held",
+										"type": "variable_unless",
+										"value": 1
 									}
 								],
+								"from": { "key_code": "backslash" },
+								"to": [{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- '\\'" }],
 								"type": "basic"
 							},
 							{
 								"conditions": [
 									{
-										"input_sources": [
-											{
-												"language": "zh-Hans"
-											}
-										],
+										"input_sources": [{ "language": "zh-Hans" }],
 										"type": "input_source_if"
 									}
 								],
 								"from": {
 									"key_code": "backslash",
-									"modifiers": {
-										"mandatory": [
-											"right_shift"
-										]
-									}
+									"modifiers": { "mandatory": ["right_shift"] }
 								},
-								"to": [
-									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- 、"
-									}
-								],
+								"to": [{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- 、" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "grave_accent_and_tilde"
-								},
-								"to": [
-									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- \\`"
-									}
-								],
+								"from": { "key_code": "grave_accent_and_tilde" },
+								"to": [{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- \\`" }],
 								"type": "basic"
 							},
 							{
 								"conditions": [
 									{
-										"input_sources": [
-											{
-												"language": "en"
-											}
-										],
+										"input_sources": [{ "language": "en" }],
 										"type": "input_source_if"
 									},
 									{
@@ -1848,19 +1222,12 @@
 								],
 								"from": {
 									"key_code": "hyphen",
-									"modifiers": {
-										"mandatory": [
-											"right_option"
-										]
-									}
+									"modifiers": { "mandatory": ["right_option"] }
 								},
 								"to": [
 									{
 										"key_code": "hyphen",
-										"modifiers": [
-											"option",
-											"shift"
-										]
+										"modifiers": ["option", "shift"]
 									}
 								],
 								"type": "basic"
@@ -1868,11 +1235,7 @@
 							{
 								"conditions": [
 									{
-										"input_sources": [
-											{
-												"language": "de"
-											}
-										],
+										"input_sources": [{ "language": "de" }],
 										"type": "input_source_if"
 									},
 									{
@@ -1884,51 +1247,40 @@
 								],
 								"from": {
 									"key_code": "slash",
-									"modifiers": {
-										"mandatory": [
-											"right_option"
-										]
-									}
+									"modifiers": { "mandatory": ["right_option"] }
 								},
 								"to": [
 									{
 										"key_code": "slash",
-										"modifiers": [
-											"option",
-											"shift"
-										]
+										"modifiers": ["option", "shift"]
 									}
 								],
 								"type": "basic"
 							}
-            ]
-          },
+						]
+					},
 					{
 						"description": "; a/o/u/s/e → ä/ö/ü/ß/€",
 						"manipulators": [
 							{
-								"from": {
-									"key_code": "semicolon"
-								},
+								"from": { "key_code": "semicolon" },
 								"to": [
+									{ "key_code": "semicolon" },
 									{
-										"key_code": "semicolon"
-									},
-                  {
-                    "set_variable": {
-                      "name": "semicolon_hit",
-                      "value": 1
-                    }
-                  }
+										"set_variable": {
+											"name": "semicolon_hit",
+											"value": 1
+										}
+									}
 								],
-                "to_after_key_up": [
-                  {
-                    "set_variable": {
-                      "name": "semicolon_hit",
-                      "value": 0
-                    }
-                  }
-                ],
+								"to_after_key_up": [
+									{
+										"set_variable": {
+											"name": "semicolon_hit",
+											"value": 0
+										}
+									}
+								],
 								"type": "basic"
 							},
 							{
@@ -1939,16 +1291,10 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "a"
-								},
+								"from": { "key_code": "a" },
 								"to": [
-                  {
-                    "key_code": "delete_or_backspace"
-                  },
-									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- ä"
-									}
+									{ "key_code": "delete_or_backspace" },
+									{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- ä" }
 								],
 								"type": "basic"
 							},
@@ -1962,19 +1308,11 @@
 								],
 								"from": {
 									"key_code": "a",
-									"modifiers": {
-										"mandatory": [
-											"shift"
-										]
-									}
+									"modifiers": { "mandatory": ["shift"] }
 								},
 								"to": [
-                  {
-                    "key_code": "delete_or_backspace"
-                  },
-									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- Ä"
-									}
+									{ "key_code": "delete_or_backspace" },
+									{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- Ä" }
 								],
 								"type": "basic"
 							},
@@ -1986,16 +1324,10 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "o"
-								},
+								"from": { "key_code": "o" },
 								"to": [
-                  {
-                    "key_code": "delete_or_backspace"
-                  },
-									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- ö"
-									}
+									{ "key_code": "delete_or_backspace" },
+									{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- ö" }
 								],
 								"type": "basic"
 							},
@@ -2009,19 +1341,11 @@
 								],
 								"from": {
 									"key_code": "o",
-									"modifiers": {
-										"mandatory": [
-											"shift"
-										]
-									}
+									"modifiers": { "mandatory": ["shift"] }
 								},
 								"to": [
-                  {
-                    "key_code": "delete_or_backspace"
-                  },
-									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- Ö"
-									}
+									{ "key_code": "delete_or_backspace" },
+									{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- Ö" }
 								],
 								"type": "basic"
 							},
@@ -2033,16 +1357,10 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "u"
-								},
+								"from": { "key_code": "u" },
 								"to": [
-                  {
-                    "key_code": "delete_or_backspace"
-                  },
-									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- ü"
-									}
+									{ "key_code": "delete_or_backspace" },
+									{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- ü" }
 								],
 								"type": "basic"
 							},
@@ -2056,19 +1374,11 @@
 								],
 								"from": {
 									"key_code": "u",
-									"modifiers": {
-										"mandatory": [
-											"shift"
-										]
-									}
+									"modifiers": { "mandatory": ["shift"] }
 								},
 								"to": [
-                  {
-                    "key_code": "delete_or_backspace"
-                  },
-									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- Ü"
-									}
+									{ "key_code": "delete_or_backspace" },
+									{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- Ü" }
 								],
 								"type": "basic"
 							},
@@ -2080,16 +1390,10 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "s"
-								},
+								"from": { "key_code": "s" },
 								"to": [
-                  {
-                    "key_code": "delete_or_backspace"
-                  },
-									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- ß"
-									}
+									{ "key_code": "delete_or_backspace" },
+									{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- ß" }
 								],
 								"type": "basic"
 							},
@@ -2101,16 +1405,10 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "e"
-								},
+								"from": { "key_code": "e" },
 								"to": [
-                  {
-                    "key_code": "delete_or_backspace"
-                  },
-									{
-										"shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- €"
-									}
+									{ "key_code": "delete_or_backspace" },
+									{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- €" }
 								],
 								"type": "basic"
 							}
@@ -2120,16 +1418,14 @@
 						"description": "Hold ␣ B → Bitwarden, Hold ␣ G → Autojump, Hold ␣ J/K → Scroll ↑/↓, Hold ␣ M → Mailbox, Hold ␣ N → Mailbox Check New, Hold ␣ O → Obsidian Vault, Hold ␣ P → Podcasts, Hold ␣ T → Today, Hold ␣ W → Manage Window, Hold ␣ X → Manage Tmux, Hold ␣ \\ → Control Center",
 						"manipulators": [
 							{
-							  "conditions": [
+								"conditions": [
 									{
 										"name": "multitouch_extension_finger_count_upper_quarter_area",
 										"type": "variable_unless",
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "spacebar"
-								},
+								"from": { "key_code": "spacebar" },
 								"parameters": {
 									"basic.to_if_alone_timeout_milliseconds": 400,
 									"basic.to_if_held_down_threshold_milliseconds": 400
@@ -2142,13 +1438,7 @@
 										}
 									}
 								],
-								"to_delayed_action": {
-									"to_if_canceled": [
-										{
-											"key_code": "spacebar"
-										}
-									]
-								},
+								"to_delayed_action": { "to_if_canceled": [{ "key_code": "spacebar" }] },
 								"to_if_alone": [
 									{
 										"halt": true,
@@ -2173,14 +1463,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "b"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w org.mlfs.corp.bw -t list"
-									}
-								],
+								"from": { "key_code": "b" },
+								"to": [{ "shell_command": "~/bin/altr -w org.mlfs.corp.bw -t list" }],
 								"type": "basic"
 							},
 							{
@@ -2191,14 +1475,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "g"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.program -t autojump"
-									}
-								],
+								"from": { "key_code": "g" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.program -t autojump" }],
 								"type": "basic"
 							},
 							{
@@ -2209,16 +1487,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "j"
-								},
-								"to": [
-									{
-										"mouse_key": {
-											"vertical_wheel": 25
-										}
-									}
-								],
+								"from": { "key_code": "j" },
+								"to": [{ "mouse_key": { "vertical_wheel": 25 } }],
 								"type": "basic"
 							},
 							{
@@ -2231,19 +1501,9 @@
 								],
 								"from": {
 									"key_code": "j",
-									"modifiers": {
-										"mandatory": [
-											"right_shift"
-										]
-									}
+									"modifiers": { "mandatory": ["right_shift"] }
 								},
-								"to": [
-									{
-										"mouse_key": {
-											"vertical_wheel": 90
-										}
-									}
-								],
+								"to": [{ "mouse_key": { "vertical_wheel": 90 } }],
 								"type": "basic"
 							},
 							{
@@ -2254,16 +1514,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "k"
-								},
-								"to": [
-									{
-										"mouse_key": {
-											"vertical_wheel": -25
-										}
-									}
-								],
+								"from": { "key_code": "k" },
+								"to": [{ "mouse_key": { "vertical_wheel": -25 } }],
 								"type": "basic"
 							},
 							{
@@ -2276,19 +1528,9 @@
 								],
 								"from": {
 									"key_code": "k",
-									"modifiers": {
-										"mandatory": [
-											"right_shift"
-										]
-									}
+									"modifiers": { "mandatory": ["right_shift"] }
 								},
-								"to": [
-									{
-										"mouse_key": {
-											"vertical_wheel": -90
-										}
-									}
-								],
+								"to": [{ "mouse_key": { "vertical_wheel": -90 } }],
 								"type": "basic"
 							},
 							{
@@ -2299,14 +1541,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "m"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.mailbox -t mailbox"
-									}
-								],
+								"from": { "key_code": "m" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.mailbox -t mailbox" }],
 								"type": "basic"
 							},
 							{
@@ -2317,14 +1553,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "n"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.mailbox -t check_new"
-									}
-								],
+								"from": { "key_code": "n" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.mailbox -t check_new" }],
 								"type": "basic"
 							},
 							{
@@ -2335,14 +1565,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "o"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/alfred o\\'"
-									}
-								],
+								"from": { "key_code": "o" },
+								"to": [{ "shell_command": "~/bin/alfred o\\'" }],
 								"type": "basic"
 							},
 							{
@@ -2353,14 +1577,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "p"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/alfred pcn"
-									}
-								],
+								"from": { "key_code": "p" },
+								"to": [{ "shell_command": "~/bin/alfred pcn" }],
 								"type": "basic"
 							},
 							{
@@ -2371,14 +1589,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "t"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.calendars -t today"
-									}
-								],
+								"from": { "key_code": "t" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.calendars -t today" }],
 								"type": "basic"
 							},
 							{
@@ -2389,14 +1601,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "w"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.swift -t win_manage"
-									}
-								],
+								"from": { "key_code": "w" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.swift -t win_manage" }],
 								"type": "basic"
 							},
 							{
@@ -2407,14 +1613,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "x"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.tmux -t tmux"
-									}
-								],
+								"from": { "key_code": "x" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.tmux -t tmux" }],
 								"type": "basic"
 							},
 							{
@@ -2425,14 +1625,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "backslash"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/alfred ^"
-									}
-								],
+								"from": { "key_code": "backslash" },
+								"to": [{ "shell_command": "~/bin/alfred ^" }],
 								"type": "basic"
 							}
 						]
@@ -2450,17 +1644,9 @@
 								],
 								"from": {
 									"key_code": "h",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
+									"modifiers": { "optional": ["any"] }
 								},
-								"to": [
-									{
-										"key_code": "left_arrow"
-									}
-								],
+								"to": [{ "key_code": "left_arrow" }],
 								"type": "basic"
 							},
 							{
@@ -2473,17 +1659,9 @@
 								],
 								"from": {
 									"key_code": "j",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
+									"modifiers": { "optional": ["any"] }
 								},
-								"to": [
-									{
-										"key_code": "down_arrow"
-									}
-								],
+								"to": [{ "key_code": "down_arrow" }],
 								"type": "basic"
 							},
 							{
@@ -2496,17 +1674,9 @@
 								],
 								"from": {
 									"key_code": "k",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
+									"modifiers": { "optional": ["any"] }
 								},
-								"to": [
-									{
-										"key_code": "up_arrow"
-									}
-								],
+								"to": [{ "key_code": "up_arrow" }],
 								"type": "basic"
 							},
 							{
@@ -2519,17 +1689,9 @@
 								],
 								"from": {
 									"key_code": "l",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
+									"modifiers": { "optional": ["any"] }
 								},
-								"to": [
-									{
-										"key_code": "right_arrow"
-									}
-								],
+								"to": [{ "key_code": "right_arrow" }],
 								"type": "basic"
 							},
 							{
@@ -2542,17 +1704,9 @@
 								],
 								"from": {
 									"key_code": "o",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
+									"modifiers": { "optional": ["any"] }
 								},
-								"to": [
-									{
-										"key_code": "return_or_enter"
-									}
-								],
+								"to": [{ "key_code": "return_or_enter" }],
 								"type": "basic"
 							},
 							{
@@ -2563,14 +1717,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "right_arrow"
-								},
-								"to": [
-									{
-										"key_code": "volume_increment"
-									}
-								],
+								"from": { "key_code": "right_arrow" },
+								"to": [{ "key_code": "volume_increment" }],
 								"type": "basic"
 							},
 							{
@@ -2581,14 +1729,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "left_arrow"
-								},
-								"to": [
-									{
-										"key_code": "volume_decrement"
-									}
-								],
+								"from": { "key_code": "left_arrow" },
+								"to": [{ "key_code": "volume_decrement" }],
 								"type": "basic"
 							}
 						]
@@ -2599,11 +1741,7 @@
 							{
 								"from": {
 									"key_code": "caps_lock",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
+									"modifiers": { "optional": ["any"] }
 								},
 								"to": [
 									{
@@ -2621,32 +1759,12 @@
 										}
 									}
 								],
-								"to_if_alone": [
-									{
-										"key_code": "escape"
-									}
-								],
+								"to_if_alone": [{ "key_code": "escape" }],
 								"to_if_held_down": [
-									{
-										"sticky_modifier": {
-											"left_control": "toggle"
-										}
-									},
-									{
-										"sticky_modifier": {
-											"left_shift": "toggle"
-										}
-									},
-									{
-										"sticky_modifier": {
-											"left_option": "toggle"
-										}
-									},
-									{
-										"sticky_modifier": {
-											"left_command": "toggle"
-										}
-									}
+									{ "sticky_modifier": { "left_control": "toggle" } },
+									{ "sticky_modifier": { "left_shift": "toggle" } },
+									{ "sticky_modifier": { "left_option": "toggle" } },
+									{ "sticky_modifier": { "left_command": "toggle" } }
 								],
 								"type": "basic"
 							},
@@ -2660,46 +1778,26 @@
 								],
 								"from": {
 									"key_code": "delete_or_backspace",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
+									"modifiers": { "optional": ["any"] }
 								},
-								"to": [
-									{
-										"key_code": "delete_forward"
-									}
-								],
+								"to": [{ "key_code": "delete_forward" }],
 								"type": "basic"
 							},
 							{
 								"from": {
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									},
+									"modifiers": { "optional": ["any"] },
 									"simultaneous": [
-										{
-											"key_code": "return_or_enter"
-										},
-										{
-											"key_code": "delete_or_backspace"
-										}
+										{ "key_code": "return_or_enter" },
+										{ "key_code": "delete_or_backspace" }
 									],
 									"simultaneous_options": {
 										"key_down_order": "strict",
 										"key_up_when": "all"
 									}
 								},
-								"parameters": {
-									"basic.simultaneous_threshold_milliseconds": 200
-								},
+								"parameters": { "basic.simultaneous_threshold_milliseconds": 200 },
 								"to": [
-									{
-										"key_code": "delete_forward"
-									},
+									{ "key_code": "delete_forward" },
 									{
 										"set_variable": {
 											"name": "enter_hit",
@@ -2718,21 +1816,12 @@
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "escape"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "escape"
-									}
-								],
+								"from": { "key_code": "escape" },
+								"to_if_alone": [{ "key_code": "escape" }],
 								"to_if_held_down": [
 									{
 										"key_code": "escape",
-										"modifiers": [
-											"left_option",
-											"left_command"
-										]
+										"modifiers": ["left_option", "left_command"]
 									}
 								],
 								"type": "basic"
@@ -2751,30 +1840,19 @@
 								],
 								"from": {
 									"simultaneous": [
-										{
-											"key_code": "j"
-										},
-										{
-											"key_code": "h"
-										}
+										{ "key_code": "j" },
+										{ "key_code": "h" }
 									],
 									"simultaneous_options": {
 										"key_down_order": "strict",
 										"key_up_when": "all"
 									}
 								},
-								"parameters": {
-									"basic.simultaneous_threshold_milliseconds": 100
-								},
+								"parameters": { "basic.simultaneous_threshold_milliseconds": 100 },
 								"to": [
 									{
 										"key_code": "v",
-										"modifiers": [
-											"command",
-											"shift",
-											"option",
-											"control"
-										]
+										"modifiers": ["command", "shift", "option", "control"]
 									}
 								],
 								"type": "basic"
@@ -2785,35 +1863,15 @@
 						"description": "Media Control",
 						"manipulators": [
 							{
-								"from": {
-									"key_code": "f1"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f1"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"key_code": "display_brightness_decrement"
-									}
-								],
+								"from": { "key_code": "f1" },
+								"to_if_alone": [{ "key_code": "f1" }],
+								"to_if_held_down": [{ "key_code": "display_brightness_decrement" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f2"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f2"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"key_code": "display_brightness_increment"
-									}
-								],
+								"from": { "key_code": "f2" },
+								"to_if_alone": [{ "key_code": "f2" }],
+								"to_if_held_down": [{ "key_code": "display_brightness_increment" }],
 								"type": "basic"
 							},
 							{
@@ -2824,33 +1882,17 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "f3"
-								},
-								"to": [
-									{
-										"shell_command": "STATE=$(defaults read com.apple.WindowManager GloballyEnabled 2> /dev/null);[[ ${STATE} = 0 ]] && ENABLE=true || ENABLE=false; defaults write com.apple.WindowManager GloballyEnabled -bool ${ENABLE}"
-									}
-								],
+								"from": { "key_code": "f3" },
+								"to": [{ "shell_command": "STATE=$(defaults read com.apple.WindowManager GloballyEnabled 2> /dev/null);[[ ${STATE} = 0 ]] && ENABLE=true || ENABLE=false; defaults write com.apple.WindowManager GloballyEnabled -bool ${ENABLE}" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f3"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f3"
-									}
-								],
+								"from": { "key_code": "f3" },
+								"to_if_alone": [{ "key_code": "f3" }],
 								"to_if_held_down": [
 									{
 										"key_code": "f3",
-										"modifiers": [
-											"left_option",
-											"left_command",
-											"left_shift"
-										]
+										"modifiers": ["left_option", "left_command", "left_shift"]
 									}
 								],
 								"type": "basic"
@@ -2863,33 +1905,17 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "f4"
-								},
-								"to": [
-									{
-										"apple_vendor_keyboard_key_code": "spotlight"
-									}
-								],
+								"from": { "key_code": "f4" },
+								"to": [{ "apple_vendor_keyboard_key_code": "spotlight" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f4"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f4"
-									}
-								],
+								"from": { "key_code": "f4" },
+								"to_if_alone": [{ "key_code": "f4" }],
 								"to_if_held_down": [
 									{
 										"key_code": "hyphen",
-										"modifiers": [
-											"left_command",
-											"left_option",
-											"left_shift"
-										]
+										"modifiers": ["left_command", "left_option", "left_shift"]
 									}
 								],
 								"type": "basic"
@@ -2902,30 +1928,14 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "f5"
-								},
-								"to": [
-									{
-										"consumer_key_code": "dictation"
-									}
-								],
+								"from": { "key_code": "f5" },
+								"to": [{ "consumer_key_code": "dictation" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f5"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f5"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"shell_command": "open -a ChatGPT.app"
-									}
-								],
+								"from": { "key_code": "f5" },
+								"to_if_alone": [{ "key_code": "f5" }],
+								"to_if_held_down": [{ "shell_command": "open -a ChatGPT.app" }],
 								"type": "basic"
 							},
 							{
@@ -2936,126 +1946,50 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "f6"
-								},
-								"to": [
-									{
-										"shell_command": "shortcuts run 'Toggle Focus Mode'"
-									}
-								],
+								"from": { "key_code": "f6" },
+								"to": [{ "shell_command": "shortcuts run 'Toggle Focus Mode'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f6"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f6"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"shell_command": "shortcuts run 'Toggle Focus Mode'"
-									}
-								],
+								"from": { "key_code": "f6" },
+								"to_if_alone": [{ "key_code": "f6" }],
+								"to_if_held_down": [{ "shell_command": "shortcuts run 'Toggle Focus Mode'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f7"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f7"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"consumer_key_code": "rewind"
-									}
-								],
+								"from": { "key_code": "f7" },
+								"to_if_alone": [{ "key_code": "f7" }],
+								"to_if_held_down": [{ "consumer_key_code": "rewind" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f8"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f8"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"key_code": "play_or_pause"
-									}
-								],
+								"from": { "key_code": "f8" },
+								"to_if_alone": [{ "key_code": "f8" }],
+								"to_if_held_down": [{ "key_code": "play_or_pause" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f9"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f9"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"consumer_key_code": "fast_forward"
-									}
-								],
+								"from": { "key_code": "f9" },
+								"to_if_alone": [{ "key_code": "f9" }],
+								"to_if_held_down": [{ "consumer_key_code": "fast_forward" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f10"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f10"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"key_code": "mute"
-									}
-								],
+								"from": { "key_code": "f10" },
+								"to_if_alone": [{ "key_code": "f10" }],
+								"to_if_held_down": [{ "key_code": "mute" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f11"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f11"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"key_code": "volume_decrement"
-									}
-								],
+								"from": { "key_code": "f11" },
+								"to_if_alone": [{ "key_code": "f11" }],
+								"to_if_held_down": [{ "key_code": "volume_decrement" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f12"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "f12"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"key_code": "volume_increment"
-									}
-								],
+								"from": { "key_code": "f12" },
+								"to_if_alone": [{ "key_code": "f12" }],
+								"to_if_held_down": [{ "key_code": "volume_increment" }],
 								"type": "basic"
 							}
 						]
@@ -3073,20 +2007,12 @@
 								],
 								"from": {
 									"key_code": "right_gui",
-									"modifiers": {
-										"mandatory": [
-											"right_alt"
-										]
-									}
+									"modifiers": { "mandatory": ["right_alt"] }
 								},
 								"to": [
 									{
 										"key_code": "7",
-										"modifiers": [
-											"right_gui",
-											"right_shift",
-											"left_control"
-										]
+										"modifiers": ["right_gui", "right_shift", "left_control"]
 									}
 								],
 								"type": "basic"
@@ -3101,20 +2027,12 @@
 								],
 								"from": {
 									"key_code": "left_gui",
-									"modifiers": {
-										"mandatory": [
-											"left_alt"
-										]
-									}
+									"modifiers": { "mandatory": ["left_alt"] }
 								},
 								"to": [
 									{
 										"key_code": "8",
-										"modifiers": [
-											"right_gui",
-											"right_shift",
-											"left_control"
-										]
+										"modifiers": ["right_gui", "right_shift", "left_control"]
 									}
 								],
 								"type": "basic"
@@ -3135,21 +2053,12 @@
 								],
 								"from": {
 									"key_code": "right_gui",
-									"modifiers": {
-										"optional": [
-											"command"
-										]
-									}
+									"modifiers": { "optional": ["command"] }
 								},
 								"to": [
 									{
 										"key_code": "hyphen",
-										"modifiers": [
-											"command",
-											"shift",
-											"control",
-											"option"
-										]
+										"modifiers": ["command", "shift", "control", "option"]
 									}
 								],
 								"type": "basic"
@@ -3170,21 +2079,12 @@
 								],
 								"from": {
 									"key_code": "left_gui",
-									"modifiers": {
-										"optional": [
-											"command"
-										]
-									}
+									"modifiers": { "optional": ["command"] }
 								},
 								"to": [
 									{
 										"key_code": "hyphen",
-										"modifiers": [
-											"command",
-											"shift",
-											"control",
-											"option"
-										]
+										"modifiers": ["command", "shift", "control", "option"]
 									}
 								],
 								"type": "basic"
@@ -3192,11 +2092,7 @@
 							{
 								"from": {
 									"key_code": "right_command",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
+									"modifiers": { "optional": ["any"] }
 								},
 								"to": [
 									{
@@ -3205,9 +2101,7 @@
 											"value": 1
 										}
 									},
-									{
-										"key_code": "right_command"
-									}
+									{ "key_code": "right_command" }
 								],
 								"to_delayed_action": {
 									"to_if_canceled": [
@@ -3240,25 +2134,13 @@
 								],
 								"from": {
 									"key_code": "left_control",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
+									"modifiers": { "optional": ["any"] }
 								},
-								"to": [
-									{
-										"key_code": "left_control"
-									}
-								],
+								"to": [{ "key_code": "left_control" }],
 								"to_if_alone": [
 									{
 										"key_code": "i",
-										"modifiers": [
-											"control",
-											"option",
-											"shift"
-										]
+										"modifiers": ["control", "option", "shift"]
 									}
 								],
 								"type": "basic"
@@ -3266,11 +2148,7 @@
 							{
 								"from": {
 									"key_code": "left_command",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
+									"modifiers": { "optional": ["any"] }
 								},
 								"to": [
 									{
@@ -3279,9 +2157,7 @@
 											"value": 1
 										}
 									},
-									{
-										"key_code": "left_command"
-									}
+									{ "key_code": "left_command" }
 								],
 								"to_delayed_action": {
 									"to_if_canceled": [
@@ -3311,19 +2187,9 @@
 										"value": 3
 									}
 								],
-								"from": {
-									"key_code": "fn"
-								},
-								"to_after_key_up": [
-									{
-										"key_code": "left_control"
-									}
-								],
-								"to_if_held_down": [
-									{
-										"shell_command": "~/bin/alfred"
-									}
-								],
+								"from": { "key_code": "fn" },
+								"to_after_key_up": [{ "key_code": "left_control" }],
+								"to_if_held_down": [{ "shell_command": "~/bin/alfred" }],
 								"type": "basic"
 							}
 						]
@@ -3339,25 +2205,17 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "fn"
-								},
+								"from": { "key_code": "fn" },
 								"to": [
 									{
 										"key_code": "grave_accent_and_tilde",
-										"modifiers": [
-											"left_command",
-											"left_control",
-											"left_shift"
-										]
+										"modifiers": ["left_command", "left_control", "left_shift"]
 									}
 								],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "fn"
-								},
+								"from": { "key_code": "fn" },
 								"to": [
 									{
 										"set_variable": {
@@ -3365,9 +2223,7 @@
 											"value": 1
 										}
 									},
-									{
-										"key_code": "fn"
-									}
+									{ "key_code": "fn" }
 								],
 								"to_delayed_action": {
 									"to_if_canceled": [
@@ -3392,129 +2248,65 @@
 							{
 								"from": {
 									"key_code": "z",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t paste -a 0"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t paste -a 0" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "x",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t paste -a 1"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t paste -a 1" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "c",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t paste -a 2"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t paste -a 2" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "v",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t paste -a 3"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t paste -a 3" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "a",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 1 -v mod=use-clip"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 1 -v mod=use-clip" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "s",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 2 -v mod=use-clip"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 2 -v mod=use-clip" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "d",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 3 -v mod=use-clip"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 3 -v mod=use-clip" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "f",
-									"modifiers": {
-										"mandatory": [
-											"fn"
-										]
-									}
+									"modifiers": { "mandatory": ["fn"] }
 								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 4 -v mod=use-clip"
-									}
-								],
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 4 -v mod=use-clip" }],
 								"type": "basic"
 							},
 							{
@@ -3525,14 +2317,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "a"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 1 -v mod=register-clip"
-									}
-								],
+								"from": { "key_code": "a" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 1 -v mod=register-clip" }],
 								"type": "basic"
 							},
 							{
@@ -3543,14 +2329,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "s"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 2 -v mod=register-clip"
-									}
-								],
+								"from": { "key_code": "s" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 2 -v mod=register-clip" }],
 								"type": "basic"
 							},
 							{
@@ -3561,14 +2341,8 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "d"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 3 -v mod=register-clip"
-									}
-								],
+								"from": { "key_code": "d" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 3 -v mod=register-clip" }],
 								"type": "basic"
 							},
 							{
@@ -3579,26 +2353,16 @@
 										"value": 1
 									}
 								],
-								"from": {
-									"key_code": "f"
-								},
-								"to": [
-									{
-										"shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 4 -v mod=register-clip"
-									}
-								],
+								"from": { "key_code": "f" },
+								"to": [{ "shell_command": "~/bin/altr -w com.nyako520.clipboard -t clip -a 4 -v mod=register-clip" }],
 								"type": "basic"
 							},
 							{
 								"from": {
 									"key_code": "c",
 									"modifiers": {
-										"mandatory": [
-											"left_command"
-										],
-										"optional": [
-											"any"
-										]
+										"mandatory": ["left_command"],
+										"optional": ["any"]
 									}
 								},
 								"to": [
@@ -3610,9 +2374,7 @@
 									},
 									{
 										"key_code": "c",
-										"modifiers": [
-											"left_command"
-										]
+										"modifiers": ["left_command"]
 									}
 								],
 								"to_delayed_action": {
@@ -3641,2559 +2403,878 @@
 			},
 			"devices": [
 				{
-					"disable_built_in_keyboard_if_exists": false,
-					"fn_function_keys": [],
-					"game_pad_swap_sticks": false,
-					"identifiers": {
-						"is_game_pad": false,
-						"is_keyboard": true,
-						"is_pointing_device": false,
-						"product_id": 656,
-						"vendor_id": 1452
-					},
-					"ignore": false,
-					"manipulate_caps_lock_led": true,
-					"mouse_flip_horizontal_wheel": false,
-					"mouse_flip_vertical_wheel": false,
-					"mouse_flip_x": false,
-					"mouse_flip_y": false,
-					"mouse_swap_wheels": false,
-					"mouse_swap_xy": false,
-					"simple_modifications": [],
-					"treat_as_built_in_keyboard": false
-				},
-				{
-					"disable_built_in_keyboard_if_exists": false,
-					"fn_function_keys": [],
-					"game_pad_swap_sticks": false,
-					"identifiers": {
-						"is_game_pad": false,
-						"is_keyboard": false,
-						"is_pointing_device": true,
-						"product_id": 656,
-						"vendor_id": 1452
-					},
-					"ignore": true,
-					"manipulate_caps_lock_led": false,
-					"mouse_flip_horizontal_wheel": false,
-					"mouse_flip_vertical_wheel": false,
-					"mouse_flip_x": false,
-					"mouse_flip_y": false,
-					"mouse_swap_wheels": false,
-					"mouse_swap_xy": false,
-					"simple_modifications": [],
-					"treat_as_built_in_keyboard": false
-				},
-				{
-					"disable_built_in_keyboard_if_exists": false,
-					"fn_function_keys": [],
-					"game_pad_swap_sticks": false,
-					"identifiers": {
-						"is_game_pad": false,
-						"is_keyboard": true,
-						"is_pointing_device": false,
-						"product_id": 54,
-						"vendor_id": 1008
-					},
-					"ignore": false,
-					"manipulate_caps_lock_led": true,
-					"mouse_flip_horizontal_wheel": false,
-					"mouse_flip_vertical_wheel": false,
-					"mouse_flip_x": false,
-					"mouse_flip_y": false,
-					"mouse_swap_wheels": false,
-					"mouse_swap_xy": false,
-					"simple_modifications": [],
-					"treat_as_built_in_keyboard": false
-				},
-				{
-					"disable_built_in_keyboard_if_exists": false,
-					"fn_function_keys": [],
-					"game_pad_swap_sticks": false,
-					"identifiers": {
-						"is_game_pad": false,
-						"is_keyboard": true,
-						"is_pointing_device": false,
-						"product_id": 0,
-						"vendor_id": 0
-					},
-					"ignore": false,
-					"manipulate_caps_lock_led": true,
-					"mouse_flip_horizontal_wheel": false,
-					"mouse_flip_vertical_wheel": false,
-					"mouse_flip_x": false,
-					"mouse_flip_y": false,
-					"mouse_swap_wheels": false,
-					"mouse_swap_xy": false,
+					"identifiers": { "is_keyboard": true },
 					"simple_modifications": [
 						{
-							"from": {
-								"key_code": "grave_accent_and_tilde"
-							},
-							"to": [
-								{
-									"key_code": "right_control"
-								}
-							]
+							"from": { "key_code": "grave_accent_and_tilde" },
+							"to": [{ "key_code": "right_control" }]
 						},
 						{
-							"from": {
-								"key_code": "non_us_backslash"
-							},
-							"to": [
-								{
-									"key_code": "grave_accent_and_tilde"
-								}
-							]
+							"from": { "key_code": "non_us_backslash" },
+							"to": [{ "key_code": "grave_accent_and_tilde" }]
 						}
-					],
-					"treat_as_built_in_keyboard": false
-				},
-				{
-					"disable_built_in_keyboard_if_exists": false,
-					"fn_function_keys": [],
-					"game_pad_swap_sticks": false,
-					"identifiers": {
-						"is_game_pad": false,
-						"is_keyboard": false,
-						"is_pointing_device": true,
-						"product_id": 0,
-						"vendor_id": 0
-					},
-					"ignore": true,
-					"manipulate_caps_lock_led": false,
-					"mouse_flip_horizontal_wheel": false,
-					"mouse_flip_vertical_wheel": false,
-					"mouse_flip_x": false,
-					"mouse_flip_y": false,
-					"mouse_swap_wheels": false,
-					"mouse_swap_xy": false,
-					"simple_modifications": [],
-					"treat_as_built_in_keyboard": false
+					]
 				}
 			],
 			"fn_function_keys": [
 				{
-					"from": {
-						"key_code": "f1"
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_decrement"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f2"
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_increment"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f3"
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "mission_control"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f4"
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "spotlight"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f5"
-					},
-					"to": [
-						{
-							"consumer_key_code": "dictation"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f6"
-					},
-					"to": [
-						{
-							"key_code": "f13"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f7"
-					},
-					"to": [
-						{
-							"consumer_key_code": "rewind"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f8"
-					},
-					"to": [
-						{
-							"consumer_key_code": "play_or_pause"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f9"
-					},
-					"to": [
-						{
-							"consumer_key_code": "fast_forward"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f10"
-					},
-					"to": [
-						{
-							"consumer_key_code": "mute"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f11"
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_decrement"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f12"
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_increment"
-						}
-					]
+					"from": { "key_code": "f6" },
+					"to": [{ "key_code": "f13" }]
 				}
 			],
 			"name": "Default profile",
-			"parameters": {
-				"delay_milliseconds_before_open_device": 1000
-			},
 			"selected": true,
-			"simple_modifications": [],
-			"virtual_hid_keyboard": {
-				"country_code": 0,
-				"indicate_sticky_modifier_keys_state": false,
-				"mouse_key_xy_scale": 100
-			}
+			"virtual_hid_keyboard": { "indicate_sticky_modifier_keys_state": false }
 		},
 		{
 			"complex_modifications": {
-				"parameters": {
-					"basic.simultaneous_threshold_milliseconds": 50,
-					"basic.to_delayed_action_delay_milliseconds": 500,
-					"basic.to_if_alone_timeout_milliseconds": 1000,
-					"basic.to_if_held_down_threshold_milliseconds": 500,
-					"mouse_motion_to_scroll.speed": 100
-				},
 				"rules": [
 					{
 						"description": "AppleScript",
 						"manipulators": [
 							{
-								"from": {
-									"key_code": "0"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:29; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "0" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:29; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "1"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:18; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "1" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:18; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "2"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:19; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "2" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:19; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "3"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:20; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "3" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:20; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "4"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:21; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "4" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:21; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "5"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:23; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "5" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:23; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "6"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:22; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "6" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:22; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "7"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:26; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "7" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:26; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "8"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:28; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "8" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:28; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "9"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:25; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "9" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:25; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "a"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:0; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "a" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:0; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "b"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:11; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "b" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:11; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "c"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:8; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "c" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:8; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "d"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:2; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "d" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:2; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "e"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:14; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "e" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:14; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:3; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:3; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "g"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:5; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "g" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:5; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "h"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:4; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "h" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:4; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "i"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:34; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "i" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:34; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "j"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:38; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "j" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:38; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "k"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:40; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "k" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:40; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "l"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:37; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "l" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:37; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "m"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:46; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "m" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:46; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "n"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:45; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "n" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:45; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "o"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:31; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "o" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:31; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "p"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:35; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "p" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:35; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "q"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:12; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "q" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:12; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "r"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:15; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "r" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:15; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "s"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:1; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "s" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:1; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "t"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:17; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "t" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:17; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "u"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:32; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "u" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:32; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "v"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:9; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "v" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:9; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "w"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:13; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "w" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:13; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "x"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:7; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "x" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:7; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "y"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:16; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "y" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:16; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "z"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:6; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "z" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:6; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "grave_accent_and_tilde"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:50; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "grave_accent_and_tilde" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:50; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "hyphen"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:27; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "hyphen" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:27; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "equal_sign"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:24; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "equal_sign" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:24; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "open_bracket"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:33; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "open_bracket" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:33; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "close_bracket"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:30; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "close_bracket" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:30; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "semicolon"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:41; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "semicolon" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:41; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "quote"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:39; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "quote" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:39; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "comma"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:43; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "comma" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:43; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "period"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:47; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "period" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:47; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "slash"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:44; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "slash" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:44; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "backslash"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:42; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "backslash" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:42; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "spacebar"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:49; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "spacebar" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:49; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "return_or_enter"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:36; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "return_or_enter" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:36; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "tab"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:48; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "tab" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:48; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "delete_or_backspace"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:51; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "delete_or_backspace" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:51; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "escape"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:53; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "escape" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:53; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_command"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:55; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "left_command" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:55; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "right_command"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:55; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "right_command" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:55; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_shift"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:56; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "left_shift" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:56; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "right_shift"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:60; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "right_shift" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:60; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "caps_lock"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:57; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "caps_lock" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:57; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_option"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:58; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "left_option" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:58; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "right_option"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:61; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "right_option" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:61; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_control"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:59; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "left_control" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:59; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "fn"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:63; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "fn" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:63; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f1"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:122; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f1" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:122; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f2"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:120; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f2" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:120; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f3"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:99; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f3" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:99; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f4"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:118; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f4" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:118; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f5"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:96; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f5" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:96; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f6"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:97; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f6" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:97; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f7"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:98; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f7" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:98; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f8"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:100; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f8" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:100; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f9"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:101; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f9" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:101; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f10"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:109; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f10" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:109; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f11"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:103; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f11" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:103; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f12"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:111; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f12" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:111; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "home"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:115; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "home" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:115; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "end"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:119; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "end" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:119; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "page_up"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:116; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "page_up" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:116; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "page_down"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:121; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "page_down" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:121; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_arrow"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:123; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "left_arrow" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:123; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "right_arrow"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:124; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "right_arrow" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:124; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "down_arrow"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:125; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "down_arrow" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:125; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "up_arrow"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:126; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "up_arrow" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:126; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							}
 						]
 					}
 				]
 			},
-			"devices": [],
-			"fn_function_keys": [
-				{
-					"from": {
-						"key_code": "f1"
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_decrement"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f2"
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_increment"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f3"
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "mission_control"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f4"
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "spotlight"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f5"
-					},
-					"to": [
-						{
-							"consumer_key_code": "dictation"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f6"
-					},
-					"to": [
-						{
-							"key_code": "f6"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f7"
-					},
-					"to": [
-						{
-							"consumer_key_code": "rewind"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f8"
-					},
-					"to": [
-						{
-							"consumer_key_code": "play_or_pause"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f9"
-					},
-					"to": [
-						{
-							"consumer_key_code": "fast_forward"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f10"
-					},
-					"to": [
-						{
-							"consumer_key_code": "mute"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f11"
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_decrement"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f12"
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_increment"
-						}
-					]
-				}
-			],
-			"name": "AppleScript key codes",
-			"parameters": {
-				"delay_milliseconds_before_open_device": 1000
-			},
-			"selected": false,
-			"simple_modifications": [],
-			"virtual_hid_keyboard": {
-				"country_code": 0,
-				"indicate_sticky_modifier_keys_state": true,
-				"mouse_key_xy_scale": 100
-			}
+			"name": "AppleScript key codes"
 		},
 		{
 			"complex_modifications": {
-				"parameters": {
-					"basic.simultaneous_threshold_milliseconds": 50,
-					"basic.to_delayed_action_delay_milliseconds": 500,
-					"basic.to_if_alone_timeout_milliseconds": 1000,
-					"basic.to_if_held_down_threshold_milliseconds": 500,
-					"mouse_motion_to_scroll.speed": 100
-				},
 				"rules": [
 					{
 						"description": "JavaScript",
 						"manipulators": [
 							{
-								"from": {
-									"key_code": "0"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:48; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "0" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:48; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "1"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:49; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "1" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:49; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "2"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:50; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "2" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:50; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "3"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:51; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "3" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:51; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "4"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:52; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "4" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:52; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "5"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:53; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "5" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:53; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "6"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:54; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "6" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:54; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "7"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:55; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "7" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:55; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "8"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:56; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "8" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:56; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "9"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:57; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "9" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:57; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "a"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:65; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "a" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:65; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "b"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:66; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "b" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:66; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "c"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:67; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "c" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:67; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "d"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:68; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "d" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:68; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "e"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:69; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "e" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:69; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:70; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:70; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "g"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:71; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "g" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:71; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "h"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:72; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "h" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:72; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "i"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:73; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "i" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:73; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "j"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:74; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "j" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:74; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "k"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:75; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "k" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:75; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "l"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:76; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "l" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:76; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "m"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:77; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "m" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:77; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "n"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:78; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "n" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:78; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "o"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:79; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "o" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:79; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "p"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:80; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "p" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:80; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "q"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:81; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "q" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:81; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "r"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:82; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "r" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:82; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "s"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:83; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "s" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:83; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "t"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:84; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "t" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:84; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "u"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:85; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "u" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:85; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "v"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:86; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "v" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:86; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "w"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:87; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "w" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:87; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "x"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:88; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "x" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:88; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "y"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:89; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "y" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:89; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "z"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:90; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "z" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:90; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "grave_accent_and_tilde"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:192; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "grave_accent_and_tilde" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:192; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "hyphen"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:189; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "hyphen" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:189; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "equal_sign"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:187; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "equal_sign" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:187; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "open_bracket"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:219; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "open_bracket" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:219; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "close_bracket"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:221; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "close_bracket" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:221; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "semicolon"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:186; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "semicolon" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:186; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "quote"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:222; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "quote" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:222; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "comma"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:188; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "comma" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:188; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "period"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:110; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "period" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:110; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "slash"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:191; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "slash" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:191; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "backslash"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:220; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "backslash" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:220; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "spacebar"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:32; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "spacebar" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:32; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "return_or_enter"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:13; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "return_or_enter" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:13; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "tab"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:9; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "tab" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:9; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "delete_or_backspace"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:8; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "delete_or_backspace" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:8; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "escape"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:27; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "escape" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:27; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_command"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:93; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "left_command" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:93; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "right_command"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:91; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "right_command" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:91; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_shift"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:16; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "left_shift" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:16; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "right_shift"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:16; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "right_shift" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:16; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "caps_lock"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:20; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "caps_lock" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:20; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_option"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:18; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "left_option" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:18; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "right_option"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:18; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "right_option" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:18; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_control"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:17; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "left_control" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:17; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "fn"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:63; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "fn" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:63; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f1"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:112; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f1" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:112; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f2"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:113; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f2" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:113; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f3"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:114; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f3" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:114; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f4"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:115; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f4" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:115; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f5"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:116; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f5" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:116; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f6"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:117; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f6" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:117; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f7"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:118; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f7" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:118; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f8"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:119; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f8" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:119; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f9"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:120; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f9" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:120; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f10"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:121; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f10" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:121; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f11"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:122; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f11" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:122; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "f12"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:123; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "f12" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:123; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "home"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:36; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "home" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:36; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "end"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:35; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "end" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:35; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "page_up"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:33; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "page_up" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:33; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "page_down"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:34; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "page_down" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:34; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "left_arrow"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:37; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "left_arrow" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:37; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "right_arrow"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:39; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "right_arrow" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:39; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "down_arrow"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:40; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "down_arrow" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:40; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							},
 							{
-								"from": {
-									"key_code": "up_arrow"
-								},
-								"to": [
-									{
-										"shell_command": "/opt/homebrew/bin/cliclick t:38; /usr/local/bin/karabiner --select-profile 'Default profile'"
-									}
-								],
+								"from": { "key_code": "up_arrow" },
+								"to": [{ "shell_command": "/opt/homebrew/bin/cliclick t:38; /usr/local/bin/karabiner --select-profile 'Default profile'" }],
 								"type": "basic"
 							}
 						]
 					}
 				]
 			},
-			"devices": [],
-			"fn_function_keys": [
-				{
-					"from": {
-						"key_code": "f1"
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_decrement"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f2"
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_increment"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f3"
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "mission_control"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f4"
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "spotlight"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f5"
-					},
-					"to": [
-						{
-							"consumer_key_code": "dictation"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f6"
-					},
-					"to": [
-						{
-							"key_code": "f6"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f7"
-					},
-					"to": [
-						{
-							"consumer_key_code": "rewind"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f8"
-					},
-					"to": [
-						{
-							"consumer_key_code": "play_or_pause"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f9"
-					},
-					"to": [
-						{
-							"consumer_key_code": "fast_forward"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f10"
-					},
-					"to": [
-						{
-							"consumer_key_code": "mute"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f11"
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_decrement"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f12"
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_increment"
-						}
-					]
-				}
-			],
-			"name": "JavaScript key codes",
-			"parameters": {
-				"delay_milliseconds_before_open_device": 1000
-			},
-			"selected": false,
-			"simple_modifications": [],
-			"virtual_hid_keyboard": {
-				"country_code": 0,
-				"indicate_sticky_modifier_keys_state": true,
-				"mouse_key_xy_scale": 100
-			}
+			"name": "JavaScript key codes"
 		},
 		{
 			"complex_modifications": {
-				"parameters": {
-					"basic.simultaneous_threshold_milliseconds": 50,
-					"basic.to_delayed_action_delay_milliseconds": 500,
-					"basic.to_if_alone_timeout_milliseconds": 1000,
-					"basic.to_if_held_down_threshold_milliseconds": 500,
-					"mouse_motion_to_scroll.speed": 100
-				},
 				"rules": [
 					{
 						"description": "Keyboard disabled",
 						"manipulators": [
 							{
-								"from": {
-									"any": "key_code"
-								},
+								"from": { "any": "key_code" },
 								"type": "basic"
 							}
 						]
 					}
 				]
 			},
-			"devices": [
-				{
-					"disable_built_in_keyboard_if_exists": false,
-					"fn_function_keys": [],
-					"game_pad_swap_sticks": false,
-					"identifiers": {
-						"is_game_pad": false,
-						"is_keyboard": true,
-						"is_pointing_device": false,
-						"product_id": 0,
-						"vendor_id": 0
-					},
-					"ignore": false,
-					"manipulate_caps_lock_led": true,
-					"mouse_flip_horizontal_wheel": false,
-					"mouse_flip_vertical_wheel": false,
-					"mouse_flip_x": false,
-					"mouse_flip_y": false,
-					"mouse_swap_wheels": false,
-					"mouse_swap_xy": false,
-					"simple_modifications": [],
-					"treat_as_built_in_keyboard": false
-				},
-				{
-					"disable_built_in_keyboard_if_exists": false,
-					"fn_function_keys": [],
-					"game_pad_swap_sticks": false,
-					"identifiers": {
-						"is_game_pad": false,
-						"is_keyboard": false,
-						"is_pointing_device": true,
-						"product_id": 0,
-						"vendor_id": 0
-					},
-					"ignore": true,
-					"manipulate_caps_lock_led": false,
-					"mouse_flip_horizontal_wheel": false,
-					"mouse_flip_vertical_wheel": false,
-					"mouse_flip_x": false,
-					"mouse_flip_y": false,
-					"mouse_swap_wheels": false,
-					"mouse_swap_xy": false,
-					"simple_modifications": [],
-					"treat_as_built_in_keyboard": false
-				}
-			],
-			"fn_function_keys": [
-				{
-					"from": {
-						"key_code": "f1"
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_decrement"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f2"
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_increment"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f3"
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "mission_control"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f4"
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "spotlight"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f5"
-					},
-					"to": [
-						{
-							"consumer_key_code": "dictation"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f6"
-					},
-					"to": [
-						{
-							"key_code": "f6"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f7"
-					},
-					"to": [
-						{
-							"consumer_key_code": "rewind"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f8"
-					},
-					"to": [
-						{
-							"consumer_key_code": "play_or_pause"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f9"
-					},
-					"to": [
-						{
-							"consumer_key_code": "fast_forward"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f10"
-					},
-					"to": [
-						{
-							"consumer_key_code": "mute"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f11"
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_decrement"
-						}
-					]
-				},
-				{
-					"from": {
-						"key_code": "f12"
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_increment"
-						}
-					]
-				}
-			],
-			"name": "Keyboard disabled",
-			"parameters": {
-				"delay_milliseconds_before_open_device": 1000
-			},
-			"selected": false,
-			"simple_modifications": [],
-			"virtual_hid_keyboard": {
-				"country_code": 0,
-				"indicate_sticky_modifier_keys_state": true,
-				"mouse_key_xy_scale": 100
-			}
+			"name": "Keyboard disabled"
 		}
 	]
 }
