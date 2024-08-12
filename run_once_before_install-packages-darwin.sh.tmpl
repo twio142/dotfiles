@@ -8,7 +8,6 @@ brew bundle check --file $BREWFILE || brew bundle --no-lock --file $BREWFILE -q
 echo "Installing oh-my-zsh & plugins"
 [ -z $ZSH ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 mkdir -p $XDG_CONFIG_HOME/omz-custom/plugins
-git clone https://github.com/gretzky/auto-color-ls $XDG_CONFIG_HOME/omz-custom/plugins/auto-color-ls 2> /dev/null
 git clone https://github.com/z-shell/F-Sy-H.git $XDG_CONFIG_HOME/omz-custom/plugins/F-Sy-H 2> /dev/null
 
 echo "Installing SpaceVim"

@@ -104,7 +104,7 @@ local function fzf()
   local api = require "nvim-tree.api"
   local tmpFile = os.tmpname()
   local root = vim.fn.shellescape(vim.fn.getcwd())
-  os.execute('tmux popup -w 75% -h 90% -x 30% -y 54% -E \'find "'..root..'" -type d | fzf > '..tmpFile.."'")
+  os.execute('find '..root..' -type d | fzf --tmux center,75%,90% > '..tmpFile)
   local handle = io.open(tmpFile, "r")
   local path = handle:read("*a")
   handle:close()

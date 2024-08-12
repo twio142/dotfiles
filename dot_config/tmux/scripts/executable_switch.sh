@@ -9,7 +9,7 @@ case $1 in
 esac
 
 cmd=$(tmux display-message -p "#{pane_current_command}")
-test=$(tmux display-message -p "#{pane_at_${test}}")
-[[ "$cmd" == nvim || "$test" == 1 ]] &&
+test=$(tmux display-message -p "#{pane_at_${test}}#{window_zoomed_flag}")
+[[ "$cmd" == nvim || "$test" -gt 0 ]] &&
   tmux send-keys C-$1 ||
   tmux select-pane -${flag}

@@ -13,7 +13,6 @@ source ~/bin/ssh-completion
 
 alias back='cd "$OLDPWD"'
 alias gdv='git difftool -y -t nvimdiff'
-alias ls=colorls
 alias reconfig='omz reload'
 alias vim=nvim
 
@@ -47,13 +46,58 @@ export HOMEBREW_NO_ENV_HINTS=1
 export PYTHON3_HOST_PROG=$HOME/bin/py3
 export PYTHON_HOST_PROG=$HOME/bin/py2
 
+export DENO_INSTALL="$XDG_CACHE_HOME/deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+export PATH="$HOME/Projects/netzwerk/accounting/bin:$PATH"
+# . "$HOME/projects/netzwerk/accounting/lib/act_completion"
+
+export PATH="$PATH:$HOME/.local/bin"
+
+export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
+export LESSHISTFILE="$XDG_STATE_HOME"/less/history
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+# export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
+export GOPATH=$XDG_DATA_HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+# >>> nvm >>>
+export NVM_DIR="$XDG_DATA_HOME"/nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# <<< nvm <<<
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+export PATH="$HOME/miniconda3/bin:$PATH"
+
 ### FZF OPTIONS ###
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+[ -z $alfred_version ] && . ${XDG_CONFIG_HOME:-~/.config}/fzf/fzf-git.sh
+
 export FZF_DEFAULT_OPTS='--layout=reverse --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer=➤'
 
 # Use `` as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER="\`\`"
 # Options to fzf command
 export FZF_COMPLETION_OPTS="$FZF_DEFAULT_OPTS"
+export FZF_CTRL_R_OPTS="--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
@@ -81,7 +125,12 @@ _fzf_comprun() {
   esac
 }
 
-_autojump_fzf() { 
+# >>> autojump >>>
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
+# <<< autojump <<<
+
+_autojump_fzf() {
   autojump --purge &> /dev/null
   local dir=$(fzf --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
     --bind "change:reload:autojump --complete '{q}' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
@@ -103,19 +152,39 @@ _autojump_fzf() {
 }
 zle -N _autojump_fzf
 
-# bindkey '^[[1;3A' history-beginning-search-backward
-# bindkey '^[[1;3B' history-beginning-search-forward
-[[ -n "$TMUX" ]] && {
-  bindkey "^[[1;3C" forward-word;
-  bindkey "^[[1;3D" backward-word;
-  _tmux_wk_menu() { tmux show-wk-menu-root }
-  zle -N _tmux_wk_menu
-  bindkey "^[ " _tmux_wk_menu;
-} || {
-  bindkey "^[[1;9C" forward-word;
-  bindkey "^[[1;9D" backward-word;
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="$PATH:$(ruby -e 'puts Gem.bindir')"
+source $(dirname $(gem which colorls))/tab_complete.sh
+alias ls='colorls --$(~/bin/background)'
+
+auto-color-ls() {
+  emulate -L zsh
+  echo
+  colorls --$(~/bin/background) -A --group-directories-first
 }
-bindkey '^[g'  _autojump_fzf
-bindkey '^[v'  vi-cmd-mode
+
+chpwd_functions=(auto-color-ls $chpwd_functions)
+
+_tmux_wk_menu() { tmux show-wk-menu-root }
+_tmux_prev_mark() { tmux copy-mode \; send-keys -X search-backward "^❯ " }
+_tmux_next_mark() { tmux copy-mode \; send-keys -X search-forward "^❯ " }
+_tmux_key_bindings() {
+  zle -N _tmux_wk_menu
+  bindkey '^[ ' _tmux_wk_menu
+  zle -N _tmux_prev_mark
+  bindkey '^[[1;3A' _tmux_prev_mark
+  zle -N _tmux_next_mark
+  bindkey '^[[1;3B' _tmux_next_mark
+  bindkey '^[[1;3C' forward-word
+  bindkey '^[[1;3D' backward-word
+}
+
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
+bindkey '^[g' _autojump_fzf
+bindkey '^[v' vi-cmd-mode
 bindkey '^[k' kill-line
-bindkey \^U backward-kill-line
+bindkey '^U' backward-kill-line
+bindkey '^J' down-line-or-select
+bindkey -M menuselect '^J' down-history
+bindkey -M menuselect '^K' up-history

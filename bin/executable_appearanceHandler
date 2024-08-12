@@ -28,10 +28,6 @@ tmux run-shell ~/.config/tmux/plugins/tmux/catppuccin.tmux
 # Hammerspoon
 /usr/local/bin/hs -A -c "consoleDM()"
 
-# colorls theme
-orig=$(dirname $(/opt/homebrew/opt/ruby/bin/gem which colorls))/yaml/${mode:l}_colors.yaml
-ln -sf $orig ~/.config/colorls/dark_colors.yaml
-
 mode=${mode:0:1:u}${mode:1}
 
 # Marta theme
