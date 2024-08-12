@@ -2,6 +2,9 @@ let g:NERDTreeBookmarksFile = expand('$XDG_STATE_HOME') . '/nerdtree/bookmarks'
 let g:NERDTreeSortOrder = ['\/$', '*', '\.swp$', '\.bak$', '\~$', '[[-timestamp]]']
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeAutoDeleteBuffer = 1
 
 fu! NERDTreeBookmark(action)
   let l:key = nr2char(getchar())

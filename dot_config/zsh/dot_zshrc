@@ -153,6 +153,7 @@ else
 fi
 export PAGER='bat --style=plain --color=always'
 export DELTA_PAGER=$PAGER
+export MANPAGER="sh -c 'col -bx | $PAGER -l man --paging always'"
 
 # Compilation flags
 export ARCHFLAGS=$(uname -m)

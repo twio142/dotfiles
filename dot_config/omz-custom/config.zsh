@@ -121,6 +121,8 @@ _fzf_comprun() {
     cd)           fzf --preview 'tree -C {} | head -200' "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}" --preview-window 'wrap'         "$@" ;;
     ssh)          fzf --preview 'dig {}' --preview-window 'wrap'                   "$@" ;;
+    chezmoi)      
+      chezmoi managed | sed "s_^_$HOME/_" | fzf --preview '[ -f {} ] && bat -n --color=always {} || tree -C {} | head -200' --preview-window 'wrap' "$@" ;;
     *)            fzf --preview '[ -f {} ] && bat -n --color=always {} || tree -C {} | head -200' --preview-window 'wrap' "$@" ;;
   esac
 }
