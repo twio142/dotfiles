@@ -19,8 +19,9 @@ os:
   editAtLine: "$XDG_CONFIG_HOME/lazygit/edit.sh {{filename}} +{{line}}"
   copyToClipboardCmd: "echo -n {{text}} | tmux load-buffer -"
 git: 
-  colorArg: always
-  pager: "bat --pager=never --style=plain --tabs 2"
+  paging:
+    colorArg: always
+    pager: "delta --$($HOME/bin/background) --paging=never"
 keybinding:
   universal:
     optionMenu: '?'

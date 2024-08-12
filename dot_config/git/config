@@ -12,9 +12,27 @@
 [core]
 	autocrlf = input
 	quotepath = false
-	excludesfile = /Users/***REMOVED***/.config/git/.gitignore_global
-	pager = bat --paging=always --style=plain --tabs 2
+	excludesfile = ~/.config/git/.gitignore_global
+  pager = delta --$(~/bin/background)
 [fetch]
 	recurseSubmodules = true
 [diff]
 	tool = nvimdiff
+  colorMoved = default
+[interactive]
+  diffFilter = delta --$(~/bin/background) --color-only --features=interactive
+[delta]
+  navigate = true
+  features = decorations unobtrusive-line-numbers
+[delta "interactive"]
+  keep-plus-minus-markers = false
+[delta "unobtrusive-line-numbers"]
+  line-numbers = true
+[delta "decorations"]
+  commit-decoration-style = ol
+  commit-style = raw
+  file-decoration-style = ol
+  hunk-header-style = syntax ul
+  hunk-header-decoration-style = omit
+[merge]
+  conflictStyle = diff3

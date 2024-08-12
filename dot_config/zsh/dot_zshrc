@@ -152,6 +152,7 @@ else
   export EDITOR='nvim'
 fi
 export PAGER='bat --style=plain --color=always'
+export DELTA_PAGER=$PAGER
 
 # Compilation flags
 export ARCHFLAGS=$(uname -m)
