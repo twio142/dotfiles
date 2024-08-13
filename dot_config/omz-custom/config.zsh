@@ -15,7 +15,7 @@ alias back='cd "$OLDPWD"'
 alias gdv='git difftool -y -t nvimdiff'
 alias reconfig='omz reload'
 alias vim=nvim
-alias btm='btm --theme default$(test $(~/bin/background) = light && echo -light)'
+alias btm='btm --theme nord$(test $(~/bin/background) = light && echo -light)'
 
 cn() { [ -z $1 ] && conda deactivate || conda activate $1 }
 co() { 1="$*"; gh copilot suggest "$1" }

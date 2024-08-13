@@ -20,7 +20,7 @@ macros:
       - "respawnp -k -c #{pane_current_path}"
 items:
   - name: Run
-    key: space
+    key: ":"
     command: command-prompt
   - name: Last window
     key: tab

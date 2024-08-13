@@ -24,6 +24,8 @@
 [delta]
   navigate = true
   features = decorations unobtrusive-line-numbers
+  tabs = 2
+  hyperlinks = true
 [delta "interactive"]
   keep-plus-minus-markers = false
 [delta "unobtrusive-line-numbers"]

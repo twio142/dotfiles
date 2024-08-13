@@ -1053,6 +1053,7 @@
 									},
 									{
 										"bundle_identifiers": [
+											"com.microsoft.VSCode",
 											"com.googlecode.iterm2"
 										],
 										"type": "frontmost_application_if"
@@ -1060,8 +1061,7 @@
 								],
 								"from": { "key_code": "v" },
 								"to": [
-									{ "key_code": "escape" },
-									{ "key_code": "v" }
+									{ "key_code": "v", "modifiers": ["left_option"] }
 								],
 								"type": "basic"
 							},

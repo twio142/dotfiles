@@ -111,7 +111,7 @@ fu! Retab(len)
 	setlocal tabstop=2
 endfunction
 
-function! GetSelection()
+fu! GetSelection()
     let start_pos = getpos("'<")
     let end_pos = getpos("'>")
     let start_line = start_pos[1]
@@ -205,6 +205,20 @@ fu! PasteAndKeepReg()
   call setreg('"', l:reg, l:regtype)
 endfunction
 
+fu! ToggleDiff()
+  if exists(':NERDTree') == 2
+    execute 'NERDTreeClose'
+  endif
+  if winnr('$') == 1
+    return
+  endif
+  if &diff
+    windo diffoff
+  else
+    windo diffthis
+  endif
+endfunction
+
 " 对于只有一个大写字母的搜索词大小写敏感；其他情况大小写不敏感
 set ignorecase
 set smartcase
@@ -255,6 +269,7 @@ command -nargs=* CM call Chezmoi(<q-args>)
 command TES execute '20sp +ter'
 command TER execute '65vsp +ter'
 command PER execute '!chmod +x "%:p"'
+command DF call ToggleDiff()
 
 nnoremap <Up> gk
 nnoremap <Down> gj

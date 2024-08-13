@@ -37,7 +37,7 @@ open_in_existing_pane() {
 open_in_new_window() {
   local session=$1
   shift
-  tmux new-window -t "$session"
+  tmux new-window -t "$session" -c "$HOME"
   local pane=$(tmux display -t "$session" -p "#P")
   local cmd="vim"
   for file in $@; do

@@ -6,6 +6,7 @@ gui:
   showBottomLine: false
   nerdFontsVersion: "3"
   showFileIcons: false
+  showListFooter: false
   theme:
     activeBorderColor:
       - default
