@@ -94,12 +94,10 @@ set t_Co=256
 
 fu! Tab(len)
 	if a:len == ''
-		let len = 4
-	else
-		let len = a:len
+		let a:len = 4
 	endif
-	execute 'set shiftwidth='.len
-	execute 'set tabstop='.len
+	execute 'set shiftwidth='.a:len
+	execute 'set tabstop='.a:len
 endfunction
 
 fu! Retab(len)
@@ -162,6 +160,51 @@ if exists('$TMUX') && $TMUX != ''
   xnoremap <silent> <Space>_ :<C-u>call PasteInTmux(v:count, 0)<CR>
 endif
 
+fu! Chezmoi(action)
+  let p = shellescape(expand('%:p')) 
+  if a:action == 'add' || a:action == 'a'
+    let o = system('chezmoi -n add ' . p)
+    if v:shell_error != 0
+      echoerr o
+      return
+    endif
+    silent execute '!chezmoi add ' . p
+    echo 'File added to chezmoi' | redraw
+  elseif a:action == 'aa'
+    call system("chezmoi status -i files -p absolute | cut -d' ' -f2- | xargs chezmoi add")
+    if v:shell_error == 0
+      echo 'All changes added to chezmoi' | redraw
+    endif
+  elseif a:action == 'restore' || a:action == 'r'
+    let o = system('chezmoi -n apply ' . p)
+    if v:shell_error != 0
+      echoerr o
+      return
+    endif
+    silent execute '!chezmoi apply --force ' . p
+    echo 'File restored' | redraw
+  elseif a:action == 'diff' || a:action == 'd'
+    let o = system('chezmoi source-path ' . p)
+    if v:shell_error != 0
+      echoerr o
+      return
+    endif
+    execute 'vsp ' . o
+    windo diffthis
+  elseif a:action == 'status' || a:action == 's'
+    echo system('chezmoi status ' . p)
+  elseif a:action == 'sa'
+    echo system('chezmoi status')
+  endif
+endfunction
+
+fu! PasteAndKeepReg()
+  let l:reg = getreg('"')
+  let l:regtype = getregtype('"')
+  normal! gvp
+  call setreg('"', l:reg, l:regtype)
+endfunction
+
 " 对于只有一个大写字母的搜索词大小写敏感；其他情况大小写不敏感
 set ignorecase
 set smartcase
@@ -208,6 +251,7 @@ command -nargs=+ SE cal SpaceVim#plugins#iedit#start({'expr': <q-args>, 'selecta
 command -nargs=+ Sw cal SpaceVim#plugins#iedit#start({'word': <q-args>, 'selectall': 1})
 command -nargs=+ SW cal SpaceVim#plugins#iedit#start({'word': <q-args>, 'selectall': 0})
 command -nargs=1 SL setlocal spelllang=<args>
+command -nargs=* CM call Chezmoi(<q-args>)
 command TES execute '20sp +ter'
 command TER execute '65vsp +ter'
 command PER execute '!chmod +x "%:p"'
@@ -237,13 +281,13 @@ xnoremap <M-k> 12k
 xnoremap <M-j> 12j
 xnoremap C "+y
 xnoremap X "+x
-xnoremap p "_dP
+xnoremap <silent> p :<C-u>call PasteAndKeepReg()<CR>
 xnoremap <silent> <CR> "oy<ESC>:call system('open ' . shellescape(getreg('o')))<CR>
 xnoremap <silent> <C-t> "oy<ESC>:tabe <C-r>o<CR>
 xnoremap gs "oy/<C-r>o<CR>
 xnoremap <silent> g<CR> "os<CR><ESC>k:r!<C-r>o<CR>kJJ
-xnoremap <silent> <Space>se "1y:Sw <C-r>1<CR><CR>
-xnoremap <silent> <Space>sE "1y:SW <C-r>1<CR><CR>
+xnoremap <silent> <Space>se "1y:Se <C-r>1<CR><CR>
+xnoremap <silent> <Space>sE "1y:SE <C-r>1<CR><CR>
 
 tmap <ESC> <C-\><C-n>
 tmap <silent> <f4> <ESC>:q<CR>

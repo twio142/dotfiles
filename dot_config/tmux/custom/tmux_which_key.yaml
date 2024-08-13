@@ -14,10 +14,6 @@ custom_variables:
   - name: log_info
     value: "#[fg=green,italics] [info]#[default]#[italics]"
 macros:
-  - name: reload-config
-    commands:
-      - source-file $XDG_CONFIG_HOME/tmux/tmux.conf
-      - display "Reloaded config"
   - name: restart-pane
     commands:
       - display "#{log_info} Restarting pane"
@@ -47,7 +43,7 @@ items:
         command: previous-window
       - name: Next
         key: n
-        command: "run-shell ~/.config/tmux/scripts/next_window.sh" 
+        command: "run-shell $XDG_CONFIG_HOME/tmux/scripts/next_window.sh" 
       - name: New
         key: c
         command: neww -c "$HOME"
@@ -192,43 +188,43 @@ items:
       - name: Lazygit
         key: g
         command:
-          run-shell -b "~/.config/tmux/scripts/open_lazygit.sh &>/dev/null"
+          run-shell -b "$XDG_CONFIG_HOME/tmux/scripts/open_lazygit.sh &>/dev/null"
       - name: Files
         key: f
         command:
-          run-shell -b "type=files ~/.config/fzf/tmux-fzf-git.sh" 
+          run-shell -b "type=files $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh" 
       - name: Commits
         key: h
         command:
-          run-shell -b "type=hashes ~/.config/fzf/tmux-fzf-git.sh"
+          run-shell -b "type=hashes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Branches
         key: b
         command:
-          run-shell -b "type=branches ~/.config/fzf/tmux-fzf-git.sh"
+          run-shell -b "type=branches $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Remotes
         key: r
         command:
-          run-shell -b "type=remotes ~/.config/fzf/tmux-fzf-git.sh"
+          run-shell -b "type=remotes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Log
         key: l
         command:
-          run-shell -b "type=lreflogs ~/.config/fzf/tmux-fzf-git.sh"
+          run-shell -b "type=lreflogs $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Each ref
         key: e
         command:
-          run-shell -b "type=each_ref ~/.config/fzf/tmux-fzf-git.sh"
+          run-shell -b "type=each_ref $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Tags
         key: t
         command:
-          run-shell -b "type=tags ~/.config/fzf/tmux-fzf-git.sh"
+          run-shell -b "type=tags $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Stash
         key: s
         command:
-          run-shell -b "type=stashes ~/.config/fzf/tmux-fzf-git.sh"
+          run-shell -b "type=stashes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Worktree
         key: w
         command:
-          run-shell -b "type=worktrees ~/.config/fzf/tmux-fzf-git.sh"
+          run-shell -b "type=worktrees $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
   - name: +Buffers
     key: b
     menu:
@@ -262,10 +258,10 @@ items:
       - separator: true
       - name: Store
         key: S
-        command: "run-shell ~/.config/tmux/scripts/store_sessions.sh"
+        command: "run-shell $XDG_CONFIG_HOME/tmux/scripts/store_sessions.sh"
       - name: Restore
         key: R
-        command: "run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh"
+        command: "run-shell $XDG_CONFIG_HOME/tmux/plugins/tmux-resurrect/scripts/save.sh"
   - name: +Client
     key: c
     menu:
@@ -309,7 +305,7 @@ items:
       - separator: true
       - name: Reload config
         key: r
-        macro: reload-config
+        command: ER
       - name: Edit config
         key: e
         command: edit-config

@@ -33,7 +33,7 @@ __fzf_git_pager() {
 }
 
 _fzf_git_fzf() {
-  fzf-tmux -p100%,70% -- \
+  fzf-tmux -p95%,70% -- \
     --layout=reverse --multi --height=50% --min-height=20 --border \
     --border-label-pos=2 \
     --color='header:underline,label:bold,fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1' \

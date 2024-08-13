@@ -159,7 +159,7 @@ if [[ $- =~ i ]]; then
 
 # Redefine this function to change the options
 _fzf_git_fzf() {
-  fzf-tmux -p100%,70% -- \
+  fzf-tmux -p95%,70% -- \
     --layout=reverse --multi --height=50% --min-height=20 --border \
     --border-label-pos=2 \
     --color='header:underline,label:bold' \

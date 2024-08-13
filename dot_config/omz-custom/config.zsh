@@ -15,6 +15,7 @@ alias back='cd "$OLDPWD"'
 alias gdv='git difftool -y -t nvimdiff'
 alias reconfig='omz reload'
 alias vim=nvim
+alias btm='btm --theme default$(test $(~/bin/background) = light && echo -light)'
 
 cn() { [ -z $1 ] && conda deactivate || conda activate $1 }
 co() { 1="$*"; gh copilot suggest "$1" }
@@ -121,8 +122,7 @@ _fzf_comprun() {
     cd)           fzf --preview 'tree -C {} | head -200' "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}" --preview-window 'wrap'         "$@" ;;
     ssh)          fzf --preview 'dig {}' --preview-window 'wrap'                   "$@" ;;
-    chezmoi)      
-      chezmoi managed | sed "s_^_$HOME/_" | fzf --preview '[ -f {} ] && bat -n --color=always {} || tree -C {} | head -200' --preview-window 'wrap' "$@" ;;
+    chezmoi)      chezmoi managed -p absolute | fzf --preview '[ -f {} ] && bat -n --color=always {} || tree -C {} | head -200' --preview-window 'wrap' "$@" ;;
     *)            fzf --preview '[ -f {} ] && bat -n --color=always {} || tree -C {} | head -200' --preview-window 'wrap' "$@" ;;
   esac
 }

@@ -151,7 +151,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
-export PAGER='bat --style=plain --color=always'
+export PAGER='bat -p --color=always'
 export DELTA_PAGER=$PAGER
 export MANPAGER="sh -c 'col -bx | $PAGER -l man --paging always'"
 
