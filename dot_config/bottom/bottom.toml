@@ -1,5 +1,4 @@
 [flags]
-
 battery = true
 regex = true
 
@@ -16,10 +15,10 @@ regex = true
   [[row.child]]
     ratio=2
     [[row.child.child]]
-      ratio=3
+      ratio=10
       type="temp"
     [[row.child.child]]
-      ratio=2
+      ratio=9
       type="battery"
   [[row.child]]
     ratio=8

@@ -105,7 +105,7 @@ export FZF_CTRL_R_OPTS="--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+ab
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" --exclude ".DS_Store" . "$1"
+  fd --hidden --follow --exclude ".DS_Store" --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
@@ -189,24 +189,27 @@ ts() {
   fi
 }
 
+_tmux_copy_mode() { tmux copy-mode }
+_tmux_find() { tmux copy-mode \; send-keys "?" }
 _tmux_paste() { tmux paste-buffer }
+_tmux_paste_escape() { printf "%q" "$(pbpaste)" | tmux load-buffer - \; paste-buffer -d }
 _tmux_wk_menu() { tmux show-wk-menu-root }
 _tmux_prev_mark() { tmux copy-mode \; send-keys -X search-backward "^❯ " }
 _tmux_next_mark() { tmux copy-mode \; send-keys -X search-forward "^❯ " }
-_tmux_paste_escape() {
-  printf "%q" "$(pbpaste)" | tmux load-buffer -
-  tmux paste-buffer -d
-}
 _tmux_key_bindings() {
+  zle -N _tmux_copy_mode
+  zle -N _tmux_find
   zle -N _tmux_paste
-  bindkey '^[p' _tmux_paste
   zle -N _tmux_paste_escape
-  bindkey '^Xv' _tmux_paste_escape
   zle -N _tmux_wk_menu
-  bindkey '^[ ' _tmux_wk_menu
   zle -N _tmux_prev_mark
-  bindkey '^[[1;3A' _tmux_prev_mark
   zle -N _tmux_next_mark
+  bindkey '^[[' _tmux_copy_mode
+  bindkey '^[/' _tmux_find
+  bindkey '^[]' _tmux_paste
+  bindkey '^Xv' _tmux_paste_escape
+  bindkey '^[ ' _tmux_wk_menu
+  bindkey '^[[1;3A' _tmux_prev_mark
   bindkey '^[[1;3B' _tmux_next_mark
   bindkey '^[[1;3C' forward-word
   bindkey '^[[1;3D' backward-word

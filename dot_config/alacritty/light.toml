@@ -28,8 +28,8 @@ cyan    = "#64a6ad"
 white   = "#cecece"
 
 [colors.cursor]
-text = "#fefeff"
-cursor = "#5e5f5e"
+text = "#eff1f5"
+cursor = "#526fff"
 
 [colors.selection]
 text = "#191919"
@@ -41,11 +41,11 @@ background = "#6c6f85"
 
 [colors.search.focused_match]
 foreground = "#eff1f5"
-background = "#40a02b"
+background = "#ec6e30"
 
 [colors.footer_bar]
-foreground = "#eff1f5"
-background = "#6c6f85"
+foreground = "#4a4c53"
+background = "#c2cdd3"
 
 [colors.hints.start]
 foreground = "#eff1f5"

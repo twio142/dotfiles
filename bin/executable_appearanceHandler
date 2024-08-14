@@ -22,8 +22,8 @@ EOF
 done
 
 # Tmux
-[ $mode = light ] && flavour=latte || flavour=mocha
-tmux set -g @catppuccin_flavour "$flavour"
+[ $mode = light ] && flavor=latte || flavor=mocha
+tmux set -g @catppuccin_flavor "$flavor"
 tmux run-shell ${XDG_CONFIG_HOME}/tmux/plugins/tmux/catppuccin.tmux
 
 # Alacritty theme

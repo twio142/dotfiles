@@ -28,24 +28,24 @@ cyan    = "#bcfce5"
 white   = "#cfe2e6"
 
 [colors.cursor]
-text = "#fefefe"
-cursor = "#7e7f7e"
+text = "#ffffff"
+cursor = "#528bff"
 
 [colors.selection]
 text = "#b6ccfa"
-background = "#220272"
+background = "#282099"
 
 [colors.search.matches]
 foreground = "#1e1e2e"
-background = "#a6adc8"
+background = "#878ba2"
 
 [colors.search.focused_match]
 foreground = "#1e1e2e"
-background = "#a6e3a1"
+background = "#a1c281"
 
 [colors.footer_bar]
-foreground = "#1e1e2e"
-background = "#a6adc8"
+foreground = "#b6ccfa"
+background = "#2e315e"
 
 [colors.hints.start]
 foreground = "#1e1e2e"

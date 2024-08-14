@@ -14,7 +14,7 @@ execute 'source ' . expand('<sfile>:p:h') . '/custom_one.vim'
 
 fu! s:firstInsertEnter()
 	if s:fi == 1
-    luafile $XDG_CONFIG_HOME/SpaceVim.d/lua/nvim-cmp.lua
+		luafile $XDG_CONFIG_HOME/SpaceVim.d/lua/nvim-cmp.lua
 		map / <C-/>
 		map ? <C-?>
 		let s:fi = 0
@@ -40,14 +40,14 @@ augroup NoBackup
 augroup END
 
 if exists(':NERDTree') == 2
-  execute 'source ' . expand('<sfile>:p:h') . '/nerdtree.vim'
+	execute 'source ' . expand('<sfile>:p:h') . '/nerdtree.vim'
 endif
 
 if exists(':Telescope') == 2
-  augroup TelescopeConfig
-    autocmd!
-    autocmd User TelescopePreviewerLoaded execute 'source ' . expand('<sfile>:p:h') . '/telescope.vim' 
-  augroup END
+	augroup TelescopeConfig
+		autocmd!
+		autocmd User TelescopePreviewerLoaded execute 'source ' . expand('<sfile>:p:h') . '/telescope.vim' 
+	augroup END
 endif
 
 " markdown 折行设置
@@ -56,15 +56,15 @@ augroup Markdown
 	au FileType markdown setlocal wrapmargin=2
 	au FileType markdown setlocal matchpairs+=（:）,「:」
 	au FileType markdown setlocal tabstop=4 | setlocal shiftwidth=4
-  au FileType markdown setlocal spell
+	au FileType markdown setlocal spell
 augroup END
 
 " When opening a new buffer, set copilot_workspace_folders to project root
 if exists(':Copilot')
-  augroup Copilot
-    autocmd!
-    autocmd BufNew * let b:copilot_workspace_folders = [getcwd()]
-  augroup END
+	augroup Copilot
+		autocmd!
+		autocmd BufNew * let b:copilot_workspace_folders = [getcwd()]
+	augroup END
 endif
 
 set mouse=nicrv
@@ -100,130 +100,143 @@ fu! Tab(len)
 	execute 'set tabstop='.a:len
 endfunction
 
-fu! Retab(len)
-  if a:len != ''
-    execute 'setlocal shiftwidth='.a:len
-    execute 'setlocal tabstop='.a:len
-  endif
+fu! Retab(before, after)
+	if a:before != ''
+		execute 'setlocal shiftwidth='.a:before
+		execute 'setlocal tabstop='.a:before
+	endif
 	setlocal noexpandtab
 	retab!
-	setlocal shiftwidth=2
-	setlocal tabstop=2
+	if a:after == ''
+		let len = 2
+	else
+		let len = a:after
+	endif
+	execute 'setlocal shiftwidth='.len
+	execute 'setlocal tabstop='.len
+	if a:after != ''
+		set expandtab
+		retab
+	endif
 endfunction
 
 fu! GetSelection()
-    let start_pos = getpos("'<")
-    let end_pos = getpos("'>")
-    let start_line = start_pos[1]
-    let start_col = start_pos[2]
-    let end_line = end_pos[1]
-    let end_col = end_pos[2]
-    echo start_line . ',' . start_col . ' ' . end_line . ' ' . end_col
-    let selected_text = ""
-    if start_line == end_line
-      let selected_text = getline(start_line)[start_col-1:end_col-1]
-      return selected_text
-    endif
-    for line in range(start_line, end_line)
-        if line == start_line
-            let line_text = getline(line)[start_col-1:]
-        elseif line == end_line
-            let line_text = getline(line)[:end_col-1]
-        else
-            let line_text = getline(line)
-        endif
-        let selected_text .= line_text
-        if line != end_line
-            let selected_text .= "\n"
-        endif
-    endfor
-    return selected_text
+		let start_pos = getpos("'<")
+		let end_pos = getpos("'>")
+		let start_line = start_pos[1]
+		let start_col = start_pos[2]
+		let end_line = end_pos[1]
+		let end_col = end_pos[2]
+		echo start_line . ',' . start_col . ' ' . end_line . ' ' . end_col
+		let selected_text = ""
+		if start_line == end_line
+			let selected_text = getline(start_line)[start_col-1:end_col-1]
+			return selected_text
+		endif
+		for line in range(start_line, end_line)
+				if line == start_line
+						let line_text = getline(line)[start_col-1:]
+				elseif line == end_line
+						let line_text = getline(line)[:end_col-1]
+				else
+						let line_text = getline(line)
+				endif
+				let selected_text .= line_text
+				if line != end_line
+						let selected_text .= "\n"
+				endif
+		endfor
+		return selected_text
 endfunction
 
 if exists('$TMUX') && $TMUX != ''
-  fu! YankToTmux()
-    let @o = GetSelection()
-    let tmux_sess = system('tmux display -p \#S')
-    silent execute '! ~/bin/altr -w com.nyako520.tmux -t reg2buf -v reg=o -v "socket='. v:servername .'" -v sess=' . tmux_sess
-  endfunction
+	fu! YankToTmux()
+		let @o = GetSelection()
+		let tmux_sess = system('tmux display -p \#S')
+		silent execute '! ~/bin/altr -w com.nyako520.tmux -t reg2buf -v reg=o -v "socket='. v:servername .'" -v sess=' . tmux_sess
+	endfunction
 
-  fu! PasteInTmux(pane, run)
-    " run selected code in tmux pane
-    let @o = GetSelection()
-    let tmux_pane = system('tmux display -p "#S:#{window_index}"')
-    let tmux_pane = substitute(tmux_pane, '\n', '', '') . '.' . a:pane
-    silent execute '! ~/bin/altr -w com.nyako520.tmux -t vim2tmux -v reg=o -v "socket='. v:servername .'" -v "pane=' . tmux_pane . '" -v run=' . a:run
-  endfunction
+	fu! PasteInTmux(pane, run)
+		" run selected code in tmux pane
+		let @o = GetSelection()
+		let tmux_pane = system('tmux display -p "#S:#{window_index}"')
+		let tmux_pane = substitute(tmux_pane, '\n', '', '') . '.' . a:pane
+		silent execute '! ~/bin/altr -w com.nyako520.tmux -t vim2tmux -v reg=o -v "socket='. v:servername .'" -v "pane=' . tmux_pane . '" -v run=' . a:run
+	endfunction
 
-  fu! PasteFromTmux()
-    let @o = system('tmux show-buffer')
-    normal! "op
-  endfunction
+	fu! PasteFromTmux(v)
+		let @o = system('tmux show-buffer')
+		if a:v == 1
+			normal! gv"op
+		else
+			normal! "op
+		endif
+	endfunction
 
-  xnoremap <silent> <Space>[ :<C-u>cal YankToTmux()<CR>
-  nnoremap <silent> <Space>] :<C-u>cal PasteFromTmux()<CR>
-  xnoremap <silent> <Space>] :<C-u>cal PasteFromTmux()<CR>
-  xnoremap <silent> <Space>- :<C-u>cal PasteInTmux(v:count, 1)<CR>
-  xnoremap <silent> <Space>_ :<C-u>cal PasteInTmux(v:count, 0)<CR>
+	xnoremap <silent> <Space>[ :<C-u>cal YankToTmux()<CR>
+	nnoremap <silent> <Space>] :<C-u>cal PasteFromTmux(0)<CR>
+	xnoremap <silent> <Space>] :<C-u>cal PasteFromTmux(1)<CR>
+	xnoremap <silent> <Space>- :<C-u>cal PasteInTmux(v:count, 1)<CR>
+	xnoremap <silent> <Space>_ :<C-u>cal PasteInTmux(v:count, 0)<CR>
 endif
 
 fu! Chezmoi(action)
-  let p = shellescape(expand('%:p')) 
-  if a:action == 'add' || a:action == 'a'
-    let o = system('chezmoi -n add ' . p)
-    if v:shell_error != 0
-      echoerr o
-      return
-    endif
-    silent execute '!chezmoi add ' . p
-    echo 'File added to chezmoi' | redraw
-  elseif a:action == 'aa'
-    call system("chezmoi status -i files -p absolute | cut -d' ' -f2- | xargs chezmoi add")
-    if v:shell_error == 0
-      echo 'All changes added to chezmoi' | redraw
-    endif
-  elseif a:action == 'restore' || a:action == 'r'
-    let o = system('chezmoi -n apply ' . p)
-    if v:shell_error != 0
-      echoerr o
-      return
-    endif
-    silent execute '!chezmoi apply --force ' . p
-    echo 'File restored' | redraw
-  elseif a:action == 'diff' || a:action == 'd'
-    let o = system('chezmoi source-path ' . p)
-    if v:shell_error != 0
-      echoerr o
-      return
-    endif
-    execute 'vsp ' . o
-    windo diffthis
-  elseif a:action == 'status' || a:action == 's'
-    echo system('chezmoi status ' . p)
-  elseif a:action == 'sa'
-    echo system('chezmoi status')
-  endif
+	let p = shellescape(expand('%:p')) 
+	if a:action == 'add' || a:action == 'a'
+		let o = system('chezmoi -n add ' . p)
+		if v:shell_error != 0
+			echoerr o
+			return
+		endif
+		silent execute '!chezmoi add ' . p
+		echo 'File added to chezmoi' | redraw
+	elseif a:action == 'aa'
+		call system("chezmoi status -i files -p absolute | cut -d' ' -f2- | xargs chezmoi add")
+		if v:shell_error == 0
+			echo 'All changes added to chezmoi' | redraw
+		endif
+	elseif a:action == 'restore' || a:action == 'r'
+		let o = system('chezmoi -n apply ' . p)
+		if v:shell_error != 0
+			echoerr o
+			return
+		endif
+		silent execute '!chezmoi apply --force ' . p
+		echo 'File restored' | redraw
+	elseif a:action == 'diff' || a:action == 'd'
+		let o = system('chezmoi source-path ' . p)
+		if v:shell_error != 0
+			echoerr o
+			return
+		endif
+		execute 'vsp ' . o
+		windo diffthis
+	elseif a:action == 'status' || a:action == 's'
+		echo system('chezmoi status ' . p)
+	elseif a:action == 'sa'
+		echo system('chezmoi status')
+	endif
 endfunction
 
 fu! PasteAndKeepReg()
-  let l:reg = getreg('"')
-  let l:regtype = getregtype('"')
-  normal! gvp
-  call setreg('"', l:reg, l:regtype)
+	let l:reg = getreg('"')
+	let l:regtype = getregtype('"')
+	normal! gvp
+	call setreg('"', l:reg, l:regtype)
 endfunction
 
 fu! ToggleDiff()
-  if exists(':NERDTree') == 2
-    execute 'NERDTreeClose'
-  endif
-  if winnr('$') == 1
-    return
-  endif
-  if &diff
-    windo diffoff
-  else
-    windo diffthis
-  endif
+	if exists(':NERDTree') == 2
+		execute 'NERDTreeClose'
+	endif
+	if winnr('$') == 1
+		return
+	endif
+	if &diff
+		windo diffoff
+	else
+		windo diffthis
+	endif
 endfunction
 
 " 对于只有一个大写字母的搜索词大小写敏感；其他情况大小写不敏感
@@ -246,12 +259,12 @@ else
 endif
 
 " terminal app specific configs
-if getenv('TERM_PROGRAM') == "Apple_Terminal"
-	set notermguicolors
-	let g:spacevim_enable_guicolors = 0
-else
+if getenv('COLORTERM') == "truecolor"
 	set termguicolors
 	let g:spacevim_enable_guicolors = 1
+else
+	set notermguicolors
+	let g:spacevim_enable_guicolors = 0
 endif
 
 " dir of current file
@@ -265,8 +278,8 @@ command P execute 'tabe '.@+
 " browse current file in alfred
 command AF execute "!alfred " . shellescape(expand("%:p"), 1)
 command VS execute "!code " . shellescape(getcwd()) . " && sleep 1 && code -g " . shellescape(expand("%:p"))
-command -nargs=* TA cal Tab(<q-args>)
-command -nargs=* TR cal Retab(<q-args>)
+command -nargs=1 TA cal Tab(<args>)
+command -nargs=1 TR cal Retab(<args>, 2)
 command -nargs=+ Se cal SpaceVim#plugins#iedit#start({'expr': <q-args>, 'selectall': 1})
 command -nargs=+ SE cal SpaceVim#plugins#iedit#start({'expr': <q-args>, 'selectall': 0})
 command -nargs=+ Sw cal SpaceVim#plugins#iedit#start({'word': <q-args>, 'selectall': 1})
