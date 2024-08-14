@@ -63,6 +63,8 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
 export GOPATH=$XDG_DATA_HOME/go
 export PATH=$PATH:$GOPATH/bin
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 # >>> nvm >>>
 export NVM_DIR="$XDG_DATA_HOME"/nvm
@@ -103,7 +105,7 @@ export FZF_CTRL_R_OPTS="--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+ab
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
+  fd --hidden --follow --exclude ".git" --exclude ".DS_Store" . "$1"
 }
 
 # Use fd to generate the list for directory completion
@@ -167,10 +169,39 @@ auto-color-ls() {
 
 chpwd_functions=(auto-color-ls $chpwd_functions)
 
+# tmux
+
+ta() {
+  if [[ -z $1 || ${1:0:1} == '-' ]]; then
+    tmux attach "$@"
+  else
+    tmux attach -t "$@"
+  fi
+}
+
+alias tl='tmux list-sessions'
+
+ts() {
+  if [[ -z $1 || ${1:0:1} == '-' ]]; then
+    tmux new-session "$@"
+  else
+    tmux new-session -s "$@"
+  fi
+}
+
+_tmux_paste() { tmux paste-buffer }
 _tmux_wk_menu() { tmux show-wk-menu-root }
 _tmux_prev_mark() { tmux copy-mode \; send-keys -X search-backward "^❯ " }
 _tmux_next_mark() { tmux copy-mode \; send-keys -X search-forward "^❯ " }
+_tmux_paste_escape() {
+  printf "%q" "$(pbpaste)" | tmux load-buffer -
+  tmux paste-buffer -d
+}
 _tmux_key_bindings() {
+  zle -N _tmux_paste
+  bindkey '^[p' _tmux_paste
+  zle -N _tmux_paste_escape
+  bindkey '^Xv' _tmux_paste_escape
   zle -N _tmux_wk_menu
   bindkey '^[ ' _tmux_wk_menu
   zle -N _tmux_prev_mark

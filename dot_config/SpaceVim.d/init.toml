@@ -22,7 +22,7 @@
 	statusline_iseparator = "arrow"
 	buffer_index_type = 4
 	windows_index_type = 3
-  guifont= "FiraCode Nerd Font:h11"
+  guifont= "FiraCode Nerd Font:h12"
 	enable_statusline_tag = true
 	enable_statusline_bfpath = true
 	enable_powerline_fonts = true

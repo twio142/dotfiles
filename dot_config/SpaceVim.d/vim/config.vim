@@ -155,9 +155,16 @@ if exists('$TMUX') && $TMUX != ''
     silent execute '! ~/bin/altr -w com.nyako520.tmux -t vim2tmux -v reg=o -v "socket='. v:servername .'" -v "pane=' . tmux_pane . '" -v run=' . a:run
   endfunction
 
-  xnoremap <silent> gy :<C-u>cal YankToTmux()<CR>
-  xnoremap <silent> <Space>- :<C-u>call PasteInTmux(v:count, 1)<CR>
-  xnoremap <silent> <Space>_ :<C-u>call PasteInTmux(v:count, 0)<CR>
+  fu! PasteFromTmux()
+    let @o = system('tmux show-buffer')
+    normal! "op
+  endfunction
+
+  xnoremap <silent> <Space>[ :<C-u>cal YankToTmux()<CR>
+  nnoremap <silent> <Space>] :<C-u>cal PasteFromTmux()<CR>
+  xnoremap <silent> <Space>] :<C-u>cal PasteFromTmux()<CR>
+  xnoremap <silent> <Space>- :<C-u>cal PasteInTmux(v:count, 1)<CR>
+  xnoremap <silent> <Space>_ :<C-u>cal PasteInTmux(v:count, 0)<CR>
 endif
 
 fu! Chezmoi(action)

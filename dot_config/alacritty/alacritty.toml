@@ -1,0 +1,51 @@
+# COLORTHEME
+import = ["~/.config/alacritty/light.toml"]
+
+shell = { program = "/bin/zsh", args = ["-lc", "tmux"] }
+
+[env]
+TERM = "xterm-256color"
+LANG = "en_US.UTF-8"
+
+[font]
+size = 12.0
+normal = { family = "FiraCode Nerd Font", style = "Light" }
+
+[cursor]
+style = { shape = "Block", blinking = "Always" }
+blink_interval = 555
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[keyboard]
+bindings = [
+  { key = "Left", mods = "Super", chars = "\u0001" },
+  { key = "Right", mods = "Super", chars = "\u0005" },
+  { key = "Back", mods = "Super", chars = "\u0015" },
+  { key = "Delete", mods = "Super", chars = "\u000B" },
+  { key = "Back", mods = "Alt", chars = "\u001B\u007F" },
+  { key = "Delete", mods = "Alt", chars = "\u001B\u0064" },
+  { key = "Z", mods = "Super", chars = "\u0018u" },
+  { key = "Space", mods = "Shift", chars = "\u001B\u0020" },
+]
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[scrolling]
+history = 10000
+multiplier = 4
+
+[window]
+decorations = "Buttonless"
+dimensions = { columns = 120, lines = 58 }
+padding = { x = 3, y = 3 }
+dynamic_padding = true
+option_as_alt = "OnlyRight"
+opacity = 0.85
+blur = true

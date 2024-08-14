@@ -1,0 +1,57 @@
+# Default colors
+[colors.primary]
+background = "#060015"
+foreground = "#c4c8cf"
+dim_foreground = "#7f849c"
+bright_foreground = "#cdd6f4"
+
+# Normal colors
+[colors.normal]
+black   = "#131226"
+red     = "#eb605e"
+green   = "#7fce9a"
+yellow  = "#f3b681"
+blue    = "#77b0f8"
+magenta = "#8a6df6"
+cyan    = "#8beeef"
+white   = "#a8b2c9"
+
+# Bright colors
+[colors.bright]
+black   = "#555572"
+red     = "#ee8683"
+green   = "#aefcac"
+yellow  = "#fbe9b1"
+blue    = "#a1dbfb"
+magenta = "#c093dc"
+cyan    = "#bcfce5"
+white   = "#cfe2e6"
+
+[colors.cursor]
+text = "#fefefe"
+cursor = "#7e7f7e"
+
+[colors.selection]
+text = "#b6ccfa"
+background = "#220272"
+
+[colors.search.matches]
+foreground = "#1e1e2e"
+background = "#a6adc8"
+
+[colors.search.focused_match]
+foreground = "#1e1e2e"
+background = "#a6e3a1"
+
+[colors.footer_bar]
+foreground = "#1e1e2e"
+background = "#a6adc8"
+
+[colors.hints.start]
+foreground = "#1e1e2e"
+background = "#f9e2af"
+
+[colors.hints.end]
+foreground = "#1e1e2e"
+background = "#a6adc8"
+

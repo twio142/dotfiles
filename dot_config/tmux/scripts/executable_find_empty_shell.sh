@@ -9,12 +9,19 @@ getSession() {
 session=$(getSession $1)
 [ -z "$session" ] && exit 1
 
+enter() {
+  [ -z "$1" ] && return
+  echo $1 | tmux load-buffer -
+  tmux paste-buffer -t "$session" -d
+}
+
 tmux lsw -t "$session" -F '#{window_panes}	#{pane_current_command}	#S:#{window_index}.#P' | awk -F '\t' '$1 == "1" && $2 == "zsh" {print $3}' | while read win; do
   line=$(tmux capture-pane -p -t $win -E - | grep -v '^\s*$' | tail -n1)
   if [[ "$line" = ❯ ]]; then
-    tmux send-keys -t $win "$2"
+    enter $2
     exit 0
   fi
 done
 
 tmux new-window -t "$session" -c "$HOME"
+enter $2

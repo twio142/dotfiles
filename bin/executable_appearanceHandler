@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 export PATH=$PATH:/opt/homebrew/bin
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 
 case $1 in
     light|dark) mode=$1;;
@@ -21,9 +22,14 @@ EOF
 done
 
 # Tmux
-[ $mode = light ] && flavour=latte || flavour=frappe 
+[ $mode = light ] && flavour=latte || flavour=mocha
 tmux set -g @catppuccin_flavour "$flavour"
-tmux run-shell ~/.config/tmux/plugins/tmux/catppuccin.tmux
+tmux run-shell ${XDG_CONFIG_HOME}/tmux/plugins/tmux/catppuccin.tmux
+
+# Alacritty theme
+if [ -f ${XDG_CONFIG_HOME}/alacritty/$mode.toml ]; then
+  sed -i '' '/# COLORTHEME/{n;s/.*/import = ["~\/\.config\/alacritty\/'$mode'.toml"]/;}' ${XDG_CONFIG_HOME}/alacritty/alacritty.toml
+fi
 
 # Hammerspoon
 /usr/local/bin/hs -A -c "consoleDM()"
