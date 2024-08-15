@@ -1,13 +1,15 @@
 /*
  * This program listens on a TCP port and copies the data it receives to the clipboard.
  *
+ * Port number can be set with $PORT. Default is 54321.
+ *
  * If the remote machine can access your local port directly, you can use this to copy
  *   echo "Hello, world" | nc -w 1 $(echo $SSH_CLIENT | cut -d' ' -f1) 54321
  *
  * Otherwise, use SSH port forwarding to log in to the remote machine:
- *   ssh -R 54321:localhost:54321 user@remote
+ *   ssh -R 12345:localhost:54321 user@remote
  * And copy data using:
- *   echo "Hello, world" | nc -w 1 localhost 54321
+ *   echo "Hello, world" | nc -w 1 localhost 12345
  */
 
 package main
@@ -19,7 +21,7 @@ import (
 	"net"
 	"os"
 	"os/exec"
-	"time"
+	"syscall"
 )
 
 func handleConnection(conn net.Conn) {
@@ -57,14 +59,14 @@ func handleConnection(conn net.Conn) {
 	}
 }
 
-func runListener() {
-	// Listen on TCP port 54321
-	listener, err := net.Listen("tcp", ":54321")
+func runListener(port string) {
+	// Listen on TCP port
+	listener, err := net.Listen("tcp", ":"+port)
 	if err != nil {
 		log.Fatalf("Error creating listener: %v", err)
 	}
 	defer listener.Close()
-	log.Println("Listening on port 54321")
+	log.Println("Listening on port " + port)
 
 	for {
 		if !isSSHRunning() {
@@ -79,7 +81,6 @@ func runListener() {
 
 		// Handle each connection concurrently
 		go handleConnection(conn)
-		time.Sleep(10 * time.Second)
 	}
 }
 
@@ -89,13 +90,25 @@ func isSSHRunning() bool {
 	return err == nil
 }
 
+func heartbeat() {
+	cmd := exec.Command("/bin/zsh", "-c", "while (pgrep -qx ssh) && (pgrep -qx ssh-yank); do sleep 10; done; pkill ssh-yank")
+	cmd.SysProcAttr = &syscall.SysProcAttr{
+		Setpgid: true,
+	}
+	_ = cmd.Start()
+}
+
 func main() {
 	if !isSSHRunning() {
 		fmt.Fprintln(os.Stderr, "SSH is not running")
 		return
 	}
 	if os.Getenv("RUN_LISTENER") == "1" {
-		runListener()
+		port := os.Getenv("PORT")
+		if port == "" {
+			port = "54321"
+		}
+		runListener(port)
 	} else {
 		cmd := exec.Command(os.Args[0])
 		cmd.Env = append(os.Environ(), "RUN_LISTENER=1")
@@ -106,5 +119,6 @@ func main() {
 			fmt.Fprintln(os.Stderr, "Error starting background process:", err)
 			return
 		}
+		heartbeat()
 	}
 }

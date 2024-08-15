@@ -28,6 +28,7 @@ bindings = [
   { key = "Delete", mods = "Alt", chars = "\u001B\u0064" },
   { key = "Z", mods = "Super", chars = "\u0018u" },
   { key = "Space", mods = "Shift", chars = "\u001B\u0020" },
+  { key = "Space", mods = "Super|Control", action = "ToggleViMode" },
 ]
 
 [mouse]

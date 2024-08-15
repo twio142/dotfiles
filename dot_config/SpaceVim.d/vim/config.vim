@@ -295,8 +295,6 @@ nnoremap <Up> gk
 nnoremap <Down> gj
 nnoremap <A-k> 12k
 nnoremap <A-j> 12j
-nnoremap <A-p> :vs <C-r>+<CR><CR>
-nnoremap <A-P> :tabe <C-r>+<CR><CR>
 noremap gj [e
 noremap gk ]e
 nnoremap g. gi
@@ -318,7 +316,6 @@ xnoremap C "+y
 xnoremap X "+x
 xnoremap <silent> p :<C-u>call PasteAndKeepReg()<CR>
 xnoremap <silent> <CR> "oy<ESC>:call system('open ' . shellescape(getreg('o')))<CR>
-xnoremap <silent> <C-t> "oy<ESC>:tabe <C-r>o<CR>
 xnoremap gs "oy/<C-r>o<CR>
 xnoremap <silent> g<CR> "os<CR><ESC>k:r!<C-r>o<CR>kJJ
 xnoremap <silent> <Space>se "1y:Se <C-r>1<CR><CR>

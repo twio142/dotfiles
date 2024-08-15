@@ -33,6 +33,8 @@ brew "bitwarden-cli"
 brew "bluetoothconnector"
 # Get/set bluetooth power and discoverable state
 brew "blueutil"
+# Yet another cross-platform graphical process/system monitor
+brew "bottom"
 # Software library to render fonts
 brew "freetype"
 # Core application library for C
@@ -57,6 +59,8 @@ brew "composer"
 brew "coreutils"
 # Configurable talking characters in ASCII art
 brew "cowsay"
+# Power of curl, ease of use of httpie
+brew "curlie"
 # Command-line tool for getting & setting the default browser
 brew "defaultbrowser"
 # Secure communications between a client and a DNS resolver
@@ -85,6 +89,8 @@ brew "fzf"
 brew "gh"
 # Distributed revision control system
 brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
 # Extensions to follow Vincent Driessen's branching model
 brew "git-flow"
 # Git extension for versioning large files
@@ -115,6 +121,8 @@ brew "iperf3"
 brew "jpeg"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Pager program similar to more
+brew "less"
 # Configuration file processing library
 brew "libconfig"
 # X.Org: X Toolkit Intrinsics library
@@ -151,6 +159,8 @@ brew "protobuf"
 brew "ripgrep"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
+# Intuitive find & replace CLI
+brew "sd"
 # CLI and dbus interface for WhisperSystems/libsignal-service-java
 brew "signal-cli"
 # Prints a steam locomotive if you type sl instead of ls
@@ -197,6 +207,8 @@ brew "jesseduffield/lazygit/lazygit"
 brew "joelekstrom/repo/terminal-mines"
 # DeepLX is a permanently free DeepL API client written in Golang.
 brew "owo-network/brew/deeplx"
+# GPU-accelerated terminal emulator
+cask "alacritty"
 # Application launcher and productivity software
 cask "alfred"
 # Enable Windows-like alt-tab
@@ -234,8 +246,6 @@ cask "google-chrome"
 cask "hammerspoon"
 # Free and open-source media player
 cask "iina"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
 # Multi-touch gestures editor
 cask "jitouch"
 # Keyboard customiser
