@@ -43,8 +43,12 @@ brew "glib"
 brew "libxcb"
 # X.Org: Core X11 protocol client library
 brew "libx11"
+# Versatile and fast Unicode/ASCII/ANSI graphics renderer
+brew "chafa"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
+# Human-friendly and fast alternative to cut and (sometimes) awk
+brew "choose-rust"
 # Tool for emulating mouse and keyboard events
 brew "cliclick"
 # Get a file from an HTTP, HTTPS or FTP server

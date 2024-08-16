@@ -4,7 +4,7 @@ export POWERLEVEL9K_CONFIG_FILE=${XDG_CONFIG_HOME:-$HOME/.config}/p10k/p10k.zsh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ ! -z $TMUX && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [[ ! -z $TMUX && -z $alfred_version && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
@@ -148,7 +148,7 @@ export ARCHFLAGS=$(uname -m)
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit $POWERLEVEL9K_CONFIG_FILE.
-[[ -f $POWERLEVEL9K_CONFIG_FILE ]] && source $POWERLEVEL9K_CONFIG_FILE
+[[ -f $POWERLEVEL9K_CONFIG_FILE && -z $alfred_version ]] && source $POWERLEVEL9K_CONFIG_FILE
 
 [ -z $alfred_version ] && {
   local h=$(date +%H)
@@ -156,7 +156,7 @@ export ARCHFLAGS=$(uname -m)
   echo -e "\e[38;5;57m\e[1mGood $t, Shin ฅ^•ﻌ•^ฅ\e[0m"
 }
 
-[[ ! -z "$TMUX" && -s "/var/mail/$USER" ]] && echo "  You have mail."
+[[ -n "$TMUX" && -s "/var/mail/$USER" ]] && echo "  You have mail."
 
 [ -n "$TMUX" ] && {
   autoload -Uz add-zsh-hook;

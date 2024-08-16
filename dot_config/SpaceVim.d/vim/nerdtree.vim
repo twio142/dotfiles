@@ -36,16 +36,28 @@ augroup NERDTree
   autocmd FileType nerdtree noremap <silent> <buffer> mo :call NERDTreeBookmark('open')<CR>
   autocmd FileType nerdtree noremap <silent> <buffer> mc :ClearBookmarks<CR>
   autocmd FileType nerdtree noremap <silent> <buffer> mC :ClearAllBookmarks<CR>
+  autocmd FileType nerdtree noremap <silent> <buffer> } :call nerdtree#ui_glue#invokeKeyMap("O")<CR>
+  autocmd FileType nerdtree noremap <silent> <buffer> { :call nerdtree#ui_glue#invokeKeyMap("X")<CR>
 augroup END
 
 call NERDTreeAddKeyMap({
   \ 'key': 'a',
   \ 'callback': 'NERDTreeOpenInAlfred',
-  \ 'quickhelpText': 'open in alfred',
+  \ 'quickhelpText': 'open in Alfred',
   \ 'scope': 'Node' })
 
 function! NERDTreeOpenInAlfred(node)
   call system("~/bin/alfred " . shellescape(a:node.path.str(), 1))
+endfunction
+
+call NERDTreeAddKeyMap({
+  \ 'key': '=',
+  \ 'callback': 'NERDTreeAddToAlfredBuffer',
+  \ 'quickhelpText': 'add to Alfred buffer',
+  \ 'scope': 'Node' })
+
+function! NERDTreeAddToAlfredBuffer(node)
+  call system("~/bin/altr -w com.nyako520.syspre -t buffer -a " . shellescape(a:node.path.str(), 1))
 endfunction
 
 call NERDTreeAddKeyMap({

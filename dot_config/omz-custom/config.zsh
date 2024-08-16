@@ -156,6 +156,22 @@ _autojump_fzf() {
 }
 zle -N _autojump_fzf
 
+_fzf_image() {
+  local query=${LBUFFER##* }
+  local selected=$(fd --exclude ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "$XDG_CONFIG_HOME/fzf/fzf-image.sh {}" --preview-window='bottom,80%')
+  local ret=$?
+  if [[ -n $selected ]]; then
+    LBUFFER=${LBUFFER% *}
+    echo -n $selected | while read -r line; do
+      LBUFFER+=\ ${line:q}
+    done
+  fi
+  unset query selected
+  zle reset-prompt
+  return $ret
+}
+zle -N _fzf_image
+
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$PATH:$(ruby -e 'puts Gem.bindir')"
 source $(dirname $(gem which colorls))/tab_complete.sh
@@ -224,3 +240,4 @@ bindkey '^U' backward-kill-line
 bindkey '^J' down-line-or-select
 bindkey -M menuselect '^J' down-history
 bindkey -M menuselect '^K' up-history
+bindkey '^Xi' _fzf_image

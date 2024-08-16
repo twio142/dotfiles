@@ -83,6 +83,27 @@ local function show_in_alfred()
   os.execute("~/bin/alfred " .. path)
 end
 
+local function add_to_alfred_buffer(marks)
+  local api = require "nvim-tree.api"
+  if marks then
+    local paths = {}
+    for _, node in ipairs(api.marks.list()) do
+      table.insert(paths, escape(node.absolute_path))
+    end
+    if #paths > 0 then
+      os.execute("~/bin/altr -w com.nyako520.syspre -t buffer -a - " .. table.concat(paths, " "))
+      api.marks.clear()
+    end
+  else
+    local path = api.tree.get_node_under_cursor().absolute_path
+    if not path then
+      return
+    end
+    os.execute("~/bin/altr -w com.nyako520.syspre -t buffer -a " .. path)
+    path = escape(path)
+  end
+end
+
 local function preview()
   local api = require "nvim-tree.api"
   local path = api.tree.get_node_under_cursor().absolute_path
@@ -154,8 +175,14 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.del("n", "Y", { buffer = bufnr })
   vim.keymap.set("n", "Y", function() copy_path(1) end, opts "Copy path to buffer")
   vim.keymap.set("n", "a", show_in_alfred, opts "Show in Alfred")
+  vim.keymap.set("n", "=", add_to_alfred_buffer, opts "Add to Alfred buffer")
+  vim.keymap.set("n", "b=", function() add_to_alfred_buffer(1) end, opts "Add to Alfred buffer")
   vim.keymap.del("n", "q", { buffer = bufnr })
   vim.keymap.set("n", "q", function()
+    vim.cmd "quitall!"
+  end, opts "Quit nvim tree")
+  vim.keymap.del("n", "<F1>", { buffer = bufnr })
+  vim.keymap.set("n", "<F1>", function()
     vim.cmd "quitall!"
   end, opts "Quit nvim tree")
   vim.keymap.del("n", "p", { buffer = bufnr })
