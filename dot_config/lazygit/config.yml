@@ -19,7 +19,7 @@ os:
   edit: "$XDG_CONFIG_HOME/lazygit/edit.sh {{filename}}"
   editAtLine: "$XDG_CONFIG_HOME/lazygit/edit.sh {{filename}} +{{line}}"
   copyToClipboardCmd: "echo -n {{text}} | tmux load-buffer -"
-git: 
+git:
   paging:
     colorArg: always
     pager: "delta --$($HOME/bin/background) --paging=never"

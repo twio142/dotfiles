@@ -1,17 +1,2 @@
-#!/usr/bin/osascript -l JavaScript
-ObjC.import('AppKit');
-run = () => {
-    const D = Application('Docker Desktop');
-	if (D.running()) {
-        D.quit();
-        return;
-    }
-	D.launch();
-	const fm = $.NSWorkspace.sharedWorkspace.menuBarOwningApplication.bundleIdentifier.js;
-	while (!D.frontmost())
-		delay(0.2);
-    Application(fm).activate();
-    let a = Application.currentApplication();
-	a.includeStandardAdditions = true;
-    a.doShellScript(`hs -A -c "hs.eventtap.keyStroke({'cmd'},'q',hs.application.get('Docker Desktop'))"`);
-}
+#!/bin/bash
+pgrep -qx Docker\ Desktop && pkill -x Docker\ Desktop || open --hide --background -a Docker\ Desktop

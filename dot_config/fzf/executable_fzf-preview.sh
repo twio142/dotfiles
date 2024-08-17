@@ -13,8 +13,25 @@ fi
 file=${1/#\~\//$HOME/}
 type=$(file --dereference --mime -- "$file")
 
-if [[ ! $type =~ image/ ]]; then
-  file "$1"
+if [ -d "$1" ]; then
+  tree -C "$1" | head -200
+  exit
+elif [[ ! $type =~ image/ ]]; then
+  if [[ $type =~ =binary ]]; then
+    file "$1" | sed "s/: /\n\n/"
+    exit
+  fi
+
+  if command -v batcat > /dev/null; then
+    batname="batcat"
+  elif command -v bat > /dev/null; then
+    batname="bat"
+  else
+    cat "$1"
+    exit
+  fi
+
+  ${batname} --style=plain --color=always --pager=never -- "$file"
   exit
 fi
 
@@ -25,7 +42,7 @@ fi
 
 # 1. Use chafa with Sixel output
 if command -v chafa > /dev/null; then
-  chafa -s "$dim" "$file"
+  chafa -s "$dim" -c full "$file"
   # Add a new line character so that fzf can display multiple images in the preview window
   echo
 
@@ -38,5 +55,5 @@ elif command -v imgcat > /dev/null; then
 
 # 3. Cannot find any suitable method to preview the image
 else
-  file "$file"
+  file "$file" | sed "s/: /\n\n/"
 fi

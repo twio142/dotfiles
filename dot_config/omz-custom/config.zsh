@@ -94,7 +94,7 @@ export PATH="$HOME/miniconda3/bin:$PATH"
 source <(fzf --zsh)
 [ -z $alfred_version ] && . ${XDG_CONFIG_HOME:-~/.config}/fzf/fzf-git.sh
 
-export FZF_DEFAULT_OPTS='--layout=reverse --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer=➤'
+export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer=➤ --bind="ctrl-d:preview-page-down" --bind="ctrl-u:preview-page-up"'
 
 # Use `` as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER="\`\`"
@@ -122,10 +122,10 @@ _fzf_comprun() {
 
   case "$command" in
     cd)           fzf --preview 'tree -C {} | head -200' "$@" ;;
-    export|unset) fzf --preview "eval 'echo \$'{}" --preview-window 'wrap'         "$@" ;;
-    ssh)          fzf --preview 'dig {}' --preview-window 'wrap'                   "$@" ;;
-    chezmoi)      chezmoi managed -p absolute | fzf --preview '[ -f {} ] && bat -n --color=always {} || tree -C {} | head -200' --preview-window 'wrap' "$@" ;;
-    *)            fzf --preview '[ -f {} ] && bat -n --color=always {} || tree -C {} | head -200' --preview-window 'wrap' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    chezmoi)      chezmoi managed -p absolute | fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-s:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})" "$@" ;;
+    *)            fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" "$@" ;;
   esac
 }
 
@@ -158,7 +158,7 @@ zle -N _autojump_fzf
 
 _fzf_image() {
   local query=${LBUFFER##* }
-  local selected=$(fd --exclude ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "$XDG_CONFIG_HOME/fzf/fzf-image.sh {}" --preview-window='bottom,80%')
+  local selected=$(fd --exclude ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --preview-window='bottom,80%')
   local ret=$?
   if [[ -n $selected ]]; then
     LBUFFER=${LBUFFER% *}

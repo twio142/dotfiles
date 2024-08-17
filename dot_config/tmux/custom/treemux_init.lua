@@ -111,14 +111,7 @@ local function preview()
     return
   end
   path = vim.fn.shellescape(path)
-  local cmd
-  local type = api.tree.get_node_under_cursor().type
-  if type == "directory" then
-    cmd = 'tmux popup -w 75% -h 90% -x 30% -y 54% "tree -C '..path..' | head -200"'
-  else
-    cmd = 'tmux popup -w 75% -h 90% -x 30% -y 54% "bat -n --color=always '..path..'"'
-  end
-  os.execute(cmd)
+  os.execute('tmux popup -w 75% -h 90% -x 30% -y 54% "$XDG_CONFIG_HOME/fzf/fzf-preview.sh '..path..'"')
 end
 
 local function fzf()

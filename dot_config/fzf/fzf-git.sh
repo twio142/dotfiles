@@ -85,7 +85,7 @@ if [[ $# -eq 1 ]]; then
       branches
       ;;
     all-branches)
-      echo $'⌃D diff ╱ ⌃O checkout branch\n'
+      echo $'⌃D diff ╱ ⌃O checkout branch\n\n'
       branches -a
       ;;
     hashes)
@@ -93,7 +93,7 @@ if [[ $# -eq 1 ]]; then
       hashes
       ;;
     all-hashes)
-      echo $'⌃D diff ╱ ⌃S toggle sort\n⌃O checkout commit\n'
+      echo $'⌃D diff ╱ ⌃S toggle sort\n⌃O checkout commit\n\n'
       hashes --all
       ;;
     refs)

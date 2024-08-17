@@ -191,7 +191,7 @@ fu! Chezmoi(action)
 		silent execute '!chezmoi add ' . p
 		echo 'File added to chezmoi' | redraw
 	elseif a:action == 'aa'
-		call system("chezmoi status -i files -p absolute | cut -d' ' -f2- | xargs chezmoi add")
+		call system("chezmoi status -i files -p absolute | choose 1.. | xargs chezmoi add")
 		if v:shell_error == 0
 			echo 'All changes added to chezmoi' | redraw
 		endif

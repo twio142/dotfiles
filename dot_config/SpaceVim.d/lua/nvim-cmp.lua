@@ -20,6 +20,20 @@ cmp.setup({
       vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
     end),
     ['<C-n>'] = smart_tab,
+    ['<Down>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end,
+    ['<Up>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end
   },
   experimental = {
     ghost_text = false -- this feature conflicts with copilot.vim's preview.
