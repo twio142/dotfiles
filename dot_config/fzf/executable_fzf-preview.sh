@@ -14,7 +14,7 @@ file=${1/#\~\//$HOME/}
 type=$(file --dereference --mime -- "$file")
 
 if [ -d "$1" ]; then
-  tree -C "$1" | head -200
+  tree -C "$1" -L 4
   exit
 elif [[ ! $type =~ image/ ]]; then
   if [[ $type =~ =binary ]]; then

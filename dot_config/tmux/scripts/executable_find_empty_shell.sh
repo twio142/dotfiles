@@ -23,5 +23,5 @@ tmux lsw -t "$session" -F '#{window_panes}	#{pane_current_command}	#S:#{window_i
   fi
 done
 
-tmux new-window -t "$session" -c "$HOME"
+tmux new-window -t "${win%.*}" -c "$HOME"
 enter $2

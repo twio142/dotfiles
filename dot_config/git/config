@@ -1,23 +1,23 @@
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [user]
-	email = 64556708+twio142@users.noreply.github.com
-	name = twio142
-	signingkey = 44703707F9B90BDE
+  email = 64556708+twio142@users.noreply.github.com
+  name = twio142
+  signingkey = 44703707F9B90BDE
 [color]
-	ui = true
+  ui = true
 [core]
-	autocrlf = input
-	quotepath = false
-	excludesfile = ~/.config/git/.gitignore_global
+  autocrlf = input
+  quotepath = false
+  excludesfile = ~/.config/git/.gitignore_global
   pager = delta --$(~/bin/background)
 [fetch]
-	recurseSubmodules = true
+  recurseSubmodules = true
 [diff]
-	tool = nvimdiff
+  tool = nvimdiff
   colorMoved = default
 [interactive]
   diffFilter = delta --$(~/bin/background) --color-only --features=interactive
@@ -38,3 +38,5 @@
   hunk-header-decoration-style = omit
 [merge]
   conflictStyle = diff3
+[pull]
+  ff = only

@@ -169,7 +169,7 @@
 [[layers]]
   name = "ui"
   enable_cursorword = true
-  indentline_char = '⋮'
+  indentline_char = '⁞'
   cursorword_exclude_filetype = ['startify']
 
 [[layers]]

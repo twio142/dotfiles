@@ -20,6 +20,7 @@ function! vimrc#before() abort
   let g:WebDevIconsOS = 'Darwin'
   let g:DevIconsEnableFoldersOpenClose = 1
   let g:DevIconsDefaultFolderOpenSymbol = ''
+  let g:CtrlSpaceCacheDir = $XDG_CACHE_HOME . '/SpaceVim.d'
 
   " let g:sneak#s_next = 1
   

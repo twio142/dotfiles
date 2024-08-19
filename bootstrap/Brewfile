@@ -5,6 +5,7 @@ tap "dimentium/autoraise"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "homebrew/test-bot"
+tap "jesseduffield/lazydocker"
 tap "jesseduffield/lazygit"
 tap "joelekstrom/repo"
 tap "owo-network/brew"
@@ -191,6 +192,8 @@ brew "trash"
 brew "tree"
 # Check your $HOME for unwanted files and directories
 brew "xdg-ninja"
+# Hackable, minimal, fast TUI file explorer
+brew "xplr"
 # JavaScript package manager
 brew "yarn"
 # Feature-rich command-line audio/video downloader
@@ -205,6 +208,8 @@ brew "cormacrelf/tap/dark-notify"
 brew "daipeihust/tap/im-select"
 # Focus-follows-mouse for MacOS
 brew "dimentium/autoraise/autoraise", args: ["with-dexperimental_focus_first"]
+# A simple terminal UI for docker, written in Go
+brew "jesseduffield/lazydocker/lazydocker"
 # A simple terminal UI for git commands, written in Go
 brew "jesseduffield/lazygit/lazygit"
 # An ncurses-based minesweeper game

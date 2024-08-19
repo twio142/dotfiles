@@ -121,32 +121,32 @@ fu! Retab(before, after)
 endfunction
 
 fu! GetSelection()
-		let start_pos = getpos("'<")
-		let end_pos = getpos("'>")
-		let start_line = start_pos[1]
-		let start_col = start_pos[2]
-		let end_line = end_pos[1]
-		let end_col = end_pos[2]
-		echo start_line . ',' . start_col . ' ' . end_line . ' ' . end_col
-		let selected_text = ""
-		if start_line == end_line
-			let selected_text = getline(start_line)[start_col-1:end_col-1]
-			return selected_text
-		endif
-		for line in range(start_line, end_line)
-				if line == start_line
-						let line_text = getline(line)[start_col-1:]
-				elseif line == end_line
-						let line_text = getline(line)[:end_col-1]
-				else
-						let line_text = getline(line)
-				endif
-				let selected_text .= line_text
-				if line != end_line
-						let selected_text .= "\n"
-				endif
-		endfor
-		return selected_text
+  let start_pos = getpos("'<")
+  let end_pos = getpos("'>")
+  let start_line = start_pos[1]
+  let start_col = start_pos[2]
+  let end_line = end_pos[1]
+  let end_col = end_pos[2]
+  echo start_line . ',' . start_col . ' ' . end_line . ' ' . end_col
+  let selected_text = ""
+  if start_line == end_line
+    let selected_text = getline(start_line)[start_col-1:end_col-1]
+    return selected_text
+  endif
+  for line in range(start_line, end_line)
+    if line == start_line
+      let line_text = getline(line)[start_col-1:]
+    elseif line == end_line
+      let line_text = getline(line)[:end_col-1]
+    else
+      let line_text = getline(line)
+    endif
+    let selected_text .= line_text
+    if line != end_line
+      let selected_text .= "\n"
+    endif
+  endfor
+  return selected_text
 endfunction
 
 if exists('$TMUX') && $TMUX != ''
@@ -196,7 +196,7 @@ fu! Chezmoi(action)
 			echo 'All changes added to chezmoi' | redraw
 		endif
 	elseif a:action == 'restore' || a:action == 'r'
-		let o = system('chezmoi -n apply ' . p)
+		let o = system('chezmoi -n status ' . p)
 		if v:shell_error != 0
 			echoerr o
 			return

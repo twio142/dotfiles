@@ -1,0 +1,51 @@
+xplr.config.modes.custom.preview = {
+  name = "preview",
+  key_bindings = xplr.config.modes.builtin.default.key_bindings,
+  layout = { Dynamic = "custom.preview.setup" },
+}
+
+local function create_preview(node, size)
+  local path = node.absolute_path
+  local script = os.getenv("XDG_CONFIG_HOME") .. "/fzf/fzf-preview.sh"
+  local cmd = "FZF_PREVIEW_COLUMNS=" .. size.width-1 .." FZF_PREVIEW_LINES=" .. size.height-1 .. " " .. xplr.util.shell_escape(script) .. " " .. xplr.util.shell_escape(path)
+  local p = io.popen(cmd, "r")
+  local output = p:read("*a")
+  p:close()
+  return output
+end
+
+local function setup_preview(ctx)
+  local layout = xplr.util.layout_replace(ctx.app.layout, "Selection", { Dynamic = "custom.preview.render" })
+  return { CustomLayout = layout }
+end
+
+local function render_preview(ctx)
+  return {
+    CustomParagraph = {
+      ui = { title = { format = " Preview " } },
+      body = xplr.fn.custom.preview.create(ctx.app.focused_node, ctx.layout_size),
+    }
+  }
+end
+
+local function toggle_preview(ctx)
+  if ctx.mode.name == "preview" then
+    return { "PopMode" }
+  else
+    return { "PopMode", { SwitchModeCustom = "preview" } }
+  end
+end
+
+xplr.fn.custom.preview = {
+  create = create_preview,
+  setup = setup_preview,
+  render = render_preview,
+  toggle = toggle_preview,
+}
+
+xplr.config.modes.builtin.default.key_bindings.on_key.tab = {
+  help = "toggle preview",
+  messages = {
+    { CallLuaSilently = "custom.preview.toggle" },
+  },
+}

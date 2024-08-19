@@ -14,10 +14,10 @@ custom_variables:
   - name: log_info
     value: "#[fg=green,italics] [info]#[default]#[italics]"
 macros:
-  - name: restart-pane
+  - name: test
     commands:
-      - display "#{log_info} Restarting pane"
-      - "respawnp -k -c #{pane_current_path}"
+      - display "#{pane_current_path}"
+      - send-keys Enter
 items:
   - name: Run
     key: ":"
@@ -145,7 +145,7 @@ items:
         command: capture-pane
       - name: Respawn pane
         key: R
-        macro: restart-pane
+        command: respawnp -k -c "#{pane_current_path}"
       - name: Kill
         key: q
         command: 'confirm -p "Kill pane #P? (y/n)" killp'
@@ -188,7 +188,7 @@ items:
       - name: Lazygit
         key: g
         command:
-          run-shell -b "$XDG_CONFIG_HOME/tmux/scripts/open_lazygit.sh &>/dev/null"
+          lazygit
       - name: Files
         key: f
         command:
@@ -261,7 +261,7 @@ items:
         command: "run-shell $XDG_CONFIG_HOME/tmux/scripts/store_sessions.sh"
       - name: Restore
         key: R
-        command: "run-shell $XDG_CONFIG_HOME/tmux/plugins/tmux-resurrect/scripts/save.sh"
+        command: "run-shell $XDG_CONFIG_HOME/tmux/plugins/tmux-resurrect/scripts/restore.sh"
   - name: +Client
     key: c
     menu:

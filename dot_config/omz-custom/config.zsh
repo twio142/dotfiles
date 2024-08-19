@@ -121,7 +121,7 @@ _fzf_comprun() {
   shift
 
   case "$command" in
-    cd)           fzf --preview 'tree -C {} | head -200' "$@" ;;
+    cd)           fzf --preview 'tree -C {} -L 4' "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
     chezmoi)      chezmoi managed -p absolute | fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-s:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})" "$@" ;;
@@ -139,7 +139,7 @@ _autojump_fzf() {
   local dir=$(fzf --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
     --bind "change:reload:autojump --complete '{q}' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
     --disabled \
-    --preview 'tree -C {} | head -200' \
+    --preview 'tree -C {} -L 4' \
     --height=30%)
   if [[ -z "$dir" || ! -d "$dir" ]]
   then
