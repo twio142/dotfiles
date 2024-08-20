@@ -23,7 +23,7 @@ xplr.fn.custom.git_status = function(ctx)
     body = test.stderr
   else
     local git_dir = test.stdout:gsub("\n", "")
-    body = xplr.util.shell_execute("git", { "-C", git_dir, "status" }).stdout
+    body = git_dir .. "\n\n" .. xplr.util.shell_execute("git", { "-C", git_dir, "status" }).stdout
   end
   local layout = {
     Static = {

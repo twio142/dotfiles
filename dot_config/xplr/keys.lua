@@ -1,15 +1,80 @@
 local on_key = xplr.config.modes.builtin.default.key_bindings.on_key
 
-on_key["alt-j"] = on_key["}"]
-on_key["alt-k"] = on_key["{"]
-
-on_key["ctrl-v"] = {
-  help = "action selected files",
+-- selection
+on_key.J = {
+  help = "focus next selection",
+  messages = { "FocusNextSelection" }
+}
+on_key.K = {
+  help = "focus previous selection",
+  messages = { "FocusPreviousSelection" }
+}
+on_key["alt-l"] = {
+  help = "action on selected files",
   messages = {
     "PopMode",
     { SwitchModeBuiltin = "selection_ops" },
   }
 }
+on_key["alt-j"] = {
+  help = "toggle selection",
+  messages = {
+    "ToggleSelection",
+    "FocusNext",
+  }
+}
+on_key["alt-k"] = {
+  help = "toggle selection",
+  messages = {
+    "ToggleSelection",
+  }
+}
+xplr.fn.custom.removeLastSelection = function(ctx)
+  if #ctx.selection == 0 then
+    return
+  end
+  return { { UnSelectPath = ctx.selection[#ctx.selection].absolute_path } }
+end
+on_key["alt-h"] = {
+  help = "remove last selection",
+  messages = {
+    { CallLuaSilently = "custom.removeLastSelection" },
+  }
+}
+on_key["alt-r"] = {
+  help = "clear selection",
+  messages = {
+    "ClearSelection",
+  }
+}
+on_key["alt-a"] = {
+  help = "toggle select all",
+  messages = {
+    "ToggleSelectAll",
+  }
+}
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.l = nil
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.r = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u = nil
+
+xplr.config.modes.builtin.action.key_bindings.on_key.v = on_key["alt-l"]
+xplr.config.modes.builtin.action.key_bindings.on_key.s = nil
+xplr.config.modes.builtin.action.key_bindings.on_key.q = nil
+xplr.config.modes.builtin.action.key_bindings.on_key.m = nil
+xplr.config.modes.builtin.action.key_bindings.on_key[">"] = xplr.config.modes.builtin.action.key_bindings.on_key["!"]
+xplr.config.modes.builtin.action.key_bindings.on_key["!"] = nil
+xplr.config.modes.builtin.action.key_bindings.on_key.D = on_key["ctrl-d"]
+xplr.config.modes.builtin.action.key_bindings.on_key.p.messages = {
+  "PopMode",
+  { SwitchModeBuiltin = "edit_permissions" },
+  {
+    BashExecSilently0 = [===[
+      PERM=$(stat -f '%A' -- "${XPLR_FOCUS_PATH:?}")
+      "$XPLR" -m 'SetInputBuffer: %q' "${PERM:?}"
+    ]===],
+  }
+}
+xplr.config.modes.builtin.action.key_bindings.on_number = nil
 
 -- xpm
 on_key.x = {
@@ -20,13 +85,27 @@ on_key.x = {
   },
 }
 
+-- dual-pane
+on_key["ctrl-h"] = {
+  messages = {
+    "PopMode",
+    { CallLuaSilently = "custom.dual_pane.activate_left_pane" },
+  },
+}
+on_key["ctrl-l"] = {
+  messages = {
+    "PopMode",
+    { CallLuaSilently = "custom.dual_pane.activate_right_pane" },
+  },
+}
+
 -- type-to-nav
 on_key.i = {
-  help = 'type-to-nav',
+  help = 'type to nav',
   messages = { { CallLuaSilently = 'custom.type_to_nav_start' } },
 }
 on_key.I = {
-  help = 'type-to-nav',
+  help = 'type to select',
   messages = { { CallLuaSilently = 'custom.type_to_nav_start_selecting' } },
 }
 xplr.config.modes.custom.type_to_nav.key_bindings.on_key.up = {
@@ -45,45 +124,75 @@ xplr.config.modes.custom.type_to_nav.key_bindings.on_key.right = {
   help = 'accept',
   messages = { { CallLuaSilently = 'custom.type_to_nav_accept' } },
 }
-xplr.config.modes.custom.type_to_nav.key_bindings.on_key['ctrl-v'] = {
-  help = 'toggle selecting',
-  messages = { { CallLuaSilently = 'custom.type_to_nav_start_selecting' } },
-}
+xplr.config.modes.custom.type_to_nav.key_bindings.on_key.tab = xplr.config.modes.custom.type_to_nav.key_bindings.on_key["ctrl-v"]
 xplr.config.modes.custom.type_to_nav.key_bindings.on_key['ctrl-s'] = {
   help = 'toggle select',
   messages = { 'ToggleSelection', 'FocusNext' },
 }
-
--- dual-pane
-on_key["ctrl-h"] = {
+xplr.config.modes.custom.type_to_nav.key_bindings.on_key['alt-l'] = on_key["alt-l"]
+xplr.config.modes.custom.type_to_nav.key_bindings.on_key['ctrl-h'] = {
   messages = {
     "PopMode",
     { CallLuaSilently = "custom.dual_pane.activate_left_pane" },
+    { CallLuaSilently = 'custom.type_to_nav_start' }
   },
 }
-on_key["ctrl-l"] = {
+xplr.config.modes.custom.type_to_nav.key_bindings.on_key['ctrl-l'] = {
   messages = {
     "PopMode",
     { CallLuaSilently = "custom.dual_pane.activate_right_pane" },
+    { CallLuaSilently = 'custom.type_to_nav_start' }
   },
 }
 
--- paste and move selected files
+-- paste, move and softlink selected files
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.p = {
+  help = "paste here",
+  messages = {
+    {
+      BashExec0 = [===[
+        "$XPLR" -m ExplorePwd
+        while IFS= read -r -d '' PTH; do
+          PTH_ESC=$(printf %q "$PTH")
+          BASENAME=$(basename -- "$PTH")
+          BASENAME_ESC=$(printf %q "$BASENAME")
+          if [ -e "$BASENAME" ]; then
+            echo
+            echo "$BASENAME_ESC exists, do you want to overwrite it?"
+            read -n 1 -p "[y]es, [n]o, [s]kip: " ANS < /dev/tty
+            case "$ANS" in
+              [yY]*)
+                ;;
+              [nN]*)
+                echo
+                read -p "Enter new name: " BASENAME < /dev/tty
+                BASENAME_ESC=$(printf %q "$BASENAME")
+                ;;
+              *)
+                continue
+                ;;
+            esac
+          fi
+          if err=$(cp -aR -- "${PTH:?}" "./${BASENAME:?}" 2>&1); then
+            "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC copied to $BASENAME_ESC"
+            "$XPLR" -m ClearSelection
+            "$XPLR" -m 'FocusPath: %q' "$BASENAME"
+          else
+            "$XPLR" -m 'LogError: %q' "$err"
+          fi
+        done < "${XPLR_PIPE_SELECTION_OUT:?}"
+      ]===],
+    },
+    "PopMode",
+  }
+}
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.c = nil
+
 xplr.fn.custom.pasteSelected = function(ctx)
   if #ctx.selection == 0 then
     return { { LogError = "No files selected" } }
   end
-  local args = { "-r" }
-  for _, node in ipairs(ctx.selection) do
-    table.insert(args, node.absolute_path)
-  end
-  local target = ctx.focused_node.absolute_path
-  if xplr.util.is_file(target) then
-    target = xplr.util.dirname(target)
-  end
-  table.insert(args, target)
-  xplr.util.shell_execute("cp", args)
-  return { "ClearSelection" }
+  return xplr.config.modes.builtin.selection_ops.key_bindings.on_key.p.messages
 end
 
 on_key.p = {
@@ -91,26 +200,92 @@ on_key.p = {
   messages = { { CallLua = "custom.pasteSelected" } }
 }
 
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.m.messages = {
+  {
+    BashExec0 = [===[
+      "$XPLR" -m ExplorePwd
+      while IFS= read -r -d '' PTH; do
+        PTH_ESC=$(printf %q "$PTH")
+        BASENAME=$(basename -- "$PTH")
+        BASENAME_ESC=$(printf %q "$BASENAME")
+        if [ -e "$BASENAME" ]; then
+          echo
+          echo "$BASENAME_ESC exists, do you want to overwrite it?"
+          read -n 1 -p "[y]es, [n]o, [s]kip: " ANS < /dev/tty
+          case "$ANS" in
+            [yY]*)
+              ;;
+            [nN]*)
+              echo
+              read -p "Enter new name: " BASENAME < /dev/tty
+              BASENAME_ESC=$(printf %q "$BASENAME")
+              ;;
+            *)
+              continue
+              ;;
+          esac
+        fi
+        if err=$(mv -- "${PTH:?}" "./${BASENAME:?}" 2>&1); then
+          "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC moved to $BASENAME_ESC"
+          "$XPLR" -m 'FocusPath: %q' "$BASENAME"
+          "$XPLR" -m ClearSelection
+        else
+          "$XPLR" -m 'LogError: %q' "$err"
+        fi
+      done < "${XPLR_PIPE_SELECTION_OUT:?}"
+    ]===],
+  },
+  "PopMode",
+}
+
 xplr.fn.custom.moveSelected = function(ctx)
   if #ctx.selection == 0 then
     return { { LogError = "No files selected" } }
   end
-  local args = {}
-  for _, node in ipairs(ctx.selection) do
-    table.insert(args, node.absolute_path)
-  end
-  local target = ctx.focused_node.absolute_path
-  if xplr.util.is_file(target) then
-    target = xplr.util.dirname(target)
-  end
-  table.insert(args, target)
-  xplr.util.shell_execute("mv", args)
-  return { "ClearSelection" }
+  return xplr.config.modes.builtin.selection_ops.key_bindings.on_key.m.messages
 end
 
 on_key.P = {
   help = "move selected files",
   messages = { { CallLua = "custom.moveSelected" } }
+}
+
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.s.messages = {
+  {
+    BashExec0 = [===[
+      "$XPLR" -m ExplorePwd
+      while IFS= read -r -d '' PTH; do
+        PTH_ESC=$(printf %q "$PTH")
+        BASENAME=$(basename -- "$PTH")
+        BASENAME_ESC=$(printf %q "$BASENAME")
+        if [ -e "$BASENAME" ]; then
+          echo
+          echo "$BASENAME_ESC exists, do you want to overwrite it?"
+          read -n 1 -p "[y]es, [n]o, [s]kip: " ANS < /dev/tty
+          case "$ANS" in
+            [yY]*)
+              ;;
+            [nN]*)
+              echo
+              read -p "Enter new name: " BASENAME < /dev/tty
+              BASENAME_ESC=$(printf %q "$BASENAME")
+              ;;
+            *)
+              continue
+              ;;
+          esac
+        fi
+        if err=$(ln -sf -- "${PTH:?}" "./${BASENAME:?}" 2>&1); then
+          "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC softlinked as $BASENAME_ESC"
+          "$XPLR" -m 'FocusPath: %q' "$BASENAME"
+          "$XPLR" -m ClearSelection
+        else
+          "$XPLR" -m 'LogError: %q' "$err"
+        fi
+      done < "${XPLR_PIPE_SELECTION_OUT:?}"
+    ]===],
+  },
+  "PopMode",
 }
 
 -- create new file
@@ -148,10 +323,17 @@ xplr.fn.custom.new_file = function(ctx)
   else
     filename = ctx.pwd .. "/" .. filename
   end
+  if xplr.utils.exists(filename) then
+    return { LogError = "File already exists" }
+  end
+  local r
   if string.sub(filename, -1) == '/' then
-    xplr.util.shell_execute("mkdir", { "-p", filename })
+    r = xplr.util.shell_execute("mkdir", { "-p", filename })
   else
-    xplr.util.shell_execute("touch", { filename })
+    r = xplr.util.shell_execute("touch", { filename })
+  end
+  if r.code ~= 0 then
+    return { LogError = r.stderr }
   end
   return { FocusPath = filename }
 end
@@ -162,8 +344,46 @@ on_key.N = {
     "PopMode",
     { SwitchModeCustom = "new_file" },
     { SetInputBuffer = "" },
-    { SetInputPrompt = "filename: " },
+    { SetInputPrompt = "❯ filename: " },
   }
+}
+xplr.config.modes.builtin.action.key_bindings.on_key.n = on_key.N
+xplr.config.modes.builtin.action.key_bindings.on_key.c = nil
+
+-- delete selected files
+xplr.config.modes.builtin.delete.key_bindings.on_key.d = {
+  help = "trash",
+  messages = {
+    {
+      BashExecSilently0 = [===[
+        while IFS= read -r -d "" line; do
+          if err=$(trash -F "${line:?}"); then
+            "$XPLR" -m "LogSuccess: %q" "Trashed $line"
+          else
+            "$XPLR" -m "LogError: %q" "$err"
+          fi
+        done < "${XPLR_PIPE_RESULT_OUT:?}"
+        "$XPLR" -m ExplorePwdAsync
+      ]===],
+    },
+    "PopMode",
+  },
+}
+
+xplr.config.modes.builtin.delete.key_bindings.on_key.E = {
+  help = "empty trash",
+  messages = {
+    {
+      BashExecSilently0 = [===[
+        if err=$(trash -e -y); then
+          "$XPLR" -m "LogSuccess: %q" "Emptied trash"
+        else
+          "$XPLR" -m "LogError: %q" "$err"
+        fi
+      ]===],
+    },
+    "PopMode",
+  },
 }
 
 -- history
@@ -181,3 +401,48 @@ xplr.config.modes.builtin.go_to.key_bindings.on_key.h = {
     },
   },
 }
+xplr.config.modes.builtin.action.key_bindings.on_key.O = xplr.config.modes.builtin.go_to.key_bindings.on_key.x
+xplr.config.modes.builtin.go_to.key_bindings.on_key.x = nil
+xplr.config.modes.builtin.go_to.key_bindings.on_key["`"] = {
+  help = "last visited path",
+  messages = {
+    "PopMode",
+    "LastVisitedPath",
+  }
+}
+
+-- help
+xplr.config.modes.builtin.action.key_bindings.on_key.l.messages = {
+  {
+    BashExec = [===[
+      [ -z "$PAGER" ] && PAGER="less -+F"
+      cat -- "${XPLR_PIPE_LOGS_OUT}" | ${PAGER:?} -l log
+    ]===],
+  },
+}
+local help = xplr.config.general.global_key_bindings.on_key["f1"]
+help.messages = {
+  {
+    BashExec = [===[
+      [ -z "$PAGER" ] && PAGER="less -+F"
+      cat -- "${XPLR_PIPE_GLOBAL_HELP_MENU_OUT}" | ${PAGER:?} -l md
+    ]===],
+  }
+}
+xplr.config.general.global_key_bindings.on_key["f1"] = nil
+for n, m in pairs(xplr.config.modes.builtin) do
+  if m.key_bindings and m.key_bindings.on_key then
+    xplr.config.modes.builtin[n].key_bindings.on_key["?"] = help
+  end
+end
+
+-- command mode
+xplr.config.modes.custom.command_mode.key_bindings.on_key[">"] = {
+  help = "shell",
+  messages = {
+    { Call = { command = os.getenv("SHELL"), args = { "-i" } } },
+    "ExplorePwdAsync",
+    "PopMode",
+  }
+}
+xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] = nil

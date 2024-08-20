@@ -150,7 +150,7 @@ export ARCHFLAGS=$(uname -m)
 # To customize prompt, run `p10k configure` or edit $POWERLEVEL9K_CONFIG_FILE.
 [[ -f $POWERLEVEL9K_CONFIG_FILE && -z $alfred_version ]] && source $POWERLEVEL9K_CONFIG_FILE
 
-[ -z $alfred_version ] && {
+[[ -z $alfred_version && -z $XPLR ]] && {
   local h=$(date +%H)
   local t=$([[ $h -ge 3 && $h -lt 12 ]] && echo morning || ([[ $h -ge 12 && $h -lt 17 ]] && echo afternoon || echo evening))
   echo -e "\e[38;5;57m\e[1mGood $t, Shin ฅ^•ﻌ•^ฅ\e[0m"

@@ -22,18 +22,16 @@ local function fzf(args, paths)
     return
   elseif count == 1 then
     local path = lines[1]
-    local msgs = {
-      { FocusPath = path },
-    }
+    local msg = { FocusPath = path }
 
     if args.enter_dir then
       local isdir = xplr.util.shell_execute("test", { "-d", path }).returncode == 0
       if isdir then
-        table.insert(msgs, "Enter")
+        msg = { ChangeDirectory = path }
       end
     end
 
-    return msgs
+    return { msg }
   else
     local msgs = {}
     for i, line in ipairs(lines) do

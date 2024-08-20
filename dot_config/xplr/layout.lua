@@ -1,16 +1,27 @@
-xplr.fn.custom.fmt_perm = function(m)
-  return xplr.fn.builtin.fmt_general_table_row_cols_2(m)
-end
-xplr.fn.custom.fmt_size = function(m)
-  return m.human_size or ""
-end
+xplr.config.general.table.header.cols = {
+  { format = "╭─ path" },
+  { format = "size" },
+  { format = "perm" },
+  { format = "modified" },
+}
+
+xplr.config.general.table.col_widths = {
+  { Percentage = 60 },
+  { Percentage = 10 },
+  { Percentage = 10 },
+  { Percentage = 20 },
+}
+
 xplr.fn.custom.fmt_modified = function(m)
   return os.date("%Y-%m-%d %H:%M", m.last_modified / 1e9)
 end
 
-xplr.config.general.table.row.cols[3] = { format = "custom.fmt_size" }
-xplr.config.general.table.row.cols[4] = { format = "custom.fmt_perm" }
-xplr.config.general.table.row.cols[5] = { format = "custom.fmt_modified" }
+xplr.config.general.table.row.cols = {
+  xplr.config.general.table.row.cols[2],
+  xplr.config.general.table.row.cols[4],
+  xplr.config.general.table.row.cols[3],
+  { format = "custom.fmt_modified" },
+}
 
 xplr.config.layouts.builtin.default = {
   Vertical = {

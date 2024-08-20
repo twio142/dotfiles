@@ -2,7 +2,7 @@ local m = require("command-mode")
 -- m.setup()
 
 local open_in_vscode = m.silent_cmd("vscode", "open in VSCode")(
-  m.BashExec [===[
+  m.BashExecSilently [===[
     code "$PWD"
     sleep 1
     code -g "${XPLR_FOCUS_PATH:?}"
@@ -10,7 +10,7 @@ local open_in_vscode = m.silent_cmd("vscode", "open in VSCode")(
 )
 
 local preview = m.silent_cmd("preview", "preview file")(
-  m.BashExec [===[
+  m.BashExecSilently [===[
     $XDG_CONFIG_HOME/fzf/fzf-preview.sh "${XPLR_FOCUS_PATH:?}" | less -R
   ]===]
 )
@@ -24,21 +24,23 @@ local compare = m.cmd("compare", "compare files")(function(ctx)
 end)
 
 local copy_path = m.silent_cmd("copy-path", "copy file path")(function(ctx)
+  local path = ctx.focused_node.absolute_path
+  os.execute("printf " .. xplr.util.shell_escape(path) .. " | pbcopy")
   return {
-    { BashExec = [[ echo "${XPRL_FOCUS_PATH:?}" | pbcopy ]] },
     { LogSuccess = "Copied to clipboard: " .. path }
   }
 end)
 
 local tmux_buffer = m.silent_cmd("tmux-buffer", "copy file path to tmux buffer")(function(ctx)
+  local path = ctx.focused_node.absolute_path
+  os.execute("printf " .. xplr.util.shell_escape(path) .. " | tmux load-buffer -")
   return {
-    { BashExec = [[ echo "${XPRL_FOCUS_PATH:?}" | tmux load-buffer - ]] },
     { LogSuccess = "Copied to tmux buffer" },
   }
 end)
 
 local browse_in_alfred = m.silent_cmd("browse-in-alfred", "browse in alfred")(
-  m.BashExec [[ alfred "${XPLR_FOCUS_PATH:?}" ]]
+  m.BashExecSilently [[ alfred "${XPLR_FOCUS_PATH:?}" ]]
 )
 
 local add_to_alfred_buffer = m.silent_cmd("add-to-alfred-buffer", "add to alfred buffer")(function(ctx)
