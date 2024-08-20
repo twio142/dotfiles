@@ -34,11 +34,11 @@ __fzf_git_pager() {
 
 _fzf_git_fzf() {
   fzf-tmux -p95%,70% -- \
-    --layout=reverse --multi --height=50% --min-height=20 --border \
+    --multi --height=50% --min-height=20 --border \
     --border-label-pos=2 \
-    --color='header:underline,label:bold,fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1' \
-    --pointer="➤" \
+    --color='header:underline,label:bold' \
     --preview-window='right,60%,border-left' \
+    --bind='ctrl-d:preview-down' --bind='ctrl-u:preview-up' \
     --bind='ctrl-/:change-preview-window(down,65%,border-top|hidden|)' "$@"
 }
 
@@ -106,7 +106,7 @@ _fzf_git_branches() {
     --bind "alt-a:change-border-label(  All branches )+reload:bash \"$__fzf_git\" all-branches" \
     --bind "alt-o:execute-silent:bash $__fzf_git branch {}" \
     --bind "ctrl-/:change-preview-window(down,70%|hidden|)" \
-    --bind "ctrl-d:execute:echo {} | sed 's/^..//' | cut -d' ' -f1 | xargs git diff --color=$(__fzf_git_color) > /dev/tty | bat --style=plain --tabs 2" \
+    --bind "alt-d:execute:echo {} | sed 's/^..//' | cut -d' ' -f1 | xargs git diff --color=$(__fzf_git_color) > /dev/tty | bat --style=plain --tabs 2" \
     --bind "ctrl-o:reload(git checkout \$(echo {} | sed 's/^..//' | cut -d' ' -f1); bash \"$__fzf_git\" branches)" \
     --bind "ctrl-r:reload(bash \"$__fzf_git\" branches)+change-border-label(  Branches )" \
     --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh \$(echo {} | sed 's/^..//' | cut -d' ' -f1)" \
@@ -120,9 +120,9 @@ _fzf_git_tags() {
   git tag --sort -version:refname |
   _fzf_git_fzf --preview-window right,70% \
     --border-label '  Tags ' \
-    --header $'⌃D diff ╱ ⌃O checkout tag\n\n' \
+    --header $'⌥D diff ╱ ⌃O checkout tag\n\n' \
     --bind "alt-o:execute-silent:bash $__fzf_git tag {}" \
-    --bind "ctrl-d:execute:git diff --color=$(__fzf_git_color) {} | bat --style=plain --tabs 2" \
+    --bind "alt-d:execute:git diff --color=$(__fzf_git_color) {} | bat --style=plain --tabs 2" \
     --bind "ctrl-o:reload(git checkout {}; git tag --sort -version:refname)" \
     --bind "ctrl-r:reload(git tag --sort -version:refname)" \
     --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+}" \
@@ -138,7 +138,7 @@ _fzf_git_hashes() {
     --header-lines 3 \
     --bind "alt-a:change-border-label(  All hashes )+reload:bash \"$__fzf_git\" all-hashes" \
     --bind "alt-o:execute-silent:bash $__fzf_git commit {}" \
-    --bind "ctrl-d:execute:grep -o '[a-f0-9]\{7,\}' <<< {} | head -n 1 | xargs git diff --color=$(__fzf_git_color) > /dev/tty | bat --style=plain --tabs 2" \
+    --bind "alt-d:execute:grep -o '[a-f0-9]\{7,\}' <<< {} | head -n 1 | xargs git diff --color=$(__fzf_git_color) > /dev/tty | bat --style=plain --tabs 2" \
     --bind "ctrl-o:reload(git checkout \$(echo -n {} | grep -Eo '[a-f0-9]{7,}.+' | cut -d' ' -f1); bash \"$__fzf_git\" hashes)" \
     --bind "ctrl-r:reload(bash \"$__fzf_git\" hashes)+change-border-label(  Hashes )" \
     --bind "ctrl-x:execute:mode=hash ~/.config/fzf/fzf-git-input.sh {+}" \
@@ -168,9 +168,9 @@ _fzf_git_stashes() {
   _fzf_git_check || return
   git stash list | _fzf_git_fzf \
     --border-label ' 󰪶 Stashes ' \
-    --header $'⌥A apply stash ╱ ⌃D drop stash\n\n' \
+    --header $'⌥A apply stash ╱ ⌥D drop stash\n\n' \
     --bind "alt-a:reload(git stash apply -q {1}; git stash list)" \
-    --bind "ctrl-d:reload(git stash drop -q {1}; git stash list)" \
+    --bind "alt-d:reload(git stash drop -q {1}; git stash list)" \
     --bind "ctrl-r:reload(git stash list)" \
     --bind "ctrl-x:execute:mode=stash ~/.config/fzf/fzf-git-input.sh {+1}" \
     --bind "ctrl-y:execute-silent:tmux set-buffer \$(echo {1} | cut -d: -f1)" \
@@ -182,7 +182,7 @@ _fzf_git_lreflogs() {
   _fzf_git_check || return
   git reflog --color=$(__fzf_git_color) --format="%C(blue)%gD %C(yellow)%h%C(auto)%d %gs" | _fzf_git_fzf --ansi \
     --border-label '  Reflogs ' \
-    --bind "ctrl-d:execute:git diff --color=$(__fzf_git_color) {1} | bat --style=plain --tabs 2" \
+    --bind "alt-d:execute:git diff --color=$(__fzf_git_color) {1} | bat --style=plain --tabs 2" \
     --bind "ctrl-o:reload(git checkout {1}; git reflog --color=$(__fzf_git_color) --format=\"%C(blue)%gD %C(yellow)%h%C(auto)%d %gs\")" \
     --bind "ctrl-r:reload(git reflog --color=$(__fzf_git_color) --format='%C(blue)%gD %C(yellow)%h%C(auto)%d %gs')" \
     --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+1}" \
@@ -215,8 +215,8 @@ _fzf_git_worktrees() {
   _fzf_git_check || return
   git worktree list | _fzf_git_fzf \
     --border-label ' 󰙅 Worktrees ' \
-    --header $'⌃D remove worktree\n\n' \
-    --bind "ctrl-d:reload(git worktree remove {1} > /dev/null; git worktree list)" \
+    --header $'⌥D remove worktree\n\n' \
+    --bind "alt-d:reload(git worktree remove {1} > /dev/null; git worktree list)" \
     --bind "ctrl-r:reload(git worktree list)" \
     --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+1}" \
     --preview "
@@ -242,27 +242,27 @@ if [[ $# -eq 1 ]]; then
   }
   case "$1" in
     branches)
-      echo $'⌃D diff ╱ ⌃O checkout branch\n⌥A show all branches\n'
+      echo $'⌥D diff ╱ ⌃O checkout branch\n⌥A show all branches\n'
       branches
       ;;
     all-branches)
-      echo $'⌃D diff ╱ ⌃O checkout branch\n\n'
+      echo $'⌥D diff ╱ ⌃O checkout branch\n\n'
       branches -a
       ;;
     hashes)
-      echo $'⌃D diff ╱ ⌃S toggle sort\n⌃O checkout commit ╱ ⌥A show all hashes\n'
+      echo $'⌥D diff ╱ ⌃S toggle sort\n⌃O checkout commit ╱ ⌥A show all hashes\n'
       hashes
       ;;
     all-hashes)
-      echo $'⌃D diff ╱ ⌃S toggle sort\n⌃O checkout commit\n\n'
+      echo $'⌥D diff ╱ ⌃S toggle sort\n⌃O checkout commit\n\n'
       hashes --all
       ;;
     refs)
-      echo $'⌃D diff ╱ ⌃O checkout ref\n⌥A show all refs\n'
+      echo $'⌥D diff ╱ ⌃O checkout ref\n⌥A show all refs\n'
       refs 'grep -v ^refs/remotes'
       ;;
     all-refs)
-      echo $'⌃D diff ╱ ⌃O checkout ref\n\n'
+      echo $'⌥D diff ╱ ⌃O checkout ref\n\n'
       refs 'cat'
       ;;
     nobeep) ;;
@@ -327,6 +327,6 @@ elif [[ -n "$type" && -n "$TMUX" ]]; then
       [ -n "$files" ] && open_in_nvim $files || exit 0
       ;;
     *)
-      _fzf_git_$type ;;
+      _fzf_git_$type; exit 0 ;;
   esac
 fi

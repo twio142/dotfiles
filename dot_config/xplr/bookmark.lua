@@ -1,10 +1,10 @@
--- Bookmark: mode binding
-xplr.config.modes.builtin.default.key_bindings.on_key["b"] = {
+xplr.config.modes.builtin.default.key_bindings.on_key.b = {
   help = "bookmark mode",
   messages = {
     { SwitchModeCustom = "bookmark" },
   },
 }
+
 xplr.config.modes.custom.bookmark = {
   name = "bookmark",
   key_bindings = {
@@ -66,4 +66,3 @@ xplr.config.modes.custom.bookmark = {
     },
   },
 }
-

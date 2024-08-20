@@ -94,7 +94,7 @@ export PATH="$HOME/miniconda3/bin:$PATH"
 source <(fzf --zsh)
 [ -z $alfred_version ] && . ${XDG_CONFIG_HOME:-~/.config}/fzf/fzf-git.sh
 
-export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer=➤ --bind="ctrl-d:preview-page-down" --bind="ctrl-u:preview-page-up"'
+export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer=➤ --bind="ctrl-d:preview-down" --bind="ctrl-u:preview-up"'
 
 # Use `` as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER="\`\`"
@@ -175,7 +175,7 @@ zle -N _fzf_image
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$PATH:$(ruby -e 'puts Gem.bindir')"
 source $(dirname $(gem which colorls))/tab_complete.sh
-alias ls='colorls --$(~/bin/background)'
+alias ls='colorls --$(~/bin/background) --time-style="+%Y-%m-%d %H:%M"'
 
 auto-color-ls() {
   emulate -L zsh

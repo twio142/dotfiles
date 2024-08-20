@@ -1,9 +1,11 @@
 #!/bin/zsh
 
 export PATH="$HOME/bin:$PATH"
-export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer=➤ --bind="ctrl-d:preview-page-down" --bind="ctrl-u:preview-page-up"'
+export EDITOR=nvim
+export LESS="-R"
+export PAGER="bat --style=plain --color=always --paging=always --pager=less"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind='ctrl-d:preview-down' --bind='ctrl-u:preview-up'"
 
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
+source $(brew --prefix)/share/autojump/autojump.zsh
 
 xplr
