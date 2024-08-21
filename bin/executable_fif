@@ -21,6 +21,7 @@ PATH=/opt/homebrew/bin:$PATH
 #       --bind 'enter:become(nvim {1} +{2})'
 
 RG_PREFIX="rg --ignore-vcs --glob '!**/.git/**' --column --line-number --no-heading --color=always --smart-case "
+[ "$1" = -o ] && { enter=accept; shift; } || enter="become(nvim {1} +{2})"
 INITIAL_QUERY="${*:-}"
 fzf --ansi --disabled --query "$INITIAL_QUERY" \
     --color "hl:-1:underline,hl+:-1:underline:reverse" \
@@ -30,4 +31,4 @@ fzf --ansi --disabled --query "$INITIAL_QUERY" \
     --delimiter : \
     --preview 'bat --color=always {1} --highlight-line {2}' \
     --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
-    --bind 'enter:become(nvim {1} +{2})'
+    --bind "enter:$enter"

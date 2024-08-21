@@ -1,5 +1,16 @@
 local on_key = xplr.config.modes.builtin.default.key_bindings.on_key
 
+on_key["0"] = {
+  help = "go to top",
+  messages = { "FocusFirst" },
+}
+xplr.config.modes.builtin.sort.key_bindings.on_key.down = on_key.j
+xplr.config.modes.builtin.sort.key_bindings.on_key.up = on_key.k
+xplr.config.modes.builtin.filter.key_bindings.on_key.down = on_key.j
+xplr.config.modes.builtin.filter.key_bindings.on_key.up = on_key.k
+xplr.config.modes.custom.type_to_nav.key_bindings.on_key.up = on_key.k
+xplr.config.modes.custom.type_to_nav.key_bindings.on_key.down = on_key.j
+
 -- selection
 on_key.J = {
   help = "focus next selection",
@@ -9,21 +20,26 @@ on_key.K = {
   help = "focus previous selection",
   messages = { "FocusPreviousSelection" }
 }
-on_key["alt-l"] = {
+xplr.fn.custom.actionOnSelection = function(ctx)
+  if #ctx.selection == 0 then
+    return
+  end
+  return { "PopMode", { SwitchModeBuiltin = "selection_ops" } }
+end
+xplr.config.general.global_key_bindings.on_key["alt-l"] = {
   help = "action on selected files",
   messages = {
-    "PopMode",
-    { SwitchModeBuiltin = "selection_ops" },
+    { CallLuaSilently = "custom.actionOnSelection" },
   }
 }
-on_key["alt-j"] = {
+xplr.config.general.global_key_bindings.on_key["alt-j"] = {
   help = "toggle selection",
   messages = {
     "ToggleSelection",
     "FocusNext",
   }
 }
-on_key["alt-k"] = {
+xplr.config.general.global_key_bindings.on_key["alt-k"] = {
   help = "toggle selection",
   messages = {
     "ToggleSelection",
@@ -35,19 +51,19 @@ xplr.fn.custom.removeLastSelection = function(ctx)
   end
   return { { UnSelectPath = ctx.selection[#ctx.selection].absolute_path } }
 end
-on_key["alt-h"] = {
+xplr.config.general.global_key_bindings.on_key["alt-h"] = {
   help = "remove last selection",
   messages = {
     { CallLuaSilently = "custom.removeLastSelection" },
   }
 }
-on_key["alt-r"] = {
+xplr.config.general.global_key_bindings.on_key["alt-r"] = {
   help = "clear selection",
   messages = {
     "ClearSelection",
   }
 }
-on_key["alt-a"] = {
+xplr.config.general.global_key_bindings.on_key["alt-a"] = {
   help = "toggle select all",
   messages = {
     "ToggleSelectAll",
@@ -56,12 +72,11 @@ on_key["alt-a"] = {
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.l = nil
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.r = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u = nil
-
-xplr.config.modes.builtin.action.key_bindings.on_key.v = on_key["alt-l"]
+xplr.config.modes.builtin.action.key_bindings.on_key.v = xplr.config.general.global_key_bindings.on_key["alt-l"]
 xplr.config.modes.builtin.action.key_bindings.on_key.s = nil
 xplr.config.modes.builtin.action.key_bindings.on_key.q = nil
 xplr.config.modes.builtin.action.key_bindings.on_key.m = nil
-xplr.config.modes.builtin.action.key_bindings.on_key[">"] = xplr.config.modes.builtin.action.key_bindings.on_key["!"]
+xplr.config.modes.builtin.action.key_bindings.on_key[":"] = xplr.config.modes.builtin.action.key_bindings.on_key["!"]
 xplr.config.modes.builtin.action.key_bindings.on_key["!"] = nil
 xplr.config.modes.builtin.action.key_bindings.on_key.D = on_key["ctrl-d"]
 xplr.config.modes.builtin.action.key_bindings.on_key.p.messages = {
@@ -75,15 +90,6 @@ xplr.config.modes.builtin.action.key_bindings.on_key.p.messages = {
   }
 }
 xplr.config.modes.builtin.action.key_bindings.on_number = nil
-
--- xpm
-on_key.x = {
-  help = "xpm",
-  messages = {
-    "PopMode",
-    { SwitchModeCustom = "xpm" },
-  },
-}
 
 -- dual-pane
 on_key["ctrl-h"] = {
@@ -108,14 +114,6 @@ on_key.I = {
   help = 'type to select',
   messages = { { CallLuaSilently = 'custom.type_to_nav_start_selecting' } },
 }
-xplr.config.modes.custom.type_to_nav.key_bindings.on_key.up = {
-  help = 'focus previous',
-  messages = { 'FocusPrevious' },
-}
-xplr.config.modes.custom.type_to_nav.key_bindings.on_key.down = {
-  help = 'focus next',
-  messages = { 'FocusNext' },
-}
 xplr.config.modes.custom.type_to_nav.key_bindings.on_key.left = {
   help = 'go back',
   messages = { { CallLuaSilently = 'custom.type_to_nav_up' } },
@@ -124,12 +122,6 @@ xplr.config.modes.custom.type_to_nav.key_bindings.on_key.right = {
   help = 'accept',
   messages = { { CallLuaSilently = 'custom.type_to_nav_accept' } },
 }
-xplr.config.modes.custom.type_to_nav.key_bindings.on_key.tab = xplr.config.modes.custom.type_to_nav.key_bindings.on_key["ctrl-v"]
-xplr.config.modes.custom.type_to_nav.key_bindings.on_key['ctrl-s'] = {
-  help = 'toggle select',
-  messages = { 'ToggleSelection', 'FocusNext' },
-}
-xplr.config.modes.custom.type_to_nav.key_bindings.on_key['alt-l'] = on_key["alt-l"]
 xplr.config.modes.custom.type_to_nav.key_bindings.on_key['ctrl-h'] = {
   messages = {
     "PopMode",
@@ -188,18 +180,6 @@ xplr.config.modes.builtin.selection_ops.key_bindings.on_key.p = {
 }
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.c = nil
 
-xplr.fn.custom.pasteSelected = function(ctx)
-  if #ctx.selection == 0 then
-    return { { LogError = "No files selected" } }
-  end
-  return xplr.config.modes.builtin.selection_ops.key_bindings.on_key.p.messages
-end
-
-on_key.p = {
-  help = "Paste selected files",
-  messages = { { CallLua = "custom.pasteSelected" } }
-}
-
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.m.messages = {
   {
     BashExec0 = [===[
@@ -236,18 +216,6 @@ xplr.config.modes.builtin.selection_ops.key_bindings.on_key.m.messages = {
     ]===],
   },
   "PopMode",
-}
-
-xplr.fn.custom.moveSelected = function(ctx)
-  if #ctx.selection == 0 then
-    return { { LogError = "No files selected" } }
-  end
-  return xplr.config.modes.builtin.selection_ops.key_bindings.on_key.m.messages
-end
-
-on_key.P = {
-  help = "move selected files",
-  messages = { { CallLua = "custom.moveSelected" } }
 }
 
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.s.messages = {
@@ -323,7 +291,7 @@ xplr.fn.custom.new_file = function(ctx)
   else
     filename = ctx.pwd .. "/" .. filename
   end
-  if xplr.utils.exists(filename) then
+  if xplr.util.exists(filename) then
     return { LogError = "File already exists" }
   end
   local r
@@ -386,9 +354,9 @@ xplr.config.modes.builtin.delete.key_bindings.on_key.E = {
   },
 }
 
--- history
-xplr.config.modes.builtin.go_to.key_bindings.on_key.h = {
-  help = "history",
+-- go to
+xplr.config.modes.builtin.go_to.key_bindings.on_key.r = {
+  help = "recent",
   messages = {
     "PopMode",
     {
@@ -403,11 +371,32 @@ xplr.config.modes.builtin.go_to.key_bindings.on_key.h = {
 }
 xplr.config.modes.builtin.action.key_bindings.on_key.O = xplr.config.modes.builtin.go_to.key_bindings.on_key.x
 xplr.config.modes.builtin.go_to.key_bindings.on_key.x = nil
-xplr.config.modes.builtin.go_to.key_bindings.on_key["`"] = {
+on_key["["] = {
   help = "last visited path",
   messages = {
     "PopMode",
     "LastVisitedPath",
+  }
+}
+on_key["]"] = {
+  help = "next visited path",
+  messages = {
+    "PopMode",
+    "NextVisitedPath",
+  }
+}
+xplr.config.modes.builtin.go_to.key_bindings.on_key["["] = {
+  help = "last visited path",
+  messages = {
+    "PopMode",
+    "LastVisitedPath",
+  }
+}
+xplr.config.modes.builtin.go_to.key_bindings.on_key["]"] = {
+  help = "next visited path",
+  messages = {
+    "PopMode",
+    "NextVisitedPath",
   }
 }
 
@@ -420,6 +409,7 @@ xplr.config.modes.builtin.action.key_bindings.on_key.l.messages = {
     ]===],
   },
 }
+
 local help = xplr.config.general.global_key_bindings.on_key["f1"]
 help.messages = {
   {
@@ -429,20 +419,5 @@ help.messages = {
     ]===],
   }
 }
-xplr.config.general.global_key_bindings.on_key["f1"] = nil
-for n, m in pairs(xplr.config.modes.builtin) do
-  if m.key_bindings and m.key_bindings.on_key then
-    xplr.config.modes.builtin[n].key_bindings.on_key["?"] = help
-  end
-end
 
--- command mode
-xplr.config.modes.custom.command_mode.key_bindings.on_key[">"] = {
-  help = "shell",
-  messages = {
-    { Call = { command = os.getenv("SHELL"), args = { "-i" } } },
-    "ExplorePwdAsync",
-    "PopMode",
-  }
-}
-xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] = nil
+xplr.config.general.global_key_bindings.on_key["?"] = help

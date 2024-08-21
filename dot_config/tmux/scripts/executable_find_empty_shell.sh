@@ -23,5 +23,10 @@ tmux lsw -t "$session" -F '#{window_panes}	#{pane_current_command}	#S:#{window_i
   fi
 done
 
-tmux new-window -t "${win%.*}" -c "$HOME"
+dir=$HOME
+if [[ "$2" = cd && -e "$3" ]]; then
+  [ -d $3 ] && dir=$3 || dir=$(dirname $3)
+  shift 2
+fi
+tmux new-window -t "${win%.*}" -c "$dir"
 enter $2

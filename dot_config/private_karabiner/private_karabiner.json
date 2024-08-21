@@ -1815,8 +1815,8 @@
                 "conditions": [
                   {
                     "name": "multitouch_extension_finger_count_right_quarter_area",
-                    "type": "variable_if",
-                    "value": 1
+                    "type": "variable_unless",
+                    "value": 0
                   }
                 ],
                 "from": { "key_code": "right_arrow" },
@@ -1827,8 +1827,8 @@
                 "conditions": [
                   {
                     "name": "multitouch_extension_finger_count_right_quarter_area",
-                    "type": "variable_if",
-                    "value": 1
+                    "type": "variable_unless",
+                    "value": 0
                   }
                 ],
                 "from": { "key_code": "left_arrow" },

@@ -23,6 +23,18 @@ os.execute(
   )
 )
 
+xplr.fn.custom.esc = function(ctx)
+  if #ctx.selection > 0 then
+    return { "ClearSelection" }
+  else
+    return { "Quit" }
+  end
+end
+xplr.config.modes.builtin.default.key_bindings.on_key.esc = {
+  help = "quit",
+  messages = { { CallLuaSilently = "custom.esc" } }
+}
+
 require("layout")
 
 require("xpm").setup({
@@ -35,16 +47,6 @@ require("xpm").setup({
       require("dual-pane").setup{
         active_pane_width = { Percentage = 50 },
         inactive_pane_width = { Percentage = 50 },
-      }
-    end },
-    { name = 'sayanarijit/fzf.xplr', rev = 'main', setup = function()
-      require("fzf").setup{
-        mode = "default",
-        key = "ctrl-f",
-        bin = "fzf",
-        args = " --preview '$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}'",
-        recursive = false,  -- If true, search all files under $PWD
-        enter_dir = true,  -- Enter if the result is directory
       }
     end },
     { name = 'sayanarijit/map.xplr', rev = 'main' },
@@ -91,6 +93,14 @@ require("xpm").setup({
       })
     end },
     { name = 'sayanarijit/type-to-nav.xplr', rev = 'main' },
+    { name = 'twio142/fzf.xplr', rev = 'main', setup = function()
+      require("fzf").setup{
+        bin = "fd",
+        args = "--hidden --follow --exclude .DS_Store --exclude .git . . | fzf -m --preview '$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}'",
+        recursive = true,
+        enter_dir = true,
+      }
+    end }
   },
   auto_install = true,
   auto_cleanup = true,
@@ -98,7 +108,8 @@ require("xpm").setup({
 
 xplr.config.general.show_hidden = true
 xplr.config.general.focus_ui.style.add_modifiers = { "Bold" }
-xplr.config.node_types.symlink.meta.icon = xplr.util.paint(" ")
+xplr.config.node_types.symlink.meta.icon = xplr.util.paint(" ", { fg = "Cyan" })
+xplr.config.node_types.special[".git"] = { meta = { icon = xplr.util.paint(" ", { fg = "Blue"} ) }, style = { fg = "Blue" } }
 xplr.config.general.logs.info.format = " "
 xplr.config.general.logs.success.format = "󰸞 "
 xplr.config.general.logs.error.format = " "
@@ -106,22 +117,42 @@ xplr.config.general.logs.warning.format = "󱈸 "
 xplr.config.modes.builtin.move_to.prompt = "󱀱 ❯ "
 xplr.config.modes.builtin.copy_to.prompt = " ❯ "
 
-require("autojump").setup{
-  args = [[ --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
-    --bind "change:reload:autojump --complete '{q}' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
-    --disabled \
-    --preview 'tree -C {} -L 4']],
-  recursive = true,
-  enter_dir = true,
-  mode = "go_to",
-  key = "j"
-}
 require("keys")
 require("bookmark")
 require("preview")
+require("space")
 require("commands")
 require("git-status")
 require("complete-path")
+
+require("fzf").setup{
+  name = "autojump",
+  args = [[ --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
+    --bind "change:reload:autojump --complete '{q}' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
+    --disabled --preview 'tree -C {} -L 4' | xargs -I {} realpath "{}" ]],
+  recursive = true,
+  enter_dir = true,
+  mode = "go_to",
+  key = "g"
+}
+
+require("fzf").setup{
+  name = "fif",
+  bin = home .. "/bin/fif",
+  args = "-o",
+  recursive = true,
+  mode = "search",
+  key = "ctrl-v",
+  callback = "custom.fif_callback"
+}
+
+xplr.fn.custom.fif_callback = function(input)
+  local path, line = input:match("^([^:]+):(%d+):")
+  return {
+    { BashExec = string.format("nvim +%s %s", line, path) },
+    "PopMode",
+  }
+end
 
 return {
   on_load = {
