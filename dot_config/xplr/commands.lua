@@ -128,7 +128,7 @@ local fif = m.cmd("fif", "search file contents")(function(ctx)
   return { "PopMode", { CallLua = "custom.fif.search" } }
 end)
 
-preview.bind(xplr.config.modes.custom.preview, "`")
+preview.bind(xplr.config.modes.custom.space, "tab")
 -- xplr.config.modes.custom.preview.key_bindings.on_key.w = preview.action
 compare.bind(xplr.config.modes.builtin.selection_ops, "d")
 copy_path.bind(xplr.config.modes.builtin.default, "y")

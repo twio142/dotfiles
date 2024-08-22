@@ -39,7 +39,7 @@ require("layout")
 
 require("xpm").setup({
   plugins = {
-    'dtomvan/xpm.xplr',
+    { name = 'dtomvan/xpm.xplr', rev = 'main' },
     { name = 'dy-sh/dysh-style.xplr', rev = 'main' },
     { name = 'gitlab:hartan/web-devicons.xplr', rev = 'main' },
     { name = 'sayanarijit/command-mode.xplr', rev = 'main' },
@@ -50,7 +50,16 @@ require("xpm").setup({
       }
     end },
     { name = 'sayanarijit/map.xplr', rev = 'main' },
-    { name = 'sayanarijit/tree-view.xplr', rev = 'main', setup = function()
+    { name = 'sayanarijit/type-to-nav.xplr', rev = 'main' },
+    { name = 'twio142/fzf.xplr', rev = 'main', setup = function()
+      require("fzf").setup{
+        bin = "fd",
+        args = "--hidden --follow --exclude .DS_Store --exclude .git . . | fzf -m --preview '$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}'",
+        recursive = true,
+        enter_dir = true,
+      }
+    end },
+    { name = 'twio142/tree-view.xplr', rev = 'main', setup = function()
       require("tree-view").setup({
         mode = "switch_layout",
         key = "t",
@@ -68,10 +77,10 @@ require("xpm").setup({
         toggle_expansion_all_key = "O",
         -- Focus on the next visible line, not compatible with up/down action
         focus_next_mode = "default",
-        focus_next_key = "down",
+        focus_next_key = "j",
         -- Focus on the previous visible line, not compatible with up/down action
         focus_prev_mode = "default",
-        focus_prev_key = "up",
+        focus_prev_key = "k",
         -- Go to the next deep level directory that's open
         goto_next_open_mode = "default",
         goto_next_open_key = ")",
@@ -92,15 +101,6 @@ require("xpm").setup({
         fallback_threshold = 500,  -- default: nil (disabled)
       })
     end },
-    { name = 'sayanarijit/type-to-nav.xplr', rev = 'main' },
-    { name = 'twio142/fzf.xplr', rev = 'main', setup = function()
-      require("fzf").setup{
-        bin = "fd",
-        args = "--hidden --follow --exclude .DS_Store --exclude .git . . | fzf -m --preview '$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}'",
-        recursive = true,
-        enter_dir = true,
-      }
-    end }
   },
   auto_install = true,
   auto_cleanup = true,
@@ -117,10 +117,10 @@ xplr.config.general.logs.warning.format = "󱈸 "
 xplr.config.modes.builtin.move_to.prompt = "󱀱 ❯ "
 xplr.config.modes.builtin.copy_to.prompt = " ❯ "
 
+require("space")
 require("keys")
 require("bookmark")
 require("preview")
-require("space")
 require("commands")
 require("git-status")
 require("complete-path")

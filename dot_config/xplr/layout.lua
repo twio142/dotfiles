@@ -21,7 +21,7 @@ xplr.fn.custom.fmt_path = function(m)
   if m.meta.icon == nil then
     r = r .. ""
   else
-    r = r .. m.meta.icon .. " "
+    r = r .. m.meta.icon
   end
 
   local rel = m.relative_path
