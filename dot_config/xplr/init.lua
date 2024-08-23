@@ -109,7 +109,7 @@ require("xpm").setup({
 xplr.config.general.show_hidden = true
 xplr.config.general.focus_ui.style.add_modifiers = { "Bold" }
 xplr.config.node_types.symlink.meta.icon = xplr.util.paint(" ", { fg = "Cyan" })
-xplr.config.node_types.special[".git"] = { meta = { icon = xplr.util.paint(" ", { fg = "Blue"} ) }, style = { fg = "Blue" } }
+xplr.config.node_types.special[".git"] = { meta = { icon = xplr.util.paint(" ", { fg = "Blue"} ) }, style = { fg = "Blue" } }
 xplr.config.general.logs.info.format = " "
 xplr.config.general.logs.success.format = "󰸞 "
 xplr.config.general.logs.error.format = " "
@@ -124,35 +124,7 @@ require("preview")
 require("commands")
 require("git-status")
 require("complete-path")
-
-require("fzf").setup{
-  name = "autojump",
-  args = [[ --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
-    --bind "change:reload:autojump --complete '{q}' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
-    --disabled --preview 'tree -C {} -L 4' | xargs -I {} realpath "{}" ]],
-  recursive = true,
-  enter_dir = true,
-  mode = "go_to",
-  key = "g"
-}
-
-require("fzf").setup{
-  name = "fif",
-  bin = home .. "/bin/fif",
-  args = "-o",
-  recursive = true,
-  mode = "search",
-  key = "ctrl-v",
-  callback = "custom.fif_callback"
-}
-
-xplr.fn.custom.fif_callback = function(input)
-  local path, line = input:match("^([^:]+):(%d+):")
-  return {
-    { BashExec = string.format("nvim +%s %s", line, path) },
-    "PopMode",
-  }
-end
+require("load-fzf")
 
 return {
   on_load = {

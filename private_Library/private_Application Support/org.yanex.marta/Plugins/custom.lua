@@ -66,7 +66,7 @@ action {
 	name = "Open Folder in Inactive Pane",
 
 	isApplicable = function(context)
-		return context.activePane.model.hasCurrent and martax.getUti(context.activePane.model.currentFile.path) == 'public.folder'
+		return context.activePane.model.hasCurrent and martax.getUti(context.activePane.model.currentFile.path.rawValue) == 'public.folder'
 	end,
 
 	apply = function(context)
@@ -116,14 +116,18 @@ action {
 	end,
 
 	apply = function(context)
-		local selected = {}
-		for _, file in ipairs(context.activePane.model.activeFiles) do
-			table.insert(selected, file.path)
-		end
-		for _, file in ipairs(context.inactivePane.model.activeFiles) do
-			table.insert(selected, file.path)
-		end
-		martax.execute(os.getenv('HOME')..'/bin/altr', { '-t', 'buffer', '-w', 'com.nyako520.syspre', '-a', '-', table.unpack(selected) })
+		local args = { '-t', 'buffer', '-w', 'com.nyako520.syspre', '-a', '-' }
+    if context.activePane.model.selectedCount + context.inactivePane.model.selectedCount == 0 then
+      table.insert(args, context.activePane.model.currentFile.path.rawValue)
+    else
+      for _, file in ipairs(context.activePane.model.selectedFiles) do
+        table.insert(args, file.path.rawValue)
+      end
+      for _, file in ipairs(context.inactivePane.model.selectedFiles) do
+        table.insert(args, file.path.rawValue)
+      end
+    end
+		martax.execute(os.getenv('HOME')..'/bin/altr', args)
 		context.activePane.model:deselectAll()
 		context.inactivePane.model:deselectAll()
 	end
@@ -140,17 +144,17 @@ action {
 	apply = function(context)
 		local target = context.activePane.model.currentFile or context.activePane.model.folder.parent
 		if target == nil then return end
-		if martax.getUti(target.path) ~= 'public.folder' then
+		if martax.getUti(target.path.rawValue) ~= 'public.folder' then
 			target = target.parent
 		end
-		local files = {}
+		local args = { '-t', 'copyToHere', '-w', 'com.nyako520.fileaction', '-v', 'target='..target.path.rawValue, '-a', '-' }
 		for _, file in ipairs(context.activePane.model.selectedFiles) do
-			table.insert(files, file.path)
+			table.insert(args, file.path.rawValue)
 		end
 		for _, file in ipairs(context.inactivePane.model.selectedFiles) do
-			table.insert(files, file.path)
+			table.insert(args, file.path.rawValue)
 		end
-		martax.execute(os.getenv('HOME')..'/bin/altr', { '-t', 'copyToHere', '-w', 'com.nyako520.fileaction', '-v', 'target='..target.path, '-a', '-', table.unpack(files) })
+		martax.execute(os.getenv('HOME')..'/bin/altr', args)
 		context.activePane.model:deselectAll()
 		context.inactivePane.model:deselectAll()
 	end
@@ -167,14 +171,14 @@ action {
 	apply = function(context)
 		local target = context.activePane.model.currentFile or context.activePane.model.folder.parent
 		if target == nil then return end
-		if martax.getUti(target.path) ~= 'public.folder' then
+		if martax.getUti(target.path.rawValue) ~= 'public.folder' then
 			target = target.parent
 		end
 		for _, file in ipairs(context.activePane.model.selectedFiles) do
-			file:rename(target:append(file.name).path)
+			file:rename(target:append(file.name).path.rawValue)
 		end
 		for _, file in ipairs(context.inactivePane.model.selectedFiles) do
-			file:rename(target:append(file.name).path)
+			file:rename(target:append(file.name).path.rawValue)
 		end
 		context.activePane.model:deselectAll()
 		context.inactivePane.model:deselectAll()

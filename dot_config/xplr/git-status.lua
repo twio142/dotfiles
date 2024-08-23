@@ -1,5 +1,5 @@
 xplr.config.modes.custom.git_status = {
-  key_bindings = xplr.util.clone(xplr.config.modes.builtin.default.key_bindings),
+  key_bindings = xplr.config.modes.builtin.default.key_bindings,
   layout = { Dynamic = "custom.git_status.setup" },
 }
 

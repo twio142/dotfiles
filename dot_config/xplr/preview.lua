@@ -5,7 +5,7 @@ xplr.config.modes.builtin.default.key_bindings.on_key.tab = {
 
 xplr.config.modes.custom.preview = {
   name = "preview",
-  key_bindings = xplr.util.clone(xplr.config.modes.builtin.default.key_bindings),
+  key_bindings = xplr.config.modes.builtin.default.key_bindings,
   layout = { Dynamic = "custom.preview.setup" },
 }
 

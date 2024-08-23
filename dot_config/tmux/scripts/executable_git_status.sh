@@ -12,5 +12,7 @@ ahead=$(git -C "$1" rev-list --count HEAD ^$(git -C "$1" for-each-ref --format '
 behind=$(git -C "$1" rev-list --count $(git -C "$1" for-each-ref --format '%(upstream:short)' $(git -C "$1" symbolic-ref -q HEAD)) ^HEAD 2> /dev/null)
 [ "$ahead" -gt 0 ] && ahead="󱦲$ahead" || ahead=''
 [ "$behind" -gt 0 ] && behind="󱦳$behind" || behind=''
-[ -n "$ahead$behind" ] && separator=" " || separator=''
-echo -n "$branch$staged$dirty$new$separator$ahead$behind "
+[ -n "$ahead$behind" ] && sep=" " || sep=''
+stash=$(git -C "$1" stash list | wc -l)
+[ "$stash" -gt 0 ] && stash=" *${stash// }" || stash=''
+echo -n "$branch$staged$dirty$new$sep$ahead$behind$stash "

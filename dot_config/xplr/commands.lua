@@ -101,8 +101,17 @@ local cd_in_tmux = m.cmd("cd-in-tmux", "cd path in tmux")(function(ctx)
   end
   local pid = xplr.util.shell_execute("tmux", { "display", "-p", "#{client_pid}" }).stdout:match("(%d+)")
   local scpt = os.getenv("XDG_CONFIG_HOME") .. "/tmux/scripts/find_empty_shell.sh"
-  local path = ctx.focused_node.absolute_path
-  xplr.util.shell_execute(scpt, { pid, "cd", path })
+  xplr.util.shell_execute(scpt, { pid, "cd", ctx.pwd })
+  return { "Quit" }
+end)
+
+local cd_in_tmux_neww = m.cmd("cd-in-tmux-neww", "cd path in new tmux window")(function(ctx)
+  if os.getenv("TMUX") == nil then
+    return { { LogError = "Not in tmux" } }
+  end
+  local pid = xplr.util.shell_execute("tmux", { "display", "-p", "#{client_pid}" }).stdout:match("(%d+)")
+  local scpt = os.getenv("XDG_CONFIG_HOME") .. "/tmux/scripts/find_empty_shell.sh"
+  xplr.util.shell_execute(scpt, { pid, "-n", "cd", ctx.pwd })
   return { "Quit" }
 end)
 
@@ -124,11 +133,29 @@ local vim_in_tmux = m.cmd("vim-in-tmux", "edit file(s) in tmux")(function(ctx)
   return { "Quit" }
 end)
 
+local vim_in_tmux_neww = m.cmd("vim-in-tmux-neww", "edit file(s) in new tmux window")(function(ctx)
+  if os.getenv("TMUX") == nil then
+    return { { LogError = "Not in tmux" } }
+  end
+  local pid = xplr.util.shell_execute("tmux", { "display", "-p", "#{pane_current_command} #{client_pid}" }).stdout:match("(%d+)")
+  local scpt = os.getenv("XDG_CONFIG_HOME") .. "/tmux/scripts/open_in_vim.sh"
+  local args = { pid, "-n" }
+  if #ctx.selection > 0 then
+    for _, node in ipairs(ctx.selection) do
+      table.insert(args, node.absolute_path)
+    end
+  else
+    table.insert(args, ctx.focused_node.absolute_path)
+  end
+  xplr.util.shell_execute(scpt, args)
+  return { "Quit" }
+end)
+
 local fif = m.cmd("fif", "search file contents")(function(ctx)
   return { "PopMode", { CallLua = "custom.fif.search" } }
 end)
 
-preview.bind(xplr.config.modes.custom.space, "tab")
+preview.bind(xplr.config.modes.builtin.action, "tab")
 -- xplr.config.modes.custom.preview.key_bindings.on_key.w = preview.action
 compare.bind(xplr.config.modes.builtin.selection_ops, "d")
 copy_path.bind(xplr.config.modes.builtin.default, "y")
@@ -140,4 +167,6 @@ add_to_alfred_buffer.bind(xplr.config.modes.builtin.default, "=")
 alfred_action.bind(xplr.config.modes.builtin.default, "x")
 alfred_action.bind(xplr.config.modes.builtin.selection_ops, "x")
 cd_in_tmux.bind(xplr.config.modes.builtin.default, "enter")
+cd_in_tmux_neww.bind(xplr.config.modes.custom.space, "enter")
 vim_in_tmux.bind(xplr.config.modes.builtin.default, "e")
+vim_in_tmux_neww.bind(xplr.config.modes.builtin.default, "E")

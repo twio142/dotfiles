@@ -2,6 +2,8 @@
 
 # Open files in nvim in the current pane if it is nvim
 # Otherwise open in a new window
+# Usage: [NEWW=1] open_in_vim.sh <client_pid> [-n] <file>...
+# NEWW=1|-n: Open in a new window
 
 open_in_existing_pane() {
   pane=$1
@@ -54,11 +56,14 @@ session=$(getSession $1)
 [ -z "$session" ] && exit 1
 shift
 
-tmux list-windows -t "$session" -F "#{window_active}	#{window_panes}	#{window_index}" | awk -F '\t' '$1 == "1" && $2 == "1" {print $3}' | while read window; do
-  tmux list-panes -t "$session:$window" -F "#S:#{window_index}.#P	#{pane_current_command}	#{pane_pid}" | while read pane; do
-    open_in_existing_pane $pane "$@"
+if [ "$1" = -n ]; then
+  shift
+elif [ "$NEWW" != 1 ]; then
+  tmux list-windows -t "$session" -F "#{window_active}	#{window_index}" | awk -F '\t' '$1 == "1" {print $2}' | while read window; do
+    tmux list-panes -t "$session:$window" -F "#S:#{window_index}.#P	#{pane_current_command}	#{pane_pid}" | while read pane; do
+      open_in_existing_pane $pane "$@"
+    done
   done
-done
-open_in_new_window $session:$window "$@" && exit 0;
+fi
 
-exit 1;
+open_in_new_window $session:$window "$@"

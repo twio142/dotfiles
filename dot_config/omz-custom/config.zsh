@@ -124,6 +124,7 @@ _fzf_comprun() {
     cd)           fzf --preview 'tree -C {} -L 4' "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    vim)          fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-s:reload(cat $XDG_CACHE_HOME/neomru/file | sed '2,10!d')" "$@" ;;
     chezmoi)      chezmoi managed -p absolute | fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-s:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})" "$@" ;;
     *)            fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" "$@" ;;
   esac
