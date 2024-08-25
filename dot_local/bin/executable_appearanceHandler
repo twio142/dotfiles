@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export PATH=$PATH:/opt/homebrew/bin:/usr/local/bin:$HOME/bin
+export PATH=$PATH:/opt/homebrew/bin:/usr/local/bin:$HOME/.local/bin
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 
 case $1 in

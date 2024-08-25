@@ -47,7 +47,7 @@ call NERDTreeAddKeyMap({
   \ 'scope': 'Node' })
 
 function! NERDTreeOpenInAlfred(node)
-  call system("~/bin/alfred " . shellescape(a:node.path.str(), 1))
+  call system("~/.local/bin/alfred " . shellescape(a:node.path.str(), 1))
 endfunction
 
 call NERDTreeAddKeyMap({
@@ -57,7 +57,7 @@ call NERDTreeAddKeyMap({
   \ 'scope': 'Node' })
 
 function! NERDTreeAddToAlfredBuffer(node)
-  call system("~/bin/altr -w com.nyako520.syspre -t buffer -a " . shellescape(a:node.path.str(), 1))
+  call system("~/.local/bin/altr -w com.nyako520.syspre -t buffer -a " . shellescape(a:node.path.str(), 1))
 endfunction
 
 call NERDTreeAddKeyMap({

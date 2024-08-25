@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=nvim
 export LESS="-R"
 export PAGER="bat --style=plain --color=always --paging=always --pager=less"

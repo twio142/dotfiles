@@ -188,7 +188,7 @@ items:
       - name: Lazygit
         key: g
         command:
-          lazygit
+          lzg
       - name: Files
         key: f
         command:

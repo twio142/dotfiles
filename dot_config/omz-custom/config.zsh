@@ -9,13 +9,14 @@
 # cd $brainstormr
 #
 
-source ~/bin/ssh-completion
+source ~/.local/bin/ssh-completion
 
 alias back='cd "$OLDPWD"'
 alias gdv='git difftool -y -t nvimdiff'
 alias reconfig='omz reload'
 alias vim=nvim
-alias btm='btm --theme nord$(test $(~/bin/background) = light && echo -light)'
+alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)'
+alias lzg=lazygit
 
 cn() { [ -z $1 ] && conda deactivate || conda activate $1 }
 co() { 1="$*"; gh copilot suggest "$1" }
@@ -37,15 +38,18 @@ gro() {
   url=$(echo $url | perl -pe 's/.+(git(hub|lab).com)[:\/]([^\/]+\/[^\/]+?)/https:\/\/\1\/\3/g')
   [ -z $url ] || open $url
 }
-ipy() { ${1:-~/bin/py3} -m IPython }
+ipy() { ${1:-~/.local/bin/py3} -m IPython }
+lzd() {
+  docker ps &> /dev/null && lazydocker || { echo Docker not running >&2; return 1 }
+}
 
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 # export HOMEBREW_CASK_OPTS=--require-sha
 export HOMEBREW_NO_ENV_HINTS=1
 # export HOMEBREW_NO_AUTO_UPDATE=1
-export PYTHON3_HOST_PROG=$HOME/bin/py3
-export PYTHON_HOST_PROG=$HOME/bin/py2
+export PYTHON3_HOST_PROG=$HOME/.local/bin/py3
+export PYTHON_HOST_PROG=$HOME/.local/bin/py2
 
 export DENO_INSTALL="$XDG_CACHE_HOME/deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -176,12 +180,12 @@ zle -N _fzf_image
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$PATH:$(ruby -e 'puts Gem.bindir')"
 source $(dirname $(gem which colorls))/tab_complete.sh
-alias ls='colorls --$(~/bin/background) --time-style="+%Y-%m-%d %H:%M"'
+alias ls='colorls --$(~/.local/bin/background) --time-style="+%Y-%m-%d %H:%M"'
 
 auto-color-ls() {
   emulate -L zsh
   echo
-  colorls --$(~/bin/background) -A --group-directories-first
+  colorls --$(~/.local/bin/background) -A --group-directories-first
 }
 
 chpwd_functions=(auto-color-ls $chpwd_functions)

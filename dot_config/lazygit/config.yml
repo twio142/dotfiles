@@ -22,7 +22,7 @@ os:
 git:
   paging:
     colorArg: always
-    pager: "delta --$($HOME/bin/background) --paging=never"
+    pager: "delta --$($HOME/.local/bin/background) --paging=never"
   truncateCopiedCommitHashesTo: 12
 keybinding:
   universal:

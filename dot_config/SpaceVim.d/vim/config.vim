@@ -153,7 +153,7 @@ if exists('$TMUX') && $TMUX != ''
 	fu! YankToTmux()
 		let @o = GetSelection()
 		let tmux_sess = system('tmux display -p \#S')
-		silent execute '! ~/bin/altr -w com.nyako520.tmux -t reg2buf -v reg=o -v "socket='. v:servername .'" -v sess=' . tmux_sess
+		silent execute '! ~/.local/bin/altr -w com.nyako520.tmux -t reg2buf -v reg=o -v "socket='. v:servername .'" -v sess=' . tmux_sess
 	endfunction
 
 	fu! PasteInTmux(pane, run)
@@ -161,7 +161,7 @@ if exists('$TMUX') && $TMUX != ''
 		let @o = GetSelection()
 		let tmux_pane = system('tmux display -p "#S:#{window_index}"')
 		let tmux_pane = substitute(tmux_pane, '\n', '', '') . '.' . a:pane
-		silent execute '! ~/bin/altr -w com.nyako520.tmux -t vim2tmux -v reg=o -v "socket='. v:servername .'" -v "pane=' . tmux_pane . '" -v run=' . a:run
+		silent execute '! ~/.local/bin/altr -w com.nyako520.tmux -t vim2tmux -v reg=o -v "socket='. v:servername .'" -v "pane=' . tmux_pane . '" -v run=' . a:run
 	endfunction
 
 	fu! PasteFromTmux(v)
@@ -176,6 +176,7 @@ if exists('$TMUX') && $TMUX != ''
 	xnoremap <silent> <Space>[ :<C-u>cal YankToTmux()<CR>
 	nnoremap <silent> <Space>] :<C-u>cal PasteFromTmux(0)<CR>
 	xnoremap <silent> <Space>] :<C-u>cal PasteFromTmux(1)<CR>
+	inoremap <silent> <C-]> <ESC>:<C-u>cal PasteFromTmux(0)<CR>
 	xnoremap <silent> <Space>- :<C-u>cal PasteInTmux(v:count, 1)<CR>
 	xnoremap <silent> <Space>_ :<C-u>cal PasteInTmux(v:count, 0)<CR>
 endif

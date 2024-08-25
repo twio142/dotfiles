@@ -4,39 +4,49 @@ xplr.config.modes.custom.git_status = {
 }
 
 local function format_status(text)
-  local function split_parts(text)
-    text = text .. "\n\n"
-    local parts = {}
-    for part in text:gmatch("(.-)\n\n") do
-      table.insert(parts, part)
-    end
-    return parts
-  end
-
   local function split_lines(text)
     text = text .. "\n"
     local lines = {}
-    for line in text:gmatch("([^\n]+)\n") do
+    for line in text:gmatch("([^\n]*)\n") do
       table.insert(lines, line)
     end
     return lines
   end
 
-  local parts = split_parts(text)
-  for i, part in pairs(parts) do
-    if part:match("^Changes to be committed:") then
-      local lines = split_lines(part)
-      parts[i] = lines[1] .. "\n" ..xplr.util.paint(table.concat(lines, "\n", 3), { fg = "Green" })
-    elseif part:match("^Changes not staged for commit:") then
-      local lines = split_lines(part)
-      parts[i] = lines[1] .. "\n" ..xplr.util.paint(table.concat(lines, "\n", 4), { fg = "Red" })
-    elseif part:match("^Untracked files:") then
-      local lines = split_lines(part)
-      parts[i] = lines[1] .. "\n" ..xplr.util.paint(table.concat(lines, "\n", 3), { fg = "Yellow" })
+  local lines = {}
+  local style = {}
+
+  for i, line in pairs(split_lines(text)) do
+    if i == 1 then
+      if line:match("^On branch") then
+        line = line:gsub("^(On branch )([^ ]+)", "%1" .. xplr.util.paint("%2", { add_modifiers = { "Bold" } }))
+      elseif line:match("^HEAD detached at") then
+        line = line:gsub("^(HEAD detached at) ([^ ]+)", xplr.util.paint("%1", { fg = "Red" }) .. xplr.util.paint("%2", { add_modifiers = { "Bold" } }))
+      end
+      table.insert(lines, line)
+    elseif line:match(' %(use "git .+') then
+      line = line:gsub(' +%(use "git [^)]+%)', "")
+      if line ~= "" then
+        table.insert(lines, line)
+      end
+    elseif line:match("^Changes to be committed:") then
+      table.insert(lines, line)
+      style = { fg = "Green" }
+    elseif line:match("^Changes not staged for commit:") then
+      table.insert(lines, line)
+      style = { fg = "Red" }
+    elseif line:match("^Untracked files:") then
+      table.insert(lines, line)
+      style = { fg = "Yellow" }
+    elseif line == "" then
+      table.insert(lines, line)
+      style = {}
+    elseif style ~= {} then
+      table.insert(lines, xplr.util.paint(line, style))
     end
   end
-  text = table.concat(parts, "\n\n"):gsub("^On branch ([^ ]+)\n", "On branch " .. xplr.util.paint("%1", { add_modifiers = { "Bold" } }) .. "\n")
-  return text
+
+  return table.concat(lines, "\n")
 end
 
 local function setup(ctx)

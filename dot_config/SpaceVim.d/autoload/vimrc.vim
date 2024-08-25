@@ -1,5 +1,5 @@
 function! SetBackground()
-  let g:spacevim_colorscheme_bg = system('~/bin/background')
+  let g:spacevim_colorscheme_bg = system('~/.local/bin/background')
   if g:spacevim_colorscheme_bg == 'light'
     set background=light
   else

@@ -57,11 +57,12 @@
   github_username = "twio142"
   enable_os_fileformat_icon = true
   escape_key_binding = "jh"
+  file_searching_tools = ['fd', 'fd --type f --hidden --follow --exclude ".DS_Store" --exclude ".git"']
 
   todo_labels = ["DIGIN", "TEST", "TODO", "BUG", "HERE", "EDITED", "FINDOUT", "fixme", "digin", "here", "edited", "test", "debug", "findout"]
   todo_prefix = "@"
 
-  project_rooter_patterns = ['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', 'info.plist', 'Package.swift', 'go.mod']
+  project_rooter_patterns = ['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', 'info.plist', 'Package.swift', 'go.mod', '.obsidian/']
   project_rooter_outermost = false
 
 [[layers]]
@@ -134,7 +135,7 @@
 
 [[layers]]
   name = "lang#python"
-  python_interpreter = "~/bin/py3"
+  python_interpreter = "~/.local/bin/py3"
 
 [[layers]]
   name = "lang#swift"

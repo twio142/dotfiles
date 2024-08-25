@@ -12,4 +12,3 @@ show_ssh() { # This function name must match the module name!
   module=$( build_status_module "$index" "$icon" "$color" "$text" )
   echo "$module"
 }
-

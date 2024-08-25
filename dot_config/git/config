@@ -13,14 +13,14 @@
   autocrlf = input
   quotepath = false
   excludesfile = ~/.config/git/.gitignore_global
-  pager = delta --$(~/bin/background)
+  pager = delta --$(~/.local/bin/background)
 [fetch]
   recurseSubmodules = true
 [diff]
   tool = nvimdiff
   colorMoved = default
 [interactive]
-  diffFilter = delta --$(~/bin/background) --color-only --features=interactive
+  diffFilter = delta --$(~/.local/bin/background) --color-only --features=interactive
 [delta]
   navigate = true
   features = decorations unobtrusive-line-numbers

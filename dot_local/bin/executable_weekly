@@ -57,4 +57,10 @@ git -C ${XDG_CONFIG_HOME:-~/.config}/SpaceVim pull
 git -C ~/Projects/ProperTree pull
 mas upgrade
 omz update
+for dir in $ZSH_CUSTOM/plugins/*; do
+  [ -d "$dir/.git" ] && git -C "$dir" pull
+done
+for dir in $ZSH_CUSTOM/themes/*; do
+  [ -d "$dir/.git" ] && git -C "$dir" pull
+done
 command -v gh && gh extension upgrade --all

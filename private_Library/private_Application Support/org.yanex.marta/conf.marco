@@ -96,14 +96,14 @@ gadgets [
         id "gadget.vim"
         name "Open Fild / Folder in Vim"
         type "executable"
-        executable "~/bin/altr"
+        executable "~/.local/bin/altr"
         args [ "-t" "vim" "-w" "com.nyako520.program" "-a" "${current.file.path}" ]
     }
     {
         id "gadget.alfred.new"
         name "New File with Alfred"
         type "executable"
-        executable "~/bin/altr"
+        executable "~/.local/bin/altr"
         args [ "-t" "new_file" "-w" "custom.fileaction" "-a" "${current.file.path}" "-v" "bid=org.yanex.marta" ]
     }
 

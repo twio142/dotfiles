@@ -9,8 +9,7 @@ if [[ ! -z $TMUX && -z $alfred_version && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p1
 fi
 
 # # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$HOME/bin:/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$XDG_DATA_HOME"/oh-my-zsh
@@ -89,7 +88,6 @@ plugins=(
     docker
     git
     git-flow
-    gitignore
     npm
     vscode
     F-Sy-H

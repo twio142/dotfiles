@@ -11,7 +11,7 @@ require("fzf").setup{
 
 require("fzf").setup{
   name = "fif",
-  bin = os.getenv("HOME") .. "/bin/fif",
+  bin = "fif",
   args = "-o",
   recursive = true,
   mode = "search",

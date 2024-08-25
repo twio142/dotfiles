@@ -80,7 +80,7 @@ local function show_in_alfred()
     return
   end
   path = escape(path)
-  os.execute("~/bin/alfred " .. path)
+  os.execute("~/.local/bin/alfred " .. path)
 end
 
 local function add_to_alfred_buffer(marks)
@@ -91,7 +91,7 @@ local function add_to_alfred_buffer(marks)
       table.insert(paths, escape(node.absolute_path))
     end
     if #paths > 0 then
-      os.execute("~/bin/altr -w com.nyako520.syspre -t buffer -a - " .. table.concat(paths, " "))
+      os.execute("~/.local/bin/altr -w com.nyako520.syspre -t buffer -a - " .. table.concat(paths, " "))
       api.marks.clear()
     end
   else
@@ -99,7 +99,7 @@ local function add_to_alfred_buffer(marks)
     if not path then
       return
     end
-    os.execute("~/bin/altr -w com.nyako520.syspre -t buffer -a " .. path)
+    os.execute("~/.local/bin/altr -w com.nyako520.syspre -t buffer -a " .. path)
     path = escape(path)
   end
 end
@@ -328,7 +328,7 @@ local function custom_one()
 end
 
 local function set_background()
-  local handle = io.popen('~/bin/background')
+  local handle = io.popen('~/.local/bin/background')
   local result = handle:read('*a')
   handle:close()
   result = result:gsub('%s+', '')
