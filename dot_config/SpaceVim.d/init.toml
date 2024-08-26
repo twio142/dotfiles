@@ -57,7 +57,7 @@
   github_username = "twio142"
   enable_os_fileformat_icon = true
   escape_key_binding = "jh"
-  file_searching_tools = ['fd', 'fd --type f --hidden --follow --exclude ".DS_Store" --exclude ".git"']
+  file_searching_tools = ['fd', 'fd --type f -H -L --exclude ".DS_Store" --exclude ".git"']
 
   todo_labels = ["DIGIN", "TEST", "TODO", "BUG", "HERE", "EDITED", "FINDOUT", "fixme", "digin", "here", "edited", "test", "debug", "findout"]
   todo_prefix = "@"

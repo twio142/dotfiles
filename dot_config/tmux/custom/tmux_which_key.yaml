@@ -47,9 +47,9 @@ items:
       - name: New
         key: c
         command: neww -c "$HOME"
-      - name: Copy
+      - name: New …
         key: C
-        command: copy-window 
+        command: command-prompt -T command "neww \"%1\""
       - separator: true
       - name: Rename
         key: R
@@ -145,7 +145,7 @@ items:
         command: capture-pane
       - name: Respawn pane
         key: R
-        command: respawnp -k -c "#{pane_current_path}"
+        command: run-shell $XDG_CONFIG_HOME/tmux/scripts/restart_pane.sh
       - name: Kill
         key: q
         command: 'confirm -p "Kill pane #P? (y/n)" killp'
@@ -308,7 +308,7 @@ items:
         command: ER
       - name: Edit config
         key: e
-        command: edit-config
+        command: EF
       - name: Customize
         key: ","
         command: customize-mode -Z

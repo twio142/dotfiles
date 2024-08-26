@@ -2,7 +2,7 @@ require("fzf").setup{
   name = "autojump",
   args = [[ --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
     --bind "change:reload:autojump --complete '{q}' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
-    --disabled --preview 'tree -C {} -L 4' | xargs -I {} realpath "{}" ]],
+    --disabled --preview 'tree -C {} -L 4' | xargs -I _ rp "_" ]],
   recursive = true,
   enter_dir = true,
   mode = "go_to",

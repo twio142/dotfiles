@@ -54,7 +54,12 @@ require("xpm").setup({
     { name = 'twio142/fzf.xplr', rev = 'main', setup = function()
       require("fzf").setup{
         bin = "fd",
-        args = "--hidden --follow --exclude .DS_Store --exclude .git . . | fzf -m --preview '$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}'",
+        args = [[ -H -L --exclude .DS_Store --exclude .git . . | fzf -m --preview '$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}' \
+        --bind 'alt-d:reload(fd --type d -H -L --exclude .DS_Store --exclude .git {q})+change-header( Directories )' \
+        --bind 'alt-l:reload(fd --type l -H -L --exclude .DS_Store --exclude .git {q})+change-header( Symbolic links )' \
+        --bind 'alt-s:reload(fd --type s -H -L --exclude .DS_Store --exclude .git {q})+change-header( Sockets )' \
+        --bind 'alt-f:reload(fd --type f -H -L --exclude .DS_Store --exclude .git {q})+change-header( Files )' \
+        --bind 'alt-x:reload(fd --type x -H -L --exclude .DS_Store --exclude .git {q})+change-header( Executables )' ]],
         recursive = true,
         enter_dir = true,
       }
@@ -106,6 +111,7 @@ require("xpm").setup({
   auto_cleanup = true,
 })
 
+xplr.config.general.scroll_padding = 5
 xplr.config.general.show_hidden = true
 xplr.config.general.focus_ui.style.add_modifiers = { "Bold" }
 xplr.config.node_types.symlink.meta.icon = xplr.util.paint(" ", { fg = "Cyan" })

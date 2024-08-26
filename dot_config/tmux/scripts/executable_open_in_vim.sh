@@ -12,6 +12,7 @@ open_in_existing_pane() {
   read win cmd pid <<< $pane
   case $cmd in
     nvim)
+      [ $NEWW = 1 ] && return
       until (ps -o command= -p $pid | grep -Eq "^nvim --embed"); do
         pid=$(pgrep -P $pid 2> /dev/null)
         [ -z "$pid" ] && break
@@ -57,13 +58,14 @@ session=$(getSession $1)
 shift
 
 if [ "$1" = -n ]; then
+  NEWW=1
   shift
-elif [ "$NEWW" != 1 ]; then
-  tmux list-windows -t "$session" -F "#{window_active}	#{window_index}" | awk -F '\t' '$1 == "1" {print $2}' | while read window; do
-    tmux list-panes -t "$session:$window" -F "#S:#{window_index}.#P	#{pane_current_command}	#{pane_pid}" | while read pane; do
-      open_in_existing_pane $pane "$@"
-    done
-  done
 fi
+
+tmux list-windows -t "$session" -F "#{window_active}	#{window_index}" | awk -F '\t' '$1 == "1" {print $2}' | while read window; do
+  tmux list-panes -t "$session:$window" -F "#S:#{window_index}.#P	#{pane_current_command}	#{pane_pid}" | while read pane; do
+    open_in_existing_pane $pane "$@"
+  done
+done
 
 open_in_new_window $session:$window "$@"

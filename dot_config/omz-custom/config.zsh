@@ -109,12 +109,12 @@ export FZF_CTRL_R_OPTS="--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+ab
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude ".DS_Store" --exclude ".git" . "$1"
+  fd -H -L --exclude ".DS_Store" --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
+  fd --type d -H -L --exclude ".git" . "$1"
 }
 
 # Advanced customization of fzf options via _fzf_comprun function
@@ -128,8 +128,8 @@ _fzf_comprun() {
     cd)           fzf --preview 'tree -C {} -L 4' "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    vim)          fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-s:reload(cat $XDG_CACHE_HOME/neomru/file | sed '2,10!d')" "$@" ;;
-    chezmoi)      chezmoi managed -p absolute | fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-s:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})" "$@" ;;
+    vim)          fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-r:reload(cat $XDG_CACHE_HOME/neomru/file | sed '2,10!d')+change-header( Recent files )" "$@" ;;
+    chezmoi)      chezmoi managed -p absolute | fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "alt-d:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
     *)            fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" "$@" ;;
   esac
 }
@@ -180,7 +180,7 @@ zle -N _fzf_image
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$PATH:$(ruby -e 'puts Gem.bindir')"
 source $(dirname $(gem which colorls))/tab_complete.sh
-alias ls='colorls --$(~/.local/bin/background) --time-style="+%Y-%m-%d %H:%M"'
+alias ls='colorls --$(~/.local/bin/background) --time-style="+%F %R"'
 
 auto-color-ls() {
   emulate -L zsh

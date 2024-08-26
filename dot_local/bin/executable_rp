@@ -1,0 +1,16 @@
+#!/bin/zsh
+# rp - get real path (case sensitive) of a file
+
+[ -e "${1:a}" ] || { echo "File not found" ; exit 1 }
+
+for o in "${@:a}"; do
+  i=2
+  while true; do
+    local d=$(eval "echo \${o:h${i}}")
+    (( i++ ))
+    local t=$(eval "echo \${o:h${i}:t}")
+    local e=$(fd -d 1 -H --glob "$t" "$d" | sd '\/$' '')
+    [ ${#e} -eq ${#o} ] && { echo $e; break; }
+    o=$e${o:${#e}}
+  done
+done

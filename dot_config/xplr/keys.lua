@@ -326,7 +326,7 @@ xplr.config.modes.builtin.delete.key_bindings.on_key.d = {
       BashExecSilently0 = [===[
         while IFS= read -r -d "" line; do
           if err=$(trash -F "${line:?}"); then
-            "$XPLR" -m "LogSuccess: %q" "Trashed $line"
+            "$XPLR" -m "LogSuccess: %q" "File trashed: $line"
           else
             "$XPLR" -m "LogError: %q" "$err"
           fi
@@ -344,7 +344,7 @@ xplr.config.modes.builtin.delete.key_bindings.on_key.E = {
     {
       BashExecSilently0 = [===[
         if err=$(trash -e -y); then
-          "$XPLR" -m "LogSuccess: %q" "Emptied trash"
+          "$XPLR" -m "LogSuccess: %q" "Trash emptied"
         else
           "$XPLR" -m "LogError: %q" "$err"
         fi
