@@ -55,7 +55,8 @@ augroup Markdown
 	autocmd!
 	au FileType markdown setlocal wrapmargin=2
 	au FileType markdown setlocal matchpairs+=（:）,「:」
-	au FileType markdown setlocal tabstop=4 | setlocal shiftwidth=4
+	au FileType markdown setlocal tabstop=4
+    au FileType markdown setlocal shiftwidth=4
 	au FileType markdown setlocal spell
 augroup END
 

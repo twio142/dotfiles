@@ -38,12 +38,12 @@ items:
       - name: Choose
         key: w
         command: choose-tree -Zw
-      - name: Previous
-        key: p
-        command: previous-window
       - name: Next
         key: n
         command: "run-shell $XDG_CONFIG_HOME/tmux/scripts/next_window.sh" 
+      - name: Previous
+        key: p
+        command: previous-window
       - name: New
         key: c
         command: neww -c "$HOME"
@@ -52,11 +52,14 @@ items:
         command: command-prompt -T command "neww \"%1\""
       - separator: true
       - name: Rename
-        key: R
+        key: r
         command: command-prompt -I "#W" "renamew -- \"%%\""
       - name: Kill
         key: q
         command: 'confirm -p "Kill window #W? (y/n)" killw'
+      - name: Kill others
+        key: Q
+        command: 'confirm -p "Kill other windows? (y/n)" killw -a'
   - name: +Panes
     key: p
     menu:
@@ -66,89 +69,35 @@ items:
       - name: Choose
         key: p
         command: displayp -d 0
-      - separator: true
-      - name: Left
-        key: h
-        command: selectp -L
-      - name: Down
-        key: j
-        command: selectp -D
-      - name: Up
-        key: k
-        command: selectp -U
-      - name: Right
-        key: l
-        command: selectp -R
-      - separator: true
       - name: Zoom
         key: z
         command: resizep -Z
-      - name: +Resize
-        key: r
-        menu:
-          - name: Left
-            key: h
-            command: resizep -L
-            transient: true
-          - name: Down
-            key: j
-            command: resizep -D
-            transient: true
-          - name: Up
-            key: k
-            command: resizep -U
-            transient: true
-          - name: Right
-            key: l
-            command: resizep -R
-            transient: true
-          - name: Left more
-            key: H
-            command: resizep -L 10
-            transient: true
-          - name: Down more
-            key: J
-            command: resizep -D 10
-            transient: true
-          - name: Up more
-            key: K
-            command: resizep -U 10
-            transient: true
-          - name: Right more
-            key: L
-            command: resizep -R 10
-            transient: true
-      - name: Swap left
-        key: H
-        command: swapp -t "{left-of}"
-      - name: Swap down
-        key: J
-        command: swapp -t "{down-of}"
-      - name: Swap up
-        key: K
-        command: swapp -t "{up-of}"
-      - name: Swap right
-        key: L
-        command: swapp -t "{right-of}"
-      - name: Break
-        key: "!"
-        command: break-pane
+      - separator: true
+      - name: Split
+        key: "-"
+        command: "splitw -v -l 35% -c #{pane_current_path}"
+      - name: Split …
+        key: "_"
+        command: command-prompt -T command "splitw -v -l 35% \"%1\""
+      - name: Vsplit
+        key: \\
+        command: "splitw -h -c #{pane_current_path}"
+      - name: Vsplit …
+        key: "|"
+        command: command-prompt -T command "splitw -h \"%1\""
       - separator: true
       - name: Mark
         key: m
         command: selectp -m
-      - name: Unmark
-        key: M
-        command: selectp -M
-      - name: Capture
-        key: C
-        command: capture-pane
-      - name: Respawn pane
-        key: R
-        command: run-shell $XDG_CONFIG_HOME/tmux/scripts/restart_pane.sh
       - name: Kill
         key: q
         command: 'confirm -p "Kill pane #P? (y/n)" killp'
+      - name: Break
+        key: b
+        command: break-pane
+      - name: Respawn pane
+        key: R
+        command: run-shell $XDG_CONFIG_HOME/tmux/scripts/restart_pane.sh
   - name: +Layout
     key: l
     menu:
@@ -156,32 +105,127 @@ items:
         key: n
         command: nextl
         transient: true
+      - name: Previous
+        key: p
+        command: prevl
+        transient: true
       - name: Spread evenly
         key: "="
         command: selectl tiled
-      - name: Horizontal
+      - separator: true
+      - name: Swap left
         key: h
-        command: selectl even-horizontal
-      - name: Vertical
-        key: v
-        command: selectl even-vertical
-      - name: Split horizontal
-        key: "|"
-        command: "splitw -h -c #{pane_current_path}"
-      - name: Split vertical
-        key: "-"
-        command: "splitw -v -l 35% -c #{pane_current_path}"
-      - name: Split copy
-        key: c
-        command: split-copy
+        command: swapp -t "{left-of}"
+      - name: Swap down
+        key: j
+        command: swapp -t "{down-of}"
+      - name: Swap up
+        key: k
+        command: swapp -t "{up-of}"
+      - name: Swap right
+        key: l
+        command: swapp -t "{right-of}"
       - name: Rotate
         key: o
         command: rotatew
         transient: true
-      - name: Rotate reverse
-        key: O
-        command: rotatew -D
-        transient: true
+      - separator: true
+      - name: Split copy
+        key: c
+        command: split-copy
+  - name: +Buffers
+    key: b
+    menu:
+      - name: Choose
+        key: b
+        command: choose-buffer -Z
+      - name: Paste
+        key: p
+        command: pasteb
+      - name: Copy to clipboard
+        key: c
+        command: run-shell "tmux show-buffer | pbcopy"
+      - name: Load from clipboard
+        key: v
+        command: run-shell "pbpaste | tmux load-buffer -"
+  - name: +Sessions
+    key: s
+    menu:
+      - name: Last
+        key: tab
+        command: switchc -l
+      - name: Choose
+        key: s
+        command: choose-tree -Zs
+      - name: Next
+        key: n
+        command: switchc -n
+      - name: Previous
+        key: p
+        command: switchc -p
+      - name: New
+        key: c
+        command: new
+      - name: Rename
+        key: r
+        command: rename
+      - separator: true
+      - name: Suspend
+        key: z
+        command: suspendc
+      - name: Kill others
+        key: Q
+        command: 'confirm -p "Kill other sessions? (y/n)" kill-session -a'
+      - name: Detach
+        key: d
+        command: detach
+      - name: Detach others
+        key: D
+        command: detach-client -a
+  - name: +App
+    key: a
+    menu:
+      - name: Sidebar
+        key: o
+        command: toggle-sidebar
+      - name: xplr
+        key: x
+        command: xplr
+      - name: Bottom
+        key: b
+        command: btm
+      - name: Lazydocker
+        key: d
+        command: lzd
+      - separator: true
+      - name: Reload config
+        key: r
+        command: ER
+      - name: Edit config
+        key: e
+        command: EF
+      - name: +Plugins
+        key: p
+        menu:
+          - name: Install
+            key: i
+            command:
+              run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/install_plugins
+          - name: Update
+            key: u
+            command:
+              run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/update_plugins
+          - name: Clean
+            key: c
+            command:
+              run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/clean_plugins
+      - separator: true
+      - name: Store sessions
+        key: S
+        command: "run-shell $XDG_CONFIG_HOME/tmux/scripts/store_sessions.sh"
+      - name: Restore sessions
+        key: R
+        command: "run-shell $XDG_CONFIG_HOME/tmux/plugins/tmux-resurrect/scripts/restore.sh"
   - name: +Git
     key: g
     menu:
@@ -225,93 +269,6 @@ items:
         key: w
         command:
           run-shell -b "type=worktrees $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
-  - name: +Buffers
-    key: b
-    menu:
-      - name: Choose
-        key: b
-        command: choose-buffer -Z
-      - name: List
-        key: l
-        command: lsb
-      - name: Paste
-        key: p
-        command: pasteb
-      - name: Save to clipboard
-        key: c
-        command: run-shell "tmux show-buffer | pbcopy"
-      - name: Load from clipboard
-        key: v
-        command: run-shell "pbpaste | tmux load-buffer -"
-  - name: +Sessions
-    key: s
-    menu:
-      - name: Choose
-        key: s
-        command: choose-tree -Zs
-      - name: New
-        key: N
-        command: new
-      - name: Rename
-        key: r
-        command: rename
-      - separator: true
-      - name: Store
-        key: S
-        command: "run-shell $XDG_CONFIG_HOME/tmux/scripts/store_sessions.sh"
-      - name: Restore
-        key: R
-        command: "run-shell $XDG_CONFIG_HOME/tmux/plugins/tmux-resurrect/scripts/restore.sh"
-  - name: +Client
-    key: c
-    menu:
-      - name: Choose
-        key: c
-        command: choose-client -Z
-      - name: Last
-        key: l
-        command: switchc -l
-      - name: Previous
-        key: p
-        command: switchc -p
-      - name: Next
-        key: n
-        command: switchc -n
-      - separator: true
-      - name: Refresh
-        key: R
-        command: refresh
-      - name: +Plugins
-        key: P
-        menu:
-          - name: Install
-            key: i
-            command:
-              run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/install_plugins
-          - name: Update
-            key: u
-            command:
-              run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/update_plugins
-          - name: Clean
-            key: c
-            command:
-              run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/clean_plugins
-      - name: Detach
-        key: d
-        command: detach
-      - name: Suspend
-        key: z
-        command: suspendc
-      - separator: true
-      - name: Reload config
-        key: r
-        command: ER
-      - name: Edit config
-        key: e
-        command: EF
-      - name: Customize
-        key: ","
-        command: customize-mode -Z
   - separator: true
   - name: +Help
     key: h

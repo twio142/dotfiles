@@ -1,7 +1,7 @@
 function! CustomOne()
   if g:colors_name ==# 'one'
     if &background ==# 'dark'
-      let s:col='101020'
+      let s:col='090020'
       call one#highlight('Normal', '', s:col, '')
       call one#highlight('Conceal', '', s:col, '')
       call one#highlight('PMenuSbar', '', s:col, '')

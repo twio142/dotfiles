@@ -1,3 +1,3 @@
-export LC_CTYPE=UTF-8
+export LC_ALL="en_US.UTF-8"
 export HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/bash/history
 export PS1='\e[38;5;26m\t \e[1m\u\e[0m $ '

@@ -57,17 +57,13 @@ xplr.config.general.global_key_bindings.on_key["alt-h"] = {
     { CallLuaSilently = "custom.removeLastSelection" },
   }
 }
-xplr.config.general.global_key_bindings.on_key["alt-r"] = {
+on_key.backspace = {
   help = "clear selection",
-  messages = {
-    "ClearSelection",
-  }
+  messages = { "ClearSelection" }
 }
 xplr.config.general.global_key_bindings.on_key["alt-a"] = {
   help = "toggle select all",
-  messages = {
-    "ToggleSelectAll",
-  }
+  messages = { "ToggleSelectAll" }
 }
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.l = nil
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.r = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u
@@ -401,14 +397,7 @@ xplr.config.modes.builtin.go_to.key_bindings.on_key["]"] = {
 }
 
 -- help
-xplr.config.modes.builtin.action.key_bindings.on_key.l.messages = {
-  {
-    BashExec = [===[
-      [ -z "$PAGER" ] && PAGER="less -+F"
-      cat -- "${XPLR_PIPE_LOGS_OUT}" | ${PAGER:?} -l log
-    ]===],
-  },
-}
+xplr.config.modes.builtin.action.key_bindings.on_key.l = nil
 
 local help = xplr.config.general.global_key_bindings.on_key["f1"]
 help.messages = {

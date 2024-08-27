@@ -1,5 +1,5 @@
 behavior {
-    theme "T Light"
+    theme "T"
     quickSelect {
         activateOnAnyCharacter false
     }

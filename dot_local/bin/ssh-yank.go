@@ -1,12 +1,9 @@
 /*
- * This program listens on a TCP port and copies the data it receives to the clipboard.
+ * This program listens on a local TCP port and copies the received data to the clipboard.
  *
  * Port number can be set with $PORT. Default is 54321.
  *
- * If the remote machine can access your local port directly, you can use this to copy
- *   echo "Hello, world" | nc -w 1 $(echo $SSH_CLIENT | cut -d' ' -f1) 54321
- *
- * Otherwise, use SSH port forwarding to log in to the remote machine:
+ * Log into the remote machine with remote port forwarding:
  *   ssh -R 12345:localhost:54321 user@remote
  * And copy data using:
  *   echo "Hello, world" | nc -w 1 localhost 12345
@@ -25,16 +22,13 @@ import (
 )
 
 func handleConnection(conn net.Conn) {
-	// Create a pipe for connecting to pbcopy
 	r, w := io.Pipe()
 
-	// Start pbcopy command
 	cmd := exec.Command("pbcopy")
 	cmd.Stdin = r
-	cmd.Stdout = io.Discard // Discard stdout as we don't need it
-	cmd.Stderr = io.Discard // Discard stderr
+	cmd.Stdout = io.Discard
+	cmd.Stderr = io.Discard
 
-	// Start the pbcopy command
 	err := cmd.Start()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error starting pbcopy:", err)
@@ -42,7 +36,6 @@ func handleConnection(conn net.Conn) {
 		return
 	}
 
-	// Copy data from the connection to the pipe
 	go func() {
 		defer conn.Close()
 		defer w.Close()
@@ -52,7 +45,6 @@ func handleConnection(conn net.Conn) {
 		}
 	}()
 
-	// Wait for pbcopy to finish
 	err = cmd.Wait()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error running pbcopy:", err)
@@ -60,8 +52,7 @@ func handleConnection(conn net.Conn) {
 }
 
 func runListener(port string) {
-	// Listen on TCP port
-	listener, err := net.Listen("tcp", ":"+port)
+	listener, err := net.Listen("tcp", "127.0.0.1:"+port)
 	if err != nil {
 		log.Fatalf("Error creating listener: %v", err)
 	}
@@ -72,14 +63,11 @@ func runListener(port string) {
 		if !isSSHRunning() {
 			os.Exit(0)
 		}
-		// Accept new connections
 		conn, err := listener.Accept()
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "Error accepting connection:", err)
 			continue
 		}
-
-		// Handle each connection concurrently
 		go handleConnection(conn)
 	}
 }

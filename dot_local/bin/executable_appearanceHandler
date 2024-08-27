@@ -27,17 +27,16 @@ tmux run-shell ${XDG_CONFIG_HOME}/tmux/plugins/tmux/catppuccin.tmux
 
 # Alacritty theme
 if [ -f ${XDG_CONFIG_HOME}/alacritty/$mode.toml ]; then
-  sd '(# COLORTHEME[\s\n]+import).+' '$1 = ["~/.config/alacritty/'$mode'.toml"]' ${XDG_CONFIG_HOME}/alacritty/alacritty.toml
+  ln -sf ${XDG_CONFIG_HOME}/alacritty/$mode.toml ${XDG_CONFIG_HOME}/alacritty/colors.toml
+  touch ${XDG_CONFIG_HOME}/alacritty/alacritty.toml
 fi
 
 # Hammerspoon
 hs -A -c "consoleDM()"
 
-mode=${mode:0:1:u}${mode:1}
-
 # Marta theme
-sd '(theme )".+?"' '$1"T '$mode'"' ~/Library/Application\ Support/org.yanex.marta/conf.marco
+ln -sf ~/Library/Application\ Support/org.yanex.marta/Themes/$mode ~/Library/Application\ Support/org.yanex.marta/Themes/T.theme
 
 # Terminal theme
-defaults write com.apple.Terminal 'Default Window Settings' "T $mode"
-defaults write com.apple.Terminal 'Startup Window Settings' "T $mode"
+defaults write com.apple.Terminal 'Default Window Settings' "T ${mode:0:1:u}${mode:1}"
+defaults write com.apple.Terminal 'Startup Window Settings' "T ${mode:0:1:u}${mode:1}"

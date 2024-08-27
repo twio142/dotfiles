@@ -20,8 +20,13 @@ local open_in_vscode = m.silent_cmd("vscode", "open in VSCode")(
 )
 
 local preview = m.silent_cmd("preview", "preview file")(
+  m.BashExec [[ $XDG_CONFIG_HOME/fzf/fzf-preview.sh "${XPLR_FOCUS_PATH:?}" | less -R ]]
+)
+
+local dust = m.cmd("dust", "disk usage")(
   m.BashExec [===[
-    $XDG_CONFIG_HOME/fzf/fzf-preview.sh "${XPLR_FOCUS_PATH:?}" | less -R
+    read -r r c < <(stty size < /dev/tty)
+    dust -C -w $(( c - 1 )) -n $(( r - 2 )) | less -R
   ]===]
 )
 
@@ -157,9 +162,10 @@ end)
 
 preview.bind(xplr.config.modes.builtin.action, "tab")
 -- xplr.config.modes.custom.preview.key_bindings.on_key.w = preview.action
+dust.bind(xplr.config.modes.custom.space, "u")
 compare.bind(xplr.config.modes.builtin.selection_ops, "d")
 copy_path.bind(xplr.config.modes.builtin.default, "y")
-paste_path.bind(xplr.config.modes.builtin.default, "p")
+paste_path.bind(xplr.config.modes.custom.space, "p")
 copy_to_tmux.bind(xplr.config.modes.builtin.default, "Y")
 paste_from_tmux.bind(xplr.config.modes.builtin.default, "P")
 browse_in_alfred.bind(xplr.config.modes.builtin.default, "a")

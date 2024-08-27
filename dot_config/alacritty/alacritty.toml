@@ -1,5 +1,4 @@
-# COLORTHEME
-import = ["~/.config/alacritty/light.toml"]
+import = ["~/.config/alacritty/colors.toml"]
 
 shell = { program = "/bin/zsh", args = ["-lc", "tmux"] }
 
@@ -21,13 +20,15 @@ draw_bold_text_with_bright_colors = true
 [keyboard]
 bindings = [
   { key = "Left", mods = "Super", chars = "\u0001" },
+  { key = "Left" , mods = "Alt", chars = "\u001b\u0062" },
   { key = "Right", mods = "Super", chars = "\u0005" },
+  { key = "Right", mods = "Alt", chars = "\u001b\u0066" },
   { key = "Back", mods = "Super", chars = "\u0015" },
-  { key = "Delete", mods = "Super", chars = "\u000B" },
-  { key = "Back", mods = "Alt", chars = "\u001B\u007F" },
-  { key = "Delete", mods = "Alt", chars = "\u001B\u0064" },
+  { key = "Delete", mods = "Super", chars = "\u001b\u006b" },
+  { key = "Back", mods = "Alt", chars = "\u001b\u007f" },
+  { key = "Delete", mods = "Alt", chars = "\u001b\u0064" },
   { key = "Z", mods = "Super", chars = "\u0018u" },
-  { key = "Space", mods = "Shift", chars = "\u001B\u0020" },
+  { key = "Space", mods = "Shift", chars = "\u001b\u0020" },
   { key = "Space", mods = "Super|Control", action = "ToggleViMode" },
   { key = "T", mods = "Super", action = "None" },
 ]

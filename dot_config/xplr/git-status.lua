@@ -80,10 +80,20 @@ local function render(ctx)
   }
 end
 
+local function lazygit(ctx)
+  local test = xplr.util.shell_execute("git", { "-C", ctx.pwd, "rev-parse", "--show-toplevel" })
+  if test.returncode ~= 0 then
+    return {{ LogError = test.stderr }}
+  else
+    return {{ BashExec = "lazygit" }}
+  end
+end
+
 xplr.fn.custom.git_status = {
   setup = setup,
   render = render,
   format = format_status,
+  lazygit = lazygit,
 }
 
 xplr.config.modes.builtin.go_to.key_bindings.on_key.s = {
@@ -91,6 +101,14 @@ xplr.config.modes.builtin.go_to.key_bindings.on_key.s = {
   messages = {
     "PopMode",
     { SwitchModeCustom = "git_status" },
+  },
+}
+
+xplr.config.modes.builtin.go_to.key_bindings.on_key.S = {
+  help = "LazyGit",
+  messages = {
+    "PopMode",
+    { CallLuaSilently = "custom.git_status.lazygit" },
   },
 }
 

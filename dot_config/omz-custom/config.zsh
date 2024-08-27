@@ -54,13 +54,11 @@ export PYTHON_HOST_PROG=$HOME/.local/bin/py2
 export DENO_INSTALL="$XDG_CACHE_HOME/deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-export PATH="$HOME/Projects/netzwerk/accounting/bin:$PATH"
-# . "$HOME/projects/netzwerk/accounting/lib/act_completion"
-
 export PATH="$PATH:$HOME/.local/bin"
 
 export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
+export NODE_PATH=$(npm root -g)
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 # export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
@@ -92,90 +90,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 export PATH="$HOME/miniconda3/bin:$PATH"
 
-### FZF OPTIONS ###
-
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-[ -z $alfred_version ] && . ${XDG_CONFIG_HOME:-~/.config}/fzf/fzf-git.sh
-
-export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer=➤ --bind="ctrl-d:preview-down" --bind="ctrl-u:preview-up"'
-
-# Use `` as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER="\`\`"
-# Options to fzf command
-export FZF_COMPLETION_OPTS="$FZF_DEFAULT_OPTS"
-export FZF_CTRL_R_OPTS="--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
-# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
-_fzf_compgen_path() {
-  fd -H -L --exclude ".DS_Store" --exclude ".git" . "$1"
-}
-
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type d -H -L --exclude ".git" . "$1"
-}
-
-# Advanced customization of fzf options via _fzf_comprun function
-# - The first argument to the function is the name of the command.
-# - You should make sure to pass the rest of the arguments to fzf.
-_fzf_comprun() {
-  local command=$1
-  shift
-
-  case "$command" in
-    cd)           fzf --preview 'tree -C {} -L 4' "$@" ;;
-    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
-    ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    vim)          fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-r:reload(cat $XDG_CACHE_HOME/neomru/file | sed '2,10!d')+change-header( Recent files )" "$@" ;;
-    chezmoi)      chezmoi managed -p absolute | fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "alt-d:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
-    *)            fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" "$@" ;;
-  esac
-}
-
-# >>> autojump >>>
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
-# <<< autojump <<<
-
-_autojump_fzf() {
-  autojump --purge &> /dev/null
-  local dir=$(fzf --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
-    --bind "change:reload:autojump --complete '{q}' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
-    --disabled \
-    --preview 'tree -C {} -L 4' \
-    --height=30%)
-  if [[ -z "$dir" || ! -d "$dir" ]]
-  then
-    zle redisplay
-    return 0
-  fi
-  zle push-line
-  BUFFER="builtin cd -- ${(q)dir:a}"
-  zle accept-line
-  local ret=$?
-  unset dir
-  zle reset-prompt
-  return $ret
-}
-zle -N _autojump_fzf
-
-_fzf_image() {
-  local query=${LBUFFER##* }
-  local selected=$(fd --exclude ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --preview-window='bottom,80%')
-  local ret=$?
-  if [[ -n $selected ]]; then
-    LBUFFER=${LBUFFER% *}
-    echo -n $selected | while read -r line; do
-      LBUFFER+=\ ${line:q}
-    done
-  fi
-  unset query selected
-  zle reset-prompt
-  return $ret
-}
-zle -N _fzf_image
+source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$PATH:$(ruby -e 'puts Gem.bindir')"
@@ -189,6 +104,9 @@ auto-color-ls() {
 }
 
 chpwd_functions=(auto-color-ls $chpwd_functions)
+
+export PATH="$HOME/Projects/netzwerk/accounting/bin:$PATH"
+# . "$HOME/projects/netzwerk/accounting/lib/act_completion"
 
 # tmux
 
@@ -241,6 +159,7 @@ bindkey '^[[1;9D' backward-word
 bindkey '^[g' _autojump_fzf
 bindkey '^[v' vi-cmd-mode
 bindkey '^[k' kill-line
+bindkey '^[r' _fzf_repos
 bindkey '^U' backward-kill-line
 bindkey '^J' down-line-or-select
 bindkey -M menuselect '^J' down-history

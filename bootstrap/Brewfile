@@ -70,6 +70,8 @@ brew "curlie"
 brew "defaultbrowser"
 # Secure communications between a client and a DNS resolver
 brew "dnscrypt-proxy"
+# More intuitive version of du in rust
+brew "dust"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Asynchronous event library

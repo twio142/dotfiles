@@ -2,19 +2,17 @@ xplr.config.modes.custom.space = {
   name = "space",
   key_bindings = {
     on_key = {
-      g = {
-        help = "autojump",
+      l = {
+        help = "logs",
         messages = {
+          {
+            BashExec = [[
+              [ -z "$PAGER" ] && PAGER="less -+F"
+              cat -- "${XPLR_PIPE_LOGS_OUT}" | ${PAGER:?} -l log
+            ]],
+          },
           "PopMode",
-          { CallLua = "custom.autojump.search" },
-        },
-      },
-      f = {
-        help = "fzf",
-        messages = {
-          "PopMode",
-          { CallLua = "custom.fzf.search" },
-        },
+        }
       },
       v = {
         help = "action on selected files",
@@ -29,12 +27,13 @@ xplr.config.modes.custom.space = {
           { SwitchModeCustom = "xpm" },
         },
       },
-      ["/"] = {
-        help = "fif",
+      [":"] = {
+        help = "shell",
         messages = {
+          { Call = { command = os.getenv("SHELL"), args = { "-i" } } },
+          "ExplorePwdAsync",
           "PopMode",
-          { CallLua = "custom.fif.search" },
-        },
+        }
       },
     },
     default = {
@@ -47,5 +46,22 @@ xplr.config.modes.builtin.default.key_bindings.on_key.space = {
   help = "space leader",
   messages = {
     { SwitchModeCustom = "space" },
+  },
+}
+
+xplr.config.modes.custom.backslash = {
+  name = "leader",
+  key_bindings = {
+    on_key = {},
+    default = {
+      messages = { "PopMode" },
+    }
+  }
+}
+
+xplr.config.modes.builtin.default.key_bindings.on_key["\\"] = {
+  help = "backslash leader",
+  messages = {
+    { SwitchModeCustom = "backslash" },
   },
 }

@@ -1,4 +1,4 @@
-name "T Light"
+name "T"
 
 base {
     appearance "light"

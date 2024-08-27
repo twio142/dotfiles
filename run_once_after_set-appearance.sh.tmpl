@@ -1,0 +1,5 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/zsh
+~/.local/bin/appearanceHandler $(~/.local/bin/background)
+{{ end -}}
+

@@ -1,3 +1,10 @@
+xplr.config.general.focus_ui.prefix = "▶ "
+xplr.config.general.focus_ui.suffix = ""
+xplr.config.general.selection_ui.prefix = "  "
+xplr.config.general.selection_ui.suffix = ""
+xplr.config.general.focus_selection_ui.prefix = "▶ "
+xplr.config.general.focus_selection_ui.suffix = ""
+
 xplr.config.general.table.header.cols = {
   { format = "╭─ path" },
   { format = "size" },
@@ -50,14 +57,54 @@ xplr.fn.custom.fmt_path = function(m)
   return r
 end
 
+xplr.fn.custom.fmt_size = function(m)
+  if m.is_dir then
+    return ""
+  elseif m.is_focused then
+    return xplr.util.paint(m.human_size, { add_modifiers = { "Bold" } })
+  else
+    return m.human_size
+  end
+end
+
+xplr.fn.custom.fmt_perm = function(m)
+  local mods = {}
+  if m.is_focused then
+    table.insert(mods, "Bold")
+  end
+  local r = xplr.util.paint("r", { fg = "Green", add_modifiers = mods })
+  local w = xplr.util.paint("w", { fg = "Yellow", add_modifiers = mods })
+  local x = xplr.util.paint("x", { fg = "Red", add_modifiers = mods })
+  local s = xplr.util.paint("s", { fg = "Red", add_modifiers = mods })
+  local S = xplr.util.paint("S", { fg = "Red", add_modifiers = mods })
+  local t = xplr.util.paint("t", { fg = "Red", add_modifiers = mods })
+  local T = xplr.util.paint("T", { fg = "Red", add_modifiers = mods })
+  local n = xplr.util.paint("-", { fg = "White", add_modifiers = mods })
+  return xplr.util
+    .permissions_rwx(m.permissions)
+    :gsub("r", r)
+    :gsub("w", w)
+    :gsub("x", x)
+    :gsub("s", s)
+    :gsub("S", S)
+    :gsub("t", t)
+    :gsub("T", T)
+    :gsub("-", n)
+end
+
 xplr.fn.custom.fmt_modified = function(m)
-  return os.date("%Y-%m-%d %H:%M", m.last_modified / 1e9)
+  local t = os.date("%Y-%m-%d %H:%M", m.last_modified / 1e9)
+  if m.is_focused then
+    return xplr.util.paint(t, { add_modifiers = { "Bold" } })
+  else
+    return t
+  end
 end
 
 xplr.config.general.table.row.cols = {
   { format = "custom.fmt_path" },
-  xplr.config.general.table.row.cols[4],
-  xplr.config.general.table.row.cols[3],
+  { format = "custom.fmt_size" },
+  { format = "custom.fmt_perm" },
   { format = "custom.fmt_modified" },
 }
 
@@ -68,10 +115,10 @@ xplr.config.layouts.builtin.default = {
       horizontal_margin = 0,
       vertical_margin = 0,
       constraints = {
-        { Percentage = 7 },
+        { Max = 3 },
         { Percentage = 50 },
-        { Percentage = 36 },
-        { Percentage = 7 },
+        { Min = 0 },
+        { Max = 3 },
       }
     },
     splits = {

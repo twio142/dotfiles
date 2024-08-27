@@ -73,7 +73,7 @@ require("xpm").setup({
         toggle_layout_key = "t",
         -- Press backspace to close all and back and close
         close_all_and_back_mode = "default",
-        close_all_and_back_key = "backspace",
+        close_all_and_back_key = "u",
         -- Toggle expansion without entering
         toggle_expansion_mode = "default",
         toggle_expansion_key = "o",
@@ -123,7 +123,7 @@ xplr.config.general.logs.warning.format = "󱈸 "
 xplr.config.modes.builtin.move_to.prompt = "󱀱 ❯ "
 xplr.config.modes.builtin.copy_to.prompt = " ❯ "
 
-require("space")
+require("leader")
 require("keys")
 require("bookmark")
 require("preview")
