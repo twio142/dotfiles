@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 _ssh_hosts() {
   local config_file="$HOME/.ssh/config"

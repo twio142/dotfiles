@@ -1,19 +1,6 @@
-# You can put files here to add functionality separated per file, which
-# will be ignored by git.
-# Files on the custom/ directory will be automatically loaded by the init
-# script, in alphabetical order.
-
-# For example: add yourself some shortcuts to projects you often work on.
-#
-# brainstormr=~/Projects/development/planetargon/brainstormr
-# cd $brainstormr
-#
-
-source ~/.local/bin/ssh-completion
-
 alias back='cd "$OLDPWD"'
 alias gdv='git difftool -y -t nvimdiff'
-alias reconfig='omz reload'
+alias reconfig='exec zsh'
 alias vim=nvim
 alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)'
 alias lzg=lazygit
@@ -54,12 +41,10 @@ export PYTHON_HOST_PROG=$HOME/.local/bin/py2
 export DENO_INSTALL="$XDG_CACHE_HOME/deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-export PATH="$PATH:$HOME/.local/bin"
-
 export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
-export NODE_PATH=$(npm root -g)
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export NODE_PATH=$(npm root -g)
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 # export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
@@ -95,18 +80,20 @@ source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$PATH:$(ruby -e 'puts Gem.bindir')"
 source $(dirname $(gem which colorls))/tab_complete.sh
-alias ls='colorls --$(~/.local/bin/background) --time-style="+%F %R"'
+alias ls='colorls --time-style="+%F %R"'
 
 auto-color-ls() {
   emulate -L zsh
   echo
-  colorls --$(~/.local/bin/background) -A --group-directories-first
+  colorls -A --group-directories-first
 }
 
 chpwd_functions=(auto-color-ls $chpwd_functions)
 
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && source $(brew --prefix)/etc/profile.d/autojump.sh
+
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/Projects/netzwerk/accounting/bin:$PATH"
-# . "$HOME/projects/netzwerk/accounting/lib/act_completion"
 
 # tmux
 
@@ -154,14 +141,29 @@ _tmux_key_bindings() {
   bindkey '^[[1;3D' backward-word
 }
 
+# restore ↑ and ↓ keys
+() {
+  local -a prefix=( '\e'{\[,O} )
+  local -a up=( ${^prefix}A ) down=( ${^prefix}B )
+  local key=
+  for key in $up[@]; do
+    bindkey "$key" up-line-or-history
+  done
+  for key in $down[@]; do
+    bindkey "$key" down-line-or-history
+  done
+}
+
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
-bindkey '^[g' _autojump_fzf
 bindkey '^[v' vi-cmd-mode
 bindkey '^[k' kill-line
-bindkey '^[r' _fzf_repos
 bindkey '^U' backward-kill-line
 bindkey '^J' down-line-or-select
 bindkey -M menuselect '^J' down-history
 bindkey -M menuselect '^K' up-history
-bindkey '^Xi' _fzf_image
+
+[ -n "$TMUX" ] && {
+  autoload -Uz add-zsh-hook;
+  add-zsh-hook precmd _tmux_key_bindings;
+}

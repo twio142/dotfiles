@@ -2,8 +2,9 @@
 
 # Open files in nvim in the current pane if it is nvim
 # Otherwise open in a new window
-# Usage: [NEWW=1] open_in_vim.sh <client_pid> [-n] <file>...
+# Usage: [NEWW=1] [SESS=...] open_in_vim.sh <client_pid> [-n] <file>...
 # NEWW=1|-n: Open in a new window
+# SESS: Session name. If given, client_pid is ignored
 
 open_in_existing_pane() {
   pane=$1
@@ -19,7 +20,7 @@ open_in_existing_pane() {
       done
       local socket=$(find $TMPDIR -type s -path "*nvim.$pid.*" 2> /dev/null)
       [ -n "$socket" ] && {
-        [ $# -gt 0 ] && nvim --server $socket --remote-tab "$@";
+        [ $# -gt 0 ] && nvim --server $socket --remote "$@";
         exit 0;
       }
       ;;
@@ -53,9 +54,11 @@ getSession() {
   tmux lsc -F '#{client_pid}	#{client_session}' | awk -F '\t' -v pid="$1" '$1 == pid {print $2}'
 }
 
-session=$(getSession $1)
+[ -n "$SESS" ] && session=$SESS || {
+  session=$(getSession $1)
+  shift
+}
 [ -z "$session" ] && exit 1
-shift
 
 if [ "$1" = -n ]; then
   NEWW=1

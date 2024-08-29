@@ -36,7 +36,7 @@ xplr.config.modes.custom.bookmark = {
         messages = {
           {
             BashExec0 = [===[
-              PTH=$(cat "${XDG_DATA_HOME}/xplr/bookmarks" | fzf --no-sort --preview="tree -C {} -L 4" --bind="ctrl-x:execute-silent(sd '{}\n' '' '${XDG_DATA_HOME}/xplr/bookmarks')+reload(cat '${XDG_DATA_HOME}/xplr/bookmarks')")
+              PTH=$(cat "${XDG_DATA_HOME}/xplr/bookmarks" | fzf --no-sort --preview="tree -C {} -L 4" --bind="ctrl-x:execute-silent(sd -F \"{}\" '' '${XDG_DATA_HOME}/xplr/bookmarks')+reload(cat '${XDG_DATA_HOME}/xplr/bookmarks')")
               if [ "$PTH" ]; then
                 "$XPLR" -m 'ChangeDirectory: %q' "$PTH"
               fi
@@ -51,7 +51,7 @@ xplr.config.modes.custom.bookmark = {
           {
             BashExec0 = [[
               PTH=$(cat "${XDG_DATA_HOME}/xplr/bookmarks" | fzf --no-sort)
-              sd "$PTH\n" "" "${XDG_DATA_HOME}/xplr/bookmarks"
+              sd -F "$PTH" "" "${XDG_DATA_HOME}/xplr/bookmarks"
             ]],
           },
           "PopMode",

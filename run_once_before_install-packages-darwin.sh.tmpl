@@ -11,10 +11,19 @@ command -v brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubuse
 BREWFILE="{{ .chezmoi.sourceDir }}/bootstrap/Brewfile"
 brew bundle check --file $BREWFILE || brew bundle --no-lock --file $BREWFILE -q
 
-echo "Installing oh-my-zsh & plugins"
-[ -z $ZSH ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-mkdir -p $XDG_CONFIG_HOME/omz-custom/plugins
-git clone https://github.com/z-shell/F-Sy-H.git $XDG_CONFIG_HOME/omz-custom/plugins/F-Sy-H 2> /dev/null
+echo "Installing zim"
+ZIM_CONFIG_FILE=${XDG_CONFIG_HOME}/zsh/zimrc
+ZIM_HOME=${XDG_CONFIG_HOME}/zim
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  mkdir -p ${ZIM_HOME}
+  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+source $ZIM_HOME/init.zsh
+zimfw install
 
 echo "Installing SpaceVim"
 curl -sLf "https://spacevim.org/install.sh" | bash

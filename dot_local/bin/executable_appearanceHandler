@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export PATH=$PATH:/opt/homebrew/bin:/usr/local/bin:$HOME/.local/bin
+export PATH=/opt/homebrew/opt/ruby/bin:$PATH:/opt/homebrew/bin:$HOME/.local/bin
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 
 case $1 in
@@ -36,6 +36,10 @@ hs -A -c "consoleDM()"
 
 # Marta theme
 ln -sf ~/Library/Application\ Support/org.yanex.marta/Themes/$mode ~/Library/Application\ Support/org.yanex.marta/Themes/T.theme
+
+# colorls theme
+mkdir -p $XDG_CONFIG_HOME/colorls
+ln -sf $(dirname $(gem which colorls))/yaml/${mode}_colors.yaml $XDG_CONFIG_HOME/colorls/dark_colors.yaml
 
 # Terminal theme
 defaults write com.apple.Terminal 'Default Window Settings' "T ${mode:0:1:u}${mode:1}"

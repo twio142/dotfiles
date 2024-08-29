@@ -198,10 +198,6 @@ brew "xplr"
 brew "yarn"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
-# Real-time type-ahead completion for Zsh
-brew "zsh-autocomplete"
-# Fish-like fast/unobtrusive autosuggestions for zsh
-brew "zsh-autosuggestions"
 # Watcher for macOS 10.14+ light/dark mode changes
 brew "cormacrelf/tap/dark-notify"
 # Switch your input method through terminal

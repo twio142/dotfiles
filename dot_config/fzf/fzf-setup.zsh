@@ -40,11 +40,6 @@ _fzf_comprun() {
   esac
 }
 
-# >>> autojump >>>
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
-# <<< autojump <<<
-
 _autojump_fzf() {
   autojump --purge &> /dev/null
   local dir=$(fzf --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
@@ -67,21 +62,21 @@ _autojump_fzf() {
 }
 zle -N _autojump_fzf
 
-_fzf_image() {
-  local query=${LBUFFER##* }
-  local selected=$(fd --exclude ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --preview-window='bottom,80%')
-  local ret=$?
-  if [ -n "$selected" ]; then
-    LBUFFER=${LBUFFER% *}
-    echo $selected | while read -r line; do
-      LBUFFER+=\ ${line:q}
-    done
-  fi
-  unset query selected
-  zle reset-prompt
-  return $ret
-}
-zle -N _fzf_image
+# _fzf_image() {
+#   local query=${LBUFFER##* }
+#   local selected=$(fd --exclude ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --preview-window='bottom,80%')
+#   local ret=$?
+#   if [ -n "$selected" ]; then
+#     LBUFFER=${LBUFFER% *}
+#     echo $selected | while read -r line; do
+#       LBUFFER+=\ ${line:q}
+#     done
+#   fi
+#   unset query selected
+#   zle reset-prompt
+#   return $ret
+# }
+# zle -N _fzf_image
 
 _fzf_repos() {
   local query=${LBUFFER##* }
@@ -101,3 +96,6 @@ _fzf_repos() {
 }
 zle -N _fzf_repos
 
+bindkey '^[g' _autojump_fzf
+bindkey '^[r' _fzf_repos
+# bindkey '^Xi' _fzf_image

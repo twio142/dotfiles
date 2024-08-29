@@ -1,8 +1,9 @@
 #!/bin/zsh
 
 # Check the frontmost process of the session of the given client
-# Usage: [NEWW=1] find_empty_shell.sh <client_pid> [-n] [cd] ...
+# Usage: [NEWW=1] [SESS=...] find_empty_shell.sh <client_pid> [-n] [cd] ...
 # NEWW=1|-n: Open in a new window
+# SESS: Session name. If given, client_pid is ignored
 # cd: Change to the directory; otherwise send the command to the shell
 
 getSession() {
@@ -15,9 +16,11 @@ enter() {
   tmux paste-buffer -t "$session" -d
 }
 
-session=$(getSession $1)
+[ -n $SESS ] && session=$SESS || {
+  session=$(getSession $1)
+  shift
+}
 [ -z "$session" ] && exit 1
-shift
 
 if [ "$1" = -n ]; then
   shift

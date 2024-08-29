@@ -74,24 +74,7 @@ _fzf_git_files() {
 }
 
 open_in_nvim() {
-  local cmd pid socket
-  cmd=$(tmux display -p "#{pane_current_command}")
-  pid=$(tmux display -p "#{pane_pid}")
-  if [ "$cmd" = "nvim" ]; then
-    until (ps -o command= -p $pid | grep -Eq "^nvim --embed"); do
-      pid=$(pgrep -P $pid 2> /dev/null)
-      [ -z "$pid" ] && break
-    done
-    socket=$(find $TMPDIR -type s -path "*nvim.$pid.*" 2> /dev/null)
-    [ -n "$socket" ] &&
-      nvim --server "$socket" --remote-tab $@
-  elif [ "$cmd" = "zsh" ]; then
-    cmd="vim"
-    for file in $@; do
-      cmd+=" ${file:q}"
-    done
-    tmux send-keys "$cmd" Enter
-  fi
+  SESS="$(tmux display -p '#S')" $XDG_CONFIG_HOME/tmux/scripts/open_in_vim.sh "$@"
 }
 
 _fzf_git_branches() {

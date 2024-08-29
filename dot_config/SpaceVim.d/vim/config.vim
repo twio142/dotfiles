@@ -39,6 +39,11 @@ augroup NoBackup
 	au BufWrite /private/etc/pw.* set nowritebackup nobackup
 augroup END
 
+augroup Terminal
+  autocmd!
+  autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
+
 if exists(':NERDTree') == 2
 	execute 'source ' . expand('<sfile>:p:h') . '/nerdtree.vim'
 endif
