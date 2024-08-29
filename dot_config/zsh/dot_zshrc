@@ -53,8 +53,6 @@ fi
 source $ZIM_HOME/init.zsh
 # <<< zim <<<
 
-[ -d $ZDOTDIR/completions ] && fpath=($ZDOTDIR/completions $fpath)
-
 # To customize prompt, run `p10k configure` or edit $POWERLEVEL9K_CONFIG_FILE.
 [[ -f $POWERLEVEL9K_CONFIG_FILE && -z $alfred_version ]] && source $POWERLEVEL9K_CONFIG_FILE
 

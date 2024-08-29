@@ -53,6 +53,10 @@ export PATH=$PATH:$GOPATH/bin
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
+# custom completions
+# this must be placed before nvm's bash_completion
+[ -d $ZDOTDIR/completions ] && fpath=($ZDOTDIR/completions $fpath)
+
 # >>> nvm >>>
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

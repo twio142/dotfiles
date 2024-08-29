@@ -1,10 +1,14 @@
-#!/bin/zsh
+#compdef ssh
 
-_ssh_hosts() {
+_ssh() {
   local config_file="$HOME/.ssh/config"
-  [ -f "$config_file" ] || return
-  local hosts=$(grep "^Host" "$config_file" | awk '{print $2}' | grep -v '*')
-  COMPREPLY=($(compgen -W "$hosts" -- "${COMP_WORDS[COMP_CWORD]}"))
+  if [[ -f "$config_file" ]]; then
+    # Extract hosts from the config file
+    local hosts
+    hosts=($(grep "^Host " "$config_file" | awk '{print $2}' | grep -v '^[*]'))
+    _arguments '1: :->hosts'
+    if [[ $state == hosts ]]; then
+      _values 'hosts' $hosts
+    fi
+  fi
 }
-
-complete -F _ssh_hosts ssh
