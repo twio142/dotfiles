@@ -16,16 +16,16 @@ enter() {
   tmux paste-buffer -t "$session" -d
 }
 
-[ -n $SESS ] && session=$SESS || {
+[ -z "$SESS" ] && {
   session=$(getSession $1)
   shift
-}
+} || session=$SESS
 [ -z "$session" ] && exit 1
 
 if [ "$1" = -n ]; then
   shift
 elif [ "$NEWW" != 1 ]; then
-  tmux lsw -t "$session" -F '#{pane_current_command}	#S:#{window_index}.#P' | awk -F '\t' '$1 == "zsh" {print $2}' | while read win; do
+  tmux lsw -t "$session" -F '#{window_active}	#{pane_current_command}	#S:#{window_index}.#P' | awk -F '\t' '$1 == "1" && $2 == "zsh" {print $3}' | while read win; do
     line=$(tmux capture-pane -p -t $win -E - | grep -v '^\s*$' | tail -n1)
     if [[ "$line" = ❯ ]]; then
       enter "$@"

@@ -54,10 +54,10 @@ getSession() {
   tmux lsc -F '#{client_pid}	#{client_session}' | awk -F '\t' -v pid="$1" '$1 == pid {print $2}'
 }
 
-[ -n "$SESS" ] && session=$SESS || {
+[ -z "$SESS" ] && {
   session=$(getSession $1)
   shift
-}
+} || session=$SESS
 [ -z "$session" ] && exit 1
 
 if [ "$1" = -n ]; then

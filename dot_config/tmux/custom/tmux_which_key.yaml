@@ -21,7 +21,7 @@ macros:
 items:
   - name: Run
     key: ":"
-    command: command-prompt
+    command: command-prompt -p "❯" -T command
   - name: Last window
     key: tab
     command: last-window
@@ -49,14 +49,14 @@ items:
         command: neww -c "$HOME"
       - name: New …
         key: C
-        command: command-prompt -T command "neww \"%1\""
+        command: command-prompt -p "❯" -T command "neww \"%1\""
       - separator: true
       - name: Rename
         key: r
-        command: command-prompt -I "#W" "renamew -- \"%%\""
+        command: command-prompt -p "Rename window:" -I "#W" "renamew -- \"%%\""
       - name: Kill
         key: q
-        command: 'confirm -p "Kill window #W? (y/n)" killw'
+        command: 'confirm -p "Kill window #W? (y/n)" unlink-window -k'
       - name: Kill others
         key: Q
         command: 'confirm -p "Kill other windows? (y/n)" killw -a'
@@ -78,13 +78,13 @@ items:
         command: "splitw -v -l 35% -c #{pane_current_path}"
       - name: Split …
         key: "_"
-        command: command-prompt -T command "splitw -v -l 35% \"%1\""
+        command: command-prompt -p "❯" -T command "splitw -v -l 35% \"%1\""
       - name: Vsplit
         key: \\
         command: "splitw -h -c #{pane_current_path}"
       - name: Vsplit …
         key: "|"
-        command: command-prompt -T command "splitw -h \"%1\""
+        command: command-prompt -p "❯" -T command "splitw -h \"%1\""
       - separator: true
       - name: Mark
         key: m
@@ -168,7 +168,7 @@ items:
         command: new
       - name: Rename
         key: r
-        command: rename
+        command: command-prompt -p "Rename session:" -I "#S" "rename -- \"%%\""
       - separator: true
       - name: Suspend
         key: z

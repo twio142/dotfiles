@@ -10,7 +10,7 @@ endif
 " let g:indent_blankline_context_char = '│'
 " let g:indent_blankline_show_current_context = v:true
 
-execute 'source ' . expand('<sfile>:p:h') . '/custom_one.vim'
+execute 'source ' . expand('<sfile>:p:h') . '/custom-one.vim'
 
 fu! s:firstInsertEnter()
 	if s:fi == 1

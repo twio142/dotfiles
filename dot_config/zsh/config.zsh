@@ -21,7 +21,7 @@ gitup() {
   open -b co.gitup.mac $1
 }
 gro() {
-  local url=$(git config --get remote.origin.url)
+  local url=$(git "$@" config --get remote.${remote:-origin}.url)
   url=$(echo $url | perl -pe 's/.+(git(hub|lab).com)[:\/]([^\/]+\/[^\/]+?)/https:\/\/\1\/\3/g')
   [ -z $url ] || open $url
 }

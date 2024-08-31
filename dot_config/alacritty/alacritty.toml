@@ -31,6 +31,8 @@ bindings = [
   { key = "Space", mods = "Shift", chars = "\u001b\u0020" },
   { key = "Space", mods = "Super|Control", action = "ToggleViMode" },
   { key = "T", mods = "Super", action = "None" },
+  { key = "=", mods = "Super", action = "IncreaseFontSize" },
+  { key = "-", mods = "Super", action = "DecreaseFontSize" },
 ]
 
 [mouse]

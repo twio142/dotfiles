@@ -19,7 +19,7 @@
   # Disable statusline separator, if you want to use other value, please
   # install nerd fonts
   statusline_separator = "arrow"
-  statusline_iseparator = "arrow"
+  # statusline_iseparator = "nil"
   buffer_index_type = 4
   windows_index_type = 3
   guifont= "FiraCode Nerd Font:h12"
