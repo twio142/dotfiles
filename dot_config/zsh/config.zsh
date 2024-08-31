@@ -29,6 +29,10 @@ ipy() { ${1:-~/.local/bin/py3} -m IPython }
 lzd() {
   docker ps &> /dev/null && lazydocker || { echo Docker not running >&2; return 1 }
 }
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
 
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
@@ -44,8 +48,10 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-export NODE_PATH=$(npm root -g)
+export NODE_PATH=$XDG_DATA_HOME/npm/lib/node_modules # $(npm root -g)
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
+
 # export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
 export GOPATH=$XDG_DATA_HOME/go
@@ -54,36 +60,51 @@ export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 # custom completions
-# this must be placed before nvm's bash_completion
 [ -d $ZDOTDIR/completions ] && fpath=($ZDOTDIR/completions $fpath)
 
-# >>> nvm >>>
-export NVM_DIR="$XDG_DATA_HOME"/nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# <<< nvm <<<
+# asdf
+export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
+export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="$XDG_CONFIG_HOME"/asdf/tool-versions
+. $(brew --prefix asdf)/libexec/asdf.sh
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# lazyload conda
+lazy_conda_aliases=('python' 'conda')
+
+load_conda() {
+  for lazy_conda_alias in $lazy_conda_aliases
+  do
+    unalias $lazy_conda_alias
+  done
+  __conda_prefix="$HOME/.miniconda3" # Set your conda Location
+  # >>> conda initialize >>>
+  __conda_setup="$("$__conda_prefix/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "$__conda_prefix/etc/profile.d/conda.sh" ]; then
+          . "$__conda_prefix/etc/profile.d/conda.sh"
+      else
+          export PATH="$__conda_prefix/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+  unset __conda_prefix
+  unfunction load_conda
+}
+
+for lazy_conda_alias in $lazy_conda_aliases
+do
+  alias $lazy_conda_alias="load_conda && $lazy_conda_alias"
+done
+
 export PATH="$HOME/miniconda3/bin:$PATH"
 
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$PATH:$(ruby -e 'puts Gem.bindir')"
-source $(dirname $(gem which colorls))/tab_complete.sh
+# source $(dirname $(gem which colorls))/tab_complete.sh
 alias ls='colorls --time-style="+%F %R"'
 
 auto-color-ls() {
@@ -93,8 +114,6 @@ auto-color-ls() {
 }
 
 chpwd_functions=(auto-color-ls $chpwd_functions)
-
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && source $(brew --prefix)/etc/profile.d/autojump.sh
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/Projects/netzwerk/accounting/bin:$PATH"

@@ -41,6 +41,8 @@ _fzf_comprun() {
 }
 
 _autojump_fzf() {
+  [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] || return 1
+  [ -z $AUTOJUMP_SOURCED ] && source $(brew --prefix)/etc/profile.d/autojump.sh
   autojump --purge &> /dev/null
   local dir=$(fzf --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
     --bind "change:reload:autojump --complete '{q}' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
