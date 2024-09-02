@@ -306,7 +306,7 @@ nnoremap <A-j> 12j
 noremap gj [e
 noremap gk ]e
 nnoremap g. gi
-nnoremap <Space>/ :nohl<CR>
+nnoremap <silent> <ESC> :nohl<CR>
 nnoremap <Space>x= =`]
 nnoremap <Space>w\| :vsp<CR>
 nnoremap <silent> <Space>fO :call system('open ' . shellescape(expand('%:p')))<CR>

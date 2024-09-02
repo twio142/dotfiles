@@ -38,6 +38,9 @@ items:
       - name: Choose
         key: w
         command: choose-tree -Zw
+      - name: FZF
+        key: f
+        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/window.sh || exit 0"
       - name: Next
         key: n
         command: "run-shell $XDG_CONFIG_HOME/tmux/scripts/next_window.sh" 
@@ -66,6 +69,9 @@ items:
       - name: Last
         key: tab
         command: lastp
+      - name: FZF
+        key: f
+        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/pane.sh || exit 0"
       - name: Choose
         key: p
         command: displayp -d 0
@@ -139,6 +145,9 @@ items:
       - name: Choose
         key: b
         command: choose-buffer -Z
+      - name: FZF
+        key: f
+        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/buffer.sh || exit 0"
       - name: Paste
         key: p
         command: pasteb
@@ -157,6 +166,9 @@ items:
       - name: Choose
         key: s
         command: choose-tree -Zs
+      - name: FZF
+        key: f
+        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/session.sh || exit 0"
       - name: Next
         key: n
         command: switchc -n
@@ -185,6 +197,9 @@ items:
   - name: +App
     key: a
     menu:
+      - name: FZF
+        key: f
+        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/menu.sh || exit 0"
       - name: Sidebar
         key: o
         command: toggle-sidebar
