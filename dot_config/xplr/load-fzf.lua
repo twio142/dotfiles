@@ -36,10 +36,23 @@ require("fzf").setup{
 }
 
 xplr.fn.custom.fif_callback = function(input)
-  local path, line = input:match("^([^:]+):(%d+):")
-  path = xplr.util.shell_escape(path)
+  -- if multiple lines are selected, open them all in nvim
+  -- if a single line is selected, open the file at the line number in nvim
+  local cmd = "nvim "
+  if #input > 1 then
+    for _, i in ipairs(input) do
+      local path = i:match("^([^:]+):%d+:")
+      cmd = cmd .. xplr.util.shell_escape(path) .. " "
+    end
+  elseif #input == 1 then
+    local path, line = input[1]:match("^([^:]+):(%d+):")
+    path = xplr.util.shell_escape(path)
+    cmd = cmd .. "+" .. line .. " " .. path
+  else
+    return
+  end
   return {
-    { BashExec = string.format("nvim +%s %s", line, path) },
+    { BashExec = cmd },
     "PopMode",
   }
 end

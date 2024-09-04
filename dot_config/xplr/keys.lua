@@ -132,6 +132,7 @@ xplr.config.modes.custom.type_to_nav.key_bindings.on_key['ctrl-l'] = {
     { CallLuaSilently = 'custom.type_to_nav_start' }
   },
 }
+xplr.config.modes.custom.type_to_nav.key_bindings.on_key.tab = xplr.config.modes.custom.type_to_nav.key_bindings.on_key['ctrl-v']
 
 -- paste, move and softlink selected files
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.p = {

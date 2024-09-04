@@ -4,8 +4,8 @@ alias reconfig='exec zsh'
 alias vim=nvim
 alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)'
 alias lzg=lazygit
+alias k='NVIM_APPNAME=kickstart nvim'
 
-cn() { [ -z $1 ] && conda deactivate || conda activate $1 }
 co() { 1="$*"; gh copilot suggest "$1" }
 coe() { 1="$*"; gh copilot explain "$1" }
 lc() {
@@ -40,7 +40,6 @@ export HOMEBREW_NO_INSECURE_REDIRECT=1
 export HOMEBREW_NO_ENV_HINTS=1
 # export HOMEBREW_NO_AUTO_UPDATE=1
 export PYTHON3_HOST_PROG=$HOME/.local/bin/py3
-export PYTHON_HOST_PROG=$HOME/.local/bin/py2
 
 export DENO_INSTALL="$XDG_CACHE_HOME/deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -67,38 +66,43 @@ export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
 export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="$XDG_CONFIG_HOME"/asdf/tool-versions
 . $(brew --prefix asdf)/libexec/asdf.sh
 
-# lazyload conda
-lazy_conda_aliases=('python' 'conda')
+# >>> mamba initialize >>>
+export MAMBA_EXE='/opt/homebrew/opt/micromamba/bin/micromamba';
+export MAMBA_ROOT_PREFIX="$XDG_DATA_HOME/micromamba";
+# __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__mamba_setup"
+# else
+#     alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+# fi
+# unset __mamba_setup
+# <<< mamba initialize <<<
 
-load_conda() {
-  for lazy_conda_alias in $lazy_conda_aliases
-  do
-    unalias $lazy_conda_alias
+# lazyload mamba
+lazy_mamba_aliases=('micromamba')
+
+load_mamba() {
+  for lazy_mamba_alias in $lazy_mamba_aliases; do
+    unalias $lazy_mamba_alias 2> /dev/null
   done
-  __conda_prefix="$HOME/.miniconda3" # Set your conda Location
-  # >>> conda initialize >>>
-  __conda_setup="$("$__conda_prefix/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+  # >>> mamba initialize >>>
+  __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
   if [ $? -eq 0 ]; then
-      eval "$__conda_setup"
+    eval "$__mamba_setup"
   else
-      if [ -f "$__conda_prefix/etc/profile.d/conda.sh" ]; then
-          . "$__conda_prefix/etc/profile.d/conda.sh"
-      else
-          export PATH="$__conda_prefix/bin:$PATH"
-      fi
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
   fi
-  unset __conda_setup
-  # <<< conda initialize <<<
-  unset __conda_prefix
-  unfunction load_conda
+  unset __mamba_setup
+  # <<< mamba initialize <<<
+  unset __mamba_prefix
+  # unfunction load_mamba
 }
 
-for lazy_conda_alias in $lazy_conda_aliases
+for lazy_mamba_alias in $lazy_mamba_aliases
 do
-  alias $lazy_conda_alias="load_conda && $lazy_conda_alias"
+  alias $lazy_mamba_alias="load_mamba && $lazy_mamba_alias"
 done
-
-export PATH="$HOME/miniconda3/bin:$PATH"
+alias mamba="load_mamba && micromamba"
 
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 

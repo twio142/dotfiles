@@ -23,7 +23,7 @@ PATH=/opt/homebrew/bin:$PATH
 RG_PREFIX="rg --ignore-vcs --glob '!**/.git/**' --column --line-number --no-heading --color=always --smart-case "
 [ "$1" = -o ] && { enter=accept; shift; } || enter="become(nvim {1} +{2})"
 INITIAL_QUERY="${*:-}"
-fzf --ansi --disabled --query "$INITIAL_QUERY" \
+fzf --ansi --disabled --query "$INITIAL_QUERY" -m \
     --color "hl:-1:underline,hl+:-1:underline:reverse" \
     --bind "start:reload:$RG_PREFIX {q}" \
     --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \

@@ -18,7 +18,7 @@ open_in_existing_pane() {
         pid=$(pgrep -P $pid 2> /dev/null)
         [ -z "$pid" ] && break
       done
-      local socket=$(find $TMPDIR -type s -path "*nvim.$pid.*" 2> /dev/null)
+      local socket=$(fd "(nvim|kickstart)\.$pid.*" $TMPDIR --type s)
       [ -n "$socket" ] && {
         [ $# -gt 0 ] && nvim --server $socket --remote "$@";
         exit 0;

@@ -35,7 +35,7 @@ local compare = m.cmd("compare", "compare files")(function(ctx)
     return { { LogError = "Please select exactly 2 files to compare" } }
   end
   local paths = xplr.util.shell_escape(ctx.selection[1].absolute_path) .. " " .. xplr.util.shell_escape(ctx.selection[2].absolute_path)
-  return { { BashExec = [[ delta --$(~/.local/bin/background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always ]] .. paths .. " | less -R" } }
+  return { { BashExec = [[ delta --$(~/.local/bin/background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1) ]] .. paths .. " | less -R" } }
 end)
 
 local copy_path = m.silent_cmd("copy-path", "copy file path")(function(ctx)

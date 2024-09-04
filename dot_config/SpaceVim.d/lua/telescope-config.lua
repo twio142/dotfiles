@@ -1,4 +1,3 @@
-lua <<EOF
 local actions = require "telescope.actions"
 local action_layout = require("telescope.actions.layout")
 require("telescope").setup {
@@ -49,4 +48,4 @@ require("telescope").setup {
     }
   }
 }
-EOF
+

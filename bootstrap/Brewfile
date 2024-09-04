@@ -20,6 +20,12 @@ brew "readline"
 brew "sqlite"
 # Download with resuming and segmented downloading
 brew "aria2"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# YAML Parser
+brew "libyaml"
+# Extendable version manager with support for Ruby, Node.js, Erlang & more
+brew "asdf"
 # Shell extension to jump to frequently used directories
 brew "autojump"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -52,18 +58,10 @@ brew "chezmoi"
 brew "choose-rust"
 # Tool for emulating mouse and keyboard events
 brew "cliclick"
-# Get a file from an HTTP, HTTPS or FTP server
-brew "curl"
-# Open source suite of directory software
-brew "openldap"
-# General-purpose scripting language
-brew "php"
-# Dependency Manager for PHP
-brew "composer"
-# GNU File, Shell, and Text utilities
-brew "coreutils"
 # Configurable talking characters in ASCII art
 brew "cowsay"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
 # Power of curl, ease of use of httpie
 brew "curlie"
 # Command-line tool for getting & setting the default browser
@@ -104,8 +102,6 @@ brew "git-flow"
 brew "git-lfs"
 # C library for encoding, decoding, and manipulating JSON
 brew "jansson"
-# YAML Parser
-brew "libyaml"
 # Source code tag system
 brew "global"
 # GNU Pretty Good Privacy (PGP) package
@@ -140,6 +136,8 @@ brew "luarocks"
 brew "marksman"
 # Mac App Store command-line interface
 brew "mas"
+# Fast Cross-Platform Package Manager
+brew "micromamba"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Port scanning utility for large networks
@@ -150,10 +148,14 @@ brew "nowplaying-cli"
 brew "nudoku"
 # Tools for one-time password authentication systems
 brew "oath-toolkit"
+# Open source suite of directory software
+brew "openldap"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Pandoc filter for numbering and cross-referencing
 brew "pandoc-crossref"
+# General-purpose scripting language
+brew "php"
 # Python dependency management tool
 brew "pipenv"
 # Paste PNG into files
@@ -168,8 +170,6 @@ brew "ripgrep"
 brew "ruby"
 # Intuitive find & replace CLI
 brew "sd"
-# CLI and dbus interface for WhisperSystems/libsignal-service-java
-brew "signal-cli"
 # Prints a steam locomotive if you type sl instead of ls
 brew "sl"
 # SOcket CAT: netcat on steroids
@@ -240,6 +240,8 @@ cask "docker"
 cask "fantastical"
 # Collaborative team software
 cask "figma"
+cask "font-fira-code"
+cask "font-jetbrains-mono"
 cask "font-lxgw-bright"
 # Tool that helps teams design every part of the product experience
 cask "framer"
@@ -267,8 +269,6 @@ cask "lulu"
 cask "lunar"
 # Extensible two-pane file manager
 cask "marta"
-# Minimal installer for conda
-cask "miniconda"
 # Add more gestures for Trackpad and Magic Mouse
 cask "multitouch"
 # Screensaver displaying artwork based on Spotify or Last.fm profile data
@@ -297,8 +297,6 @@ cask "quicklook-csv"
 cask "quicklook-json"
 # Environment for statistical computing and graphics
 cask "r"
-# Create, edit, browse SQLite databases
-cask "sqlitestudio"
 # Quicklook extension for source files
 cask "syntax-highlight"
 # Utility for producing audio feedback when typing

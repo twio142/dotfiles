@@ -13,7 +13,6 @@ function! vimrc#before() abort
     set shadafile=$XDG_STATE_HOME/vim/viminfo
   endif
   let g:python3_host_prog='~/miniconda3/envs/py3/bin/python'
-  let g:python_host_prog='~/miniconda3/envs/py2/bin/python'
   let g:tern#command = ['node', expand('$XDG_DATA_HOME') . '/npm/bin/tern', '--no-port-file']
   let g:loaded_ruby_provider = 0
   let g:loaded_perl_provider = 0
@@ -23,8 +22,6 @@ function! vimrc#before() abort
   let g:DevIconsDefaultFolderOpenSymbol = ''
   let g:CtrlSpaceCacheDir = $XDG_CACHE_HOME . '/SpaceVim.d'
 
-  " let g:sneak#s_next = 1
-  
   augroup JavaScript
     autocmd!
     au FileType javascript nnoremap <buffer> <f5> :call SpaceVim#plugins#runner#open('node ' . expand('%'))<CR>
@@ -33,5 +30,5 @@ function! vimrc#before() abort
 endfunction
 
 function! vimrc#after() abort
-  source $XDG_CONFIG_HOME/SpaceVim.d/vim/config.vim
+  luafile $XDG_CONFIG_HOME/SpaceVim.d/lua/config.lua
 endfunction
