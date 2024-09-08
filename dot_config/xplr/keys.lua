@@ -281,7 +281,6 @@ xplr.config.modes.custom.new_file = {
 }
 
 xplr.fn.custom.new_file = function(ctx)
-  local target = ctx.pwd
   local filename = ctx.input_buffer:match("^%s*(.-)%s*$")
   if filename == "" then
     return {}

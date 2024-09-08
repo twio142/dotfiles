@@ -3,6 +3,6 @@ module.exports = {
     "no-case-declarations": 0,
     "indent": [0, 2],
     "quotes": [0, "double"],
-    "semi": [0, "always"]
+    "semi": [0, "always"],
   }
 }

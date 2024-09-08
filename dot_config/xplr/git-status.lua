@@ -4,10 +4,10 @@ xplr.config.modes.custom.git_status = {
 }
 
 local function format_status(text)
-  local function split_lines(text)
-    text = text .. "\n"
+  local function split_lines(t)
+    t = t .. "\n"
     local lines = {}
-    for line in text:gmatch("([^\n]*)\n") do
+    for line in t:gmatch("([^\n]*)\n") do
       table.insert(lines, line)
     end
     return lines
@@ -60,6 +60,7 @@ local function render(ctx)
     path = xplr.util.dirname(path)
   end
   local test = xplr.util.shell_execute("git", { "-C", path, "rev-parse", "--show-toplevel" })
+  local body
   if test.returncode ~= 0 then
     body = xplr.util.paint(test.stderr, { fg = "Red" })
   else

@@ -1,3 +1,5 @@
+_G.xplr = xplr
+
 xplr.fn.builtin.try_complete_path = function(m)
   if not m.input_buffer or m.input_buffer == "" then
     return
@@ -75,7 +77,7 @@ xplr.fn.builtin.try_complete_path = function(m)
     end
 
     return {
-      { SetInputBuffer = string.sub(path, 1, #path - 1) },
+      { SetInputBuffer = path and string.sub(path, 1, #path - 1) or m.input_buffer },
     }
   end
 end

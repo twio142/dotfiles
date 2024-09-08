@@ -34,8 +34,8 @@ _fzf_comprun() {
     cd)           fzf --preview 'tree -C {} -L 4' "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    vim)          fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-r:reload(cat $XDG_CACHE_HOME/neomru/file | sed '2,10!d')+change-header( Recent files )" "$@" ;;
-    chezmoi)      chezmoi managed -p absolute | fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "alt-d:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
+    vim)          fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-f:reload(cat $XDG_CACHE_HOME/neomru/file | sed '2,10!d')+change-header( Recent files )" "$@" ;;
+    chezmoi)      chezmoi managed -p absolute | fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
     *)            fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" "$@" ;;
   esac
 }

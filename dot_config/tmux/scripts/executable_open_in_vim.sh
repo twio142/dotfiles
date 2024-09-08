@@ -20,7 +20,12 @@ open_in_existing_pane() {
       done
       local socket=$(fd "(nvim|kickstart)\.$pid.*" $TMPDIR --type s)
       [ -n "$socket" ] && {
-        [ $# -gt 0 ] && nvim --server $socket --remote "$@";
+        if [[ $# -eq 2 && -f "$1" && "$2" =~ '^ [0-9]+$' ]]; then
+          nvim --server $socket --remote "$1" 
+          nvim --server $socket --remote-send "${2/ /}G"
+        elif [ $# -gt 0 ]; then
+          nvim --server $socket --remote "$@";
+        fi
         exit 0;
       }
       ;;
@@ -29,6 +34,7 @@ open_in_existing_pane() {
       if [[ "$line" = ❯ ]]; then
         cmd="vim"
         for file in $@; do
+          file=$(echo $file | sd '^ (\d+)$' '+$1')
           cmd+=" ${file:q}"
         done
         tmux send-keys -t $win "$cmd" Enter
@@ -45,6 +51,7 @@ open_in_new_window() {
   local pane=$(tmux display -t "${window%:*}" -p "#P")
   local cmd="vim"
   for file in $@; do
+    file=$(echo $file | sd '^ (\d+)$' '+$1')
     cmd+=" ${file:q}"
   done
   tmux send-keys -t $pane "$cmd" Enter

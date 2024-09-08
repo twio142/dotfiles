@@ -4,7 +4,6 @@ alias reconfig='exec zsh'
 alias vim=nvim
 alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)'
 alias lzg=lazygit
-alias k='NVIM_APPNAME=kickstart nvim'
 
 co() { 1="$*"; gh copilot suggest "$1" }
 coe() { 1="$*"; gh copilot explain "$1" }
@@ -25,7 +24,7 @@ gro() {
   url=$(echo $url | perl -pe 's/.+(git(hub|lab).com)[:\/]([^\/]+\/[^\/]+?)/https:\/\/\1\/\3/g')
   [ -z $url ] || open $url
 }
-ipy() { ${1:-~/.local/bin/py3} -m IPython }
+ipy() { ${1:-~/.local/bin/python3} -m IPython }
 lzd() {
   docker ps &> /dev/null && lazydocker || { echo Docker not running >&2; return 1 }
 }
@@ -39,7 +38,7 @@ export HOMEBREW_NO_INSECURE_REDIRECT=1
 # export HOMEBREW_CASK_OPTS=--require-sha
 export HOMEBREW_NO_ENV_HINTS=1
 # export HOMEBREW_NO_AUTO_UPDATE=1
-export PYTHON3_HOST_PROG=$HOME/.local/bin/py3
+export PYTHON3_HOST_PROG=$HOME/.local/bin/python3
 
 export DENO_INSTALL="$XDG_CACHE_HOME/deno"
 export PATH="$DENO_INSTALL/bin:$PATH"

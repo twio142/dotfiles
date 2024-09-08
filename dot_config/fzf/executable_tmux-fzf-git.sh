@@ -61,9 +61,9 @@ _fzf_git_files() {
   git -c color.status=$(__fzf_git_color) status --short --no-branch |
   _fzf_git_fzf -m --ansi --nth 2..,.. \
     --border-label '  Files ' \
-    --header $'⌥E edit ╱ ⌥A add all\n\n' \
-    --bind "alt-a:reload(git add -A; git -c color.status=$(__fzf_git_color) status --short --no-branch)" \
-    --bind "alt-e:execute:${EDITOR:-nvim} {+-1} > /dev/tty" \
+    --header $'⌃E edit ╱ ⌃A add all\n\n' \
+    --bind "ctrl-a:reload(git add -A; git -c color.status=$(__fzf_git_color) status --short --no-branch)" \
+    --bind "ctrl-e:execute:${EDITOR:-nvim} {+-1} > /dev/tty" \
     --bind "alt-o:execute-silent:bash $__fzf_git file {-1}" \
     --bind "ctrl-r:reload(git -c color.status=$(__fzf_git_color) status --short --no-branch)" \
     --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+-1}" \
@@ -86,7 +86,7 @@ _fzf_git_branches() {
     --tiebreak begin \
     --preview-window down,border-top,70% \
     --no-hscroll \
-    --bind "alt-a:change-border-label(  All branches )+reload:bash \"$__fzf_git\" all-branches" \
+    --bind "ctrl-f:change-border-label(  All branches )+reload:bash \"$__fzf_git\" all-branches" \
     --bind "alt-o:execute-silent:bash $__fzf_git branch {}" \
     --bind "ctrl-/:change-preview-window(down,70%|hidden|)" \
     --bind "alt-d:execute:echo {} | sed 's/^..//' | cut -d' ' -f1 | xargs git diff --color=$(__fzf_git_color) > /dev/tty | bat --style=plain --tabs 2" \
@@ -119,7 +119,7 @@ _fzf_git_hashes() {
   _fzf_git_fzf --ansi --no-sort --bind 'ctrl-s:toggle-sort' \
     --border-label '  Hashes ' \
     --header-lines 3 \
-    --bind "alt-a:change-border-label(  All hashes )+reload:bash \"$__fzf_git\" all-hashes" \
+    --bind "ctrl-f:change-border-label(  All hashes )+reload:bash \"$__fzf_git\" all-hashes" \
     --bind "alt-o:execute-silent:bash $__fzf_git commit {}" \
     --bind "alt-d:execute:grep -o '[a-f0-9]\{7,\}' <<< {} | head -n 1 | xargs git diff --color=$(__fzf_git_color) > /dev/tty | bat --style=plain --tabs 2" \
     --bind "ctrl-o:reload(git checkout \$(echo -n {} | grep -Eo '[a-f0-9]{7,}.+' | cut -d' ' -f1); bash \"$__fzf_git\" hashes)" \
@@ -183,7 +183,7 @@ _fzf_git_each_ref() {
     --header-lines 3 \
     --preview-window down,border-top,70% \
     --no-hscroll \
-    --bind "alt-a:change-border-label(  Every ref )+reload:bash \"$__fzf_git\" all-refs" \
+    --bind "ctrl-f:change-border-label(  Every ref )+reload:bash \"$__fzf_git\" all-refs" \
     --bind "alt-o:execute-silent:bash $__fzf_git {1} {2}" \
     --bind "ctrl-/:change-preview-window(down,70%|hidden|)" \
     --bind "ctrl-o:reload(git checkout {2}; bash \"$__fzf_git\" refs)" \
@@ -225,7 +225,7 @@ if [[ $# -eq 1 ]]; then
   }
   case "$1" in
     branches)
-      echo $'⌥D diff ╱ ⌃O checkout branch\n⌥A show all branches\n'
+      echo $'⌥D diff ╱ ⌃O checkout branch\n⌃F show all branches\n'
       branches
       ;;
     all-branches)
@@ -233,7 +233,7 @@ if [[ $# -eq 1 ]]; then
       branches -a
       ;;
     hashes)
-      echo $'⌥D diff ╱ ⌃S toggle sort\n⌃O checkout commit ╱ ⌥A show all hashes\n'
+      echo $'⌥D diff ╱ ⌃S toggle sort\n⌃O checkout commit ╱ ⌃F show all hashes\n'
       hashes
       ;;
     all-hashes)
@@ -241,7 +241,7 @@ if [[ $# -eq 1 ]]; then
       hashes --all
       ;;
     refs)
-      echo $'⌥D diff ╱ ⌃O checkout ref\n⌥A show all refs\n'
+      echo $'⌥D diff ╱ ⌃O checkout ref\n⌃F show all refs\n'
       refs 'grep -v ^refs/remotes'
       ;;
     all-refs)

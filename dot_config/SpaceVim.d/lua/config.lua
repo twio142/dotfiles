@@ -14,22 +14,20 @@ local function firstInsertEnter()
   end
 end
 
-vim.api.nvim_create_augroup('FirstInsertEnter', { clear = true })
+
 vim.api.nvim_create_autocmd('InsertEnter', {
-  group = 'FirstInsertEnter',
+  group = vim.api.nvim_create_augroup('FirstInsertEnter', { clear = true }),
   callback = firstInsertEnter,
 })
 
-vim.api.nvim_create_augroup('BackgroundChange', { clear = true })
 vim.api.nvim_create_autocmd('OptionSet', {
-  group = 'BackgroundChange',
+  group = vim.api.nvim_create_augroup('BackgroundChange', { clear = true }),
   pattern = 'background',
-  callback = function() CustomOne() end,
+  callback = CustomOne,
 })
 
-vim.api.nvim_create_augroup('NoBackup', { clear = true })
 vim.api.nvim_create_autocmd('BufWrite', {
-  group = 'NoBackup',
+  group = vim.api.nvim_create_augroup('NoBackup', { clear = true }),
   pattern = { '/private/tmp/crontab.*', '/private/etc/pw.*' },
   callback = function()
     vim.opt.nowritebackup = true
@@ -37,9 +35,8 @@ vim.api.nvim_create_autocmd('BufWrite', {
   end,
 })
 
-vim.api.nvim_create_augroup('Terminal', { clear = true })
 vim.api.nvim_create_autocmd('TermOpen', {
-  group = 'Terminal',
+  group = vim.api.nvim_create_augroup('Terminal', { clear = true }),
   pattern = '*',
   callback = function()
     vim.opt_local.number = false
@@ -52,9 +49,8 @@ if vim.fn.exists(':NERDTree') == 2 then
 end
 
 if vim.fn.exists(':Telescope') == 2 then
-  vim.api.nvim_create_augroup('TelescopeConfig', { clear = true })
   vim.api.nvim_create_autocmd('User', {
-    group = 'TelescopeConfig',
+    group = vim.api.nvim_create_augroup('TelescopeConfig', { clear = true }),
     pattern = 'TelescopePreviewerLoaded',
     callback = function()
       vim.cmd('luafile ' .. os.getenv("XDG_CONFIG_HOME") .. '/SpaceVim.d/lua/telescope-config.lua')
@@ -63,9 +59,8 @@ if vim.fn.exists(':Telescope') == 2 then
 end
 
 -- markdown settings
-vim.api.nvim_create_augroup('Markdown', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
-  group = 'Markdown',
+  group = vim.api.nvim_create_augroup('Markdown', { clear = true }),
   pattern = 'markdown',
   callback = function()
     vim.opt_local.wrapmargin = 2
@@ -77,9 +72,8 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 if vim.fn.exists(':Copilot') == 2 then
-  vim.api.nvim_create_augroup('Copilot', { clear = true })
   vim.api.nvim_create_autocmd('BufNew', {
-    group = 'Copilot',
+    group = vim.api.nvim_create_augroup('Copilot', { clear = true }),
     pattern = '*',
     callback = function()
       vim.b.copilot_workspace_folders = { vim.fn.getcwd() }
@@ -98,7 +92,6 @@ vim.opt.sidescrolloff = 15
 vim.opt.listchars:append({ precedes = '<', extends = '>' })
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-vim.opt.termguicolors = true
 
 -- Function to set tab and shiftwidth
 local function Tab(len)
@@ -159,14 +152,13 @@ local function GetSelection()
   return selected_text
 end
 
-if os.getenv("TMUX") and os.getenv("TMUX") ~= "" then
+if os.getenv("TMUX") then
   -- Function to yank selection to tmux
   function YankToTmux()
     local selected_text = GetSelection()
     local tmux_sess = vim.fn.system('tmux display -p "#S"')
     vim.fn.setreg("o", selected_text)
-    local cmd = string.format('~/.local/bin/altr -w com.nyako520.tmux -t reg2buf -v reg=o -v "socket=%s" -v sess=%s', vim.v.servername, tmux_sess)
-    vim.cmd('silent !' .. cmd)
+    vim.fn.jobstart({os.getenv('HOME') .. '/.local/bin/altr', '-w', 'com.nyako520.tmux', '-t', 'reg2buf', '-v', 'reg=o', '-v', 'socket=' .. vim.v.servername, '-v', 'sess=' .. tmux_sess})
   end
 
   -- Function to paste in tmux pane
@@ -175,8 +167,7 @@ if os.getenv("TMUX") and os.getenv("TMUX") ~= "" then
     local tmux_pane = vim.fn.system('tmux display -p "#S:#{window_index}"')
     tmux_pane = tmux_pane:gsub('\n', '') .. '.' .. pane
     vim.fn.setreg("o", selected_text)
-    local cmd = string.format('~/.local/bin/altr -w com.nyako520.tmux -t vim2tmux -v reg=o -v "socket=%s" -v "pane=%s" -v run=%s', vim.v.servername, tmux_pane, run)
-    vim.cmd('silent !' .. cmd)
+    vim.fn.jobstart({os.getenv('HOME') .. '/.local/bin/altr', '-w', 'com.nyako520.tmux', '-t', 'vim2tmux', '-v', 'reg=o', '-v', 'socket=' .. vim.v.servername, '-v', 'pane=' .. tmux_pane, '-v', 'run=' .. run})
   end
 
   -- Function to paste from tmux
@@ -209,7 +200,7 @@ local function Chezmoi(action)
       vim.api.nvim_err_writeln(o)
       return
     end
-    vim.cmd('silent !chezmoi add ' .. p)
+    vim.fn.system('chezmoi add ' .. p)
     print('File added to chezmoi')
     vim.cmd('redraw')
 
@@ -227,7 +218,7 @@ local function Chezmoi(action)
       vim.api.nvim_err_writeln(o)
       return
     end
-    vim.cmd('silent !chezmoi apply --force ' .. p)
+    vim.fn.system('chezmoi apply --force ' .. p)
     print('File restored')
     vim.cmd('redraw')
 
@@ -236,6 +227,9 @@ local function Chezmoi(action)
     if vim.v.shell_error ~= 0 then
       vim.api.nvim_err_writeln(o)
       return
+    end
+    if vim.fn.exists(':NERDTree') == 2 then
+      vim.cmd('NERDTreeClose')
     end
     vim.cmd('vsp ' .. o)
     vim.cmd('windo diffthis')
@@ -249,7 +243,7 @@ local function Chezmoi(action)
 end
 
 -- Function to paste and keep the current register
-local function PasteAndKeepReg()
+function PasteAndKeepReg()
   local reg = vim.fn.getreg('"')
   local regtype = vim.fn.getregtype('"')
   vim.cmd('normal! gvp')
@@ -348,10 +342,10 @@ vim.api.nvim_set_keymap('x', '<M-k>', '12k', { noremap = true })
 vim.api.nvim_set_keymap('x', '<M-j>', '12j', { noremap = true })
 vim.api.nvim_set_keymap('x', 'C', '"+y', { noremap = true })
 vim.api.nvim_set_keymap('x', 'X', '"+x', { noremap = true })
-vim.api.nvim_set_keymap('x', 'p', ':<C-u>call PasteAndKeepReg()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('x', '<CR>', '"oy<ESC>:call system(\'open \' .. shellescape(getreg(\'o\')))<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('x', 'p', ':<C-u>lua PasteAndKeepReg()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('x', '<CR>', [["oy<ESC>:call system('open ' .. shellescape(getreg('o')))<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('x', 'gs', '"oy/<C-r>o<CR>', { noremap = true })
-vim.api.nvim_set_keymap('x', 'g<CR>', '"os<CR><ESC>k:r!<C-r>o<CR>kJJ', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('x', 'g!', '"os<CR><ESC>k:r!<C-r>o<CR>kJJ', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('x', '<Space>se', '"1y:Se <C-r>1<CR><CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('x', '<Space>sE', '"1y:SE <C-r>1<CR><CR>', { noremap = true, silent = true })
 
@@ -380,7 +374,7 @@ vim.api.nvim_set_keymap('n', ';', '<Plug>(easymotion-prefix)', {})
 vim.api.nvim_set_keymap('n', ';f', '<Plug>(easymotion-fl)', {})
 vim.api.nvim_set_keymap('n', ';s', '<Plug>(easymotion-overwin-f2)', {})
 vim.api.nvim_set_keymap('o', 'z', '<Plug>(easymotion-f2)', {})
-vim.api.nvim_set_keymap('n', ';/\\', '<Plug>(easymotion-sn)', {})
+vim.api.nvim_set_keymap('n', ';/', '<Plug>(easymotion-sn)', {})
 vim.api.nvim_set_keymap('n', ';L', '<Plug>(easymotion-overwin-line)', {})
 -- vim.api.nvim_set_keymap('n', ';.', '<Plug>(easymotion-repeat)', {})  -- Uncomment if you want to use this mapping
 vim.api.nvim_set_keymap('n', ';;', '<Plug>(easymotion-next)', {})

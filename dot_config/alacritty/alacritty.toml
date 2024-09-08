@@ -9,7 +9,7 @@ LANG = "en_US.UTF-8"
 [font]
 size = 12.0
 normal = { family = "FiraCode Nerd Font", style = "Light" }
-italic = { family = "JetBrains Mono", style = "Thin Italic" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Thin Italic" }
 
 [cursor]
 style = { shape = "Block", blinking = "Always" }

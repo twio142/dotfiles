@@ -1,3 +1,5 @@
+_G.xplr = xplr
+
 xplr.config.modes.builtin.default.key_bindings.on_key.b = {
   help = "bookmark mode",
   messages = {
@@ -36,7 +38,7 @@ xplr.config.modes.custom.bookmark = {
         messages = {
           {
             BashExec0 = [===[
-              PTH=$(cat "${XDG_DATA_HOME}/xplr/bookmarks" | fzf --no-sort --preview="tree -C {} -L 4" --bind="ctrl-x:execute-silent(sd -F \"{}\" '' '${XDG_DATA_HOME}/xplr/bookmarks')+reload(cat '${XDG_DATA_HOME}/xplr/bookmarks')")
+              PTH=$(cat "${XDG_DATA_HOME}/xplr/bookmarks" | fzf --no-sort --preview="tree -C {} -L 4" --bind="ctrl-x:execute-silent(sd -F {} '' '${XDG_DATA_HOME}/xplr/bookmarks'; sd '\n+' '\n' '${XDG_DATA_HOME}/xplr/bookmarks')+reload(cat '${XDG_DATA_HOME}/xplr/bookmarks')")
               if [ "$PTH" ]; then
                 "$XPLR" -m 'ChangeDirectory: %q' "$PTH"
               fi

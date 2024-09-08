@@ -14,9 +14,11 @@ local function create_preview(node, size)
   local script = os.getenv("XDG_CONFIG_HOME") .. "/fzf/fzf-preview.sh"
   local cmd = "FZF_PREVIEW_COLUMNS=" .. size.width-1 .." FZF_PREVIEW_LINES=" .. size.height-1 .. " " .. xplr.util.shell_escape(script) .. " " .. xplr.util.shell_escape(path)
   local p = io.popen(cmd, "r")
-  local output = p:read("*a")
-  p:close()
-  return output
+  if p then
+    local output = p:read("*a")
+    p:close()
+    return output
+  end
 end
 
 local function setup_preview(ctx)

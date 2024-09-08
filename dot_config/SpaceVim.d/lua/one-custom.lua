@@ -1,6 +1,5 @@
-local function custom_one()
+function CustomOne()
   if vim.g.colors_name == 'one' then
-    vim.g.one_allow_italics = 1
     local col
     if vim.o.background == 'dark' then
       col = '090020'
@@ -28,4 +27,4 @@ local function custom_one()
   end
 end
 
-custom_one()
+CustomOne()

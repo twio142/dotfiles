@@ -1,3 +1,5 @@
+_G.xplr = xplr
+
 local m = require("command-mode")
 -- m.setup()
 
@@ -11,7 +13,7 @@ xplr.config.modes.custom.command_mode.key_bindings.on_key[":"] = {
 }
 xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] = nil
 
-local open_in_vscode = m.silent_cmd("vscode", "open in VSCode")(
+m.silent_cmd("vscode", "open in VSCode")(
   m.BashExecSilently [===[
     code "$PWD"
     sleep 1
@@ -44,7 +46,7 @@ local copy_path = m.silent_cmd("copy-path", "copy file path")(function(ctx)
   return { { LogSuccess = "Copied to clipboard: " .. path } }
 end)
 
-local paste_path = m.silent_cmd("paste-path", "paste file path")(function(ctx)
+local paste_path = m.silent_cmd("paste-path", "paste file path")(function()
   local path = xplr.util.shell_execute("pbpaste").stdout
   if not xplr.util.exists(path) then
     return { { LogError = "No path in clipboard" } }
@@ -61,7 +63,7 @@ local copy_to_tmux = m.silent_cmd("copy-to-tmux", "copy file path to tmux buffer
   return { { LogSuccess = "Copied to tmux buffer: " .. path } }
 end)
 
-local paste_from_tmux = m.silent_cmd("paste-from-tmux", "paste file path from tmux buffer")(function(ctx)
+local paste_from_tmux = m.silent_cmd("paste-from-tmux", "paste file path from tmux buffer")(function()
   local path = xplr.util.shell_execute("tmux", { "show-buffer" }).stdout
   if not xplr.util.exists(path) then
     return { { LogError = "No path in tmux buffer" } }
@@ -156,7 +158,7 @@ local vim_in_tmux_neww = m.cmd("vim-in-tmux-neww", "edit file(s) in new tmux win
   return { "Quit" }
 end)
 
-local fif = m.cmd("fif", "search file contents")(function(ctx)
+m.cmd("fif", "search file contents")(function()
   return { "PopMode", { CallLua = "custom.fif.search" } }
 end)
 

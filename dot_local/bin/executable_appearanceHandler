@@ -4,17 +4,17 @@ export PATH=/opt/homebrew/opt/ruby/bin:$PATH:/opt/homebrew/bin:$HOME/.local/bin
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 
 case $1 in
-    light|dark) mode=$1;;
-    *)          exit 1 ;;
+  light|dark) mode=$1;;
+  *)          exit 1 ;;
 esac
 
 # Nvim
-fd 'nvim\.+|.+treemux.+' $TMPDIR -t s | while read -r socket; do
+fd 'kickstart\.+|nvim\.+|.+treemux.+' $TMPDIR -t s | while read -r socket; do
   if [[ $socket != *treemux* ]]; then
     pid=$(echo ${socket:t:r} | grep -oE '\d+')
     ps -p $pid &> /dev/null || continue
   fi
-  py3 <<EOF
+  python3 <<EOF
 import pynvim
 pynvim.attach('socket', path='$socket').command('set background=$mode')
 EOF

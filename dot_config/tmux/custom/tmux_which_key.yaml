@@ -253,7 +253,7 @@ items:
         command:
           run-shell -b "type=files $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh" 
       - name: Commits
-        key: h
+        key: c
         command:
           run-shell -b "type=hashes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Branches

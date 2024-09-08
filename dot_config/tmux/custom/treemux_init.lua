@@ -2,7 +2,6 @@
 -- nvim-tree recommends disabling netrw, VIM's built-in file explorer
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.g.python3_host_prog = os.getenv "HOME" .. '/miniconda3/envs/py3/bin/python'
 
 -- Remove the white status bar below
 vim.o.laststatus = 0
@@ -13,20 +12,22 @@ vim.o.termguicolors = true
 
 -- lazy.nvim plugin manager
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  }
-end
+vim.uv.fs_stat(lazypath, function(err)
+  if err then
+    vim.fn.system {
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "https://github.com/folke/lazy.nvim.git",
+      "--branch=stable", -- latest stable release
+      lazypath,
+    }
+  end
+end)
 vim.opt.rtp:prepend(lazypath)
 
 local function escape(str)
-  return '"' .. vim.fn.escape(str, '"!$\\`') .. '"' 
+  return '"' .. vim.fn.escape(str, '"!$\\`') .. '"'
 end
 
 local function treemux_send(v, p)
@@ -58,9 +59,7 @@ local function treemux_open()
     return
   end
   path = escape(path)
-  local handle = io.popen('tmux select-pane -l \\; display -p "#{pane_current_command} #{pane_pid}"')
-  local result = handle:read('*a')
-  handle:close()
+  local result = vim.fn.system('tmux select-pane -l \\; display -p "#{pane_current_command} #{pane_pid}"')
   local cmd, pid = result:match("^(%S+) (%d+)")
   if cmd == "nvim" then
     local command = [[
@@ -71,9 +70,7 @@ local function treemux_open()
       [ -z "$pid" ] && break
     done
     fd "(nvim|kickstart)\.$pid.*" $TMPDIR --type s' ]]
-    handle = io.popen(command)
-    local socket = handle:read('*a')
-    handle:close()
+    local socket = vim.fn.system(command)
     if socket ~= "" then
       os.execute('nvim --server ' .. socket .. ' --remote ' .. path)
       return
@@ -123,24 +120,22 @@ local function show_in_alfred()
   os.execute("~/.local/bin/alfred " .. path)
 end
 
-local function add_to_alfred_buffer(marks)
+local function add_to_alfred_buffer()
   local api = require "nvim-tree.api"
-  if marks then
-    local paths = {}
+  local args = {os.getenv("HOME").."/.local/bin/altr", "-w", "com.nyako520.syspre", "-t", "buffer", "-a", "-" }
+  if #api.marks.list() > 0 then
     for _, node in ipairs(api.marks.list()) do
-      table.insert(paths, escape(node.absolute_path))
+      table.insert(args, node.absolute_path)
     end
-    if #paths > 0 then
-      os.execute("~/.local/bin/altr -w com.nyako520.syspre -t buffer -a - " .. table.concat(paths, " "))
-      api.marks.clear()
-    end
+    vim.fn.jobstart(args)
+    api.marks.clear()
   else
     local path = api.tree.get_node_under_cursor().absolute_path
     if not path then
       return
     end
-    os.execute("~/.local/bin/altr -w com.nyako520.syspre -t buffer -a " .. path)
-    path = escape(path)
+    table.insert(args, path)
+    vim.fn.jobstart(args)
   end
 end
 
@@ -150,29 +145,27 @@ local function preview()
   if not path then
     return
   end
-  path = vim.fn.shellescape(path)
-  os.execute('tmux popup -w 75% -h 90% -x 30% -y 54% "$XDG_CONFIG_HOME/fzf/fzf-preview.sh '..path..'"')
+  vim.fn.jobstart({"tmux", "popup", "-w", "75%", "-h", "90%", "-x", "30%", "-y", "54%", "$XDG_CONFIG_HOME/fzf/fzf-preview.sh", path})
 end
 
 local function fzf()
-  local api = require "nvim-tree.api"
   local tmpFile = os.tmpname()
   local root = vim.fn.shellescape(vim.fn.getcwd())
   os.execute('find '..root..' -type d | fzf --tmux center,75%,90% > '..tmpFile)
   local handle = io.open(tmpFile, "r")
-  local path = handle:read("*a")
-  handle:close()
-  os.remove(tmpFile)
-  if path ~= "" then
-    vim.cmd("edit " .. path)
-    -- api.tree.change_root(path)
+  if handle then
+    local path = handle:read("*a")
+    handle:close()
+    os.remove(tmpFile)
+    if path ~= "" then
+      vim.cmd("edit " .. path)
+      -- api.tree.change_root(path)
+    end
   end
 end
 
 local function prev_pane_path()
-  local handle = io.popen("tmux list-panes -F '#{pane_last} #{pane_current_path}'")
-  local result = handle:read('*a')
-  handle:close()
+  local result = vim.fn.system("tmux list-panes -F '#{pane_last} #{pane_current_path}'")
   for line in result:gmatch("[^\r\n]+") do
     local last, path = line:match("^([01]) (.+)")
     if last == "1" then
@@ -191,7 +184,6 @@ local function nvim_tree_on_attach(bufnr)
   api.config.mappings.default_on_attach(bufnr)
 
   vim.keymap.set("n", "u", api.tree.change_root_to_node, opts "Dir up")
-  vim.keymap.set("n", "<F1>", api.node.show_info_popup, opts "Show info popup")
   vim.keymap.set("n", "l", treemux_open, opts "Open in treemux")
   vim.keymap.set("n", "<CR>", treemux_send, opts "Open dir in tmux")
   vim.keymap.set("n", "v<CR>", function() treemux_send(1) end, opts "Open in vim")
@@ -204,17 +196,14 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.set("n", "Y", function() copy_path(1) end, opts "Copy path to buffer")
   vim.keymap.set("n", "a", show_in_alfred, opts "Show in Alfred")
   vim.keymap.set("n", "=", add_to_alfred_buffer, opts "Add to Alfred buffer")
-  vim.keymap.set("n", "b=", function() add_to_alfred_buffer(1) end, opts "Add to Alfred buffer")
   vim.keymap.del("n", "q", { buffer = bufnr })
   vim.keymap.set("n", "q", function()
     vim.cmd "quitall!"
   end, opts "Quit nvim tree")
-  vim.keymap.del("n", "<F1>", { buffer = bufnr })
   vim.keymap.set("n", "<F1>", function()
     vim.cmd "quitall!"
   end, opts "Quit nvim tree")
-  vim.keymap.del("n", "p", { buffer = bufnr })
-  vim.keymap.set("n", "p", api.node.navigate.parent, opts "Parent directory")
+  vim.keymap.set("n", "h", api.node.navigate.parent, opts "Parent directory")
   vim.keymap.set("n", "i", function() treemux_send(nil,'v') end, opts "Open in new pane")
   vim.keymap.set("n", "vi", function() treemux_send(1,'v') end, opts "Open in vim in new pane")
   vim.keymap.set("n", "s", function() treemux_send(nil,'h') end, opts "Open in new vertical pane")
@@ -247,10 +236,9 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.set("n", "<C-k>", "", { buffer = bufnr })
   vim.keymap.del("n", "<C-k>", { buffer = bufnr })
   vim.keymap.del("n", "O", { buffer = bufnr })
-  vim.keymap.set("n", "g<CR>", system_open, opts "Open in system")
-  vim.keymap.del("n", "gy", { buffer = bufnr })
+  vim.keymap.set("n", "O", system_open, opts "Open in system")
 
-  vim.keymap.set("n", "<Space>\\", function()
+  vim.keymap.set("n", "<Esc>", function()
     vim.cmd [[ set nohlsearch ]]
   end, opts "No highlight")
 
@@ -265,10 +253,27 @@ require("lazy").setup {
       { "_", "<Plug>(tmuxsend-plain)", mode = { "n", "x" } },
       { "<space>-", "<Plug>(tmuxsend-smart)", mode = { "n", "x" } },
       { "<space>_", "<Plug>(tmuxsend-plain)", mode = { "n", "x" } },
-      { "gy", "<Plug>(tmuxsend-tmuxbuffer)", mode = { "n", "x" } },
+      { "\\y", "<Plug>(tmuxsend-tmuxbuffer)", mode = { "n", "x" } },
     },
   },
-  "rakr/vim-one",
+  {
+    'folke/tokyonight.nvim',
+    priority = 1000,
+    init = function()
+      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.hi 'Comment gui=none'
+    end,
+    opts = {
+      style = "night",
+      light_style = "day",
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+      day_brightness = 0.35,
+    }
+  },
   "nvim-tree/nvim-web-devicons",
   {
     "nvim-tree/nvim-tree.lua",
@@ -352,34 +357,10 @@ require("lazy").setup {
   },
 }
 
-local function custom_one()
-  if vim.api.nvim_get_option('background') == 'dark' then
-    -- vim.cmd [[ hi Normal guibg=#101020 ]]
-  else
-    vim.cmd [[ hi PmenuSel guifg=#e6e6e6 ]]
-  end
-  vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
+local bg = vim.fn.system('~/.local/bin/background')
+if bg == 'light' or bg == 'dark' then
+  vim.opt.background = bg
 end
-
-local function set_background()
-  local handle = io.popen('~/.local/bin/background')
-  local result = handle:read('*a')
-  handle:close()
-  result = result:gsub('%s+', '')
-  if result == 'light' or result == 'dark' then
-    vim.opt.background = result
-    custom_one()
-  end
-end
-
-vim.api.nvim_create_autocmd('OptionSet', {
-    pattern = 'background',
-    callback = custom_one,
-})
-
-vim.cmd [[ colorscheme one ]]
-set_background()
-vim.keymap.set("n", "<F13>", set_background, { noremap = true, silent = true })
 vim.o.cursorline = true
 vim.o.ignorecase = true
 vim.o.smartcase = true

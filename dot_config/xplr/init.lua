@@ -79,7 +79,7 @@ require("xpm").setup({
         toggle_expansion_key = "o",
         -- Toggle expansion of all the nodes under pwd
         toggle_expansion_all_mode = "default",
-        toggle_expansion_all_key = "O",
+        toggle_expansion_all_key = "}",
         -- Focus on the next visible line, not compatible with up/down action
         focus_next_mode = "default",
         focus_next_key = "j",
