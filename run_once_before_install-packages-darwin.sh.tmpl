@@ -25,6 +25,8 @@ fi
 source $ZIM_HOME/init.zsh
 zimfw install
 
-echo "Installing SpaceVim"
-curl -sLf "https://spacevim.org/install.sh" | bash
+echo "Installing kickstart"
+[ -d $XDG_CONFIG_HOME/kickstart ] || git clone git@github.com:twio142/kickstart.nvim.git
+git -C $XDG_CONFIG_HOME/kickstart pull --ff-only
+
 {{ end -}}
