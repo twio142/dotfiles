@@ -26,7 +26,7 @@ bindings = [
   { key = "Right", mods = "Alt", chars = "\u001b\u0066" },
   { key = "Back", mods = "Super", chars = "\u0015" },
   { key = "Delete", mods = "Super", chars = "\u001b\u006b" },
-  { key = "Back", mods = "Alt", chars = "\u001b\u007f" },
+  { key = "Back", mods = "Alt", chars = "\u0017" },
   { key = "Delete", mods = "Alt", chars = "\u001b\u0064" },
   { key = "Z", mods = "Super", chars = "\u0018u" },
   { key = "Space", mods = "Shift", chars = "\u001b\u0020" },

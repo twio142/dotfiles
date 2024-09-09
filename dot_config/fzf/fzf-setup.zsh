@@ -15,12 +15,12 @@ export FZF_CTRL_R_OPTS="--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+ab
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd -H -L --exclude ".DS_Store" --exclude ".git" . "$1"
+  fd -H -L --exclude ".DS_Store" --exclude ".git" . "$1" --exec-batch stat -f "%m %N" \; | sort -rn | choose 1
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d -H -L --exclude ".git" . "$1"
+  fd --type d -H -L --exclude ".git" . "$1" --exec-batch stat -f "%m %N" \; | sort -rn | choose 1
 }
 
 # Advanced customization of fzf options via _fzf_comprun function

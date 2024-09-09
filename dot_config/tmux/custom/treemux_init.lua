@@ -5,7 +5,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Remove the white status bar below
 vim.o.laststatus = 0
-vim.o.guifont = "FiraCode Nerd Font:h11"
 
 -- True colour support
 vim.o.termguicolors = true

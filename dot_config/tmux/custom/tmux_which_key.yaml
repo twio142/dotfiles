@@ -117,7 +117,7 @@ items:
         transient: true
       - name: Spread evenly
         key: "="
-        command: selectl tiled
+        command: selectl -E
       - separator: true
       - name: Swap left
         key: h

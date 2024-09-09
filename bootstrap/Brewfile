@@ -44,6 +44,8 @@ brew "blueutil"
 brew "bottom"
 # Software library to render fonts
 brew "freetype"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
 # Core application library for C
 brew "glib"
 # X.Org: Interface to the X Window System protocol
@@ -132,8 +134,6 @@ brew "libconfig"
 brew "libxt"
 # Package manager for the Lua programming language
 brew "luarocks"
-# Language Server Protocol for Markdown
-brew "marksman"
 # Mac App Store command-line interface
 brew "mas"
 # Fast Cross-Platform Package Manager
@@ -240,8 +240,8 @@ cask "docker"
 cask "fantastical"
 # Collaborative team software
 cask "figma"
-cask "font-fira-code"
-cask "font-jetbrains-mono"
+cask "font-fira-code-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
 cask "font-lxgw-bright"
 # Tool that helps teams design every part of the product experience
 cask "framer"
