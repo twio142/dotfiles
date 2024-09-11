@@ -119,7 +119,6 @@ auto-color-ls() {
 chpwd_functions=(auto-color-ls $chpwd_functions)
 
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/Projects/netzwerk/accounting/bin:$PATH"
 
 # tmux
 

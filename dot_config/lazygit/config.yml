@@ -22,7 +22,7 @@ os:
 git:
   paging:
     colorArg: always
-    pager: "delta --$($HOME/.local/bin/background) --paging=never"
+    pager: delta --$(~/.local/bin/background) --paging=never --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
   truncateCopiedCommitHashesTo: 12
 keybinding:
   universal:

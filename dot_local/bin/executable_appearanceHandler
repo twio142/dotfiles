@@ -32,7 +32,7 @@ if [ -f ${XDG_CONFIG_HOME}/alacritty/$mode.toml ]; then
 fi
 
 # Hammerspoon
-hs -A -c "consoleDM()"
+hs -A -c "ConsoleDM()"
 
 # Marta theme
 ln -sf ~/Library/Application\ Support/org.yanex.marta/Themes/$mode ~/Library/Application\ Support/org.yanex.marta/Themes/T.theme

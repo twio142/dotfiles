@@ -20,9 +20,9 @@ open_in_existing_pane() {
       done
       local socket=$(fd "(nvim|kickstart)\.$pid.*" $TMPDIR --type s)
       [ -n "$socket" ] && {
-        if [[ $# -eq 2 && -f "$1" && "$2" =~ '^ [0-9]+$' ]]; then
+        if [[ $# -eq 2 && -f "$1" && "$2" =~ '^[+ ][0-9]+$' ]]; then
           nvim --server $socket --remote "$1" 
-          nvim --server $socket --remote-send "${2/ /}G"
+          nvim --server $socket --remote-send "${2:1}G"
         elif [ $# -gt 0 ]; then
           nvim --server $socket --remote "$@";
         fi
