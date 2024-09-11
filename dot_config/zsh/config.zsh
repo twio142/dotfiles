@@ -62,7 +62,7 @@ export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 # asdf
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
-export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="$XDG_CONFIG_HOME"/asdf/tool-versions
+export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=.config/asdf/tool-versions
 . $(brew --prefix asdf)/libexec/asdf.sh
 
 # >>> mamba initialize >>>
