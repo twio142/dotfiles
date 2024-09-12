@@ -15,12 +15,12 @@ export FZF_CTRL_R_OPTS="--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+ab
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd -H -L --exclude ".DS_Store" --exclude ".git" . "$1" --exec-batch stat -f "%m %N" \; | sort -rn | choose 1
+  fd -H -L --exclude ".DS_Store" --exclude ".git" . "$1" --exec-batch stat -f "%m %N" \; | sort -rn | choose 1..
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d -H -L --exclude ".git" . "$1" --exec-batch stat -f "%m %N" \; | sort -rn | choose 1
+  fd --type d -H -L --exclude ".git" . "$1" --exec-batch stat -f "%m %N" \; | sort -rn | choose 1..
 }
 
 # Advanced customization of fzf options via _fzf_comprun function
@@ -34,7 +34,7 @@ _fzf_comprun() {
     cd)           fzf --preview 'tree -C {} -L 4' "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    vim)          fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-f:reload(cat $XDG_CACHE_HOME/neomru/file | sed '2,10!d')+change-header( Recent files )" "$@" ;;
+    vim)          shift 2; $XDG_CONFIG_HOME/fzf/fzf-search-file.sh "${*:-}";;
     chezmoi)      chezmoi managed -p absolute | fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
     *)            fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" "$@" ;;
   esac

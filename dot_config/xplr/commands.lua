@@ -1,5 +1,3 @@
-_G.xplr = xplr
-
 local m = require("command-mode")
 -- m.setup()
 

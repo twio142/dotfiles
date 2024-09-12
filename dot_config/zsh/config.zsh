@@ -39,6 +39,7 @@ export HOMEBREW_NO_INSECURE_REDIRECT=1
 export HOMEBREW_NO_ENV_HINTS=1
 # export HOMEBREW_NO_AUTO_UPDATE=1
 export PYTHON3_HOST_PROG=$HOME/.local/bin/python3
+export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
 
 export DENO_INSTALL="$XDG_CACHE_HOME/deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -47,7 +48,7 @@ export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export NODE_PATH=$XDG_DATA_HOME/npm/lib/node_modules # $(npm root -g)
-export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
 export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
 # export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker

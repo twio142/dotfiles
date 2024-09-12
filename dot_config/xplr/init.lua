@@ -1,4 +1,5 @@
 version = '0.21.9'
+_G.xplr = xplr
 
 local home = os.getenv("HOME")
 local xpm_path = home .. "/.local/share/xplr/dtomvan/xpm.xplr"
@@ -146,5 +147,6 @@ return {
         input = ".localized",
       }
     },
+    "ExplorePwd"
   },
 }
