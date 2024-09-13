@@ -1,3 +1,5 @@
+_G.xplr = xplr
+
 xplr.config.modes.custom.git_status = {
   key_bindings = xplr.config.modes.builtin.default.key_bindings,
   layout = { Dynamic = "custom.git_status.setup" },
@@ -82,11 +84,19 @@ local function render(ctx)
 end
 
 local function lazygit(ctx)
-  local test = xplr.util.shell_execute("git", { "-C", ctx.pwd, "rev-parse", "--show-toplevel" })
+  local pwd = ctx.pwd
+  local test = xplr.util.shell_execute("git", { "-C", pwd, "rev-parse", "--show-toplevel" })
+  if test.returncode ~= 0 then
+    pwd = ctx.focused_node.absolute_path
+    if xplr.util.is_file(pwd) then
+      pwd = xplr.util.dirname(pwd)
+    end
+    test = xplr.util.shell_execute("git", { "-C", pwd, "rev-parse", "--show-toplevel" })
+  end
   if test.returncode ~= 0 then
     return {{ LogError = test.stderr }}
   else
-    return {{ BashExec = "lazygit" }}
+    return {{ BashExec = "lazygit -p " .. xplr.util.shell_escape(pwd) }}
   end
 end
 

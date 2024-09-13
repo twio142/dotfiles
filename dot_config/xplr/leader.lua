@@ -1,3 +1,5 @@
+_G.xplr = xplr
+
 xplr.config.modes.custom.space = {
   name = "space",
   key_bindings = {

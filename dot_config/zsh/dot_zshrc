@@ -8,15 +8,14 @@ if [[ ! -z $TMUX && -z $alfred_version && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p1
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ -z "$TMUX" && -z "$alfred_version" && -n "$SSH_CONNECTION" ]]; then
-  tmux new-session -A -s ssh
-fi
-
-[[ -z $alfred_version && -z $XPLR && -z $NVIM ]] && {
+if [[ -z "$alfred_version" && -z $XPLR && -z "$NVIM" ]]; then
+  # if [[ -z "$TMUX" && -n "$SSH_CONNECTION" ]]; then
+  #   tmux new-session -A -s ssh
+  # fi
   local h=$(date +%H)
   local t=$([[ $h -ge 3 && $h -lt 12 ]] && echo morning || ([[ $h -ge 12 && $h -lt 17 ]] && echo afternoon || echo evening))
   echo -e "\e[38;5;57m\e[1mGood $t, Shin ฅ^•ﻌ•^ฅ\e[0m"
-}
+fi
 
 # auto-correction.
 CORRECT_IGNORE_FILE="go|.build|.ssh|.config"

@@ -82,7 +82,7 @@ zle -N _autojump_fzf
 
 _fzf_repos() {
   local query=${LBUFFER##* }
-  local dir=$(awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv "$PWD" | fzf --query=${query} --preview "git -c color.status=always -C {} status | sd ' +\(use \"git [^)]+\)' ''" --preview-window='wrap')
+  local dir=$(awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv "$PWD" | fzf --query=${query} --preview "git -c color.status=always -C {} status -bs" --preview-window='wrap')
   local ret=$?
   if [ -z "$dir" ]; then
     zle redisplay
