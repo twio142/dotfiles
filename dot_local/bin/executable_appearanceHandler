@@ -9,7 +9,7 @@ case $1 in
 esac
 
 # Nvim
-fd 'kickstart\.+|nvim\.+|.+treemux.+' $TMPDIR -t s | while read -r socket; do
+fd 'nvim\.+|.+treemux.+' $TMPDIR -t s | while read -r socket; do
   if [[ $socket != *treemux* ]]; then
     pid=$(echo ${socket:t:r} | grep -oE '\d+')
     ps -p $pid &> /dev/null || continue

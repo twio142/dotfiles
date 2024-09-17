@@ -21,7 +21,7 @@ get_git_status() {
   [ "$2" = color ] && { printf $3; return 0; }
   if [ "$head" = HEAD ]; then
     { icon=; head=$(git -C "$1" describe --tags --exact-match 2> /dev/null); } ||
-    { icon=󰁥; head=$(git -C "$1" rev-parse --short HEAD); }
+    { icon=; head=$(git -C "$1" rev-parse --short HEAD); }
   fi
   [ "$2" = icon ] && { printf "$icon"; return 0; }
   [[ "$2" = text && "$3" -le 80 ]] && { printf "$head "; return 0; }

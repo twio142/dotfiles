@@ -1,10 +1,9 @@
-alias back='cd "$OLDPWD"'
 alias gdv='git difftool -y -t nvimdiff'
-alias reconfig='exec zsh'
 alias vim=nvim
 alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)'
 alias lzg=lazygit
 
+back() { cd $OLDPWD }
 co() { 1="$*"; gh copilot suggest "$1" }
 coe() { 1="$*"; gh copilot explain "$1" }
 lc() {
@@ -28,9 +27,14 @@ ipy() { ${1:-~/.local/bin/python3} -m IPython }
 lzd() {
   docker ps &> /dev/null && lazydocker || { echo Docker not running >&2; return 1 }
 }
+reconfig() { exec zsh }
 timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+z() {
+  command -v __zoxide_z &> /dev/null || eval "$(zoxide init zsh)"
+  __zoxide_z "$@"
 }
 
 export HOMEBREW_NO_ANALYTICS=1
@@ -109,12 +113,12 @@ source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$PATH:$(ruby -e 'puts Gem.bindir')"
 # source $(dirname $(gem which colorls))/tab_complete.sh
-alias ls='colorls --time-style="+%F %R"'
+alias ls='colorls -A --group-directories-first --time-style="+%F %R"'
 
 auto-color-ls() {
   emulate -L zsh
   echo
-  colorls -A --group-directories-first
+  ls
 }
 
 chpwd_functions=(auto-color-ls $chpwd_functions)
@@ -180,9 +184,12 @@ _tmux_key_bindings() {
   done
 }
 
+_back() { cd $OLDPWD; zle accept-line }
+zle -N _back
+bindkey '^[,' _back
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
-bindkey '^[v' vi-cmd-mode
+bindkey '^V' vi-cmd-mode
 bindkey '^[k' kill-line
 bindkey '^U' backward-kill-line
 bindkey '^J' down-line-or-select

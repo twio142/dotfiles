@@ -29,37 +29,31 @@ local function escape(str)
   return '"' .. vim.fn.escape(str, '"!$\\`') .. '"'
 end
 
-local function treemux_send(v, p)
-  local api = require "nvim-tree.api"
-  local path = api.tree.get_node_under_cursor().absolute_path
-  if not path then
-    return
-  end
-  path = escape(path)
-  os.execute('tmux select-pane -l')
-  local cmd = "lc "..path
-  if v then
-    cmd = "vim "..path
-  end
-  if p == "h" or p == "v" then
-    os.execute('tmux split-window -'..p)
-  end
-  os.execute('tmux send-keys "'..cmd..'" Enter')
-end
-
 local function treemux_open()
   local api = require "nvim-tree.api"
-  local path = api.tree.get_node_under_cursor().absolute_path
-  if not path then
-    return
-  end
-  if api.tree.get_node_under_cursor().type == "directory" then
+  local node = api.tree.get_node_under_cursor()
+  if node.type == "directory" then
     api.node.open.edit()
     return
   end
-  path = escape(path)
-  local result = vim.fn.system('tmux select-pane -l \\; display -p "#{pane_current_command} #{pane_pid}"')
+  if node.type == "link" then
+    local stat = vim.loop.fs_stat(node.link_to)
+    if stat and stat.type == "directory" then
+      api.node.open.edit()
+      return
+    end
+  end
+  local tx = 'tmux select-pane '
+  local p = vim.fn.system("tmux display -p '#{pane_index}'")
+  if vim.v.count > 0 and vim.v.count ~= tonumber(p) then
+    tx = tx .. '-t ' .. tostring(vim.v.count)
+  else
+    tx = tx .. '-l'
+  end
+  local result = vim.fn.system(tx .. ' \\; display -p "#{pane_current_command} #{pane_pid}"')
   local cmd, pid = result:match("^(%S+) (%d+)")
+  local path = node.absolute_path or vim.fn.getcwd()
+  path = escape(path)
   if cmd == "nvim" then
     local command = [[
     zsh -c '
@@ -68,53 +62,92 @@ local function treemux_open()
       pid=$(pgrep -P $pid 2> /dev/null)
       [ -z "$pid" ] && break
     done
-    fd "(nvim|kickstart)\.$pid.*" $TMPDIR --type s' ]]
-    local socket = vim.fn.system(command)
+    fd "nvim\.$pid.*" $TMPDIR --type s' ]]
+    local socket = vim.fn.system(command):gsub("\n", "")
     if socket ~= "" then
-      os.execute('nvim --server ' .. socket .. ' --remote ' .. path)
+      os.execute(string.format('nvim --server %s --remote %s', socket, path))
       return
     end
   end
   if cmd == "zsh" then
-    os.execute('tmux send-keys "vim '..path..'" Enter')
+    os.execute(string.format('tmux send-keys "vim %s" Enter', path))
     return
   end
-  os.execute('tmux split-window -v')
-  os.execute('tmux send-keys "vim '..path..'" Enter')
+  os.execute(string.format('tmux split-window -v \\; send-keys "vim %s" Enter', path))
 end
 
 local function system_open()
   local api = require "nvim-tree.api"
-  local path = api.tree.get_node_under_cursor().absolute_path
-  if not path then
-    return
-  end
+  local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
   path = escape(path)
   os.execute('open '..path)
 end
 
+-- @param action: "send", "run", "lc", "vim"
+  -- "send": prompt text to tmux pane
+  -- "run": prompt text to tmux pane and enter
+  -- "lc": run `lc` on the path in tmux pane
+  -- "vim": open the path in vim
+-- @param split: "h", "v"
+  -- "h": horizontal split
+  -- "v": vertical split
+local function treemux_send(action, split)
+  local api = require "nvim-tree.api"
+  local cmd = ''
+  if action == "send" or action == "run" then
+    local mode = vim.api.nvim_get_mode().mode
+    local text = ''
+    if mode == "n" then
+      text = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
+    else
+      vim.cmd 'normal! "oy'
+      text = vim.fn.getreg 'o'
+    end
+    os.execute('printf ' .. escape(text) .. ' | tmux load-buffer -')
+  else
+    local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
+    cmd = action.." "..escape(path)
+  end
+  local tx = 'tmux select-pane '
+  local p = vim.fn.system("tmux display -p '#{pane_index}'")
+  if vim.v.count > 0 and vim.v.count ~= tonumber(p) then
+    tx = tx .. '-t ' .. tostring(vim.v.count)
+  else
+    tx = tx .. '-l'
+  end
+  if action == "send" or action == "run" then
+    tx = tx .. ' \\; paste-buffer -d'
+  elseif (split == "h" or split == "v") then
+    tx = tx .. ' \\; split-window -'..split
+  end
+  if #cmd > 0 then
+    tx = tx .. ' \\; send-keys "'..cmd..'" Enter'
+  elseif action == "run" then
+    tx = tx .. ' \\; send-keys Enter \\; select-pane -l'
+  end
+  os.execute(tx)
+end
+
 local function copy_path(b)
   local api = require "nvim-tree.api"
-  local path = api.tree.get_node_under_cursor().absolute_path
-  if not path then
-    return
-  end
-  path = escape(path)
-  if b then
-    os.execute('echo ' .. path .. ' | tmux load-buffer -')
-    vim.cmd("echo 'Copied to tmux buffer!' | redraw!")
+  local mode = vim.api.nvim_get_mode().mode
+  local text = ''
+  if mode == "n" then
+    text = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
   else
-    os.execute('echo ' .. path .. ' | pbcopy')
-    vim.cmd("echo 'Copied to clipboard!' | redraw!")
+    vim.cmd 'normal! "oy'
+    text = vim.fn.getreg 'o'
   end
+  text = escape(text)
+  local cmd = b and "tmux load-buffer -" or "pbcopy"
+  local msg = b and "tmux buffer" or "clipboard"
+  os.execute('printf ' .. text .. ' | ' .. cmd)
+  vim.notify("Copied to "..msg .."!")
 end
 
 local function show_in_alfred()
   local api = require "nvim-tree.api"
-  local path = api.tree.get_node_under_cursor().absolute_path
-  if not path then
-    return
-  end
+  local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
   path = escape(path)
   os.execute("~/.local/bin/alfred " .. path)
 end
@@ -129,10 +162,7 @@ local function add_to_alfred_buffer()
     vim.fn.jobstart(args)
     api.marks.clear()
   else
-    local path = api.tree.get_node_under_cursor().absolute_path
-    if not path then
-      return
-    end
+    local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
     table.insert(args, path)
     vim.fn.jobstart(args)
   end
@@ -140,26 +170,15 @@ end
 
 local function preview()
   local api = require "nvim-tree.api"
-  local path = api.tree.get_node_under_cursor().absolute_path
-  if not path then
-    return
-  end
-  vim.fn.jobstart({"tmux", "popup", "-w", "75%", "-h", "90%", "-x", "30%", "-y", "54%", "$XDG_CONFIG_HOME/fzf/fzf-preview.sh", path})
+  local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
+  os.execute("tmux popup -w 75% -h 90% -x 30% -y 54% $XDG_CONFIG_HOME/fzf/fzf-preview.sh " .. escape(path))
 end
 
 local function fzf()
-  local tmpFile = os.tmpname()
   local root = vim.fn.shellescape(vim.fn.getcwd())
-  os.execute('find '..root..' -type d | fzf --tmux center,75%,90% > '..tmpFile)
-  local handle = io.open(tmpFile, "r")
-  if handle then
-    local path = handle:read("*a")
-    handle:close()
-    os.remove(tmpFile)
-    if path ~= "" then
-      vim.cmd("edit " .. path)
-      -- api.tree.change_root(path)
-    end
+  local path = vim.fn.system('fd . '..root..' --type d | fzf --tmux center,75%,90%')
+  if path ~= "" then
+    vim.cmd("edit " .. path)
   end
 end
 
@@ -183,16 +202,18 @@ local function nvim_tree_on_attach(bufnr)
   api.config.mappings.default_on_attach(bufnr)
 
   vim.keymap.set("n", "u", api.tree.change_root_to_node, opts "Dir up")
-  vim.keymap.set("n", "l", treemux_open, opts "Open in treemux")
-  vim.keymap.set("n", "<CR>", treemux_send, opts "Open dir in tmux")
-  vim.keymap.set("n", "v<CR>", function() treemux_send(1) end, opts "Open in vim")
+  vim.keymap.set("n", "<CR>", function() treemux_send("lc") end, opts "Open dir in tmux")
+  vim.keymap.set("n", "v<CR>", function() treemux_send("vim") end, opts "Open in vim")
   vim.keymap.set("n", "<2-LeftMouse>", treemux_open, opts "Open in treemux")
   vim.keymap.set("n", "o", treemux_open, opts "Open in treemux")
+  vim.keymap.set("n", "l", treemux_open, opts "Open in treemux")
 
   vim.keymap.del("n", "y", { buffer = bufnr })
-  vim.keymap.set("n", "y", function() copy_path() end, opts "Copy path")
-  vim.keymap.del("n", "Y", { buffer = bufnr })
-  vim.keymap.set("n", "Y", function() copy_path(1) end, opts "Copy path to buffer")
+  vim.keymap.set({"n", "x"}, "y", function() copy_path() end, opts "Copy path")
+  vim.keymap.set({"n", "x"}, "\\y", function() copy_path(1) end, opts "Copy path to buffer")
+  vim.keymap.del("n", "-", { buffer = bufnr })
+  vim.keymap.set({"n", "x"}, "-", function() treemux_send("run") end, opts "Execute text in pane")
+  vim.keymap.set({"n", "x"}, "_", function() treemux_send("send") end, opts "Send text to pane")
   vim.keymap.set("n", "a", show_in_alfred, opts "Show in Alfred")
   vim.keymap.set("n", "=", add_to_alfred_buffer, opts "Add to Alfred buffer")
   vim.keymap.del("n", "q", { buffer = bufnr })
@@ -203,10 +224,10 @@ local function nvim_tree_on_attach(bufnr)
     vim.cmd "quitall!"
   end, opts "Quit nvim tree")
   vim.keymap.set("n", "h", api.node.navigate.parent, opts "Parent directory")
-  vim.keymap.set("n", "i", function() treemux_send(nil,'v') end, opts "Open in new pane")
-  vim.keymap.set("n", "vi", function() treemux_send(1,'v') end, opts "Open in vim in new pane")
-  vim.keymap.set("n", "s", function() treemux_send(nil,'h') end, opts "Open in new vertical pane")
-  vim.keymap.set("n", "vs", function() treemux_send(1,'h') end, opts "Open in vim in new vertical pane")
+  vim.keymap.set("n", "i", function() treemux_send("lc","v") end, opts "Open in new pane")
+  vim.keymap.set("n", "vi", function() treemux_send("vim","v") end, opts "Open in vim in new pane")
+  vim.keymap.set("n", "s", function() treemux_send("lc","h") end, opts "Open in new vertical pane")
+  vim.keymap.set("n", "vs", function() treemux_send("vim","h") end, opts "Open in vim in new vertical pane")
   vim.keymap.del("n", ".", { buffer = bufnr })
   vim.keymap.set("n", ".", api.tree.toggle_hidden_filter, opts "Toggle hidden files")
   vim.keymap.set("n", "?", api.tree.toggle_help, opts "Toggle help")
@@ -230,8 +251,6 @@ local function nvim_tree_on_attach(bufnr)
 
   vim.keymap.set("n", "<C-d>", ":qa!<CR>", opts "Exit nvim tree")
 
-  vim.keymap.set("n", "-", "", { buffer = bufnr })
-  vim.keymap.del("n", "-", { buffer = bufnr })
   vim.keymap.set("n", "<C-k>", "", { buffer = bufnr })
   vim.keymap.del("n", "<C-k>", { buffer = bufnr })
   vim.keymap.del("n", "O", { buffer = bufnr })
@@ -245,16 +264,16 @@ local function nvim_tree_on_attach(bufnr)
 end
 
 require("lazy").setup {
-  {
-    "kiyoon/tmuxsend.vim",
-    keys = {
-      { "-", "<Plug>(tmuxsend-smart)", mode = { "n", "x" } },
-      { "_", "<Plug>(tmuxsend-plain)", mode = { "n", "x" } },
-      { "<space>-", "<Plug>(tmuxsend-smart)", mode = { "n", "x" } },
-      { "<space>_", "<Plug>(tmuxsend-plain)", mode = { "n", "x" } },
-      { "\\y", "<Plug>(tmuxsend-tmuxbuffer)", mode = { "n", "x" } },
-    },
-  },
+  -- {
+  --   "kiyoon/tmuxsend.vim",
+  --   keys = {
+  --     { "-", "<Plug>(tmuxsend-smart)", mode = { "n", "x" } },
+  --     { "_", "<Plug>(tmuxsend-plain)", mode = { "n", "x" } },
+  --     { "<space>-", "<Plug>(tmuxsend-smart)", mode = { "n", "x" } },
+  --     { "<space>_", "<Plug>(tmuxsend-plain)", mode = { "n", "x" } },
+  --     { "\\y", "<Plug>(tmuxsend-tmuxbuffer)", mode = { "n", "x" } },
+  --   },
+  -- },
   {
     'folke/tokyonight.nvim',
     priority = 1000,

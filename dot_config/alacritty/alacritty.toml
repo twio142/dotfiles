@@ -34,6 +34,10 @@ bindings = [
   { key = "T", mods = "Super", action = "None" },
   { key = "=", mods = "Super", action = "IncreaseFontSize" },
   { key = "-", mods = "Super", action = "DecreaseFontSize" },
+  { key = "Tab", mods = "Control", chars = "\u0000\u006e" },
+  { key = "Tab", mods = "Shift|Control", chars = "\u0000\u0070" },
+  { key = "C", mods = "Super|Control", chars = "\u0000\u005b" },
+  { key = "V", mods = "Super|Control", chars = "\u0000\u005d" },
 ]
 
 [mouse]

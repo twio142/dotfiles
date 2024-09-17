@@ -4,7 +4,7 @@
 source <(fzf --zsh)
 # [ -z $alfred_version ] && . ${XDG_CONFIG_HOME:-~/.config}/fzf/fzf-git.sh
 
-export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer= --bind="ctrl-d:preview-down" --bind="ctrl-u:preview-up"'
+export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer= --bind="ctrl-d:preview-half-page-down" --bind="ctrl-u:preview-half-page-up"'
 
 # Use `` as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER="\`\`"
@@ -31,7 +31,7 @@ _fzf_comprun() {
   shift
 
   case "$command" in
-    cd)           fzf --preview 'tree -C {} -L 4' "$@" ;;
+    cd)           fzf --preview 'tree -atrC -L 4 -I .DS_Store -I .git {}' "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
     vim)          shift 2; $XDG_CONFIG_HOME/fzf/fzf-search-file.sh "${*:-}";;
@@ -41,16 +41,14 @@ _fzf_comprun() {
 }
 
 _autojump_fzf() {
-  [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] || return 1
-  [ -z $AUTOJUMP_SOURCED ] && source $(brew --prefix)/etc/profile.d/autojump.sh
-  autojump --purge &> /dev/null
-  local dir=$(fzf --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
-    --bind "change:reload:autojump --complete '{q}' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
+  local query=${LBUFFER##* }
+  LBUFFER=''
+  local dir=$(fzf --query=${query} --bind "start:reload:zoxide query '${query}' -l | awk '{ if (!seen[tolower()]++) print }'" \
+    --bind "change:reload:zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }'" \
     --disabled \
-    --preview 'tree -C {} -L 4' \
+    --preview 'tree -atrC -L 4 -I .DS_Store -I .git {}' \
     --height=30%)
-  if [[ -z "$dir" || ! -d "$dir" ]]
-  then
+  if [[ -z "$dir" || ! -d "$dir" ]]; then
     zle redisplay
     return 0
   fi
@@ -58,7 +56,6 @@ _autojump_fzf() {
   BUFFER="builtin cd -- ${(q)dir:a}"
   zle accept-line
   local ret=$?
-  unset dir
   zle reset-prompt
   return $ret
 }
@@ -66,6 +63,7 @@ zle -N _autojump_fzf
 
 # _fzf_image() {
 #   local query=${LBUFFER##* }
+#   LBUFFER=''
 #   local selected=$(fd --exclude ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --preview-window='bottom,80%')
 #   local ret=$?
 #   if [ -n "$selected" ]; then
@@ -74,7 +72,6 @@ zle -N _autojump_fzf
 #       LBUFFER+=\ ${line:q}
 #     done
 #   fi
-#   unset query selected
 #   zle reset-prompt
 #   return $ret
 # }
@@ -82,6 +79,7 @@ zle -N _autojump_fzf
 
 _fzf_repos() {
   local query=${LBUFFER##* }
+  LBUFFER=''
   local dir=$(awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv "$PWD" | fzf --query=${query} --preview "echo -e \"\033[1m\$(basename {})\033[0m\n\"; git -c color.status=always -C {} status -bs" --preview-window='wrap' --height=~50%)
   local ret=$?
   if [ -z "$dir" ]; then
@@ -92,7 +90,6 @@ _fzf_repos() {
   BUFFER="builtin cd -- ${(q)dir:a}"
   zle accept-line
   local ret=$?
-  unset dir
   zle reset-prompt
   return $ret
 }

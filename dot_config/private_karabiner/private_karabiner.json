@@ -440,7 +440,7 @@
             ]
           },
           {
-            "description": "MOD → ⇪, MOD C/D/E → Select Input Method, MOD H/J/K/L → Switch Window, MOD X → ⌫, MOD ` → ~, Paired Marks",
+            "description": "MOD → ⇪, MOD C/D/E → Select Input Method, MOD X → ⌫, MOD ` → ~, Paired Marks",
             "manipulators": [
               {
                 "from": { "key_code": "right_control" },
@@ -478,38 +478,6 @@
                   "modifiers": { "mandatory": ["right_control"] }
                 },
                 "to": [{ "shell_command": "~/.local/bin/altr -w com.alfredapp.snippettrigger -t im-select -a com.apple.keylayout.US" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "h",
-                  "modifiers": { "mandatory": ["right_control"] }
-                },
-                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=w" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "j",
-                  "modifiers": { "mandatory": ["right_control"] }
-                },
-                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=s" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "k",
-                  "modifiers": { "mandatory": ["right_control"] }
-                },
-                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=n" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "l",
-                  "modifiers": { "mandatory": ["right_control"] }
-                },
-                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=e" }],
                 "type": "basic"
               },
               {
@@ -579,7 +547,7 @@
             ]
           },
           {
-            "description": "􀆪 H/J/K/L/M → Move Window, 􀆪⌃ H/J/K/L → Extend Window, 􀆪⌃⌥ H/J/K/L → Contract Window",
+            "description": "􀆪 H/J/K/L/M → Move Window, 􀆪⌃ H/J/K/L → Extend Window, 􀆪⌃⌥ H/J/K/L → Contract Window, 􀆪⌘ H/J/K/L → Switch Window",
             "manipulators": [
               {
                 "from": {
@@ -684,11 +652,43 @@
                 },
                 "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=e" }],
                 "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "h",
+                  "modifiers": { "mandatory": ["left_gui", "fn"] }
+                },
+                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=w" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "j",
+                  "modifiers": { "mandatory": ["left_gui", "fn"] }
+                },
+                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=s" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "k",
+                  "modifiers": { "mandatory": ["left_gui", "fn"] }
+                },
+                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=n" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "l",
+                  "modifiers": { "mandatory": ["left_gui", "fn"] }
+                },
+                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=e" }],
+                "type": "basic"
               }
             ]
           },
           {
-            "description": "⇪⌘ A → Alfred, ⇪⌘ C → Merge Clipboard, ⇪⌘ D → Download, ⇪⌘ P → Passwords, ⇪⌘ R → Reload Hammerspoon, ⇪⌘ S → Screenshot, ⇪⌘ V → Paste Plaintext, ⇪⌘ W → Close Window",
+            "description": "⇪⌘ B → Bob, ⇪⌘ D → Define, ⇪⌘ E → DeHelper, ⇪⌘ F → Fantastical, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ W → Window Modes, ⇪⌘ ⇥ → Window Hints",
             "manipulators": [
               {
                 "conditions": [
@@ -699,294 +699,13 @@
                   }
                 ],
                 "from": {
-                  "key_code": "a",
-                  "modifiers": { "mandatory": ["left_gui"] }
+                  "key_code": "b",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
                 },
-                "to": [{ "shell_command": "open -F -b com.runningwithcrayons.Alfred" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "c",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "open hammerspoon://clipboard_merge -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "d",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.aria2 -t save_url" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "p",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.folded.menubar -t match_click -a - 'Edit\tAutoFill\tPasswords…' '编辑\t自动填充\t密码…'" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "r",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "open hammerspoon://reload -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to_after_key_up": [{ "key_code": "return_or_enter" }],
-                "to_if_alone": [
-                  {
-                    "halt": true,
-                    "shell_command": "/usr/sbin/screencapture -c -i -o"
-                  }
-                ],
-                "to_if_held_down": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.syspre -t screenshot" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "v",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t paste_plain" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "w",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.syspre -t close_without_save" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "return_or_enter",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.passwords -t %unlock" }],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "⇪ 1/2/3/4/5 -> Stage Manager",
-            "manipulators": [
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "1" },
-                "to": [{ "shell_command": "open hammerspoon://stage_manager?i=1 -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "1",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=1&mod=drag' -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "2" },
-                "to": [{ "shell_command": "open hammerspoon://stage_manager?i=2 -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "2",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=2&mod=drag' -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "3" },
-                "to": [{ "shell_command": "open hammerspoon://stage_manager?i=3 -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "3",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=3&mod=drag' -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "4" },
-                "to": [{ "shell_command": "open hammerspoon://stage_manager?i=4 -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "4",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=4&mod=drag' -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "5" },
-                "to": [{ "shell_command": "open hammerspoon://stage_manager?i=5 -g" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "5",
-                  "modifiers": { "mandatory": ["left_gui"] }
-                },
-                "to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=5&mod=drag' -g" }],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "⇪ B → Bob, ⇪ D → Define, ⇪ E → DeHelper, ⇪ F → Fantastical, ⇪ G → Alfred Recent Path, ⇪ H/L → Prev/Next Tab, ⇪ P → ChatGPT, ⇪ Q → Menu Bar Search, ⇪ V → Vim Mode, ⇪ W → Adjust Window, ⇪ X → Shell Command, ⇪ ⇥ → List Windows, ⇪ ␣ → Copy from Left to Right, ⇪ ` → Home Dir in Alfred",
-            "manipulators": [
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "b" },
                 "to": [
+                  {
+                    "shell_command": "pgrep -qx Bob || open -b com.hezongyidev.Bob"
+                  },
                   {
                     "key_code": "b",
                     "modifiers": ["left_control", "left_option", "left_shift"]
@@ -1002,7 +721,10 @@
                     "value": 1
                   }
                 ],
-                "from": { "key_code": "d" },
+                "from": {
+                  "key_code": "d",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                },
                 "to": [
                   {
                     "key_code": "d",
@@ -1019,7 +741,10 @@
                     "value": 1
                   }
                 ],
-                "from": { "key_code": "e" },
+                "from": {
+                  "key_code": "e",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                },
                 "to": [
                   {
                     "key_code": "e",
@@ -1040,7 +765,10 @@
                     "value": 1
                   }
                 ],
-                "from": { "key_code": "f" },
+                "from": {
+                  "key_code": "f",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                },
                 "to": [{ "shell_command": "osascript -l JavaScript -e \"Application('System Events').processes['Fantastical Helper'].menuBars[1].menuBarItems[0].click();\"" }],
                 "type": "basic"
               },
@@ -1052,24 +780,10 @@
                     "value": 1
                   }
                 ],
-                "from": { "key_code": "g" },
-                "to": [
-                  {
-                    "key_code": "close_bracket",
-                    "modifiers": ["right_command", "right_shift", "left_control"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "h" },
+                "from": {
+                  "key_code": "h",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                },
                 "to": [
                   {
                     "key_code": "tab",
@@ -1086,7 +800,10 @@
                     "value": 1
                   }
                 ],
-                "from": { "key_code": "l" },
+                "from": {
+                  "key_code": "l",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                },
                 "to": [
                   {
                     "key_code": "tab",
@@ -1103,7 +820,25 @@
                     "value": 1
                   }
                 ],
-                "from": { "key_code": "p" },
+                "from": {
+                  "key_code": "m",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                },
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.folded.menubar -t search" }],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_hit",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "from": {
+                  "key_code": "p",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                },
                 "to": [
                   {
                     "key_code": "p",
@@ -1120,8 +855,11 @@
                     "value": 1
                   }
                 ],
-                "from": { "key_code": "q" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.folded.menubar -t search" }],
+                "from": {
+                  "key_code": "w",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                },
+                "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'MoveWinMode:enter()'" }],
                 "type": "basic"
               },
               {
@@ -1130,115 +868,109 @@
                     "name": "caps_lock_hit",
                     "type": "variable_if",
                     "value": 1
-                  },
-                  {
-                    "bundle_identifiers": [
-                      "com.microsoft.VSCode",
-                      "org.alacritty",
-                      "com.googlecode.iterm2"
-                    ],
-                    "type": "frontmost_application_unless"
                   }
                 ],
-                "from": { "key_code": "v" },
+                "from": {
+                  "key_code": "return_or_enter",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                },
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.passwords -t %unlock" }],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_hit",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "from": {
+                  "key_code": "tab",
+                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                },
                 "to": [
                   {
-                    "key_code": "v",
-                    "modifiers": ["left_control", "left_option", "left_command", "left_shift"]
+                    "key_code": "tab",
+                    "modifiers": ["left_control", "left_option", "left_shift"]
                   }
                 ],
                 "type": "basic"
-              },
+              }
+            ]
+          },
+          {
+            "description": "✧ A → Launch Alfred, ✧ C → Merge Clipboard, ✧ D → Download, ✧ R → Reload Hammerspoon, ✧ S → Screenshot, ✧ V → Paste Plaintext, ✧ W → Close Without Save, ✧ ⇥ → List Windows",
+            "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "bundle_identifiers": [
-                      "com.microsoft.VSCode",
-                      "org.alacritty",
-                      "com.googlecode.iterm2"
-                    ],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "from": { "key_code": "v" },
-                "to": [
-                  { "key_code": "v", "modifiers": ["right_option"] }
-                ],
+                "from": {
+                  "key_code": "a",
+                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
+                },
+                "to": [{ "shell_command": "open -F -b com.runningwithcrayons.Alfred" }],
                 "type": "basic"
               },
               {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "w" },
-                "to": [
-                  {
-                    "key_code": "w",
-                    "modifiers": ["left_control", "left_option", "left_shift", "left_command"]
-                  }
-                ],
+                "from": {
+                  "key_code": "c",
+                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
+                },
+                "to": [{ "shell_command": "open hammerspoon://clipboard_merge -g" }],
                 "type": "basic"
               },
               {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "x" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.program -t '>'" }],
+                "from": {
+                  "key_code": "d",
+                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
+                },
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.aria2 -t save_url" }],
                 "type": "basic"
               },
               {
-                "conditions": [
+                "from": {
+                  "key_code": "r",
+                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
+                },
+                "to": [{ "shell_command": "open hammerspoon://reload -g" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "s",
+                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
+                },
+                "to_after_key_up": [{ "key_code": "return_or_enter" }],
+                "to_if_alone": [
                   {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
+                    "halt": true,
+                    "shell_command": "/usr/sbin/screencapture -c -i -o"
                   }
                 ],
-                "from": { "key_code": "tab" },
+                "to_if_held_down": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.syspre -t screenshot" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "v",
+                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
+                },
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t paste_plain" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "return_or_enter",
+                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
+                },
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.syspre -t close_without_save" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "tab",
+                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
+                },
                 "to": [{ "shell_command": "~/.local/bin/alfred '``'" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "spacebar" },
-                "to": [
-                  {
-                    "key_code": "spacebar",
-                    "modifiers": ["left_command", "left_shift", "left_option", "left_control"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "grave_accent_and_tilde" },
-                "to": [{ "shell_command": "~/.local/bin/alfred '~'" }],
                 "type": "basic"
               }
             ]
@@ -1842,7 +1574,7 @@
             ]
           },
           {
-            "description": "⇪ → ⎋, Hold ⇪ → ✧, ↵ ⌫ → ⌦, Hold ⎋ → Force Quit, jh → ✧V",
+            "description": "⇪ → ⎋, Hold ⇪ → ✧, ↵ ⌫ → ⌦, ↵ [ → Home Dir in Alfred, ↵ ] → Alfred Recent Path, Hold ⎋ → Force Quit, jh → Vim Mode",
             "manipulators": [
               {
                 "from": {
@@ -1855,6 +1587,10 @@
                       "name": "caps_lock_hit",
                       "value": 1
                     }
+                  },
+                  {
+                    "key_code": "left_control",
+                    "lazy": true
                   }
                 ],
                 "to_after_key_up": [
@@ -1867,11 +1603,16 @@
                 ],
                 "to_if_alone": [{ "key_code": "escape" }],
                 "to_if_held_down": [
-                  { "sticky_modifier": { "left_control": "toggle" } },
-                  { "sticky_modifier": { "left_shift": "toggle" } },
-                  { "sticky_modifier": { "left_option": "toggle" } },
-                  { "sticky_modifier": { "left_command": "toggle" } }
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": ["left_option", "left_command", "left_control"],
+                    "lazy": true
+                  }
                 ],
+                "parameters": {
+                  "basic.to_if_alone_timeout_milliseconds": 600,
+                  "basic.to_if_held_down_threshold_milliseconds": 600
+                },
                 "type": "basic"
               },
               {
@@ -1922,6 +1663,39 @@
                 "type": "basic"
               },
               {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "return_or_enter" },
+                    { "key_code": "open_bracket" }
+                  ],
+                  "simultaneous_options": {
+                    "key_down_order": "strict",
+                    "key_up_when": "all"
+                  }
+                },
+                "to": [{ "shell_command": "~/.local/bin/alfred '~'" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "return_or_enter" },
+                    { "key_code": "close_bracket" }
+                  ],
+                  "simultaneous_options": {
+                    "key_down_order": "strict",
+                    "key_up_when": "all"
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "close_bracket",
+                    "modifiers": ["right_command", "right_shift", "left_control"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
                 "from": { "key_code": "escape" },
                 "to_if_alone": [{ "key_code": "escape" }],
                 "to_if_held_down": [
@@ -1958,8 +1732,7 @@
                 "parameters": { "basic.simultaneous_threshold_milliseconds": 100 },
                 "to": [
                   {
-                    "key_code": "v",
-                    "modifiers": ["command", "shift", "option", "control"]
+                    "shell_command": "/usr/local/bin/hs -A -c 'Vim:enter()'"
                   }
                 ],
                 "type": "basic"

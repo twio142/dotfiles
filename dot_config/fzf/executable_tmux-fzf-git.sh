@@ -38,7 +38,7 @@ _fzf_git_fzf() {
     --border-label-pos=2 \
     --color='header:underline,label:bold' \
     --preview-window='right,60%,border-left' \
-    --bind='ctrl-d:preview-down' --bind='ctrl-u:preview-up' \
+    --bind='ctrl-d:preview-half-page-down' --bind='ctrl-u:preview-half-page-up' \
     --bind='ctrl-/:change-preview-window(down,65%,border-top|hidden|)' "$@"
 }
 

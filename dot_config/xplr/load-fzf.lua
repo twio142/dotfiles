@@ -1,3 +1,5 @@
+_G.xplr = xplr
+
 xplr.config.modes.custom.backslash.key_bindings.on_key.f = {
   help = "fzf",
   messages = {
@@ -8,9 +10,9 @@ xplr.config.modes.custom.backslash.key_bindings.on_key.f = {
 
 require("fzf").setup{
   name = "autojump",
-  args = [[ --bind "start:reload:autojump --complete '' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
-    --bind "change:reload:autojump --complete '{q}' | awk -F '__' '{ if (!seen[tolower(\$3)]++) print \$3 }'" \
-    --disabled --preview 'tree -C {} -L 4' | xargs -I _ rp "_" ]],
+  args = [[ --bind "start:reload:zoxide query '${query}' -l | awk '{ if (!seen[tolower()]++) print }'" \
+    --bind "change:reload:zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }'" \
+    --disabled --preview 'tree -atrC -L 4 -I .DS_Store -I .git {}' | xargs -I _ rp "_" ]],
   recursive = true,
   enter_dir = true,
   mode = "go_to",
