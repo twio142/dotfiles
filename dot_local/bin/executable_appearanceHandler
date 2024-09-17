@@ -37,9 +37,10 @@ hs -A -c "ConsoleDM()"
 # Marta theme
 ln -sf ~/Library/Application\ Support/org.yanex.marta/Themes/$mode ~/Library/Application\ Support/org.yanex.marta/Themes/T.theme
 
-# colorls theme
-mkdir -p $XDG_CONFIG_HOME/colorls
-ln -sf $(dirname $(gem which colorls))/yaml/${mode}_colors.yaml $XDG_CONFIG_HOME/colorls/dark_colors.yaml
+# lsd theme
+if [ -f $XDG_CONFIG_HOME/lsd/${mode}.yaml ]; then 
+  ln -sf $XDG_CONFIG_HOME/lsd/${mode}.yaml $XDG_CONFIG_HOME/lsd/colors.yaml
+fi
 
 # Terminal theme
 defaults write com.apple.Terminal 'Default Window Settings' "T ${mode:0:1:u}${mode:1}"

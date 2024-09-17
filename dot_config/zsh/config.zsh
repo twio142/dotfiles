@@ -2,6 +2,7 @@ alias gdv='git difftool -y -t nvimdiff'
 alias vim=nvim
 alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)'
 alias lzg=lazygit
+alias tree='tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__'
 
 back() { cd $OLDPWD }
 co() { 1="$*"; gh copilot suggest "$1" }
@@ -110,18 +111,14 @@ alias mamba="load_mamba && micromamba"
 
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-export PATH="$PATH:$(ruby -e 'puts Gem.bindir')"
-# source $(dirname $(gem which colorls))/tab_complete.sh
-alias ls='colorls -A --group-directories-first --time-style="+%F %R"'
-
-auto-color-ls() {
+export LS_COLORS="$(vivid generate one-light)"
+alias ls='lsd'
+auto-ls() {
   emulate -L zsh
   echo
   ls
 }
-
-chpwd_functions=(auto-color-ls $chpwd_functions)
+chpwd_functions=(auto-ls $chpwd_functions)
 
 export PATH="$HOME/.local/bin:$PATH"
 

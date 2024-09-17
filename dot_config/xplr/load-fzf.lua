@@ -12,7 +12,7 @@ require("fzf").setup{
   name = "autojump",
   args = [[ --bind "start:reload:zoxide query '${query}' -l | awk '{ if (!seen[tolower()]++) print }'" \
     --bind "change:reload:zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }'" \
-    --disabled --preview 'tree -atrC -L 4 -I .DS_Store -I .git {}' | xargs -I _ rp "_" ]],
+    --disabled --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" | xargs -I _ rp "_" ]],
   recursive = true,
   enter_dir = true,
   mode = "go_to",

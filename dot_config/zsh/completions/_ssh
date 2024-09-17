@@ -5,7 +5,7 @@ _ssh() {
   if [[ -f "$config_file" ]]; then
     # Extract hosts from the config file
     local hosts
-    hosts=($(grep "^Host " "$config_file" | awk '{print $2}' | grep -v '^[*]'))
+    hosts=($(grep -i "^host " "$config_file" | awk '{print $2}' | grep -v '^[*]'))
     _arguments '1: :->hosts'
     if [[ $state == hosts ]]; then
       _values 'hosts' $hosts

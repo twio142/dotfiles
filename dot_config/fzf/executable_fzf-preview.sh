@@ -14,7 +14,7 @@ file=${1/#\~\//$HOME/}
 type=$(file --dereference --mime -- "$file")
 
 if [ -d "$1" ]; then
-  tree "$1" -atrC -L 4 -I .DS_Store -I .git
+  tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__ "$1"
   exit
 elif [[ ! $type =~ image/ ]]; then
   if [[ $type =~ =binary ]]; then

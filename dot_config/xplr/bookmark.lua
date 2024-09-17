@@ -36,7 +36,7 @@ xplr.config.modes.custom.bookmark = {
         messages = {
           {
             BashExec0 = [===[
-              PTH=$(cat "${XDG_DATA_HOME}/xplr/bookmarks" | fzf --no-sort --preview="tree -atrC -L 4 -I .DS_Store -I .git {}" --bind="ctrl-x:execute-silent(sd -F {} '' '${XDG_DATA_HOME}/xplr/bookmarks'; sd '\n+' '\n' '${XDG_DATA_HOME}/xplr/bookmarks')+reload(cat '${XDG_DATA_HOME}/xplr/bookmarks')")
+              PTH=$(cat "${XDG_DATA_HOME}/xplr/bookmarks" | fzf --no-sort --preview="$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind="ctrl-x:execute-silent(sd -F {} '' '${XDG_DATA_HOME}/xplr/bookmarks'; sd '\n+' '\n' '${XDG_DATA_HOME}/xplr/bookmarks')+reload(cat '${XDG_DATA_HOME}/xplr/bookmarks')")
               if [ "$PTH" ]; then
                 "$XPLR" -m 'ChangeDirectory: %q' "$PTH"
               fi

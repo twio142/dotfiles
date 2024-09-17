@@ -1,0 +1,19 @@
+name:
+  .trash: 
+  .cargo: 
+  .emacs.d: 
+  a.out: 
+  .git: 
+  desktop: 󰇄
+extension:
+filetype:
+  dir: 
+  file: 
+  # pipe: 
+  socket: 󰟨
+  executable: 
+  symlink-dir: 
+  symlink-file: 
+  device-char: 
+  device-block: 󰜫
+  # special: 

@@ -688,7 +688,7 @@
             ]
           },
           {
-            "description": "⇪⌘ B → Bob, ⇪⌘ D → Define, ⇪⌘ E → DeHelper, ⇪⌘ F → Fantastical, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ W → Window Modes, ⇪⌘ ⇥ → Window Hints",
+            "description": "⇪⌘ B → Bob, ⇪⌘ D → Define, ⇪⌘ E → DeHelper, ⇪⌘ F → Fantastical, ⇪⌘ G → Autojump, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ R → Alfred Recent Path, ⇪⌘ W → Window Modes, ⇪⌘ ⇥ → Window Hints",
             "manipulators": [
               {
                 "conditions": [
@@ -700,7 +700,7 @@
                 ],
                 "from": {
                   "key_code": "b",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [
                   {
@@ -723,7 +723,7 @@
                 ],
                 "from": {
                   "key_code": "d",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [
                   {
@@ -743,7 +743,7 @@
                 ],
                 "from": {
                   "key_code": "e",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [
                   {
@@ -767,7 +767,7 @@
                 ],
                 "from": {
                   "key_code": "f",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [{ "shell_command": "osascript -l JavaScript -e \"Application('System Events').processes['Fantastical Helper'].menuBars[1].menuBarItems[0].click();\"" }],
                 "type": "basic"
@@ -781,8 +781,23 @@
                   }
                 ],
                 "from": {
+                  "key_code": "g",
+                  "modifiers": { "mandatory": ["command", "left_control"] }
+                },
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.program -t autojump" }],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_hit",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "from": {
                   "key_code": "h",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [
                   {
@@ -802,7 +817,7 @@
                 ],
                 "from": {
                   "key_code": "l",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [
                   {
@@ -822,7 +837,7 @@
                 ],
                 "from": {
                   "key_code": "m",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [{ "shell_command": "~/.local/bin/altr -w com.folded.menubar -t search" }],
                 "type": "basic"
@@ -837,7 +852,7 @@
                 ],
                 "from": {
                   "key_code": "p",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [
                   {
@@ -856,8 +871,28 @@
                   }
                 ],
                 "from": {
+                  "key_code": "r",
+                  "modifiers": { "mandatory": ["command", "left_control"] }
+                },
+                "to": [
+                  {
+                    "key_code": "close_bracket",
+                    "modifiers": ["right_command", "right_shift", "left_control"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_hit",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "from": {
                   "key_code": "w",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'MoveWinMode:enter()'" }],
                 "type": "basic"
@@ -872,7 +907,7 @@
                 ],
                 "from": {
                   "key_code": "return_or_enter",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.passwords -t %unlock" }],
                 "type": "basic"
@@ -887,7 +922,7 @@
                 ],
                 "from": {
                   "key_code": "tab",
-                  "modifiers": { "mandatory": ["left_gui", "left_control"] }
+                  "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [
                   {
@@ -1253,7 +1288,7 @@
             ]
           },
           {
-            "description": "Hold ␣ B → Bitwarden, Hold ␣ G → Autojump, Hold ␣ J/K → Scroll ↑/↓, Hold ␣ M → Mailbox, Hold ␣ N → Mailbox Check New, Hold ␣ O → Obsidian Vault, Hold ␣ P → Podcasts, Hold ␣ T → Today, Hold ␣ W → Manage Window, Hold ␣ X → Manage Tmux, Hold ␣ \\ → Control Center",
+            "description": "Hold ␣ B → Bitwarden, Hold ␣ J/K → Scroll ↑/↓, Hold ␣ M → Mailbox, Hold ␣ N → Mailbox Check New, Hold ␣ O → Obsidian Vault, Hold ␣ P → Podcasts, Hold ␣ T → Today, Hold ␣ W → Manage Window, Hold ␣ X → Manage Tmux, Hold ␣ \\ → Control Center",
             "manipulators": [
               {
                 "conditions": [
@@ -1303,18 +1338,6 @@
                 ],
                 "from": { "key_code": "b" },
                 "to": [{ "shell_command": "~/.local/bin/altr -w org.mlfs.corp.bw -t list" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "space_held",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "g" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.program -t autojump" }],
                 "type": "basic"
               },
               {
@@ -1574,7 +1597,7 @@
             ]
           },
           {
-            "description": "⇪ → ⎋, Hold ⇪ → ✧, ↵ ⌫ → ⌦, ↵ [ → Home Dir in Alfred, ↵ ] → Alfred Recent Path, Hold ⎋ → Force Quit, jh → Vim Mode",
+            "description": "⇪ → ⎋, Hold ⇪ → ✧, ⇪ ~ → Home Dir in Alfred, ↵ ⌫ → ⌦, Hold ⎋ → Force Quit, jh → Vim Mode",
             "manipulators": [
               {
                 "from": {
@@ -1613,6 +1636,21 @@
                   "basic.to_if_alone_timeout_milliseconds": 600,
                   "basic.to_if_held_down_threshold_milliseconds": 600
                 },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_hit",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "from": {
+                  "key_code": "grave_accent_and_tilde",
+                  "modifiers": { "mandatory": ["left_control"] }
+                },
+                "to": [{ "shell_command": "~/.local/bin/alfred '~'" }],
                 "type": "basic"
               },
               {
@@ -1658,39 +1696,6 @@
                       "name": "enter_hit",
                       "value": 0
                     }
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "simultaneous": [
-                    { "key_code": "return_or_enter" },
-                    { "key_code": "open_bracket" }
-                  ],
-                  "simultaneous_options": {
-                    "key_down_order": "strict",
-                    "key_up_when": "all"
-                  }
-                },
-                "to": [{ "shell_command": "~/.local/bin/alfred '~'" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "simultaneous": [
-                    { "key_code": "return_or_enter" },
-                    { "key_code": "close_bracket" }
-                  ],
-                  "simultaneous_options": {
-                    "key_down_order": "strict",
-                    "key_up_when": "all"
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "close_bracket",
-                    "modifiers": ["right_command", "right_shift", "left_control"]
                   }
                 ],
                 "type": "basic"

@@ -26,8 +26,6 @@ brew "coreutils"
 brew "libyaml"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
-# Shell extension to jump to frequently used directories
-brew "autojump"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -132,6 +130,8 @@ brew "less"
 brew "libconfig"
 # X.Org: X Toolkit Intrinsics library
 brew "libxt"
+# Clone of ls with colorful output, file type icons, and more
+brew "lsd"
 # Package manager for the Lua programming language
 brew "luarocks"
 # Mac App Store command-line interface
@@ -166,8 +166,6 @@ brew "powerlevel10k"
 brew "protobuf"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Powerful, clean, object-oriented scripting language
-brew "ruby"
 # Intuitive find & replace CLI
 brew "sd"
 # Prints a steam locomotive if you type sl instead of ls
@@ -190,6 +188,8 @@ brew "tmux"
 brew "trash"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Generator for LS_COLORS with support for multiple color themes
+brew "vivid"
 # Check your $HOME for unwanted files and directories
 brew "xdg-ninja"
 # Hackable, minimal, fast TUI file explorer
@@ -198,6 +198,8 @@ brew "xplr"
 brew "yarn"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
 # Watcher for macOS 10.14+ light/dark mode changes
 brew "cormacrelf/tap/dark-notify"
 # Switch your input method through terminal
