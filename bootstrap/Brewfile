@@ -8,6 +8,7 @@ tap "homebrew/test-bot"
 tap "jesseduffield/lazydocker"
 tap "jesseduffield/lazygit"
 tap "joelekstrom/repo"
+tap "nikitabobko/tap"
 tap "owo-network/brew"
 tap "yt-dlp/taps"
 # TIFF library and utilities
@@ -214,6 +215,8 @@ brew "jesseduffield/lazygit/lazygit"
 brew "joelekstrom/repo/terminal-mines"
 # DeepLX is a permanently free DeepL API client written in Golang.
 brew "owo-network/brew/deeplx"
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "aerospace"
 # GPU-accelerated terminal emulator
 cask "alacritty"
 # Application launcher and productivity software

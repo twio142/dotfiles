@@ -14,8 +14,8 @@ enter() {
   [ -z "$1" ] && return
   [[ "$1" = cd && -f "$2" ]] && 2=${2:h}
   [[ "$1" = cd && -d "$2" ]] && 2=${2:q}
-  echo "$@" | tmux load-buffer -
-  tmux paste-buffer -t "$session" -d
+  echo "${@}" | tmux load-buffer -
+  tmux paste-buffer -d
 }
 
 [ -z "$SESS" ] && {

@@ -547,148 +547,156 @@
             ]
           },
           {
-            "description": "􀆪 H/J/K/L/M → Move Window, 􀆪⌃ H/J/K/L → Extend Window, 􀆪⌃⌥ H/J/K/L → Contract Window, 􀆪⌘ H/J/K/L → Switch Window",
+            "description": "Lft ⌃ C → New Empty Workspace, Lft ⌃ F → Make Window Float, Lft ⌃ H/J/K/L → Focus Window, Lft ⌃ N/P → Previous / Next Workspace, Lft ⌃ V → Move / Resize Window, Lft ⌃ W → Workspace Mode, Lft ⌃ ⇥ → Last Workspace, Lft ⌃ '/Ä → Toggle Layout Tiling / Accordion, Lft ⌃⇧ H/J/K/L → Swap Window, Lft ⌃ ␣ → AeroSpace Mode",
             "manipulators": [
               {
                 "from": {
-                  "key_code": "h",
-                  "modifiers": { "mandatory": ["fn"] }
+                  "key_code": "c",
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://move_win?d=w" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace list-workspaces --monitor focused --empty --visible no | /opt/homebrew/bin/aerospace workspace --wrap-around next" }],
                 "type": "basic"
               },
               {
                 "from": {
-                  "key_code": "j",
-                  "modifiers": { "mandatory": ["fn"] }
+                  "key_code": "f",
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://move_win?d=s" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "k",
-                  "modifiers": { "mandatory": ["fn"] }
-                },
-                "to": [{ "shell_command": "open -g hammerspoon://move_win?d=n" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "l",
-                  "modifiers": { "mandatory": ["fn"] }
-                },
-                "to": [{ "shell_command": "open -g hammerspoon://move_win?d=e" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "m",
-                  "modifiers": { "mandatory": ["fn"] }
-                },
-                "to": [{ "shell_command": "open -g hammerspoon://move_win?d=m" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace layout floating tiling" }],
                 "type": "basic"
               },
               {
                 "from": {
                   "key_code": "h",
-                  "modifiers": { "mandatory": ["control", "fn"] }
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=w" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus left" }],
                 "type": "basic"
               },
               {
                 "from": {
                   "key_code": "j",
-                  "modifiers": { "mandatory": ["control", "fn"] }
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=s" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus down" }],
                 "type": "basic"
               },
               {
                 "from": {
                   "key_code": "k",
-                  "modifiers": { "mandatory": ["control", "fn"] }
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=n" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus up" }],
                 "type": "basic"
               },
               {
                 "from": {
                   "key_code": "l",
-                  "modifiers": { "mandatory": ["control", "fn"] }
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=e" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus right" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "n",
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
+                },
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace list-workspaces --monitor focused --empty no | /opt/homebrew/bin/aerospace workspace --wrap-around next" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "p",
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
+                },
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace list-workspaces --monitor focused --empty no | /opt/homebrew/bin/aerospace workspace --wrap-around prev" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "v",
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
+                },
+                "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'MoveWinMode:enter()'" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "w",
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
+                },
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace mode workspace" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "tab",
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
+                },
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace workspace-back-and-forth" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "backslash",
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
+                },
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace layout tiles horizontal vertical" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "quote",
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
+                },
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace layout accordion horizontal vertical" }],
                 "type": "basic"
               },
               {
                 "from": {
                   "key_code": "h",
-                  "modifiers": { "mandatory": ["control", "option", "fn"] }
+                  "modifiers": { "mandatory": ["left_control", "right_control", "shift"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=w" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move left" }],
                 "type": "basic"
               },
               {
                 "from": {
                   "key_code": "j",
-                  "modifiers": { "mandatory": ["control", "option", "fn"] }
+                  "modifiers": { "mandatory": ["left_control", "right_control", "shift"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=s" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move down" }],
                 "type": "basic"
               },
               {
                 "from": {
                   "key_code": "k",
-                  "modifiers": { "mandatory": ["control", "option", "fn"] }
+                  "modifiers": { "mandatory": ["left_control", "right_control", "shift"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=n" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move up" }],
                 "type": "basic"
               },
               {
                 "from": {
                   "key_code": "l",
-                  "modifiers": { "mandatory": ["control", "option", "fn"] }
+                  "modifiers": { "mandatory": ["left_control", "right_control", "shift"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=e" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move right" }],
                 "type": "basic"
               },
               {
                 "from": {
-                  "key_code": "h",
-                  "modifiers": { "mandatory": ["left_gui", "fn"] }
+                  "key_code": "spacebar",
+                  "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=w" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "j",
-                  "modifiers": { "mandatory": ["left_gui", "fn"] }
-                },
-                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=s" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "k",
-                  "modifiers": { "mandatory": ["left_gui", "fn"] }
-                },
-                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=n" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "l",
-                  "modifiers": { "mandatory": ["left_gui", "fn"] }
-                },
-                "to": [{ "shell_command": "open -g hammerspoon://focus_win?d=e" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace mode service" }],
                 "type": "basic"
               }
             ]
           },
           {
-            "description": "⇪⌘ B → Bob, ⇪⌘ D → Define, ⇪⌘ E → DeHelper, ⇪⌘ F → Fantastical, ⇪⌘ G → Autojump, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ R → Alfred Recent Path, ⇪⌘ W → Window Modes, ⇪⌘ ⇥ → Window Hints",
+            "description": "⇪⌘ B → Bob, ⇪⌘ D → Define, ⇪⌘ E → DeHelper, ⇪⌘ F → Fantastical, ⇪⌘ G → Autojump, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ R → Alfred Recent Path, ⇪ ⇥ → List Windows",
             "manipulators": [
               {
                 "conditions": [
@@ -856,6 +864,9 @@
                 },
                 "to": [
                   {
+                    "shell_command": "pgrep -qx ChatGPT || open -b com.openai.chat"
+                  },
+                  {
                     "key_code": "p",
                     "modifiers": ["control", "option", "shift", "command"]
                   }
@@ -891,21 +902,6 @@
                   }
                 ],
                 "from": {
-                  "key_code": "w",
-                  "modifiers": { "mandatory": ["command", "left_control"] }
-                },
-                "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'MoveWinMode:enter()'" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_hit",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
                   "key_code": "return_or_enter",
                   "modifiers": { "mandatory": ["command", "left_control"] }
                 },
@@ -922,20 +918,15 @@
                 ],
                 "from": {
                   "key_code": "tab",
-                  "modifiers": { "mandatory": ["command", "left_control"] }
+                  "modifiers": { "mandatory": ["left_control"] }
                 },
-                "to": [
-                  {
-                    "key_code": "tab",
-                    "modifiers": ["left_control", "left_option", "left_shift"]
-                  }
-                ],
+                "to": [{ "shell_command": "~/.local/bin/alfred '``'" }],
                 "type": "basic"
               }
             ]
           },
           {
-            "description": "✧ A → Launch Alfred, ✧ C → Merge Clipboard, ✧ D → Download, ✧ R → Reload Hammerspoon, ✧ S → Screenshot, ✧ V → Paste Plaintext, ✧ W → Close Without Save, ✧ ⇥ → List Windows",
+            "description": "✧ A → Launch Alfred, ✧ C → Merge Clipboard, ✧ D → Download, ✧ R → Reload Hammerspoon, ✧ S → Screenshot, ✧ V → Paste Plaintext, ✧ W → Close Without Save",
             "manipulators": [
               {
                 "from": {
@@ -1288,7 +1279,7 @@
             ]
           },
           {
-            "description": "Hold ␣ B → Bitwarden, Hold ␣ J/K → Scroll ↑/↓, Hold ␣ M → Mailbox, Hold ␣ N → Mailbox Check New, Hold ␣ O → Obsidian Vault, Hold ␣ P → Podcasts, Hold ␣ T → Today, Hold ␣ W → Manage Window, Hold ␣ X → Manage Tmux, Hold ␣ \\ → Control Center",
+            "description": "Hold ␣ B → Bitwarden, Hold ␣ J/K → Scroll ↑/↓, Hold ␣ M → Mailbox, Hold ␣ N → Mailbox Check New, Hold ␣ O → Obsidian Vault, Hold ␣ P → Podcasts, Hold ␣ T → Today, Hold ␣ X → Manage Tmux, Hold ␣ \\ → Control Center",
             "manipulators": [
               {
                 "conditions": [
@@ -1452,18 +1443,6 @@
                 ],
                 "from": { "key_code": "t" },
                 "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.calendars -t today" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "space_held",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": { "key_code": "w" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.swift -t win_manage" }],
                 "type": "basic"
               },
               {
@@ -1768,7 +1747,7 @@
                   }
                 ],
                 "from": { "key_code": "f3" },
-                "to": [{ "shell_command": "STATE=$(defaults read com.apple.WindowManager GloballyEnabled 2> /dev/null);[[ ${STATE} = 0 ]] && ENABLE=true || ENABLE=false; defaults write com.apple.WindowManager GloballyEnabled -bool ${ENABLE}" }],
+                "to": [{ "shell_command": "pgrep -xq AeroSpace && /opt/homebrew/bin/aerospace enable toggle || open -a AeroSpace" }],
                 "type": "basic"
               },
               {
@@ -2008,19 +1987,13 @@
                 "type": "basic"
               },
               {
-                "conditions": [
-                  {
-                    "bundle_identifiers": [
-                      "com.runningwithcrayons.Alfred"
-                    ],
-                    "type": "frontmost_application_unless"
-                  }
-                ],
                 "from": {
                   "key_code": "left_control",
                   "modifiers": { "optional": ["any"] }
                 },
-                "to": [{ "key_code": "left_control" }],
+                "to": [
+                  { "key_code": "right_control", "modifiers": ["left_control"] }
+                ],
                 "to_if_alone": [
                   {
                     "key_code": "i",

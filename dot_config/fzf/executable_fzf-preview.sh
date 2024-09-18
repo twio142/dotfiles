@@ -17,7 +17,10 @@ if [ -d "$1" ]; then
   tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__ "$1"
   exit
 elif [[ ! $type =~ image/ ]]; then
-  if [[ $type =~ =binary ]]; then
+  if [[ $type =~ "application/zip" ]]; then
+    unzip -l "$1" | iconv -f utf-8 -t utf-8 -c
+    exit
+  elif [[ $type =~ =binary ]]; then
     file "$1" | sed "s/: /\n\n/"
     exit
   fi

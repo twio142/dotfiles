@@ -2,6 +2,115 @@
   "title": "Backup Rules",
   "rules": [
     {
+      "description": "􀆪 H/J/K/L/M → Move Window, 􀆪⌃ H/J/K/L → Extend Window, 􀆪⌃⌥ H/J/K/L → Contract Window",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "h",
+            "modifiers": { "mandatory": ["fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://move_win?d=w" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "j",
+            "modifiers": { "mandatory": ["fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://move_win?d=s" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "k",
+            "modifiers": { "mandatory": ["fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://move_win?d=n" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "l",
+            "modifiers": { "mandatory": ["fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://move_win?d=e" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "m",
+            "modifiers": { "mandatory": ["fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://move_win?d=m" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "h",
+            "modifiers": { "mandatory": ["control", "fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=w" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "j",
+            "modifiers": { "mandatory": ["control", "fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=s" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "k",
+            "modifiers": { "mandatory": ["control", "fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=n" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "l",
+            "modifiers": { "mandatory": ["control", "fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=e" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "h",
+            "modifiers": { "mandatory": ["control", "option", "fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=w" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "j",
+            "modifiers": { "mandatory": ["control", "option", "fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=s" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "k",
+            "modifiers": { "mandatory": ["control", "option", "fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=n" }],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "l",
+            "modifiers": { "mandatory": ["control", "option", "fn"] }
+          },
+          "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=e" }],
+          "type": "basic"
+        }
+      ]
+    },
+    {
       "description": "⇪ 1/2/3/4/5 -> Stage Manager",
       "manipulators": [
         {

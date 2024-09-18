@@ -73,6 +73,7 @@ _autojump_fzf() {
   LBUFFER=''
   local dir=$(fzf --query=${query} --bind "start:reload:zoxide query '${query}' -l | awk '{ if (!seen[tolower()]++) print }'" \
     --bind "change:reload:zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }'" \
+    --bind "ctrl-x:reload(zoxide remove '{}' && zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }')" \
     --disabled \
     --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" \
     --height=30%)

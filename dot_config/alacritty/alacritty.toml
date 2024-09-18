@@ -30,14 +30,14 @@ bindings = [
   { key = "Delete", mods = "Alt", chars = "\u001b\u0064" },
   { key = "Z", mods = "Super", chars = "\u0018u" },
   { key = "Space", mods = "Shift", chars = "\u001b\u0020" },
-  { key = "Space", mods = "Super|Control", action = "ToggleViMode" },
   { key = "T", mods = "Super", action = "None" },
   { key = "=", mods = "Super", action = "IncreaseFontSize" },
   { key = "-", mods = "Super", action = "DecreaseFontSize" },
   { key = "Tab", mods = "Control", chars = "\u0000\u006e" },
   { key = "Tab", mods = "Shift|Control", chars = "\u0000\u0070" },
-  { key = "C", mods = "Super|Control", chars = "\u0000\u005b" },
-  { key = "V", mods = "Super|Control", chars = "\u0000\u005d" },
+  { key = "S", mods = "Super|Shift", action = "ToggleViMode" },
+  { key = "S", mods = "Super", chars = "\u0000\u005b" },
+  { key = "P", mods = "Super", chars = "\u0000\u005d" },
 ]
 
 [mouse]
@@ -54,8 +54,17 @@ multiplier = 4
 [window]
 decorations = "Buttonless"
 dimensions = { columns = 120, lines = 58 }
-padding = { x = 3, y = 3 }
+padding = { x = 2, y = 2 }
 dynamic_padding = true
 option_as_alt = "OnlyRight"
 opacity = 0.85
 blur = true
+
+[[hints.enabled]]
+command = "open"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse = { enabled = true, mods = "Shift" }
+binding = { key = "J", mods = "Super" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"

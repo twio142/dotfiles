@@ -6,7 +6,7 @@ pollMillis=100
 delay=1
 # Raise delay, specified in units of pollMillis. Disabled if 0. A delay > 1 requires the mouse to stop for a moment before raising.
 
-focusDelay=1.5
+focusDelay=0
 # Focus delay, specified in units of pollMillis. Disabled if 0. A delay > 1 requires the mouse to stop for a moment before focusing.
 
 warpX=0.5
