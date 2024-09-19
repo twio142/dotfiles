@@ -71,9 +71,9 @@ _fzf_comprun() {
 _autojump_fzf() {
   local query=${LBUFFER##* }
   LBUFFER=''
-  local dir=$(fzf --query=${query} --bind "start:reload:zoxide query '${query}' -l | awk '{ if (!seen[tolower()]++) print }'" \
-    --bind "change:reload:zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }'" \
-    --bind "ctrl-x:reload(zoxide remove '{}' && zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }')" \
+  local dir=$(fzf --query=${query} --bind "start:reload:zoxide query '${query}' -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}'" \
+    --bind "change:reload:zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}'" \
+    --bind "ctrl-x:reload:zoxide remove '{}' && zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}'" \
     --disabled \
     --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" \
     --height=30%)

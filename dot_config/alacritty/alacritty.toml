@@ -3,13 +3,15 @@ import = ["~/.config/alacritty/colors.toml"]
 shell = { program = "/bin/zsh", args = ["-lc", "tmux"] }
 
 [env]
-TERM = "xterm-256color"
+TERM = "alacritty"
 LANG = "en_US.UTF-8"
 
 [font]
 size = 12.0
 normal = { family = "FiraCode Nerd Font", style = "Light" }
+bold = { family = "FiraCode Nerd Font", style = "SemiBold" }
 italic = { family = "JetBrainsMono Nerd Font", style = "Thin Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "SemiBold Italic" }
 
 [cursor]
 style = { shape = "Block", blinking = "Always" }

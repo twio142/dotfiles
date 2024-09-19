@@ -10,8 +10,8 @@ xplr.config.modes.custom.backslash.key_bindings.on_key.f = {
 
 require("fzf").setup{
   name = "autojump",
-  args = [[ --bind "start:reload:zoxide query '${query}' -l | awk '{ if (!seen[tolower()]++) print }'" \
-    --bind "change:reload:zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }'" \
+  args = [[ --bind "start:reload:zoxide query '${query}' -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}'" \
+    --bind "change:reload:zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}'" \
     --disabled --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" | xargs -I _ rp "_" ]],
   recursive = true,
   enter_dir = true,
@@ -71,7 +71,7 @@ require("fzf").setup{
 require("fzf").setup{
   name = "recent repos",
   bin = "awk",
-  args = "'/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv \"$PWD\" | fzf --preview \"git -c color.status=always -C {} status | sd ' +\\(use \\\"git [^)]+\\)' ''\" --preview-window=wrap" ,
+  args = "'/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv '$PWD' | fzf --preview \"git -c color.status=always -C {} status | sd ' +\\(use \\\"git [^)]+\\)' ''\" --preview-window=wrap" ,
   recursive = true,
   enter_dir = true,
   mode = "custom.backslash",

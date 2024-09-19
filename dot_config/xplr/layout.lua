@@ -1,3 +1,5 @@
+_G.xplr = _G.xplr or {}
+
 xplr.config.general.focus_ui.prefix = "▶ "
 xplr.config.general.focus_ui.suffix = ""
 xplr.config.general.selection_ui.prefix = "  "
@@ -50,6 +52,8 @@ xplr.fn.custom.fmt_path = function(m)
       if m.symlink.is_dir then
         symlink_path = symlink_path .. "/"
       end
+      local mods = m.is_focused and { "Italic" } or { "Italic", "Dim" }
+      symlink_path = xplr.util.paint(symlink_path, { add_modifiers = mods })
       r = r .. symlink_path:gsub("\n", nl)
     end
   end

@@ -1,3 +1,4 @@
+---@diagnostic disable: lowercase-global
 version = '0.21.9'
 _G.xplr = xplr
 
