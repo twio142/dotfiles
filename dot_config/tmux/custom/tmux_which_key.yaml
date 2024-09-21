@@ -53,6 +53,9 @@ items:
       - name: New …
         key: C
         command: command-prompt -p "❯" -T command "neww \"%1\""
+      - name: Sync panes
+        key: s
+        command: setw synchronize-panes
       - separator: true
       - name: Rename
         key: r
@@ -197,15 +200,18 @@ items:
   - name: +App
     key: a
     menu:
-      - name: FZF
-        key: f
+      - name: Menu
+        key: m
         command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/menu.sh || exit 0"
       - name: Sidebar
         key: o
         command: toggle-sidebar
       - name: xplr
-        key: x
+        key: f
         command: xplr
+      - name: xplr …
+        key: F
+        command: xplr --jump
       - name: Bottom
         key: b
         command: btm
@@ -246,8 +252,10 @@ items:
     menu:
       - name: Lazygit
         key: g
-        command:
-          lzg
+        command: lzg
+      - name: Lazygit …
+        key: G
+        command: lzg --jump
       - name: Files
         key: f
         command:
@@ -296,11 +304,8 @@ items:
         command: list-commands
       - name: Tmux manual
         key: h
-        command: tmux-man 
-      - name: Man page
-        key: m
-        command: man
-        separator: true
+        command: tmux-man
+      - separator: true
       - name: Messages
         key: m
         command: show-messages

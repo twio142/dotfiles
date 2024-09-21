@@ -1,4 +1,4 @@
-_G.xplr = _G.xplr or {}
+_G.xplr = xplr
 
 xplr.config.general.focus_ui.prefix = "▶ "
 xplr.config.general.focus_ui.suffix = ""

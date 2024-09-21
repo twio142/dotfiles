@@ -1,0 +1,101 @@
+[colors]
+background = "#08001b"
+foreground = "#c4c8cf"
+# dim_foreground = "#7f849c"
+# bright_foreground = "#cdd6f4"
+selection_fg = "#b6ccfa"
+selection_bg = "#282099"
+cursor_fg = "#ffffff"
+cursor_bg = "#528bff"
+cursor_border = "#528bff"
+compose_cursor = "#CE5E3E"
+scrollbar_thumb = "#585b70"
+split = "#6c7086"
+visual_bell = "#313244"
+copy_mode_inactive_highlight_fg = { Color = "#1e1e2e" }
+copy_mode_inactive_highlight_bg = { Color = "#878ba2" }
+copy_mode_active_highlight_fg = { Color = "#1e1e2e" }
+copy_mode_active_highlight_bg = { Color = "#a1c281" }
+quick_select_label_fg = { Color = "#1e1e2e" }
+quick_select_label_bg = { Color = "#f9e2af" }
+quick_select_match_fg = { Color = "#1e1e2e" }
+quick_select_match_bg = { Color = "#a6adc8" }
+
+ansi = [
+  "#131226",
+  "#eb605e",
+  "#7fce9a",
+  "#f3b681",
+  "#77b0f8",
+  "#8a6df6",
+  "#8beeef",
+  "#a8b2c9"
+]
+
+brights = [
+  "#555572",
+  "#ee8683",
+  "#aefcac",
+  "#fbe9b1",
+  "#a1dbfb",
+  "#c093dc",
+  "#bcfce5",
+  "#cfe2e6"
+]
+
+[colors.indexed]
+16 = "#fab387"
+17 = "#f5e0dc"
+
+[colors.tab_bar]
+background = "#11111b"
+inactive_tab_edge = "#313244"
+
+[colors.tab_bar.active_tab]
+bg_color = "#cba6f7"
+fg_color = "#11111b"
+intensity = "Normal"
+italic = false
+strikethrough = false
+underline = "None"
+
+[colors.tab_bar.inactive_tab]
+bg_color = "#181825"
+fg_color = "#cdd6f4"
+intensity = "Normal"
+italic = false
+strikethrough = false
+underline = "None"
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = "#1e1e2e"
+fg_color = "#cdd6f4"
+intensity = "Normal"
+italic = false
+strikethrough = false
+underline = "None"
+
+[colors.tab_bar.new_tab]
+bg_color = "#313244"
+fg_color = "#cdd6f4"
+intensity = "Normal"
+italic = false
+strikethrough = false
+underline = "None"
+
+[colors.tab_bar.new_tab_hover]
+bg_color = "#45475a"
+fg_color = "#cdd6f4"
+intensity = "Normal"
+italic = false
+strikethrough = false
+underline = "None"
+
+# [colors.footer_bar]
+# foreground = "#b6ccfa"
+# background = "#2e315e"
+
+[metadata]
+aliases = []
+name = "Tsusue Dark"
+wezterm_version = "20230712-072601-f4abf8fd"

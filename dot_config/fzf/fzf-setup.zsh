@@ -71,9 +71,9 @@ _fzf_comprun() {
 _autojump_fzf() {
   local query=${LBUFFER##* }
   LBUFFER=''
-  local dir=$(fzf --query=${query} --bind "start:reload:zoxide query '${query}' -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}'" \
-    --bind "change:reload:zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}'" \
-    --bind "ctrl-x:reload:zoxide remove '{}' && zoxide query '{q}' -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}'" \
+  local dir=$(fzf --query=${query} --bind "start:reload:zoxide query ${query} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
+    --bind "change:reload:zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
+    --bind "ctrl-x:reload:zoxide remove '{}' && zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
     --disabled \
     --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" \
     --height=30%)
@@ -109,7 +109,7 @@ zle -N _autojump_fzf
 _fzf_repos() {
   local query=${LBUFFER##* }
   LBUFFER=''
-  local dir=$(awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv "$PWD" | fzf --query=${query} --preview "echo -e \"\033[1m\$(basename {})\033[0m\n\"; git -c color.status=always -C {} status -bs" --preview-window='wrap' --height=~50%)
+  local dir=$(awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv "$PWD" | fzf --query=${query} --bind "ctrl-e:become(lazygit -p {})" --preview "echo -e \"\033[1m\$(basename {})\033[0m\n\"; git -c color.status=always -C {} status -bs" --preview-window='wrap' --height=~50%)
   local ret=$?
   if [ -z "$dir" ]; then
     zle redisplay

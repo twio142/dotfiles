@@ -1,7 +1,10 @@
 alias gdv='git difftool -y -t nvimdiff'
-alias vim=nvim
+alias v='nvim'
+alias vim='nvim'
+alias t='tmux'
 alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)'
-alias lzg=lazygit
+alias lzg='lazygit'
+alias ssh='TERM=xterm-256color ssh'
 alias tree='tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__'
 
 back() { cd $OLDPWD }
@@ -65,6 +68,7 @@ export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 # custom completions
 [ -d $ZDOTDIR/completions ] && fpath=($ZDOTDIR/completions $fpath)
+[ -d $ZDOTDIR/functions ] && fpath=($ZDOTDIR/functions $fpath)
 
 # asdf
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
@@ -145,7 +149,6 @@ ts() {
 _tmux_copy_mode() { tmux copy-mode }
 _tmux_find() { tmux copy-mode \; send-keys "?" }
 _tmux_paste() { tmux paste-buffer }
-_tmux_paste_escape() { printf "%q" "$(pbpaste)" | tmux load-buffer - \; paste-buffer -d }
 _tmux_wk_menu() { tmux show-wk-menu-root }
 _tmux_prev_mark() { tmux copy-mode \; send-keys -X search-backward "^❯ " }
 _tmux_next_mark() { tmux copy-mode \; send-keys -X search-forward "^❯ " }
@@ -153,14 +156,12 @@ _tmux_key_bindings() {
   zle -N _tmux_copy_mode
   zle -N _tmux_find
   zle -N _tmux_paste
-  zle -N _tmux_paste_escape
   zle -N _tmux_wk_menu
   zle -N _tmux_prev_mark
   zle -N _tmux_next_mark
   bindkey '^[[' _tmux_copy_mode
   bindkey '^[/' _tmux_find
   bindkey '^[]' _tmux_paste
-  bindkey '^Xv' _tmux_paste_escape
   bindkey '^[ ' _tmux_wk_menu
   bindkey '^[[1;3A' _tmux_prev_mark
   bindkey '^[[1;3B' _tmux_next_mark
@@ -181,6 +182,14 @@ _tmux_key_bindings() {
   done
 }
 
+paste_escape() {
+  local escaped=$(printf '%q' "$(pbpaste)")
+  BUFFER+="$escaped"
+  CURSOR=${#BUFFER}
+}
+zle -N paste_escape
+bindkey '^Xv' paste_escape
+
 _back() { cd $OLDPWD; zle accept-line }
 zle -N _back
 bindkey '^[,' _back
@@ -192,6 +201,7 @@ bindkey '^U' backward-kill-line
 bindkey '^J' down-line-or-select
 bindkey -M menuselect '^J' down-history
 bindkey -M menuselect '^K' up-history
+bindkey '^Xa' _expand_alias
 
 [ -n "$TMUX" ] && {
   autoload -Uz add-zsh-hook;

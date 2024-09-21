@@ -45,7 +45,7 @@ fi
 
 # 1. Use chafa with Sixel output
 if command -v chafa > /dev/null; then
-  chafa -s "$dim" -c full "$file"
+  chafa -f ${FMT:-symbols} -s "$dim" -c full "$file"
   # Add a new line character so that fzf can display multiple images in the preview window
   echo
 
