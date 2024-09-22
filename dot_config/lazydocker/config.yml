@@ -18,6 +18,7 @@ gui:
   screenMode: normal
   containerStatusHealthStyle: long
   border: ""
+  returnImmediatly: true
 logs:
   since: 60m
 commandTemplates:

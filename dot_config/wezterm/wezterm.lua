@@ -55,7 +55,7 @@ local config = {
       { family = "SF Pro", weight = "Bold" },
     }) },
   },
-  -- line_height = 1.0,
+  -- line_height = 0.95,
   -- underline_thickness = "200%",
 
   -- COLOR SCHEME
@@ -66,13 +66,13 @@ local config = {
   initial_cols = 120,
   initial_rows = 58,
   window_padding = {
-    left = 3,
-    right = 3,
-    top = 3,
-    bottom = 3,
+    left = 5,
+    right = 5,
+    top = 5,
+    bottom = 0,
   },
   adjust_window_size_when_changing_font_size = false,
-  window_close_confirmation = "AlwaysPrompt",
+  window_close_confirmation = "NeverPrompt",
   window_decorations = "RESIZE | MACOS_FORCE_ENABLE_SHADOW",
   window_background_opacity = opacity,
   macos_window_background_blur = 70,
@@ -85,7 +85,7 @@ local config = {
   show_new_tab_button_in_tab_bar = false,
   -- colors = {
   --   tab_bar = {
-  --     background = "rgba(12%, 12%, 18%, 90%)",
+  --     background = "none",
   --     active_tab = {
   --       bg_color = "#cba6f7",
   --       fg_color = "rgba(12%, 12%, 18%, 0%)",
@@ -99,7 +99,7 @@ local config = {
   --     inactive_tab_hover = {
   --       fg_color = "#cba6f7",
   --       bg_color = "rgba(27%, 28%, 35%, 90%)",
-  --       intensity = "Bold",
+  --       -- intensity = "Bold",
   --     },
   --     new_tab = {
   --       fg_color = "#808080",
@@ -148,7 +148,15 @@ local config = {
         act.SendKey({ key = "p" }),
       }),
     },
-    k.cmd_to_tmux_prefix("p", "]"),
+    k.cmd_to_tmux_prefix("1", "1"),
+    k.cmd_to_tmux_prefix("2", "2"),
+    k.cmd_to_tmux_prefix("3", "3"),
+    k.cmd_to_tmux_prefix("4", "4"),
+    k.cmd_to_tmux_prefix("5", "5"),
+    k.cmd_to_tmux_prefix("6", "6"),
+    k.cmd_to_tmux_prefix("7", "7"),
+    k.cmd_to_tmux_prefix("8", "8"),
+    k.cmd_to_tmux_prefix("9", "9"),
     -- k.cmd_ctrl_key("t", act.EmitEvent("toggle-opacity")),
     k.cmd_key("j", "QuickSelect"),
     k.cmd_shift_key("s", "ActivateCopyMode"),
@@ -159,9 +167,14 @@ local config = {
       action = wezterm.action.DisableDefaultAssignment,
     },
     {
-      mods = "SHIFT",
-      key = " ",
-      action = act.SendKey({ mods = "OPT", key = " " }),
+      mods = 'SUPER|ALT|CTRL|SHIFT',
+      key = 'Space',
+      action = act.SendKey({ mods = "CTRL", key = " " }),
+    },
+    {
+      mods = 'SUPER|CTRL',
+      key = 'a',
+      action = wezterm.action.ToggleAlwaysOnTop
     }
   },
 

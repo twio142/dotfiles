@@ -43,9 +43,9 @@ brights = [
   "#cfe2e6"
 ]
 
-[colors.indexed]
-16 = "#fab387"
-17 = "#f5e0dc"
+# [colors.indexed]
+# 16 = "#fab387"
+# 17 = "#f5e0dc"
 
 [colors.tab_bar]
 background = "#11111b"

@@ -11,13 +11,13 @@ permission:
   context: cyan
 date:
   hour-old: 40
-  day-old: 42
-  older: 36
+  day-old: 28
+  older: 58
 size:
   none: 245
-  small: 184
-  medium: 178
-  large: 172
+  small: 178
+  medium: 172
+  large: 166
 inode:
   valid: 13
   invalid: 245

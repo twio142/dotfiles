@@ -35,11 +35,11 @@ items:
       - name: Last
         key: tab
         command: last-window
-      - name: Choose
+      # - name: Choose
+      #   key: w
+      #   command: choose-tree -Zw
+      - name: List
         key: w
-        command: choose-tree -Zw
-      - name: FZF
-        key: f
         command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/window.sh || exit 0"
       - name: Next
         key: n
@@ -52,7 +52,7 @@ items:
         command: neww -c "$HOME"
       - name: New …
         key: C
-        command: command-prompt -p "❯" -T command "neww \"%1\""
+        command: command-prompt -p "❯" -T command "neww \"%%\""
       - name: Sync panes
         key: s
         command: setw synchronize-panes
@@ -72,11 +72,11 @@ items:
       - name: Last
         key: tab
         command: lastp
-      - name: FZF
-        key: f
-        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/pane.sh || exit 0"
-      - name: Choose
+      - name: List
         key: p
+        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/pane.sh || exit 0"
+      - name: Jump
+        key: j
         command: displayp -d 0
       - name: Zoom
         key: z
@@ -87,24 +87,27 @@ items:
         command: "splitw -v -l 35% -c #{pane_current_path}"
       - name: Split …
         key: "_"
-        command: command-prompt -p "❯" -T command "splitw -v -l 35% \"%1\""
+        command: command-prompt -p "❯" -T command "splitw -v -l 35% \"%%\""
       - name: Vsplit
         key: \\
         command: "splitw -h -c #{pane_current_path}"
       - name: Vsplit …
         key: "|"
-        command: command-prompt -p "❯" -T command "splitw -h \"%1\""
+        command: command-prompt -p "❯" -T command "splitw -h \"%%\""
       - separator: true
       - name: Mark
         key: m
         command: selectp -m
+      - name: Sync
+        key: s
+        command: set -p synchronize-panes
       - name: Kill
         key: q
         command: 'confirm -p "Kill pane #P? (y/n)" killp'
       - name: Break
         key: b
         command: break-pane
-      - name: Respawn pane
+      - name: Respawn
         key: R
         command: run-shell $XDG_CONFIG_HOME/tmux/scripts/restart_pane.sh
   - name: +Layout
@@ -145,11 +148,11 @@ items:
   - name: +Buffers
     key: b
     menu:
-      - name: Choose
+      # - name: Choose
+      #   key: b
+      #   command: choose-buffer -Z
+      - name: List
         key: b
-        command: choose-buffer -Z
-      - name: FZF
-        key: f
         command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/buffer.sh || exit 0"
       - name: Paste
         key: p
@@ -166,11 +169,11 @@ items:
       - name: Last
         key: tab
         command: switchc -l
-      - name: Choose
+      # - name: Choose
+      #   key: s
+      #   command: choose-tree -Zs
+      - name: List
         key: s
-        command: choose-tree -Zs
-      - name: FZF
-        key: f
         command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/session.sh || exit 0"
       - name: Next
         key: n
@@ -206,11 +209,8 @@ items:
       - name: Sidebar
         key: o
         command: toggle-sidebar
-      - name: xplr
-        key: f
-        command: xplr
       - name: xplr …
-        key: F
+        key: f
         command: xplr --jump
       - name: Bottom
         key: b
@@ -250,11 +250,8 @@ items:
   - name: +Git
     key: g
     menu:
-      - name: Lazygit
-        key: g
-        command: lzg
       - name: Lazygit …
-        key: G
+        key: g
         command: lzg --jump
       - name: Files
         key: f
@@ -303,14 +300,20 @@ items:
         key: c
         command: list-commands
       - name: Tmux manual
-        key: h
+        key: t
         command: tmux-man
+      - name: Man page
+        key: h
+        command: command-prompt -p man "man %%"
       - separator: true
       - name: Messages
         key: m
         command: show-messages
       - name: Options
         key: o
+        command: show-options
+      - name: Global options
+        key: O
         command: show-options -g
       - name: Window options
         key: w
@@ -318,3 +321,6 @@ items:
       - name: Environment
         key: e
         command: show-environment
+      - name: Global environment
+        key: E
+        command: show-environment -g

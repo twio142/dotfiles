@@ -39,7 +39,7 @@ _fzf_git_fzf() {
     --color='header:underline,label:bold' \
     --preview-window='right,60%,border-left' \
     --bind='ctrl-d:preview-half-page-down' --bind='ctrl-u:preview-half-page-up' \
-    --bind='ctrl-/:change-preview-window(down,65%,border-top|hidden|)' "$@"
+    --bind="ctrl-\\:change-preview-window(down,65%,border-top|hidden|)" "$@"
 }
 
 _fzf_git_check() {
@@ -88,7 +88,7 @@ _fzf_git_branches() {
     --no-hscroll \
     --bind "ctrl-f:change-border-label(  All branches )+reload:bash \"$__fzf_git\" all-branches" \
     --bind "alt-o:execute-silent:bash $__fzf_git branch {}" \
-    --bind "ctrl-/:change-preview-window(down,70%|hidden|)" \
+    --bind "ctrl-\\:change-preview-window(down,70%|hidden|)" \
     --bind "alt-d:execute:echo {} | sed 's/^..//' | cut -d' ' -f1 | xargs git diff --color=$(__fzf_git_color) > /dev/tty | bat --style=plain --tabs 2" \
     --bind "ctrl-o:reload(git checkout \$(echo {} | sed 's/^..//' | cut -d' ' -f1); bash \"$__fzf_git\" branches)" \
     --bind "ctrl-r:reload(bash \"$__fzf_git\" branches)+change-border-label(  Branches )" \
@@ -185,7 +185,7 @@ _fzf_git_each_ref() {
     --no-hscroll \
     --bind "ctrl-f:change-border-label(  Every ref )+reload:bash \"$__fzf_git\" all-refs" \
     --bind "alt-o:execute-silent:bash $__fzf_git {1} {2}" \
-    --bind "ctrl-/:change-preview-window(down,70%|hidden|)" \
+    --bind "ctrl-\\:change-preview-window(down,70%|hidden|)" \
     --bind "ctrl-o:reload(git checkout {2}; bash \"$__fzf_git\" refs)" \
     --bind "ctrl-r:reload(bash \"$__fzf_git\" refs)+change-border-label(  Each ref )" \
     --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+2}" \
