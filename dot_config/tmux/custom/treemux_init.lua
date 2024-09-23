@@ -43,44 +43,40 @@ local function treemux_open()
       return
     end
   end
-  local tx = 'tmux select-pane '
+  local pane = "{last}"
   local p = vim.fn.system("tmux display -p '#{pane_index}'")
   if vim.v.count > 0 and vim.v.count ~= tonumber(p) then
-    tx = tx .. '-t ' .. tostring(vim.v.count)
-  else
-    tx = tx .. '-l'
+    pane = tostring(vim.v.count)
   end
-  local result = vim.fn.system(tx .. ' \\; display -p "#{pane_current_command} #{pane_pid}"')
+  local result = vim.fn.system('tmux display -p -t "'..pane..'" "#{pane_current_command} #{pane_pid}"')
+  vim.fn.jobstart({ 'tmux', 'select-pane', '-t', pane })
   local cmd, pid = result:match("^(%S+) (%d+)")
   local path = node.absolute_path or vim.fn.getcwd()
-  path = escape(path)
   if cmd == "nvim" then
-    local command = [[
-    zsh -c '
-    pid=]] .. pid .. [[;
+    local command = 'pid=' .. pid .. [[;
     until (ps -o command= -p $pid | grep -Eq "^nvim --embed"); do
       pid=$(pgrep -P $pid 2> /dev/null)
       [ -z "$pid" ] && break
     done
-    fd "nvim\.$pid.*" $TMPDIR --type s' ]]
+    /opt/homebrew/bin/fd "nvim\.$pid.*" $TMPDIR --type s ]]
     local socket = vim.fn.system(command):gsub("\n", "")
     if socket ~= "" then
-      os.execute(string.format('nvim --server %s --remote %s', socket, path))
+      vim.fn.jobstart({"nvim", "--server", socket, "--remote", path})
       return
     end
   end
+  path = "vim "..escape(path)
   if cmd == "zsh" then
-    os.execute(string.format('tmux send-keys "vim %s" Enter', path))
+    vim.fn.jobstart({"tmux", "send-keys", path, "Enter"})
     return
   end
-  os.execute(string.format('tmux split-window -v \\; send-keys "vim %s" Enter', path))
+  vim.fn.jobstart({"tmux", "split-window", "-v", ";", "send-keys", path, "Enter"})
 end
 
 local function system_open()
   local api = require "nvim-tree.api"
   local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
-  path = escape(path)
-  os.execute('open '..path)
+  vim.ui.open(path)
 end
 
 -- @param action: "send", "run", "lc", "vim"
@@ -103,29 +99,37 @@ local function treemux_send(action, split)
       vim.cmd 'normal! "oy'
       text = vim.fn.getreg 'o'
     end
-    os.execute('printf ' .. escape(text) .. ' | tmux load-buffer -')
+    vim.fn.system('printf ' .. escape(text) .. ' | tmux load-buffer -')
   else
     local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
     cmd = action.." "..escape(path)
   end
-  local tx = 'tmux select-pane '
+  local tx = {"tmux", "select-pane", "-t"}
   local p = vim.fn.system("tmux display -p '#{pane_index}'")
   if vim.v.count > 0 and vim.v.count ~= tonumber(p) then
-    tx = tx .. '-t ' .. tostring(vim.v.count)
+    table.insert(tx, tostring(vim.v.count))
   else
-    tx = tx .. '-l'
+    table.insert(tx, "{last}")
   end
   if action == "send" or action == "run" then
-    tx = tx .. ' \\; paste-buffer -d'
-  elseif (split == "h" or split == "v") then
-    tx = tx .. ' \\; split-window -'..split
+    for _, v in ipairs({ ";", "paste-buffer", "-d" }) do
+      table.insert(tx, v)
+    end
+  elseif split == "h" or split == "v" then
+    for _, v in ipairs({ ";", "split-window", "-"..split }) do
+      table.insert(tx, v)
+    end
   end
   if #cmd > 0 then
-    tx = tx .. ' \\; send-keys "'..cmd..'" Enter'
+    for _, v in ipairs({ ";", "send-keys", cmd, "Enter" }) do
+      table.insert(tx, v)
+    end
   elseif action == "run" then
-    tx = tx .. ' \\; send-keys Enter \\; select-pane -l'
+    for _, v in ipairs({ ";", "send-keys", "Enter", ";", "select-pane", "-l" }) do
+      table.insert(tx, v)
+    end
   end
-  os.execute(tx)
+  vim.fn.jobstart(tx)
 end
 
 local function copy_path(b)
@@ -141,15 +145,14 @@ local function copy_path(b)
   text = escape(text)
   local cmd = b and "tmux load-buffer -" or "pbcopy"
   local msg = b and "tmux buffer" or "clipboard"
-  os.execute('printf ' .. text .. ' | ' .. cmd)
+  vim.fn.system('printf ' .. text .. ' | ' .. cmd)
   vim.notify("Copied to "..msg .."!")
 end
 
 local function show_in_alfred()
   local api = require "nvim-tree.api"
   local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
-  path = escape(path)
-  os.execute("~/.local/bin/alfred " .. path)
+  vim.fn.jobstart({vim.fn.expand("~/.local/bin/alfred"), path})
 end
 
 local function add_to_alfred_buffer()
@@ -171,7 +174,7 @@ end
 local function preview()
   local api = require "nvim-tree.api"
   local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
-  os.execute("tmux popup -w 75% -h 90% -x 30% -y 54% $XDG_CONFIG_HOME/fzf/fzf-preview.sh " .. escape(path))
+  vim.fn.jobstart({"tmux", "popup", "-w", "75%", "-h", "90%", "-x", "30%", "-y", "54%", vim.fn.expand("~/.local/bin/fzf-preview"), path})
 end
 
 local function fzf()

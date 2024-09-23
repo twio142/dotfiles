@@ -1,15 +1,14 @@
 #!/bin/zsh
 
 case $1 in
-  h) flag=L; test=left;;
-  j) flag=D; test=bottom;;
-  k) flag=U; test=top;;
-  l) flag=R; test=right;;
+  h) flag=L; pos=left;;
+  j) flag=D; pos=bottom;;
+  k) flag=U; pos=top;;
+  l) flag=R; pos=right;;
   *) exit 1 ;;
 esac
 
-cmd=$(tmux display-message -p "#{pane_current_command}")
-test=$(tmux display-message -p "#{pane_at_${test}}#{window_zoomed_flag}")
-[[ "$cmd" == nvim || "$test" -gt 0 ]] &&
+IFS=' ' read -r cmd _end <<< $(tmux display-message -p "#{pane_current_command} #{pane_at_${pos}}#{window_zoomed_flag}")
+[[ "$cmd" == nvim || "$_end" -gt 0 ]] &&
   tmux send-keys C-$1 ||
   tmux select-pane -${flag}
