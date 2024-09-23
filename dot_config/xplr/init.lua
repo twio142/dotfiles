@@ -3,7 +3,7 @@ version = '0.21.9'
 _G.xplr = xplr
 
 local home = os.getenv("HOME")
-local xpm_path = home .. "/.local/share/xplr/dtomvan/xpm.xplr"
+local xpm_path = (os.getenv("XDG_DATA_HOME") or (home .. "/.local/share")) .. "/xplr/dtomvan/xpm.xplr"
 local xpm_url = "https://github.com/dtomvan/xpm.xplr"
 local conf_home = os.getenv("XDG_CONFIG_HOME") or (home .. "/.config")
 
@@ -56,9 +56,10 @@ require("xpm").setup({
     { name = 'twio142/fzf.xplr', rev = 'main', setup = function()
       require("fzf").setup{
         bin = "fd",
-        args = [[ -H -L --exclude .DS_Store --exclude .git . . | fzf -m --preview '$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}' \
+        args = [[ -H -L --exclude .DS_Store --exclude .git . . | fzf -m --preview 'fzf-preview {}' \
+        --header '⌥D dir / ⌥L symlink / ⌥S socket / ⌥F file / ⌥X executable' \
         --bind 'alt-d:reload(fd --type d -H -L --exclude .DS_Store --exclude .git {q})+change-header( Directories )' \
-        --bind 'alt-l:reload(fd --type l -H -L --exclude .DS_Store --exclude .git {q})+change-header( Symbolic links )' \
+        --bind 'alt-l:reload(fd --type l -H -L --exclude .DS_Store --exclude .git {q})+change-header( Symlinks )' \
         --bind 'alt-s:reload(fd --type s -H -L --exclude .DS_Store --exclude .git {q})+change-header( Sockets )' \
         --bind 'alt-f:reload(fd --type f -H -L --exclude .DS_Store --exclude .git {q})+change-header( Files )' \
         --bind 'alt-x:reload(fd --type x -H -L --exclude .DS_Store --exclude .git {q})+change-header( Executables )' ]],

@@ -21,13 +21,13 @@ m.silent_cmd("vscode", "open in VSCode")(
 )
 
 local preview = m.silent_cmd("preview", "preview file")(
-  m.BashExec [[ $XDG_CONFIG_HOME/fzf/fzf-preview.sh "${XPLR_FOCUS_PATH:?}" | less -R ]]
+  m.BashExec [[ fzf-preview "${XPLR_FOCUS_PATH:?}" | less -r ]]
 )
 
 local dust = m.cmd("dust", "disk usage")(
   m.BashExec [===[
     read -r r c < <(stty size < /dev/tty)
-    dust -C -w $(( c - 1 )) -n $(( r - 2 )) | less -R
+    dust -C -w $(( c - 1 )) -n $(( r - 2 )) | less -r
   ]===]
 )
 
@@ -36,7 +36,7 @@ local compare = m.cmd("compare", "compare files")(function(ctx)
     return { { LogError = "Please select exactly 2 files to compare" } }
   end
   local paths = xplr.util.shell_escape(ctx.selection[1].absolute_path) .. " " .. xplr.util.shell_escape(ctx.selection[2].absolute_path)
-  return { { BashExec = [[ delta --$(~/.local/bin/background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1) ]] .. paths .. " | less -R" } }
+  return { { BashExec = [[ delta --$(background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1) ]] .. paths .. " | less -r" } }
 end)
 
 local copy_path = m.silent_cmd("copy-path", "copy file path")(function(ctx)

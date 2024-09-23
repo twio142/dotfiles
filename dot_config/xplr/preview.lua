@@ -13,8 +13,7 @@ xplr.config.modes.custom.preview = {
 
 local function create_preview(node, size)
   local path = node.absolute_path
-  local script = os.getenv("XDG_CONFIG_HOME") .. "/fzf/fzf-preview.sh"
-  local cmd = "FZF_PREVIEW_COLUMNS=" .. size.width-1 .." FZF_PREVIEW_LINES=" .. size.height-1 .. " " .. xplr.util.shell_escape(script) .. " " .. xplr.util.shell_escape(path)
+  local cmd = "TMUX_POPUP=1 FZF_PREVIEW_COLUMNS=" .. size.width-1 .." FZF_PREVIEW_LINES=" .. size.height-1 .. " fzf-preview " .. xplr.util.shell_escape(path)
   local p = io.popen(cmd, "r")
   if p then
     local output = p:read("*a")

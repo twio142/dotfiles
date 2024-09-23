@@ -12,7 +12,7 @@ require("fzf").setup{
   name = "autojump",
   args = [[ --bind "start:reload:zoxide query ${query} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
     --bind "change:reload:zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
-    --disabled --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" | xargs -I _ rp "_" ]],
+    --disabled --preview "fzf-preview {}" | xargs -I _ rp "_" ]],
   recursive = true,
   enter_dir = true,
   mode = "go_to",

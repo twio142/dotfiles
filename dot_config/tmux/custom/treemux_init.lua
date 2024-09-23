@@ -25,6 +25,8 @@ vim.uv.fs_stat(lazypath, function(err)
 end)
 vim.opt.rtp:prepend(lazypath)
 
+vim.env.PATH = vim.env.PATH .. ':' .. vim.fn.expand('~/.local/bin')
+
 local function escape(str)
   return '"' .. vim.fn.escape(str, '"!$\\`') .. '"'
 end
@@ -112,22 +114,14 @@ local function treemux_send(action, split)
     table.insert(tx, "{last}")
   end
   if action == "send" or action == "run" then
-    for _, v in ipairs({ ";", "paste-buffer", "-d" }) do
-      table.insert(tx, v)
-    end
+    vim.list_extend(tx, { ";", "paste-buffer", "-d" })
   elseif split == "h" or split == "v" then
-    for _, v in ipairs({ ";", "split-window", "-"..split }) do
-      table.insert(tx, v)
-    end
+    vim.list_extend(tx, { ";", "split-window", "-"..split })
   end
   if #cmd > 0 then
-    for _, v in ipairs({ ";", "send-keys", cmd, "Enter" }) do
-      table.insert(tx, v)
-    end
+    vim.list_extend(tx, { ";", "send-keys", cmd, "Enter" })
   elseif action == "run" then
-    for _, v in ipairs({ ";", "send-keys", "Enter", ";", "select-pane", "-l" }) do
-      table.insert(tx, v)
-    end
+    vim.list_extend(tx, { ";", "send-keys", "Enter", ";", "select-pane", "-l" })
   end
   vim.fn.jobstart(tx)
 end
@@ -152,16 +146,16 @@ end
 local function show_in_alfred()
   local api = require "nvim-tree.api"
   local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
-  vim.fn.jobstart({vim.fn.expand("~/.local/bin/alfred"), path})
+  vim.fn.jobstart({vim.fn.exepath("alfred"), path})
 end
 
 local function add_to_alfred_buffer()
   local api = require "nvim-tree.api"
-  local args = {os.getenv("HOME").."/.local/bin/altr", "-w", "com.nyako520.syspre", "-t", "buffer", "-a", "-" }
+  local args = {vim.fn.exepath("altr"), "-w", "com.nyako520.syspre", "-t", "buffer", "-a", "-" }
   if #api.marks.list() > 0 then
-    for _, node in ipairs(api.marks.list()) do
-      table.insert(args, node.absolute_path)
-    end
+    vim.list_extend(args, vim.tbl_map(function(node)
+      return node.absolute_path
+    end, api.marks.list()))
     vim.fn.jobstart(args)
     api.marks.clear()
   else
@@ -174,7 +168,7 @@ end
 local function preview()
   local api = require "nvim-tree.api"
   local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
-  vim.fn.jobstart({"tmux", "popup", "-w", "75%", "-h", "90%", "-x", "30%", "-y", "54%", vim.fn.expand("~/.local/bin/fzf-preview"), path})
+  vim.fn.jobstart({"tmux", "popup", "-w", "75%", "-h", "90%", "-x", "30%", "-y", "54%", "-e", "TMUX_POPUP=1", vim.fn.exepath("fzf-preview"), path})
 end
 
 local function fzf()
@@ -378,7 +372,7 @@ require("lazy").setup {
   },
 }
 
-local bg = vim.fn.system('~/.local/bin/background')
+local bg = vim.fn.exepath("background") == "" and "dark" or vim.fn.system(vim.fn.exepath("background"))
 if bg == 'light' or bg == 'dark' then
   vim.opt.background = bg
 end
