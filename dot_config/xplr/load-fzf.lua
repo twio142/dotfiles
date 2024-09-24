@@ -15,16 +15,8 @@ require("fzf").setup{
     --disabled --preview "fzf-preview {}" | xargs -I _ rp "_" ]],
   recursive = true,
   enter_dir = true,
-  mode = "go_to",
+  mode = "custom.backslash",
   key = "g"
-}
-
-xplr.config.modes.custom.backslash.key_bindings.on_key.g = {
-  help = "autojump",
-  messages = {
-    "PopMode",
-    { CallLua = "custom.autojump.search" },
-  },
 }
 
 require("fzf").setup{
@@ -75,7 +67,7 @@ require("fzf").setup{
   recursive = true,
   enter_dir = true,
   mode = "custom.backslash",
-  key = "p",
+  key = "R",
 }
 
 xplr.fn.custom.edit_files = function(input)

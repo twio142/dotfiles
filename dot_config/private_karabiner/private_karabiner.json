@@ -405,7 +405,7 @@
             ]
           },
           {
-            "description": "MOD → ⇪, MOD C/D/E → Select Input Method, MOD X → ⌫, MOD ` → ~, Paired Marks",
+            "description": "MOD → ⇪, MOD C/D/E → Select Input Method, MOD X → ⌫, MOD ␣ → ↵, MOD ` → ~, Paired Marks",
             "manipulators": [
               {
                 "from": { "key_code": "right_control" },
@@ -446,6 +446,13 @@
                 "type": "basic"
               },
               {
+                "conditions": [
+                  {
+                    "name": "multitouch_extension_finger_count_total",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "x",
                   "modifiers": {
@@ -454,6 +461,24 @@
                   }
                 },
                 "to": [{ "key_code": "delete_or_backspace" }],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "multitouch_extension_finger_count_total",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "mandatory": ["right_control"],
+                    "optional": ["command", "fn", "option"]
+                  }
+                },
+                "to": [{ "key_code": "return_or_enter" }],
                 "type": "basic"
               },
               {
@@ -527,7 +552,7 @@
                   "key_code": "h",
                   "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus left" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus left || open 'hammerspoon://focus_win?d=w' -g" }],
                 "type": "basic"
               },
               {
@@ -535,7 +560,7 @@
                   "key_code": "j",
                   "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus down" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus down || open 'hammerspoon://focus_win?d=s' -g" }],
                 "type": "basic"
               },
               {
@@ -543,7 +568,7 @@
                   "key_code": "k",
                   "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus up" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus up || open 'hammerspoon://focus_win?d=n' -g" }],
                 "type": "basic"
               },
               {
@@ -551,7 +576,7 @@
                   "key_code": "l",
                   "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus right" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus right || open 'hammerspoon://focus_win?d=e' -g" }],
                 "type": "basic"
               },
               {

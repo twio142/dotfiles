@@ -26,20 +26,31 @@ tmux set -g @catppuccin_flavor "$flavor"
 tmux run-shell ${XDG_CONFIG_HOME}/tmux/plugins/tmux/catppuccin.tmux
 
 # Alacritty theme
-if [ -f ${XDG_CONFIG_HOME}/alacritty/$mode.toml ]; then
-  ln -sf ${XDG_CONFIG_HOME}/alacritty/$mode.toml ${XDG_CONFIG_HOME}/alacritty/colors.toml
-  touch ${XDG_CONFIG_HOME}/alacritty/alacritty.toml
+DIR=${XDG_CONFIG_HOME}/alacritty
+if [ -f $DIR/$mode.toml ]; then
+  ln -sf $DIR/$mode.toml $DIR/colors.toml
+  touch $DIR/alacritty.toml
 fi
 
 # Hammerspoon
 hs -A -c "ConsoleDM()"
 
 # Marta theme
-ln -sf ~/Library/Application\ Support/org.yanex.marta/Themes/$mode ~/Library/Application\ Support/org.yanex.marta/Themes/T.theme
+DIR=~/Library/Application\ Support/org.yanex.marta/Themes
+if [ -f $DIR/$mode ]; then 
+  ln -sf $DIR/$mode $DIR/T.theme
+fi
+
+# yazi theme
+DIR=$XDG_CONFIG_HOME/yazi/themes
+if [ -f $DIR/theme-$mode.yaml ]; then
+  ln -sf $DIR/$mode.yaml $DIR/theme.yaml
+fi
 
 # lsd theme
-if [ -f $XDG_CONFIG_HOME/lsd/${mode}.yaml ]; then 
-  ln -sf $XDG_CONFIG_HOME/lsd/${mode}.yaml $XDG_CONFIG_HOME/lsd/colors.yaml
+DIR=$XDG_CONFIG_HOME/lsd
+if [ -f $DIR/${mode}.yaml ]; then 
+  ln -sf $DIR/${mode}.yaml $DIR/colors.yaml
 fi
 
 # Terminal theme

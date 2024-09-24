@@ -1,9 +1,5 @@
 local on_key = xplr.config.modes.builtin.default.key_bindings.on_key
 
-on_key["0"] = {
-  help = "go to top",
-  messages = { "FocusFirst" },
-}
 xplr.config.modes.builtin.sort.key_bindings.on_key.down = on_key.j
 xplr.config.modes.builtin.sort.key_bindings.on_key.up = on_key.k
 xplr.config.modes.builtin.filter.key_bindings.on_key.down = on_key.j
