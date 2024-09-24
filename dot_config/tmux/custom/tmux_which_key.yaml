@@ -210,8 +210,11 @@ items:
         key: o
         command: toggle-sidebar
       - name: xplr …
-        key: f
+        key: x
         command: xplr --jump
+      - name: Yazi
+        key: y
+        command: yazi
       - name: Bottom
         key: b
         command: btm
