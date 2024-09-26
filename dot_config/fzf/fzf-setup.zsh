@@ -11,17 +11,17 @@ export FZF_COMPLETION_TRIGGER="\`"
 # Options to fzf command
 export FZF_COMPLETION_OPTS="$FZF_DEFAULT_OPTS"
 export FZF_CTRL_R_OPTS="-d '\t' --with-nth 2.. --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
-export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target,__pycache__ --preview '$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}'"
+export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target,__pycache__ --preview 'fzf-preview {}'"
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd -H -L --exclude ".DS_Store" --exclude ".git" . "$1" -X stat -f "%m %N" \; | sort -rn | choose 1..
+  fd -H -L --exclude ".DS_Store" --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d -H -L --exclude ".git" --strip-cwd-prefix=always "$1" -X stat -f "%m %N" \; | sort -rn | choose 1..
+  fd --type d -H -L --exclude ".git" . "$1"
 }
 
 fzf-history-widget() {
@@ -59,12 +59,12 @@ _fzf_comprun() {
   shift
 
   case "$command" in
-    cd)           fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" "$@" ;;
+    cd)           fzf --preview "fzf-preview {}" "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    vim)          shift 2; $XDG_CONFIG_HOME/fzf/fzf-search-file.sh "${*:-}";;
-    chezmoi)      chezmoi managed -p absolute | fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
-    *)            fzf --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" "$@" ;;
+    vim)          fzf --preview "fzf-preview {}" "$@" ;;
+    chezmoi)      chezmoi managed -p absolute | fzf --preview "fzf-preview {}" --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
+    *)            fzf --preview "fzf-preview {}" "$@" ;;
   esac
 }
 
@@ -72,11 +72,11 @@ _fzf_comprun() {
 _autojump_fzf() {
   local query=${LBUFFER##* }
   LBUFFER=''
-  local dir=$(fzf --query=${query} --bind "start:reload:zoxide query ${query} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
-    --bind "change:reload:zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
-    --bind "ctrl-x:reload:zoxide remove '{}' && zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
+  local dir=$(fzf --query=${query} --bind "start:reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
+    --bind "change:reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
+    --bind "ctrl-x:reload:zoxide remove '{}' && zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
     --disabled \
-    --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" \
+    --preview "fzf-preview {}" \
     --height=30%)
   if [[ -z "$dir" || ! -d "$dir" ]]; then
     zle redisplay
@@ -94,7 +94,7 @@ zle -N _autojump_fzf
 # search for images in the current directory, and prompt into the command line
 # _fzf_image() {
 #   local query=${LBUFFER##* }
-#   local selected=$(fd --exclude ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --preview-window='bottom,80%')
+#   local selected=$(fd --exclude ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "fzf-preview {}" --preview-window='bottom,80%')
 #   local ret=$?
 #   if [ -n "$selected" ]; then
 #     LBUFFER=${LBUFFER% *}
@@ -134,7 +134,7 @@ _fzf_locate() {
     --bind "change:reload:zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
     --bind "alt-enter:print(accept)+accept" \
     --disabled \
-    --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" \
+    --preview "fzf-preview {}" \
     --height=30%) || return 0
   if [ "$(echo "$dir" | head -n1)" = accept ]; then
     local selected=$(echo "$dir" | sed 1d)
@@ -150,7 +150,7 @@ _fzf_locate() {
   dir=$(echo "$dir" | head -n1)
   [[ -z "$dir" || ! -d "$dir" ]] && return 0
   zle redisplay
-  local selected=$(_fzf_compgen_path $dir | fzf -m --preview "$XDG_CONFIG_HOME/fzf/fzf-preview.sh {}" --height=~50%) || return 0
+  local selected=$(_fzf_compgen_path $dir | fzf -m --preview "fzf-preview {}" --height=~50%) || return 0
   local ret=$?
   if [ -n "$selected" ]; then
     LBUFFER=${LBUFFER% *}

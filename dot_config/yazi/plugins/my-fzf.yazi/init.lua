@@ -8,9 +8,10 @@ local M = {}
 
 M.z = function(cwd)
   ya.hide()
+  local _z = ":reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true"
   local output = Command("fzf")
-    :args({"--bind", "start:reload:zoxide query ${query} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true"})
-    :args({"--bind", "change:reload:zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true"})
+    :args({"--bind", "start".._z})
+    :args({"--bind", "change".._z})
     :args({"--disabled", "--preview", "fzf-preview {}"})
     :cwd(cwd)
     :stdout(Command.PIPED)
@@ -23,14 +24,36 @@ end
 
 M.fd = function(cwd)
   ya.hide()
+  local _hd = function(t)
+    local types = {
+      f = "file",
+      d = "dir",
+      l = "symlink",
+      s = "socket",
+      x = "executable",
+    }
+    local header = {}
+    local BOLD="\x1b[1;36m"
+    local OFF="\x1b[0m"
+    for k, v in pairs(types) do
+      local h = t == k and BOLD or ""
+      h = h .. string.format("⌥%s %s", string.upper(k), v)
+      h = h .. (t == k and OFF or "")
+      table.insert(header, h)
+    end
+    return table.concat(header, " / ")
+  end
+  local _fd = function(k, t)
+    return string.format("%s:reload(fd --type %s -H -L --exclude .DS_Store --exclude .git --strip-cwd-prefix=always .)+change-header( %s )", k, t, _hd(t))
+  end
   local output = Command("fzf")
-    :args({"--preview", "fzf-preview {}", "--header", "⌥D dir / ⌥L symlink / ⌥S socket / ⌥F file / ⌥X executable"})
-    :args({"--bind", "start:reload(fd --type f -H -L --exclude .DS_Store --exclude .git {q})"})
-    :args({"--bind", "alt-d:reload(fd --type d -H -L --exclude .DS_Store --exclude .git {q})+change-header( Directories )"})
-    :args({"--bind", "alt-l:reload(fd --type l -H -L --exclude .DS_Store --exclude .git {q})+change-header( Symlinks )"})
-    :args({"--bind", "alt-s:reload(fd --type s -H -L --exclude .DS_Store --exclude .git {q})+change-header( Sockets )"})
-    :args({"--bind", "alt-f:reload(fd --type f -H -L --exclude .DS_Store --exclude .git {q})+change-header( Files )"})
-    :args({"--bind", "alt-x:reload(fd --type x -H -L --exclude .DS_Store --exclude .git {q})+change-header( Executables )"})
+    :args({"--preview", "fzf-preview {}"})
+    :args({"--bind", _fd("start", "f")})
+    :args({"--bind", _fd("alt-d", "d")})
+    :args({"--bind", _fd("alt-l", "l")})
+    :args({"--bind", _fd("alt-s", "s")})
+    :args({"--bind", _fd("alt-f", "f")})
+    :args({"--bind", _fd("alt-x", "x")})
     :cwd(cwd)
     :stdout(Command.PIPED)
     :output()

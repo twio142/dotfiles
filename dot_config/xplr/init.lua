@@ -53,20 +53,7 @@ require("xpm").setup({
     end },
     { name = 'sayanarijit/map.xplr', rev = 'main' },
     { name = 'sayanarijit/type-to-nav.xplr', rev = 'main' },
-    { name = 'twio142/fzf.xplr', rev = 'main', setup = function()
-      require("fzf").setup{
-        args = [[ -m --preview 'fzf-preview {}' \
-        --header '⌥D dir / ⌥L symlink / ⌥S socket / ⌥F file / ⌥X executable' \
-        --bind 'start:reload(fd --type f -H -L --exclude .DS_Store --exclude .git {q})'
-        --bind 'alt-d:reload(fd --type d -H -L --exclude .DS_Store --exclude .git {q})+change-header( Directories )' \
-        --bind 'alt-l:reload(fd --type l -H -L --exclude .DS_Store --exclude .git {q})+change-header( Symlinks )' \
-        --bind 'alt-s:reload(fd --type s -H -L --exclude .DS_Store --exclude .git {q})+change-header( Sockets )' \
-        --bind 'alt-f:reload(fd --type f -H -L --exclude .DS_Store --exclude .git {q})+change-header( Files )' \
-        --bind 'alt-x:reload(fd --type x -H -L --exclude .DS_Store --exclude .git {q})+change-header( Executables )' ]],
-        recursive = true,
-        enter_dir = true,
-      }
-    end },
+    { name = 'twio142/fzf.xplr', rev = 'main' },
     { name = 'twio142/tree-view.xplr', rev = 'main', setup = function()
       require("tree-view").setup({
         mode = "switch_layout",

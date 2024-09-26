@@ -1,5 +1,42 @@
 _G.xplr = xplr
 
+local _hd = function(t)
+  local types = {
+    f = "file",
+    d = "dir",
+    l = "symlink",
+    s = "socket",
+    x = "executable",
+  }
+  local header = {}
+  local BOLD="\x1b[1;36m"
+  local OFF="\x1b[0m"
+  for k, v in pairs(types) do
+    local h = t == k and BOLD or ""
+    h = h .. string.format("⌥%s %s", string.upper(k), v)
+    h = h .. (t == k and OFF or "")
+    table.insert(header, h)
+  end
+  return table.concat(header, " / ")
+end
+
+local _fd = function(k, t)
+  return string.format("%s:reload(fd --type %s -H -L --exclude .DS_Store --exclude .git --strip-cwd-prefix=always .)+change-header( %s )", k, t, _hd(t))
+end
+
+require("fzf").setup{
+  args = string.format('-m --preview "fzf-preview {}" --bind "%s" --bind "%s" --bind "%s" --bind "%s" --bind "%s" --bind "%s"',
+    _fd("start", "f"),
+    _fd("alt-d", "d"),
+    _fd("alt-l", "l"),
+    _fd("alt-s", "s"),
+    _fd("alt-f", "f"),
+    _fd("alt-x", "x")
+  ),
+  recursive = true,
+  enter_dir = true,
+}
+
 xplr.config.modes.custom.backslash.key_bindings.on_key.f = {
   help = "fzf",
   messages = {
@@ -10,8 +47,8 @@ xplr.config.modes.custom.backslash.key_bindings.on_key.f = {
 
 require("fzf").setup{
   name = "autojump",
-  args = [[ --bind "start:reload:zoxide query ${query} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
-    --bind "change:reload:zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv '${PWD}' || true" \
+  args = [[ --bind "start:reload:zoxide query ${query} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
+    --bind "change:reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
     --disabled --preview "fzf-preview {}" | xargs -I _ rp "_" ]],
   recursive = true,
   enter_dir = true,
@@ -54,7 +91,7 @@ end
 require("fzf").setup{
   name = "recent files",
   bin = "cat",
-  args = os.getenv("XDG_CACHE_HOME") .. "/neomru/file | grep -E '^/' | head -n30 | fzf -m --preview 'bat --color=always {}'",
+  args = os.getenv("XDG_CACHE_HOME") .. "/neomru/file | grep -E '^/' | fzf -m --tail 30 --preview 'bat --color=always {}'",
   recursive = true,
   mode = "custom.backslash",
   key = "r",

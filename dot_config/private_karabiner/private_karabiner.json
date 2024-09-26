@@ -13,7 +13,7 @@
         },
         "rules": [
           {
-            "description": "Alfred, Finder & Marta, PDF Reader Pro",
+            "description": "Alfred, Finder & Marta, PDF Reader Pro, WezTerm & Alacritty",
             "manipulators": [
               {
                 "conditions": [
@@ -252,6 +252,57 @@
                   "modifiers": { "mandatory": ["right_option"] }
                 },
                 "to": [{ "key_code": "right_arrow", "modifiers": ["right_option"] }],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "com.github.wez.wezterm",
+                      "org.alacritty"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "left_option",
+                  "modifiers": { "mandatory": ["fn"] }
+                },
+                "to": [{ "key_code": "right_option", "lazy": true }],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "com.github.wez.wezterm",
+                      "org.alacritty"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "fn",
+                  "modifiers": { "mandatory": ["left_option"] }
+                },
+                "to": [{ "key_code": "right_option", "lazy": true }],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "com.github.wez.wezterm",
+                      "org.alacritty"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "right_option",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [{ "key_code": "left_option", "lazy": true }],
                 "type": "basic"
               }
             ]
@@ -552,7 +603,7 @@
                   "key_code": "h",
                   "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus left || open 'hammerspoon://focus_win?d=w' -g" }],
+                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=w' -g" }],
                 "type": "basic"
               },
               {
@@ -560,7 +611,7 @@
                   "key_code": "j",
                   "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus down || open 'hammerspoon://focus_win?d=s' -g" }],
+                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=s' -g" }],
                 "type": "basic"
               },
               {
@@ -568,7 +619,7 @@
                   "key_code": "k",
                   "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus up || open 'hammerspoon://focus_win?d=n' -g" }],
+                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=n' -g" }],
                 "type": "basic"
               },
               {
@@ -576,7 +627,7 @@
                   "key_code": "l",
                   "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus right || open 'hammerspoon://focus_win?d=e' -g" }],
+                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=e' -g" }],
                 "type": "basic"
               },
               {
@@ -1949,7 +2000,7 @@
                 "to_if_alone": [{ "key_code": "f4" }],
                 "to_if_held_down": [
                   {
-                    "shell_command": "open -b com.github.wez.wezterm"
+                    "shell_command": "~/.local/bin/altr -w com.nyako520.program -t shell"
                   }
                 ],
                 "type": "basic"

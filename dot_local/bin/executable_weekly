@@ -59,3 +59,4 @@ zimfw uninstall -q
 zimfw upgrade
 zimfw update
 command -v gh &> /dev/null && gh extension upgrade --all
+reconfig

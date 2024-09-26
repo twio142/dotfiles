@@ -130,8 +130,8 @@ local config = {
       act.SendKey({ mods = "CTRL", key = "x" }),
       act.SendKey({ key = "u" }),
     })),
-    k.cmd_to_tmux_prefix("s", "["),
-    k.cmd_to_tmux_prefix("p", "]"),
+    k.cmd_to_tmux_prefix("[", "["),
+    k.cmd_to_tmux_prefix("]", "]"),
     {
       mods = "CTRL",
       key = "Tab",
@@ -159,7 +159,7 @@ local config = {
     k.cmd_to_tmux_prefix("9", "9"),
     -- k.cmd_ctrl_key("t", act.EmitEvent("toggle-opacity")),
     k.cmd_key("j", "QuickSelect"),
-    k.cmd_shift_key("s", "ActivateCopyMode"),
+    k.cmd_shift_key("[", "ActivateCopyMode"),
     k.cmd_shift_key("p", "ActivateCommandPalette"),
     {
       mods = 'ALT',
@@ -180,8 +180,8 @@ local config = {
 
   selection_word_boundary = " \t\n{}[]()\"'`.,;:",
   scrollback_lines = 10000,
-  send_composed_key_when_left_alt_is_pressed = true,
-  send_composed_key_when_right_alt_is_pressed = false,
+  send_composed_key_when_left_alt_is_pressed = false,
+  send_composed_key_when_right_alt_is_pressed = true,
 }
 
 return config

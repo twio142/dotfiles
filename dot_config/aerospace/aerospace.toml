@@ -77,6 +77,14 @@ if.app-id = 'com.objective-see.lulu.app'
 run = ['layout floating']
 
 [[on-window-detected]]
+if.app-id = 'com.runningwithcrayons.Alfred-Preferences'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'org.hammerspoon.Hammerspoon'
+run = ['layout floating']
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'Karabiner-'
 run = ['layout floating']
 

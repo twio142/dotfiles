@@ -63,4 +63,9 @@ source $ZIM_HOME/init.zsh
 
 [[ -n "$TMUX" && -s "/var/mail/$USER" ]] && echo "  You have mail."
 
-source $ZDOTDIR/config.zsh
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=jh
+# ZVM_CURSOR_STYLE_ENABLED=false
+
+function zvm_after_init() {
+  source $ZDOTDIR/config.zsh
+}

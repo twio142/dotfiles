@@ -160,6 +160,7 @@ _tmux_key_bindings() {
   zle -N _tmux_prev_mark
   zle -N _tmux_next_mark
   bindkey '^[[' _tmux_copy_mode
+  bindkey '^V' _tmux_copy_mode
   bindkey '^[/' _tmux_find
   bindkey '^[]' _tmux_paste
   bindkey '^[ ' _tmux_wk_menu
@@ -188,22 +189,39 @@ paste_escape() {
   CURSOR=${#BUFFER}
 }
 zle -N paste_escape
-bindkey '^Xv' paste_escape
 
-_back() { cd $OLDPWD; zle accept-line }
+_back() { [ "$OLDPWD" = "$PWD" ] || { cd $OLDPWD; zle accept-line } }
 zle -N _back
 bindkey '^[,' _back
+bindkey ' ' magic-space
+
+bindkey '^[b' backward-word
+bindkey '^[f' forward-word
+bindkey '^[e' edit-command-line
+bindkey '^[d' kill-word
+bindkey '^[h' run-help
+bindkey '^[k' kill-line
+bindkey '^[x' execute-named-cmd
+
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
-bindkey '^V' vi-cmd-mode
-bindkey '^[k' kill-line
 bindkey '^U' backward-kill-line
+bindkey -M vicmd '^U' backward-kill-line
+bindkey -M vicmd '^W' backward-kill-word
+# bindkey '^V' vi-cmd-mode
+
 bindkey '^J' down-line-or-select
 bindkey -M menuselect '^J' down-history
+bindkey -M menuselect 'j' down-history
 bindkey -M menuselect '^K' up-history
+
 bindkey '^Xa' _expand_alias
+bindkey '^Xu' undo
+bindkey '^Xv' paste_escape
+bindkey '^X/' recent-paths
 
 [ -n "$TMUX" ] && {
   autoload -Uz add-zsh-hook;
   add-zsh-hook precmd _tmux_key_bindings;
+  zvm_after_lazy_keybindings_commands+=(_tmux_key_bindings)
 }
