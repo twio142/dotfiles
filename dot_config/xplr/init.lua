@@ -55,9 +55,9 @@ require("xpm").setup({
     { name = 'sayanarijit/type-to-nav.xplr', rev = 'main' },
     { name = 'twio142/fzf.xplr', rev = 'main', setup = function()
       require("fzf").setup{
-        bin = "fd",
-        args = [[ -H -L --exclude .DS_Store --exclude .git . . | fzf -m --preview 'fzf-preview {}' \
+        args = [[ -m --preview 'fzf-preview {}' \
         --header '⌥D dir / ⌥L symlink / ⌥S socket / ⌥F file / ⌥X executable' \
+        --bind 'start:reload(fd --type f -H -L --exclude .DS_Store --exclude .git {q})'
         --bind 'alt-d:reload(fd --type d -H -L --exclude .DS_Store --exclude .git {q})+change-header( Directories )' \
         --bind 'alt-l:reload(fd --type l -H -L --exclude .DS_Store --exclude .git {q})+change-header( Symlinks )' \
         --bind 'alt-s:reload(fd --type s -H -L --exclude .DS_Store --exclude .git {q})+change-header( Sockets )' \
@@ -125,6 +125,7 @@ xplr.config.general.logs.error.format = " "
 xplr.config.general.logs.warning.format = "󱈸 "
 xplr.config.modes.builtin.move_to.prompt = "󱀱 ❯ "
 xplr.config.modes.builtin.copy_to.prompt = " ❯ "
+xplr.config.general.hide_remaps_in_help_menu = true
 
 require("leader")
 require("keys")
@@ -134,6 +135,7 @@ require("commands")
 require("git-status")
 require("complete-path")
 require("load-fzf")
+require("shell")
 
 return {
   on_load = {

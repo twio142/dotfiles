@@ -5,7 +5,7 @@ xplr.config.modes.custom.space = {
   key_bindings = {
     on_key = {
       l = {
-        help = "logs",
+        help = "[l]ogs",
         messages = {
           {
             BashExec = [[
@@ -23,7 +23,7 @@ xplr.config.modes.custom.space = {
         }
       },
       x = {
-        help = "xpm",
+        help = "[x]pm",
         messages = {
           "PopMode",
           { SwitchModeCustom = "xpm" },

@@ -1,7 +1,7 @@
 _G.xplr = xplr
 
 xplr.config.modes.builtin.default.key_bindings.on_key.b = {
-  help = "bookmark mode",
+  help = "[b]ookmark mode",
   messages = {
     { SwitchModeCustom = "bookmark" },
   },
@@ -12,7 +12,7 @@ xplr.config.modes.custom.bookmark = {
   key_bindings = {
     on_key = {
       a = {
-        help = "bookmark dir",
+        help = "[a]dd bookmark",
         messages = {
           {
             BashExecSilently0 = [[
@@ -48,7 +48,7 @@ xplr.config.modes.custom.bookmark = {
         },
       },
       d = {
-        help = "delete bookmark",
+        help = "[d]elete bookmark",
         messages = {
           {
             BashExec0 = [[

@@ -31,7 +31,7 @@ local dust = m.cmd("dust", "disk usage")(
   ]===]
 )
 
-local compare = m.cmd("compare", "compare files")(function(ctx)
+local diff = m.cmd("diff", "[d]iff files")(function(ctx)
   if #ctx.selection ~= 2 then
     return { { LogError = "Please select exactly 2 files to compare" } }
   end
@@ -39,13 +39,13 @@ local compare = m.cmd("compare", "compare files")(function(ctx)
   return { { BashExec = [[ delta --$(background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1) ]] .. paths .. " | less -r" } }
 end)
 
-local copy_path = m.silent_cmd("copy-path", "copy file path")(function(ctx)
+local yank_path = m.silent_cmd("yank-path", "[y]ank file path")(function(ctx)
   local path = ctx.focused_node.absolute_path
   os.execute("printf " .. xplr.util.shell_escape(path) .. " | pbcopy")
   return { { LogSuccess = "Copied to clipboard: " .. path } }
 end)
 
-local paste_path = m.silent_cmd("paste-path", "paste file path")(function()
+local paste_path = m.silent_cmd("paste-path", "[p]aste file path")(function()
   local path = xplr.util.shell_execute("pbpaste").stdout
   if not xplr.util.exists(path) then
     return { { LogError = "No path in clipboard" } }
@@ -56,13 +56,13 @@ local paste_path = m.silent_cmd("paste-path", "paste file path")(function()
   end
 end)
 
-local copy_to_tmux = m.silent_cmd("copy-to-tmux", "copy file path to tmux buffer")(function(ctx)
+local yank_to_tmux = m.silent_cmd("yank-to-tmux", "[Y]ank file path to tmux buffer")(function(ctx)
   local path = ctx.focused_node.absolute_path
   os.execute("printf " .. xplr.util.shell_escape(path) .. " | tmux load-buffer -")
   return { { LogSuccess = "Copied to tmux buffer: " .. path } }
 end)
 
-local paste_from_tmux = m.silent_cmd("paste-from-tmux", "paste file path from tmux buffer")(function()
+local paste_from_tmux = m.silent_cmd("paste-from-tmux", "[P]aste file path from tmux buffer")(function()
   local path = xplr.util.shell_execute("tmux", { "show-buffer" }).stdout
   if not xplr.util.exists(path) then
     return { { LogError = "No path in tmux buffer" } }
@@ -73,7 +73,7 @@ local paste_from_tmux = m.silent_cmd("paste-from-tmux", "paste file path from tm
   end
 end)
 
-local browse_in_alfred = m.silent_cmd("browse-in-alfred", "browse in alfred")(
+local browse_in_alfred = m.silent_cmd("browse-in-alfred", "browse in [a]lfred")(
   m.BashExecSilently [[ alfred "${XPLR_FOCUS_PATH:?}" ]]
 )
 
@@ -121,7 +121,7 @@ local cd_in_tmux_neww = m.cmd("cd-in-tmux-neww", "cd path in new tmux window")(f
   return { "Quit" }
 end)
 
-local vim_in_tmux = m.cmd("vim-in-tmux", "edit file(s) in tmux")(function(ctx)
+local vim_in_tmux = m.cmd("vim-in-tmux", "[e]dit file(s) in tmux")(function(ctx)
   if os.getenv("TMUX") == nil then
     return { { LogError = "Not in tmux" } }
   end
@@ -139,7 +139,7 @@ local vim_in_tmux = m.cmd("vim-in-tmux", "edit file(s) in tmux")(function(ctx)
   return { "Quit" }
 end)
 
-local vim_in_tmux_neww = m.cmd("vim-in-tmux-neww", "edit file(s) in new tmux window")(function(ctx)
+local vim_in_tmux_neww = m.cmd("vim-in-tmux-neww", "[E]dit file(s) in new tmux window")(function(ctx)
   if os.getenv("TMUX") == nil then
     return { { LogError = "Not in tmux" } }
   end
@@ -164,10 +164,10 @@ end)
 preview.bind(xplr.config.modes.builtin.action, "tab")
 -- xplr.config.modes.custom.preview.key_bindings.on_key.w = preview.action
 dust.bind(xplr.config.modes.custom.space, "u")
-compare.bind(xplr.config.modes.builtin.selection_ops, "d")
-copy_path.bind(xplr.config.modes.builtin.default, "y")
+diff.bind(xplr.config.modes.builtin.selection_ops, "d")
+yank_path.bind(xplr.config.modes.builtin.default, "y")
 paste_path.bind(xplr.config.modes.builtin.default, "p")
-copy_to_tmux.bind(xplr.config.modes.custom.space, "y")
+yank_to_tmux.bind(xplr.config.modes.custom.space, "y")
 paste_from_tmux.bind(xplr.config.modes.custom.space, "p")
 browse_in_alfred.bind(xplr.config.modes.builtin.default, "a")
 add_to_alfred_buffer.bind(xplr.config.modes.builtin.default, "=")

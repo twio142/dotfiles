@@ -1,3 +1,5 @@
+_G.xplr = xplr
+
 local on_key = xplr.config.modes.builtin.default.key_bindings.on_key
 
 xplr.config.modes.builtin.sort.key_bindings.on_key.down = on_key.j
@@ -6,6 +8,15 @@ xplr.config.modes.builtin.filter.key_bindings.on_key.down = on_key.j
 xplr.config.modes.builtin.filter.key_bindings.on_key.up = on_key.k
 xplr.config.modes.custom.type_to_nav.key_bindings.on_key.up = on_key.k
 xplr.config.modes.custom.type_to_nav.key_bindings.on_key.down = on_key.j
+
+on_key.c.help = "[c]opy to"
+on_key.d.help = "[d]elete"
+on_key.f.help = "[f]ilter"
+on_key.s.help = "[s]ort"
+on_key.g.help = "[g]o to"
+on_key.m.help = "[m]ove to"
+on_key.r.help = "[r]ename"
+on_key.t.help = "[t]ree view"
 
 -- selection
 on_key.J = {
@@ -132,7 +143,7 @@ xplr.config.modes.custom.type_to_nav.key_bindings.on_key.tab = xplr.config.modes
 
 -- paste, move and softlink selected files
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.p = {
-  help = "paste here",
+  help = "[p]aste here",
   messages = {
     {
       BashExec0 = [===[
@@ -173,6 +184,7 @@ xplr.config.modes.builtin.selection_ops.key_bindings.on_key.p = {
 }
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.c = nil
 
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.m.help = "[m]ove here"
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.m.messages = {
   {
     BashExec0 = [===[
@@ -211,6 +223,7 @@ xplr.config.modes.builtin.selection_ops.key_bindings.on_key.m.messages = {
   "PopMode",
 }
 
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.s.help = "[s]oftlink here"
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.s.messages = {
   {
     BashExec0 = [===[
@@ -248,6 +261,8 @@ xplr.config.modes.builtin.selection_ops.key_bindings.on_key.s.messages = {
   },
   "PopMode",
 }
+
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.h.help = "[h]ardlink here"
 
 -- create new file
 xplr.config.modes.custom.new_file = {
@@ -299,7 +314,7 @@ xplr.fn.custom.new_file = function(ctx)
 end
 
 on_key.N = {
-  help = "new file",
+  help = "[N]ew file",
   messages = {
     "PopMode",
     { SwitchModeCustom = "new_file" },
@@ -312,7 +327,7 @@ xplr.config.modes.builtin.action.key_bindings.on_key.c = nil
 
 -- delete selected files
 xplr.config.modes.builtin.delete.key_bindings.on_key.d = {
-  help = "trash",
+  help = "[d]elete",
   messages = {
     {
       BashExecSilently0 = [===[
@@ -330,8 +345,9 @@ xplr.config.modes.builtin.delete.key_bindings.on_key.d = {
   },
 }
 
+xplr.config.modes.builtin.delete.key_bindings.on_key.D.help = "Force [D]elete"
 xplr.config.modes.builtin.delete.key_bindings.on_key.E = {
-  help = "empty trash",
+  help = "[E]mpty trash",
   messages = {
     {
       BashExecSilently0 = [===[
@@ -347,8 +363,12 @@ xplr.config.modes.builtin.delete.key_bindings.on_key.E = {
 }
 
 -- go to
+xplr.config.modes.builtin.go_to.key_bindings.on_key.f.help = "[f]ollow symlink"
+xplr.config.modes.builtin.go_to.key_bindings.on_key.space = xplr.config.modes.builtin.go_to.key_bindings.on_key.p
+xplr.config.modes.builtin.go_to.key_bindings.on_key.space.help = "enter path"
+xplr.config.modes.builtin.go_to.key_bindings.on_key.p = nil
 xplr.config.modes.builtin.go_to.key_bindings.on_key.r = {
-  help = "recent",
+  help = "[r]ecent",
   messages = {
     "PopMode",
     {
@@ -361,7 +381,13 @@ xplr.config.modes.builtin.go_to.key_bindings.on_key.r = {
     },
   },
 }
+xplr.config.modes.builtin.action.key_bindings.on_key.e.help = "[e]dit file"
+xplr.config.modes.builtin.action.key_bindings.on_key.p.help = "edit [p]ermissions"
+xplr.config.modes.builtin.action.key_bindings.on_key.D.help = "[D]uplicate as"
 xplr.config.modes.builtin.action.key_bindings.on_key.O = xplr.config.modes.builtin.go_to.key_bindings.on_key.x
+xplr.config.modes.builtin.action.key_bindings.on_key.O.help = "[O]pen with gui"
+xplr.config.modes.builtin.action.key_bindings.on_key.l = nil
+
 xplr.config.modes.builtin.go_to.key_bindings.on_key.x = nil
 on_key["["] = {
   help = "last visited path",
@@ -393,8 +419,6 @@ xplr.config.modes.builtin.go_to.key_bindings.on_key["]"] = {
 }
 
 -- help
-xplr.config.modes.builtin.action.key_bindings.on_key.l = nil
-
 local help = xplr.config.general.global_key_bindings.on_key["f1"]
 help.messages = {
   {

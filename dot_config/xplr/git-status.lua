@@ -108,7 +108,7 @@ xplr.fn.custom.git_status = {
 }
 
 xplr.config.modes.builtin.go_to.key_bindings.on_key.s = {
-  help = "git status",
+  help = "git [s]tatus",
   messages = {
     "PopMode",
     { SwitchModeCustom = "git_status" },

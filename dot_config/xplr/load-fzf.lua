@@ -54,7 +54,7 @@ end
 require("fzf").setup{
   name = "recent files",
   bin = "cat",
-  args = os.getenv("XDG_CACHE_HOME") .. "/neomru/file | sed '2,10!d' | fzf -m --preview 'bat --color=always {}'",
+  args = os.getenv("XDG_CACHE_HOME") .. "/neomru/file | grep -E '^/' | head -n30 | fzf -m --preview 'bat --color=always {}'",
   recursive = true,
   mode = "custom.backslash",
   key = "r",
@@ -63,7 +63,7 @@ require("fzf").setup{
 require("fzf").setup{
   name = "recent repos",
   bin = "awk",
-  args = "'/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv '$PWD' | fzf --preview \"git -c color.status=always -C {} status | sd ' +\\(use \\\"git [^)]+\\)' ''\" --preview-window=wrap" ,
+  args = "'/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}'" .. [[ $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv '$PWD' | fzf --preview 'echo -e "\033[1m$(basename {})\033[0m\n"; git -c color.status=always -C {} status -bs' --preview-window=wrap]] ,
   recursive = true,
   enter_dir = true,
   mode = "custom.backslash",
@@ -85,8 +85,9 @@ xplr.fn.custom.edit_files = function(input)
 end
 
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.E = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.e
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.E.help = "[E]dit selection"
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.e = {
-  help = "edit selected files",
+  help = "[e]dit selected files",
   messages = {
     "PopMode",
     { CallLua = "custom.edit_files" },

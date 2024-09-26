@@ -124,7 +124,7 @@ local config = {
     k.cmd_key("Delete", act.SendKey({ mods = "OPT", key = "k" })),
     k.opt_key("LeftArrow", act.SendKey({ mods = "OPT", key = "b" })),
     k.opt_key("RightArrow", act.SendKey({ mods = "OPT", key = "f" })),
-    k.opt_key("Backspace", act.SendKey({ mods = "OPT|CTRL", key = "h" })),
+    k.opt_key("Backspace", act.SendKey({ mods = "CTRL", key = "w" })),
     k.opt_key("Delete", act.SendKey({ mods = "OPT", key = "d" })),
     k.cmd_key("z", act.Multiple({
       act.SendKey({ mods = "CTRL", key = "x" }),

@@ -42,9 +42,9 @@ if [ -f $DIR/$mode ]; then
 fi
 
 # yazi theme
-DIR=$XDG_CONFIG_HOME/yazi/themes
-if [ -f $DIR/theme-$mode.yaml ]; then
-  ln -sf $DIR/$mode.yaml $DIR/theme.yaml
+DIR=$XDG_CONFIG_HOME/yazi
+if [ -f $DIR/theme-$mode.toml ]; then
+  ln -sf $DIR/theme-$mode.toml $DIR/theme.toml
 fi
 
 # lsd theme
