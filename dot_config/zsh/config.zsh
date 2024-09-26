@@ -6,20 +6,17 @@ alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -li
 alias lzg='lazygit'
 alias ssh='TERM=xterm-256color ssh'
 alias tree='tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__'
+alias reconfig='exec zsh'
 
 back() { cd $OLDPWD }
 co() { 1="$*"; gh copilot suggest "$1" }
 coe() { 1="$*"; gh copilot explain "$1" }
 lc() {
-    1=${1:a};
-    [ -d $1 ] && cd $1 || cd ${1:h};
+  1=${1:a}
+  [ -d $1 ] && cd $1 || cd ${1:h};
 }
 gitup() {
-  1=${1:-$PWD}
-  until [ -d $1/.git ]; do
-    [ $1 = ${1:h} ] && {echo "Could not find repository" >&2; return 1;}
-    1=${1:h}
-  done
+  1=$(git -C "${1:-$PWD}" rev-parse --show-toplevel 2> /dev/null) || { echo "Not a git repository" >&2; return 1; }
   open -b co.gitup.mac $1
 }
 gro() {
@@ -29,9 +26,8 @@ gro() {
 }
 ipy() { ${1:-~/.local/bin/python3} -m IPython }
 lzd() {
-  docker ps &> /dev/null && lazydocker || { echo Docker not running >&2; return 1 }
+  docker ps &> /dev/null && lazydocker || { echo "Docker not running" >&2; return 1 }
 }
-reconfig() { exec zsh }
 timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
@@ -136,22 +132,22 @@ ta() {
   fi
 }
 
-alias tl='tmux list-sessions'
+alias tl='tmux ls'
 
-ts() {
+tn() {
   if [[ -z $1 || ${1:0:1} == '-' ]]; then
-    tmux new-session "$@"
+    tmux new "$@"
   else
-    tmux new-session -s "$@"
+    tmux new -s "$@"
   fi
 }
 
 _tmux_copy_mode() { tmux copy-mode }
-_tmux_find() { tmux copy-mode \; send-keys "?" }
-_tmux_paste() { tmux paste-buffer }
+_tmux_find() { tmux copy-mode \; send "?" }
+_tmux_paste() { tmux pasteb }
 _tmux_wk_menu() { tmux show-wk-menu-root }
-_tmux_prev_mark() { tmux copy-mode \; send-keys -X search-backward "^❯ " }
-_tmux_next_mark() { tmux copy-mode \; send-keys -X search-forward "^❯ " }
+_tmux_prev_mark() { tmux copy-mode \; send -X search-backward "^❯ " }
+_tmux_next_mark() { tmux copy-mode \; send -X search-forward "^❯ " }
 _tmux_key_bindings() {
   zle -N _tmux_copy_mode
   zle -N _tmux_find
@@ -221,7 +217,7 @@ bindkey '^Xv' paste_escape
 bindkey '^X/' recent-paths
 
 [ -n "$TMUX" ] && {
-  autoload -Uz add-zsh-hook;
-  add-zsh-hook precmd _tmux_key_bindings;
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _tmux_key_bindings
   zvm_after_lazy_keybindings_commands+=(_tmux_key_bindings)
 }

@@ -12,4 +12,4 @@ EOF
 done
 
 # store tmux sessions
-~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
+$TMUX_PLUGIN_MANAGER_PATH/tmux-resurrect/scripts/save.sh

@@ -62,7 +62,7 @@ _fzf_comprun() {
     cd)           fzf --preview "fzf-preview {}" "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    vim)          fzf --preview "fzf-preview {}" "$@" ;;
+    vim)          fzf --preview "fzf-preview {}" --bind "ctrl-f:reload(cat $XDG_CACHE_HOME/neomru/file | grep -E '^/' | head -n30)+change-header( Recent files )" "$@" ;;
     chezmoi)      chezmoi managed -p absolute | fzf --preview "fzf-preview {}" --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
     *)            fzf --preview "fzf-preview {}" "$@" ;;
   esac

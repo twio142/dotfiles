@@ -51,7 +51,7 @@ local function treemux_open()
     pane = tostring(vim.v.count)
   end
   local result = vim.fn.system('tmux display -p -t "'..pane..'" "#{pane_current_command} #{pane_pid}"')
-  vim.fn.jobstart({ 'tmux', 'select-pane', '-t', pane })
+  vim.fn.jobstart({ 'tmux', 'selectp', '-t', pane })
   local cmd, pid = result:match("^(%S+) (%d+)")
   local path = node.absolute_path or vim.fn.getcwd()
   if cmd == "nvim" then
@@ -69,10 +69,10 @@ local function treemux_open()
   end
   path = "vim "..escape(path)
   if cmd == "zsh" then
-    vim.fn.jobstart({"tmux", "send-keys", path, "Enter"})
+    vim.fn.jobstart({"tmux", "send", path, "Enter"})
     return
   end
-  vim.fn.jobstart({"tmux", "split-window", "-v", ";", "send-keys", path, "Enter"})
+  vim.fn.jobstart({"tmux", "splitw", "-v", ";", "send-keys", path, "Enter"})
 end
 
 local function system_open()
@@ -101,12 +101,12 @@ local function treemux_send(action, split)
       vim.cmd 'normal! "oy'
       text = vim.fn.getreg 'o'
     end
-    vim.fn.system('printf ' .. escape(text) .. ' | tmux load-buffer -')
+    vim.fn.system('printf ' .. escape(text) .. ' | tmux loadb -')
   else
     local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
     cmd = action.." "..escape(path)
   end
-  local tx = {"tmux", "select-pane", "-t"}
+  local tx = {"tmux", "selectp", "-t"}
   local p = vim.fn.system("tmux display -p '#{pane_index}'")
   if vim.v.count > 0 and vim.v.count ~= tonumber(p) then
     table.insert(tx, tostring(vim.v.count))
@@ -137,7 +137,7 @@ local function copy_path(b)
     text = vim.fn.getreg 'o'
   end
   text = escape(text)
-  local cmd = b and "tmux load-buffer -" or "pbcopy"
+  local cmd = b and "tmux loadb -" or "pbcopy"
   local msg = b and "tmux buffer" or "clipboard"
   vim.fn.system('printf ' .. text .. ' | ' .. cmd)
   vim.notify("Copied to "..msg .."!")
@@ -180,7 +180,7 @@ local function fzf()
 end
 
 local function prev_pane_path()
-  local result = vim.fn.system("tmux list-panes -F '#{pane_last} #{pane_current_path}'")
+  local result = vim.fn.system("tmux lsp -F '#{pane_last} #{pane_current_path}'")
   for line in result:gmatch("[^\r\n]+") do
     local last, path = line:match("^([01]) (.+)")
     if last == "1" then
@@ -261,16 +261,6 @@ local function nvim_tree_on_attach(bufnr)
 end
 
 require("lazy").setup {
-  -- {
-  --   "kiyoon/tmuxsend.vim",
-  --   keys = {
-  --     { "-", "<Plug>(tmuxsend-smart)", mode = { "n", "x" } },
-  --     { "_", "<Plug>(tmuxsend-plain)", mode = { "n", "x" } },
-  --     { "<space>-", "<Plug>(tmuxsend-smart)", mode = { "n", "x" } },
-  --     { "<space>_", "<Plug>(tmuxsend-plain)", mode = { "n", "x" } },
-  --     { "\\y", "<Plug>(tmuxsend-tmuxbuffer)", mode = { "n", "x" } },
-  --   },
-  -- },
   {
     'folke/tokyonight.nvim',
     priority = 1000,

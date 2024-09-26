@@ -30,14 +30,14 @@ open_in_existing_pane() {
       }
       ;;
     zsh)
-      local line=$(tmux capture-pane -p -t $win -E - | grep -v '^\s*$' | tail -n1)
+      local line=$(tmux capturep -p -t $win -E - | grep -v '^\s*$' | tail -n1)
       if [[ "$line" = ❯ ]]; then
         cmd="vim"
         for file in $@; do
           file=$(echo $file | sd '^ (\d+)$' '+$1')
           cmd+=" ${file:q}"
         done
-        tmux send-keys -t $win "$cmd" Enter
+        tmux send -t $win "$cmd" Enter
         exit 0
       fi
       ;;
@@ -47,14 +47,14 @@ open_in_existing_pane() {
 open_in_new_window() {
   local window=$1
   shift
-  tmux new-window -t "$window" -c "$HOME"
+  tmux neww -t "$window" -c "$HOME"
   local pane=$(tmux display -t "${window%:*}" -p "#P")
   local cmd="vim"
   for file in $@; do
     file=$(echo $file | sd '^ (\d+)$' '+$1')
     cmd+=" ${file:q}"
   done
-  tmux send-keys -t $pane "$cmd" Enter
+  tmux send -t $pane "$cmd" Enter
 }
 
 getSession() {
@@ -72,8 +72,8 @@ if [ "$1" = -n ]; then
   shift
 fi
 
-tmux list-windows -t "$session" -F "#{window_active}	#{window_index}" | awk -F '\t' '$1 == "1" {print $2}' | while read window; do
-  tmux list-panes -t "$session:$window" -F "#{pane_active}	#S:#{window_index}.#P	#{pane_current_command}	#{pane_pid}" | awk -F '\t' '$1 == "1" { $1=""; print $0 }' | while read pane; do
+tmux lsw -t "$session" -F "#{window_active}	#{window_index}" | awk -F '\t' '$1 == "1" {print $2}' | while read window; do
+  tmux lsp -t "$session:$window" -F "#{pane_active}	#S:#{window_index}.#P	#{pane_current_command}	#{pane_pid}" | awk -F '\t' '$1 == "1" { $1=""; print $0 }' | while read pane; do
     open_in_existing_pane $pane "$@"
   done
 done

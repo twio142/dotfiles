@@ -14,8 +14,8 @@ enter() {
   [ -z "$1" ] && return
   [[ "$1" = cd && -f "$2" ]] && 2=${2:h}
   [[ "$1" = cd && -d "$2" ]] && 2=${2:q}
-  echo "${@}" | tmux load-buffer -
-  tmux paste-buffer -d
+  echo "${@}" | tmux loadb -
+  tmux pasteb -d
 }
 
 [ -z "$SESS" ] && {
@@ -28,7 +28,7 @@ if [ "$1" = -n ]; then
   shift
 elif [ "$NEWW" != 1 ]; then
   tmux lsw -t "$session" -F '#{window_active}	#{pane_current_command}	#S:#{window_index}.#P' | awk -F '\t' '$1 == "1" && $2 == "zsh" {print $3}' | while read win; do
-    line=$(tmux capture-pane -p -t $win -E - | grep -v '^\s*$' | tail -n1)
+    line=$(tmux capturep -p -t $win -E - | grep -v '^\s*$' | tail -n1)
     if [[ "$line" = ❯ ]]; then
       enter "$@"
       exit 0
@@ -41,5 +41,5 @@ if [[ "$1" = cd && -e "$2" ]]; then
   [ -d $2 ] && dir=$2 || dir=$(dirname $2)
   shift 2
 fi
-tmux new-window -t "${win%.*}" -c "$dir"
+tmux neww -t "${win%.*}" -c "$dir"
 enter "$@"

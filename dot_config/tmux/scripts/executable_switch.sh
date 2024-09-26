@@ -8,7 +8,7 @@ case $1 in
   *) exit 1 ;;
 esac
 
-IFS=' ' read -r cmd _end <<< $(tmux display-message -p "#{pane_current_command} #{pane_at_${pos}}#{window_zoomed_flag}")
+IFS=' ' read -r cmd _end <<< $(tmux display -p "#{pane_current_command} #{pane_at_${pos}}#{window_zoomed_flag}")
 [[ "$cmd" == nvim || "$_end" -gt 0 ]] &&
-  tmux send-keys C-$1 ||
-  tmux select-pane -${flag}
+  tmux send C-$1 ||
+  tmux selectp -${flag}

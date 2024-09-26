@@ -24,29 +24,29 @@ items:
     command: command-prompt -p "❯" -T command
   - name: Last window
     key: tab
-    command: last-window
+    command: last
   - name: Last pane
     key: "`"
-    command: last-pane
+    command: lastp
   - separator: true
   - name: +Windows
     key: w
     menu:
       - name: Last
         key: tab
-        command: last-window
+        command: last
       # - name: Choose
       #   key: w
       #   command: choose-tree -Zw
       - name: List
         key: w
-        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/window.sh || exit 0"
+        command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/window.sh || true"
       - name: Next
         key: n
-        command: "run-shell $XDG_CONFIG_HOME/tmux/scripts/next_window.sh" 
+        command: "run $XDG_CONFIG_HOME/tmux/scripts/next_window.sh" 
       - name: Previous
         key: p
-        command: previous-window
+        command: previous
       - name: New
         key: c
         command: neww -c "$HOME"
@@ -74,7 +74,7 @@ items:
         command: lastp
       - name: List
         key: p
-        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/pane.sh || exit 0"
+        command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/pane.sh || true"
       - name: Jump
         key: j
         command: displayp -d 0
@@ -93,10 +93,10 @@ items:
         command: 'confirm -p "Kill pane #P? (y/n)" killp'
       - name: Break
         key: b
-        command: break-pane
+        command: breakp
       - name: Respawn
         key: R
-        command: run-shell $XDG_CONFIG_HOME/tmux/scripts/restart_pane.sh
+        command: run $XDG_CONFIG_HOME/tmux/scripts/restart_pane.sh
   - name: +Layout
     key: l
     menu:
@@ -143,16 +143,16 @@ items:
       #   command: choose-buffer -Z
       - name: List
         key: b
-        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/buffer.sh || exit 0"
+        command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/buffer.sh || true"
       - name: Paste
         key: p
         command: pasteb
       - name: Copy to clipboard
         key: c
-        command: run-shell "tmux show-buffer | pbcopy"
+        command: run "tmux show-buffer | pbcopy"
       - name: Load from clipboard
         key: v
-        command: run-shell "pbpaste | tmux load-buffer -"
+        command: run "pbpaste | tmux load-buffer -"
   - name: +Sessions
     key: s
     menu:
@@ -164,7 +164,7 @@ items:
       #   command: choose-tree -Zs
       - name: List
         key: s
-        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/session.sh || exit 0"
+        command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/session.sh || true"
       - name: Next
         key: n
         command: switchc -n
@@ -189,13 +189,13 @@ items:
         command: detach
       - name: Detach others
         key: D
-        command: detach-client -a
+        command: detach -a
   - name: +App
     key: a
     menu:
       - name: Menu
         key: m
-        command: run-shell -b "$XDG_CONFIG_HOME/tmux/plugins/tmux-fzf/scripts/menu.sh || exit 0"
+        command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/menu.sh || true"
       - name: Sidebar
         key: o
         command: toggle-sidebar
@@ -226,23 +226,20 @@ items:
         menu:
           - name: Install
             key: i
-            command:
-              run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/install_plugins
+            command: run $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/install_plugins
           - name: Update
             key: u
-            command:
-              run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/update_plugins
+            command: run $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/update_plugins
           - name: Clean
             key: c
-            command:
-              run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/clean_plugins
+            command: run $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/clean_plugins
       - separator: true
       - name: Store sessions
         key: S
-        command: "run-shell $XDG_CONFIG_HOME/tmux/scripts/store_sessions.sh"
+        command: "run $XDG_CONFIG_HOME/tmux/scripts/store_sessions.sh"
       - name: Restore sessions
         key: R
-        command: "run-shell $XDG_CONFIG_HOME/tmux/plugins/tmux-resurrect/scripts/restore.sh"
+        command: "run $TMUX_PLUGIN_MANAGER_PATH/tmux-resurrect/scripts/restore.sh"
   - name: +Git
     key: g
     menu:
@@ -254,50 +251,41 @@ items:
         command: lzg --jump
       - name: Files
         key: f
-        command:
-          run-shell -b "type=files $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh" 
+        command: run -b "type=files $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh" 
       - name: Commits
         key: c
-        command:
-          run-shell -b "type=hashes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
+        command: run -b "type=hashes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Branches
         key: b
-        command:
-          run-shell -b "type=branches $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
+        command: run -b "type=branches $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Remotes
         key: r
-        command:
-          run-shell -b "type=remotes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
+        command: run -b "type=remotes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Log
         key: l
-        command:
-          run-shell -b "type=lreflogs $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
+        command: run -b "type=lreflogs $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Each ref
         key: e
-        command:
-          run-shell -b "type=each_ref $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
+        command: run -b "type=each_ref $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Tags
         key: t
-        command:
-          run-shell -b "type=tags $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
+        command: run -b "type=tags $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Stash
         key: s
-        command:
-          run-shell -b "type=stashes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
+        command: run -b "type=stashes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
       - name: Worktree
         key: w
-        command:
-          run-shell -b "type=worktrees $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
+        command: run -b "type=worktrees $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
   - separator: true
   - name: +Help
     key: h
     menu:
       - name: Keys
         key: k
-        command: list-keys -N
+        command: lsk -N
       - name: Commands
         key: c
-        command: list-commands
+        command: lscm
       - name: Tmux manual
         key: t
         command: tmux-man
@@ -307,19 +295,19 @@ items:
       - separator: true
       - name: Messages
         key: m
-        command: show-messages
+        command: showmsgs
       - name: Options
         key: o
-        command: show-options
+        command: show
       - name: Global options
         key: O
-        command: show-options -g
+        command: show -g
       - name: Window options
         key: w
-        command: show-window-options -g
+        command: show -gw
       - name: Environment
         key: e
-        command: show-environment
+        command: showenv
       - name: Global environment
         key: E
-        command: show-environment -g
+        command: showenv -g
