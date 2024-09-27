@@ -2,13 +2,6 @@ _G.xplr = xplr
 
 local on_key = xplr.config.modes.builtin.default.key_bindings.on_key
 
-xplr.config.modes.builtin.sort.key_bindings.on_key.down = on_key.j
-xplr.config.modes.builtin.sort.key_bindings.on_key.up = on_key.k
-xplr.config.modes.builtin.filter.key_bindings.on_key.down = on_key.j
-xplr.config.modes.builtin.filter.key_bindings.on_key.up = on_key.k
-xplr.config.modes.custom.type_to_nav.key_bindings.on_key.up = on_key.k
-xplr.config.modes.custom.type_to_nav.key_bindings.on_key.down = on_key.j
-
 on_key.c.help = "[c]opy to"
 on_key.d.help = "[d]elete"
 on_key.f.help = "[f]ilter"
@@ -109,6 +102,8 @@ on_key["ctrl-l"] = {
 }
 
 -- type-to-nav
+xplr.config.modes.custom.type_to_nav.key_bindings.on_key.up = on_key.k
+xplr.config.modes.custom.type_to_nav.key_bindings.on_key.down = on_key.j
 on_key.i = {
   help = 'type to nav',
   messages = { { CallLuaSilently = 'custom.type_to_nav_start' } },
@@ -417,6 +412,33 @@ xplr.config.modes.builtin.go_to.key_bindings.on_key["]"] = {
     "NextVisitedPath",
   }
 }
+
+-- sort
+local s_key = xplr.config.modes.builtin.sort.key_bindings.on_key
+s_key.down = on_key.j
+s_key.up = on_key.k
+s_key.i = s_key.m
+s_key.I = s_key.M
+s_key.m = s_key.l
+s_key.M = s_key.L
+s_key.t = s_key.n
+s_key.T = s_key.N
+s_key.a = s_key.r
+s_key.A = s_key.R
+s_key.l = nil
+s_key.L = nil
+s_key.n = nil
+s_key.N = nil
+s_key.r = nil
+s_key.R = nil
+s_key.esc = { messages = { "PopMode" } }
+table.insert(on_key.s.messages, { BufferInput = "[a]lphabet / [c]time / [e]xt / [m]time / [s]ize / [t]ype" })
+
+-- filter
+local f_key = xplr.config.modes.builtin.filter.key_bindings.on_key
+f_key.down = on_key.j
+f_key.up = on_key.k
+table.insert(on_key.f.messages, { BufferInput = "[r]egex" })
 
 -- help
 local help = xplr.config.general.global_key_bindings.on_key["f1"]

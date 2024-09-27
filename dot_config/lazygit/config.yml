@@ -28,6 +28,7 @@ keybinding:
   universal:
     optionMenu: '?'
     optionMenu-alt1: '?'
+    openRecentRepos: '<c-g>'
 customCommands:
   - key: 'P'
     context: "remotes"

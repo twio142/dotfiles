@@ -1,5 +1,6 @@
 export GPG_TTY=$TTY
 export POWERLEVEL9K_CONFIG_FILE=${XDG_CONFIG_HOME:-$HOME/.config}/p10k/p10k.zsh
+stty -ixon
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -65,6 +66,7 @@ source $ZIM_HOME/init.zsh
 
 # ZVM_VI_INSERT_ESCAPE_BINDKEY=jh
 # ZVM_CURSOR_STYLE_ENABLED=false
+ZVM_INIT_MODE=sourcing
 
 function zvm_after_init() {
   source $ZDOTDIR/config.zsh

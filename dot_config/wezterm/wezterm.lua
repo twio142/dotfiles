@@ -145,7 +145,7 @@ local config = {
       key = "Tab",
       action = act.Multiple({
         act.SendKey({ mods = "CTRL", key = " " }),
-        act.SendKey({ key = "p" }),
+        act.SendKey({ mods = "CTRL", key = "p" }),
       }),
     },
     k.cmd_to_tmux_prefix("1", "1"),
