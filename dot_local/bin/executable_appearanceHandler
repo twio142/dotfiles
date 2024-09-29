@@ -25,6 +25,13 @@ done
 tmux set -g @catppuccin_flavor "$flavor"
 tmux run-shell ${XDG_CONFIG_HOME}/tmux/plugins/tmux/catppuccin.tmux
 
+# yazi theme
+DIR=$XDG_CONFIG_HOME/yazi
+if [ -d $DIR ]; then
+  echo "[flavor]" > $DIR/theme.toml
+  echo "use = \"catppuccin-$flavor\"" >> $DIR/theme.toml
+fi
+
 # Alacritty theme
 DIR=${XDG_CONFIG_HOME}/alacritty
 if [ -f $DIR/$mode.toml ]; then
@@ -39,12 +46,6 @@ hs -A -c "ConsoleDM()"
 DIR=~/Library/Application\ Support/org.yanex.marta/Themes
 if [ -f $DIR/$mode ]; then 
   ln -sf $DIR/$mode $DIR/T.theme
-fi
-
-# yazi theme
-DIR=$XDG_CONFIG_HOME/yazi
-if [ -f $DIR/theme-$mode.toml ]; then
-  ln -sf $DIR/theme-$mode.toml $DIR/theme.toml
 fi
 
 # lsd theme

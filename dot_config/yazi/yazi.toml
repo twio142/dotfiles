@@ -112,6 +112,16 @@ previewers = [
 	{ mime = "application/xz", run = "archive" },
 ]
 
+[[plugin.prepend_fetchers]]
+id   = "git"
+name = "*"
+run  = "git"
+
+[[plugin.prepend_fetchers]]
+id   = "git"
+name = "*/"
+run  = "git"
+
 [input]
 # cd
 cd_title = "Change directory:"

@@ -100,11 +100,34 @@ local function lazygit(ctx)
   end
 end
 
+local function git_diff(ctx)
+  local pwd = ctx.pwd
+  local path = ctx.focused_node.absolute_path
+  local test = xplr.util.shell_execute("git", { "-C", pwd, "rev-parse", "--show-toplevel" })
+  if test.returncode ~= 0 then
+    pwd = ctx.focused_node.absolute_path
+    if xplr.util.is_file(pwd) then
+      pwd = xplr.util.dirname(pwd)
+    end
+    test = xplr.util.shell_execute("git", { "-C", pwd, "rev-parse", "--show-toplevel" })
+  end
+  if test.returncode ~= 0 then
+    return {{ LogError = test.stderr }}
+  else
+    test = xplr.util.shell_execute("git", { "-C", pwd, "diff", "--quiet", path })
+    if test.returncode == 0 then
+      return {{ LogInfo = "No change" }}
+    end
+    return {{ BashExec = 'cd ' .. xplr.util.shell_escape(pwd) .. '; git diff ' .. xplr.util.shell_escape(path) .. [[ | delta --$(background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1)  | less -r ]] }}
+  end
+end
+
 xplr.fn.custom.git_status = {
   setup = setup,
   render = render,
   format = format_status,
   lazygit = lazygit,
+  diff = git_diff,
 }
 
 xplr.config.modes.builtin.go_to.key_bindings.on_key.s = {
@@ -120,6 +143,14 @@ xplr.config.modes.builtin.go_to.key_bindings.on_key.S = {
   messages = {
     "PopMode",
     { CallLuaSilently = "custom.git_status.lazygit" },
+  },
+}
+
+xplr.config.modes.builtin.go_to.key_bindings.on_key.d = {
+  help = "Git diff",
+  messages = {
+    "PopMode",
+    { CallLuaSilently = "custom.git_status.diff" },
   },
 }
 

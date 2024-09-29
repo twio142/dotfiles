@@ -51,6 +51,14 @@ xplr.fn.custom.removeLastSelection = function(ctx)
   end
   return { { UnSelectPath = ctx.selection[#ctx.selection].absolute_path } }
 end
+xplr.fn.custom.reverseSelection = function(ctx)
+  local nodes = xplr.util.explore(ctx.pwd)
+  local messages = {}
+  for _, node in ipairs(nodes) do
+    table.insert(messages, { ToggleSelectionByPath = node.absolute_path })
+  end
+  return messages
+end
 xplr.config.general.global_key_bindings.on_key["alt-h"] = {
   help = "remove last selection",
   messages = {
@@ -61,9 +69,16 @@ on_key.backspace = {
   help = "clear selection",
   messages = { "ClearSelection" }
 }
-xplr.config.general.global_key_bindings.on_key["alt-a"] = {
+xplr.config.general.global_key_bindings.on_key["ctrl-a"] = {
   help = "toggle select all",
   messages = { "ToggleSelectAll" }
+}
+on_key["ctrl-r"] = nil
+xplr.config.general.global_key_bindings.on_key["ctrl-r"] = {
+  help = "reverse selection",
+  messages = {
+    { CallLuaSilently = "custom.reverseSelection" },
+  }
 }
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.l = nil
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.r = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u

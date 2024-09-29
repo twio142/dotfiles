@@ -36,6 +36,13 @@ prepend_keymap = [
   { on = [ "s", "s" ], run = [ "sort size --reverse=no", "linemode size" ],      desc = "Sort by size" },
   { on = [ "s", "S" ], run = [ "sort size --reverse", "linemode size" ],         desc = "Sort by size (reverse)" },
   { on = [ "s", "r" ], run = "sort random --reverse=no",                         desc = "Sort randomly" },
+  { on = "i", run = 'plugin searchjump --args=autocd', desc = "Searchjump" },
+  { on = "I", run = 'plugin keyjump --args=global', desc = "Keyjump global" },
+  { on = "[b", run = "back", desc = "Go back to the previous directory" },
+  { on = "]b", run = "forward",  desc = "Go forward to the next directory" },
+  { on = "[t", run = "tab_switch -1 --relative", desc = "Switch to the previous tab" },
+  { on = "]t", run = "tab_switch 1 --relative",  desc = "Switch to the next tab" },
+  { on = "F", run = "plugin smart-filter",  desc = "Smart filter" },
 ]
 
 [tasks]
