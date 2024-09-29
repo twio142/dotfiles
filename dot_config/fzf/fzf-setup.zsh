@@ -64,6 +64,7 @@ _fzf_comprun() {
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
     vim)          fzf --preview "fzf-preview {}" --bind "ctrl-f:reload(cat $XDG_CACHE_HOME/neomru/file | grep -E '^/' | head -n30)+change-header( Recent files )" "$@" ;;
     chezmoi)      chezmoi managed -p absolute | fzf --preview "fzf-preview {}" --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
+    euporie*)     fd -e ipynb | fzf --preview "euporie-preview {} 2> /dev/null" "$@" ;;
     *)            fzf --preview "fzf-preview {}" "$@" ;;
   esac
 }

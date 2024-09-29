@@ -161,21 +161,15 @@ local config = {
     k.cmd_key("j", "QuickSelect"),
     k.cmd_shift_key("[", "ActivateCopyMode"),
     k.cmd_shift_key("p", "ActivateCommandPalette"),
-    {
-      mods = 'ALT',
-      key = 'Enter',
-      action = wezterm.action.DisableDefaultAssignment,
-    },
+    { mods = 'ALT', key = 'Enter', action = act.DisableDefaultAssignment },
     {
       mods = 'SUPER|ALT|CTRL|SHIFT',
       key = 'Space',
       action = act.SendKey({ mods = "CTRL", key = " " }),
     },
-    {
-      mods = 'SUPER|CTRL',
-      key = 'a',
-      action = wezterm.action.ToggleAlwaysOnTop
-    }
+    { mods = 'SUPER|CTRL', key = 'a', action = act.ToggleAlwaysOnTop },
+    { key = "Enter", mods = "CTRL", action = act.SendString("\x1b[13;5u") },
+    { key = "Enter", mods = "SHIFT", action = act.SendString("\x1b[13;2u") },
   },
 
   selection_word_boundary = " \t\n{}[]()\"'`.,;:",

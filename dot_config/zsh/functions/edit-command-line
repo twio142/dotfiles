@@ -31,7 +31,7 @@ edit-command-line () {
     case $editor in
       (*vim*) integer byteoffset=$(( $#prebuffer + $#lbuffer + 1 )) 
         if [ -n "$TMUX" ]; then
-          tmux popup -E -w 75% "\"${(@)editor}\" -c \"normal! ${byteoffset}go\" -- $1"
+          tmux popup -E -w 75% -e PATH="$HOME/.local/bin:$PATH" "\"${(@)editor}\" -c \"normal! ${byteoffset}go\" -- $1"
         else
           "${(@)editor}" -c "normal! ${byteoffset}go" -- $1
         fi

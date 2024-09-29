@@ -231,7 +231,7 @@ items:
             key: u
             command: run $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/update_plugins
           - name: Clean
-            key: c
+            key: x
             command: run $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/clean_plugins
       - separator: true
       - name: Store sessions

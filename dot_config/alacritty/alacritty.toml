@@ -13,7 +13,7 @@ bold = { family = "FiraCode Nerd Font", style = "SemiBold" }
 italic = { family = "JetBrainsMono Nerd Font", style = "Thin Italic" }
 bold_italic = { family = "JetBrainsMono Nerd Font", style = "SemiBold Italic" }
 offset = { x = 0, y = 1 }
-glyph_offset = { x = 0, y = 1 }
+glyph_offset = { x = 0, y = 0 }
 
 [cursor]
 style = { shape = "Block", blinking = "Always" }
@@ -52,6 +52,8 @@ bindings = [
   { key = "7", mods = "Super", chars = "\u0000\u0037" },
   { key = "8", mods = "Super", chars = "\u0000\u0038" },
   { key = "9", mods = "Super", chars = "\u0000\u0039" },
+  { key = "Enter", mods = "Control", chars = "\u001b[13;5u" },
+  { key = "Enter", mods = "Shift", chars = "\u001b[13;2u" },
 ]
 
 [mouse]

@@ -3,6 +3,7 @@ alias v='nvim'
 alias vim='nvim'
 alias t='tmux'
 alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)'
+alias ipy='ipython'
 alias lzg='lazygit'
 alias ssh='TERM=xterm-256color ssh'
 alias tree='tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__'
@@ -24,7 +25,6 @@ gro() {
   url=$(echo $url | perl -pe 's/.+(git(hub|lab).com)[:\/]([^\/]+\/[^\/]+?)/https:\/\/\1\/\3/g')
   [ -z $url ] || open $url
 }
-ipy() { ${1:-~/.local/bin/python3} -m IPython }
 lzd() {
   docker ps &> /dev/null && lazydocker || { echo "Docker not running" >&2; return 1 }
 }
@@ -103,11 +103,15 @@ load_mamba() {
   # unfunction load_mamba
 }
 
-for lazy_mamba_alias in $lazy_mamba_aliases
-do
+for lazy_mamba_alias in $lazy_mamba_aliases; do
   alias $lazy_mamba_alias="load_mamba && $lazy_mamba_alias"
 done
 alias mamba="load_mamba && micromamba"
+
+euporie_aliases=('euporie' 'euporie-console' 'euporie-hub' 'euporie-notebook' 'euporie-preview')
+for euporie_alias in $euporie_aliases; do
+  alias $euporie_alias=$euporie_alias' --color-scheme=$(~/.local/bin/background) --syntax-theme=gruvbox-$(~/.local/bin/background)'
+done
 
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 
@@ -206,6 +210,7 @@ bindkey -M vicmd '^U' backward-kill-line
 bindkey -M vicmd '^W' backward-kill-word
 # bindkey '^V' vi-cmd-mode
 
+bindkey '^N' down-line-or-select
 bindkey '^J' down-line-or-select
 bindkey -M menuselect '^J' down-history
 bindkey -M menuselect 'j' down-history

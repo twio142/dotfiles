@@ -66,8 +66,9 @@ source $ZIM_HOME/init.zsh
 
 # ZVM_VI_INSERT_ESCAPE_BINDKEY=jh
 # ZVM_CURSOR_STYLE_ENABLED=false
-ZVM_INIT_MODE=sourcing
+# ZVM_INIT_MODE=sourcing
 
 function zvm_after_init() {
+  source $XDG_CONFIG_HOME/zim/modules/zsh-autocomplete/zsh-autocomplete.plugin.zsh
   source $ZDOTDIR/config.zsh
 }

@@ -101,10 +101,6 @@ brew "git-delta"
 brew "git-flow"
 # Git extension for versioning large files
 brew "git-lfs"
-# C library for encoding, decoding, and manipulating JSON
-brew "jansson"
-# Source code tag system
-brew "global"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
@@ -159,6 +155,8 @@ brew "pandoc-crossref"
 brew "php"
 # Python dependency management tool
 brew "pipenv"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
 # Paste PNG into files
 brew "pngpaste"
 # Theme for zsh
@@ -169,8 +167,6 @@ brew "protobuf"
 brew "ripgrep"
 # Intuitive find & replace CLI
 brew "sd"
-# Prints a steam locomotive if you type sl instead of ls
-brew "sl"
 # SOcket CAT: netcat on steroids
 brew "socat"
 # Change macOS audio source from the command-line
