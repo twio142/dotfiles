@@ -42,7 +42,7 @@ show_ssh() {
     local left_separator="#[fg=$color,bg=default,nobold,nounderscore,noitalics]$status_left_separator"
   fi
 
-  text_prefix="$left_separator$icon_prefix$icon $middle_separator$text_prefix"
+  text_prefix="$left_separator$icon_prefix$icon$middle_separator$text_prefix"
   module="#( ${BASH_SOURCE[0]} \"#{@ssh_connection}\" \"#{client_width}\" \"$text_prefix\" \"$right_separator\" )"
   echo "$module"
 }
@@ -56,7 +56,7 @@ get_ssh() {
   local text=' '
 
   if [ "$client_width" -gt 80 ]; then
-    text="$USER@$HOSTNAME "
+    text=" $USER@$HOSTNAME "
   fi
 
   echo "$text_prefix$text$right_separator"

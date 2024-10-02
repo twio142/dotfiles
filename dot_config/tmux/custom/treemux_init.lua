@@ -352,7 +352,7 @@ require("lazy").setup {
           signcolumn = "no",
         },
         filters = {
-          custom = { "^\\.git" },
+          custom = { "^\\.git", "^\\.DS_Store$" },
         },
         sort = {
           folders_first = true,

@@ -147,12 +147,18 @@ items:
       - name: Paste
         key: p
         command: pasteb
+      - name: Extrakto
+        key: e
+        command: run "$TMUX_PLUGIN_MANAGER_PATH/extrakto/scripts/open.sh \\#{pane_id}"
       - name: Copy to clipboard
         key: c
         command: run "tmux show-buffer | pbcopy"
       - name: Load from clipboard
         key: v
         command: run "pbpaste | tmux load-buffer -"
+      - name: Set system clipboard
+        key: s
+        command: toggle-clipboard
   - name: +Sessions
     key: s
     menu:
