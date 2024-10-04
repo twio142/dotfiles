@@ -73,7 +73,7 @@ dimensions = { columns = 120, lines = 58 }
 padding = { x = 2, y = 2 }
 dynamic_padding = true
 option_as_alt = "OnlyLeft"
-opacity = 0.85
+opacity = 0.90
 blur = true
 
 [[hints.enabled]]

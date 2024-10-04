@@ -89,8 +89,9 @@ end
 -- @param split: "h", "v"
   -- "h": horizontal split
   -- "v": vertical split
-local function treemux_send(action, split)
+local function treemux_send(action, split, new_window)
   local api = require "nvim-tree.api"
+  local tx = {"tmux", "selectp", "-t"}
   local cmd = ''
   if action == "send" or action == "run" then
     local mode = vim.api.nvim_get_mode().mode
@@ -102,11 +103,21 @@ local function treemux_send(action, split)
       text = vim.fn.getreg 'o'
     end
     vim.fn.system('printf ' .. escape(text) .. ' | tmux loadb -')
+  elseif new_window and action == "lc" then
+    local path
+    local node = api.tree.get_node_under_cursor()
+    if not node then
+      path = vim.fn.getcwd()
+    elseif node.type == "directory" then
+      path = node.absolute_path
+    else
+      path = vim.fn.fnamemodify(node.absolute_path, ":h")
+    end
+    tx = {"tmux", "new-window", "-c", path}
   else
     local path = api.tree.get_node_under_cursor().absolute_path or vim.fn.getcwd()
     cmd = action.." "..escape(path)
   end
-  local tx = {"tmux", "selectp", "-t"}
   local p = vim.fn.system("tmux display -p '#{pane_index}'")
   if vim.v.count > 0 and vim.v.count ~= tonumber(p) then
     table.insert(tx, tostring(vim.v.count))
@@ -117,6 +128,8 @@ local function treemux_send(action, split)
     vim.list_extend(tx, { ";", "paste-buffer", "-d" })
   elseif split == "h" or split == "v" then
     vim.list_extend(tx, { ";", "split-window", "-"..split })
+  elseif new_window then
+    vim.list_extend(tx, { ";", "new-window" })
   end
   if #cmd > 0 then
     vim.list_extend(tx, { ";", "send-keys", cmd, "Enter" })
@@ -179,6 +192,17 @@ local function fzf()
   end
 end
 
+local function autojump()
+  local _z = ":reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true"
+  vim.fn.jobstart({"fzf", "--bind", "start".._z, "--bind", "change".._z, "--disabled", "--preview", "fzf-preview {}", "--tmux", "center,75%,90%"}, {
+    on_stdout = function(_, data, _)
+      if data and #data[1] > 0 then
+        vim.cmd("edit " .. data[1])
+      end
+    end
+  })
+end
+
 local function prev_pane_path()
   local result = vim.fn.system("tmux lsp -F '#{pane_last} #{pane_current_path}'")
   for line in result:gmatch("[^\r\n]+") do
@@ -201,6 +225,7 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.set("n", "u", api.tree.change_root_to_node, opts "Dir up")
   vim.keymap.set("n", "<CR>", function() treemux_send("lc") end, opts "Open dir in tmux")
   vim.keymap.set("n", "v<CR>", function() treemux_send("vim") end, opts "Open in vim")
+  vim.keymap.set("n", "t", function() treemux_send("lc","",true) end, opts "Open in new window")
   vim.keymap.set("n", "<2-LeftMouse>", treemux_open, opts "Open in treemux")
   vim.keymap.set("n", "o", treemux_open, opts "Open in treemux")
   vim.keymap.set("n", "l", treemux_open, opts "Open in treemux")
@@ -222,9 +247,10 @@ local function nvim_tree_on_attach(bufnr)
   end, opts "Quit nvim tree")
   vim.keymap.set("n", "h", api.node.navigate.parent, opts "Parent directory")
   vim.keymap.set("n", "i", function() treemux_send("lc","v") end, opts "Open in new pane")
-  vim.keymap.set("n", "vi", function() treemux_send("vim","v") end, opts "Open in vim in new pane")
   vim.keymap.set("n", "s", function() treemux_send("lc","h") end, opts "Open in new vertical pane")
+  vim.keymap.set("n", "vi", function() treemux_send("vim","v") end, opts "Open in vim in new pane")
   vim.keymap.set("n", "vs", function() treemux_send("vim","h") end, opts "Open in vim in new vertical pane")
+  vim.keymap.set("n", "vt", function() treemux_send("vim","",true) end, opts "Open in vim in new window")
   vim.keymap.del("n", ".", { buffer = bufnr })
   vim.keymap.set("n", ".", api.tree.toggle_hidden_filter, opts "Toggle hidden files")
   vim.keymap.set("n", "?", api.tree.toggle_help, opts "Toggle help")
@@ -237,7 +263,8 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.set("n", ",", function()
     api.tree.find_file({ buf = prev_pane_path(), update_root = true, focus = true })
   end, opts "Find file in tmux")
-  vim.keymap.set("n", "<C-f>", fzf, opts "FZF")
+  vim.keymap.set("n", "\\f", fzf, opts "FZF")
+  vim.keymap.set("n", "\\g", autojump, opts "Autojump")
   vim.keymap.set("n", "{", api.tree.collapse_all, opts "Collapse all")
   vim.keymap.set("n", "}", api.tree.expand_all, opts "Expand all")
   vim.keymap.del("n", "<C-r>", { buffer = bufnr })
@@ -303,35 +330,26 @@ require("lazy").setup {
                 default = "",
                 open = "",
                 empty = "",
-                empty_open = "",
+                empty_open = "",
                 symlink = "",
                 symlink_open = "",
               },
               git = {
-                unstaged = "",
-                staged = "S",
+                unstaged = "*",
+                staged = "󰐕",
                 unmerged = "",
-                renamed = "➜",
-                untracked = "U",
-                deleted = "",
-                ignored = "◌",
+                renamed = "󰁕",
+                untracked = "",
+                deleted = "✖",
+                ignored = "",
               },
             },
-          },
-        },
-        diagnostics = {
-          enable = true,
-          show_on_dirs = true,
-          icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
           },
         },
         view = {
           width = 20,
           side = "left",
+          signcolumn = "no",
         },
         filters = {
           custom = { "^\\.git" },
