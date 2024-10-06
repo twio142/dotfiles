@@ -51,7 +51,14 @@ require("xpm").setup({
         inactive_pane_width = { Percentage = 50 },
       }
     end },
-    { name = 'sayanarijit/map.xplr', rev = 'main' },
+    { name = 'sayanarijit/map.xplr', rev = 'main', setup = function()
+      require('map').setup({
+        mode = "selection_ops",
+        key = "M",
+        editor_key = "ctrl-e",
+        prefer_multi_map = true,
+      })
+    end },
     { name = 'sayanarijit/type-to-nav.xplr', rev = 'main' },
     { name = 'twio142/fzf.xplr', rev = 'main' },
     { name = 'twio142/tree-view.xplr', rev = 'main', setup = function()

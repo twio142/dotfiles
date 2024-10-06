@@ -161,6 +161,18 @@ m.cmd("fif", "search file contents")(function()
   return { "PopMode", { CallLua = "custom.fif.search" } }
 end)
 
+local edit = m.cmd("edit", "edit file(s)")(function(ctx)
+  local cmd = "${EDITOR:-vi} "
+  if #ctx.selection > 0 then
+    for _, node in ipairs(ctx.selection) do
+      cmd = cmd .. xplr.util.shell_escape(node.absolute_path) .. " "
+    end
+  else
+    cmd = cmd .. xplr.util.shell_escape(ctx.focused_node.absolute_path)
+  end
+  return {{ BashExec0 = cmd }}
+end)
+
 preview.bind(xplr.config.modes.builtin.action, "tab")
 -- xplr.config.modes.custom.preview.key_bindings.on_key.w = preview.action
 dust.bind(xplr.config.modes.custom.space, "u")
@@ -177,3 +189,4 @@ cd_in_tmux.bind(xplr.config.modes.builtin.default, "enter")
 cd_in_tmux_neww.bind(xplr.config.modes.custom.space, "enter")
 vim_in_tmux.bind(xplr.config.modes.builtin.default, "e")
 vim_in_tmux_neww.bind(xplr.config.modes.builtin.default, "E")
+edit.bind(xplr.config.modes.builtin.default, "ctrl-e")

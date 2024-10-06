@@ -121,8 +121,10 @@ xplr.fn.custom.edit_files = function(input)
   return { { BashExec0 = cmd } }
 end
 
-xplr.config.modes.builtin.selection_ops.key_bindings.on_key.E = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.e
-xplr.config.modes.builtin.selection_ops.key_bindings.on_key.E.help = "[E]dit selection"
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key['ctrl-e'] = {
+  help = "edit selection",
+  messages = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.e.messages,
+}
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.e = {
   help = "[e]dit selected files",
   messages = {

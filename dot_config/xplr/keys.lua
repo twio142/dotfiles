@@ -332,7 +332,6 @@ on_key.N = {
     { SetInputPrompt = "❯ filename: " },
   }
 }
-xplr.config.modes.builtin.action.key_bindings.on_key.n = on_key.N
 xplr.config.modes.builtin.action.key_bindings.on_key.c = nil
 
 -- delete selected files
