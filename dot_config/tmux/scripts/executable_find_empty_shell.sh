@@ -1,10 +1,11 @@
 #!/bin/zsh
 
 # Check the frontmost process of the session of the given client
-# Usage: [NEWW=1] [SESS=...] find_empty_shell.sh <client_pid> [-n] [cd] ...
+# Usage: [NEWW=1] [SESS=...] find_empty_shell.sh <client_pid> [-n] [cd|ssh] ...
 # NEWW=1|-n: Open in a new window
 # SESS: Session name. If given, client_pid is ignored
 # cd: Change to the directory; otherwise send the command to the shell
+# ssh: Open an ssh connection to the given host; implies -n
 
 getSession() {
   tmux lsc -F '#{client_pid}	#{client_session}' | awk -F '\t' -v pid="$1" '$1 == pid {print $2}'
@@ -23,6 +24,10 @@ enter() {
   shift
 } || session=$SESS
 [ -z "$session" ] && exit 1
+
+if [[ "$1" = ssh && -n "$2" ]]; then
+  tmux neww -t "$session" "ssh $2"; exit 0
+fi
 
 if [ "$1" = -n ]; then
   shift

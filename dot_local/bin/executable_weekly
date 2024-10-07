@@ -42,16 +42,13 @@ incomplete_count=$(ls -l ~/Library/Caches/Homebrew/downloads/*.incomplete 2> /de
 
 # 复数输出函数
 plural() {
-    if [ $1 -gt 1 ]
-    then
-        echo "$1 ${2}s"
-    else
-        echo "$1 $2"
-    fi
+    [ $1 -gt 1 ] && echo "$1 ${2}s" || echo "$1 $2"
 }
 
 # 输出消息提示
 echo "Pruned $(plural $link_count "symbolic link"), $(plural $file_count "file") and $(plural $incomplete_count "incomplete download") from ~/Library/Caches/Homebrew"
+
+nvim --headless -c "lua require('lazy').sync()" -c "lua require('mason-registry').update()" -c qa
 
 git -C ~/Projects/ProperTree pull
 mas upgrade
@@ -59,4 +56,4 @@ zimfw uninstall -q
 zimfw upgrade
 zimfw update
 command -v gh &> /dev/null && gh extension upgrade --all
-reconfig
+exec zsh

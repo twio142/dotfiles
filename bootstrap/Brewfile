@@ -2,6 +2,7 @@ tap "buo/cask-upgrade"
 tap "cormacrelf/tap"
 tap "daipeihust/tap"
 tap "dimentium/autoraise"
+tap "finestructure/hummingbird"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "homebrew/test-bot"
@@ -229,8 +230,6 @@ cask "appcleaner"
 cask "arc"
 # Menu bar icon organiser
 cask "bartender"
-# App for managing battery charging. (Also installs a CLI on first use.)
-cask "battery"
 # Utility to create and modify archives
 cask "betterzip"
 # OpenAI's official ChatGPT desktop app

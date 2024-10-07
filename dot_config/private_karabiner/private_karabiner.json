@@ -203,7 +203,12 @@
                   "key_code": "h",
                   "modifiers": { "mandatory": ["right_option"] }
                 },
-                "to": [{ "key_code": "left_arrow", "modifiers": ["right_option"] }],
+                "to": [
+                  {
+                    "key_code": "left_arrow",
+                    "modifiers": ["right_option"]
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -219,7 +224,12 @@
                   "key_code": "j",
                   "modifiers": { "mandatory": ["right_option"] }
                 },
-                "to": [{ "key_code": "down_arrow", "modifiers": ["right_option"] }],
+                "to": [
+                  {
+                    "key_code": "down_arrow",
+                    "modifiers": ["right_option"]
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -235,7 +245,12 @@
                   "key_code": "k",
                   "modifiers": { "mandatory": ["right_option"] }
                 },
-                "to": [{ "key_code": "up_arrow", "modifiers": ["right_option"] }],
+                "to": [
+                  {
+                    "key_code": "up_arrow",
+                    "modifiers": ["right_option"]
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -251,7 +266,12 @@
                   "key_code": "l",
                   "modifiers": { "mandatory": ["right_option"] }
                 },
-                "to": [{ "key_code": "right_arrow", "modifiers": ["right_option"] }],
+                "to": [
+                  {
+                    "key_code": "right_arrow",
+                    "modifiers": ["right_option"]
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -268,7 +288,12 @@
                   "key_code": "left_option",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "key_code": "right_option", "lazy": true }],
+                "to": [
+                  {
+                    "key_code": "right_option",
+                    "lazy": true
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -285,7 +310,12 @@
                   "key_code": "fn",
                   "modifiers": { "mandatory": ["left_option"] }
                 },
-                "to": [{ "key_code": "right_option", "lazy": true }],
+                "to": [
+                  {
+                    "key_code": "right_option",
+                    "lazy": true
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -302,7 +332,12 @@
                   "key_code": "right_option",
                   "modifiers": { "optional": ["any"] }
                 },
-                "to": [{ "key_code": "left_option", "lazy": true }],
+                "to": [
+                  {
+                    "key_code": "left_option",
+                    "lazy": true
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -419,7 +454,13 @@
                   }
                 ],
                 "from": { "key_code": "left_shift" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.folded.menubar -t match_click -a 'Copy URL as Markdown'; sleep 0.5; ~/.local/bin/altr -w com.nyako520.chromehp -t chrome_share" }],
+                "to": [
+                  {
+                    "key_code": "y",
+                    "modifiers": ["option", "shift"]
+                  },
+                  { "shell_command": "sleep 0.5; ~/.local/bin/altr -w com.nyako520.chromehp -t chrome_share" }
+                ],
                 "type": "basic"
               },
               {
@@ -752,9 +793,7 @@
                   "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [
-                  {
-                    "shell_command": "pgrep -qx Bob || open -b com.hezongyidev.Bob"
-                  },
+                  { "shell_command": "pgrep -qx Bob || open -b com.hezongyidev.Bob" },
                   {
                     "key_code": "b",
                     "modifiers": ["left_control", "left_option", "left_shift"]
@@ -904,9 +943,7 @@
                   "modifiers": { "mandatory": ["command", "left_control"] }
                 },
                 "to": [
-                  {
-                    "shell_command": "pgrep -qx ChatGPT || open -b com.openai.chat"
-                  },
+                  { "shell_command": "pgrep -qx ChatGPT || open -b com.openai.chat" },
                   {
                     "key_code": "p",
                     "modifiers": ["control", "option", "shift", "command"]
@@ -1026,7 +1063,7 @@
               },
               {
                 "from": {
-                  "key_code": "return_or_enter",
+                  "key_code": "w",
                   "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
                 },
                 "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.syspre -t close_without_save" }],
@@ -1513,7 +1550,7 @@
             ]
           },
           {
-            "description": "Thumb H/J/K/L → Vim Navigation, Thumb O → ↵, Thumb Digits → Function Keys, Thumb 􀄦/􀄧 → Volume Up / Down",
+            "description": "Thumb H/J/K/L → Navigation, Thumb O/\\ → ↵, Thumb Digits → Fn Keys, Thumb 􀄦/􀄧 → Volume Up / Down",
             "manipulators": [
               {
                 "conditions": [
@@ -1585,6 +1622,21 @@
                 ],
                 "from": {
                   "key_code": "o",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [{ "key_code": "return_or_enter" }],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "multitouch_extension_finger_count_upper_quarter_area",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "from": {
+                  "key_code": "backslash",
                   "modifiers": { "optional": ["any"] }
                 },
                 "to": [{ "key_code": "return_or_enter" }],
@@ -1804,6 +1856,10 @@
                   "key_code": "caps_lock",
                   "modifiers": { "optional": ["any"] }
                 },
+                "parameters": {
+                  "basic.to_if_alone_timeout_milliseconds": 600,
+                  "basic.to_if_held_down_threshold_milliseconds": 600
+                },
                 "to": [
                   {
                     "set_variable": {
@@ -1828,14 +1884,10 @@
                 "to_if_held_down": [
                   {
                     "key_code": "left_shift",
-                    "modifiers": ["left_option", "left_command", "left_control"],
-                    "lazy": true
+                    "lazy": true,
+                    "modifiers": ["left_option", "left_command", "left_control"]
                   }
                 ],
-                "parameters": {
-                  "basic.to_if_alone_timeout_milliseconds": 600,
-                  "basic.to_if_held_down_threshold_milliseconds": 600
-                },
                 "type": "basic"
               },
               {
@@ -1936,11 +1988,7 @@
                   }
                 },
                 "parameters": { "basic.simultaneous_threshold_milliseconds": 100 },
-                "to": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -A -c 'Vim:enter()'"
-                  }
-                ],
+                "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'Vim:enter()'" }],
                 "type": "basic"
               }
             ]
@@ -1998,11 +2046,7 @@
               {
                 "from": { "key_code": "f4" },
                 "to_if_alone": [{ "key_code": "f4" }],
-                "to_if_held_down": [
-                  {
-                    "shell_command": "~/.local/bin/altr -w com.nyako520.program -t shell"
-                  }
-                ],
+                "to_if_held_down": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.program -t shell" }],
                 "type": "basic"
               },
               {
@@ -2214,7 +2258,10 @@
                   "modifiers": { "optional": ["any"] }
                 },
                 "to": [
-                  { "key_code": "right_control", "modifiers": ["left_control"] }
+                  {
+                    "key_code": "right_control",
+                    "modifiers": ["left_control"]
+                  }
                 ],
                 "to_if_alone": [
                   {
@@ -2503,7 +2550,10 @@
       ],
       "name": "Default profile",
       "selected": true,
-      "virtual_hid_keyboard": { "indicate_sticky_modifier_keys_state": false }
+      "virtual_hid_keyboard": {
+        "indicate_sticky_modifier_keys_state": false,
+        "keyboard_type_v2": "ansi"
+      }
     },
     {
       "complex_modifications": {

@@ -6,7 +6,9 @@ _f() {
 
 if [ -d "$1" ]; then
   cwd=$1
-elif [ "$1" != --jump ]; then
+elif [ "$1" = --jump ]; then
+  cwd=$(_f) || exit 0
+else
   cwd=$PWD
 fi
 
