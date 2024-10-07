@@ -1,6 +1,6 @@
 import = ["~/.config/alacritty/colors.toml"]
 
-shell = { program = "/bin/zsh", args = ["-lc", "tmux"] }
+shell = { program = "tmux" }
 
 [env]
 TERM = "alacritty"
