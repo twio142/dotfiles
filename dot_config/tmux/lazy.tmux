@@ -170,6 +170,7 @@ bind -T copy-mode-vi C-k selectp -U
 bind -T copy-mode-vi C-l selectp -R
 bind -T copy-mode-vi m send -X set-mark
 bind -T copy-mode-vi ` send -X jump-to-mark
+bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "pbcopy"
 bind -n WheelUpPane if -F "#{mouse_any_flag}" 'send C-y' 'if -F "#{alternate_on}" "send C-y" "copy-mode -e"'
 bind -n WheelDownPane if -F "#{mouse_any_flag}" 'send C-e' 'if -F "#{alternate_on}" "send C-e" "send -X cancel"'
 

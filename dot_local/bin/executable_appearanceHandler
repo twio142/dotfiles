@@ -23,7 +23,7 @@ done
 # Tmux
 [ $mode = light ] && flavor=latte || flavor=mocha
 tmux set -g @catppuccin_flavor "$flavor"
-tmux run-shell ${XDG_CONFIG_HOME}/tmux/plugins/tmux/catppuccin.tmux
+tmux run ${XDG_CONFIG_HOME}/tmux/plugins/catppuccin-tmux/catppuccin.tmux
 
 # yazi theme
 DIR=$XDG_CONFIG_HOME/yazi

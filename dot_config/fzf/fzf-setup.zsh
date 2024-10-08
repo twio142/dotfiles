@@ -4,7 +4,7 @@
 source <(fzf --zsh)
 # [ -z $alfred_version ] && . ${XDG_CONFIG_HOME:-~/.config}/fzf/fzf-git.sh
 
-export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer= --bind="ctrl-d:preview-half-page-down" --bind="ctrl-u:preview-half-page-up"'
+export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer= --bind="ctrl-d:preview-half-page-down" --bind="ctrl-u:preview-half-page-up" --bind="alt-j:jump"'
 
 # Use `` as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER="\`"
