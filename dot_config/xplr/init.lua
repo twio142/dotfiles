@@ -120,6 +120,14 @@ xplr.config.general.logs.warning.format = "󱈸 "
 xplr.config.modes.builtin.move_to.prompt = "󱀱 ❯ "
 xplr.config.modes.builtin.copy_to.prompt = " ❯ "
 xplr.config.general.hide_remaps_in_help_menu = true
+xplr.config.general.sort_and_filter_ui.sort_direction_identifiers.forward.format = ""
+xplr.config.general.sort_and_filter_ui.sort_direction_identifiers.reverse.format = ""
+xplr.config.general.sort_and_filter_ui.sorter_identifiers.ByLastModified.format = "mtime"
+xplr.config.general.sort_and_filter_ui.sorter_identifiers.ByCreated.format = "ctime"
+xplr.config.general.sort_and_filter_ui.sorter_identifiers.ByCanonicalLastModified.format = "[c]mtime"
+xplr.config.general.sort_and_filter_ui.sorter_identifiers.ByCanonicalCreated.format = "[c]ctime"
+xplr.config.general.sort_and_filter_ui.sorter_identifiers.BySymlinkLastModified.format = "[s]mtime"
+xplr.config.general.sort_and_filter_ui.sorter_identifiers.BySymlinkCreated.format = "[s]ctime"
 
 require("leader")
 require("keys")

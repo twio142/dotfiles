@@ -14,9 +14,8 @@ FD_SUFFIX=". -X ls -t | sed 's/^\.\//${PURPLE}/' | sed 's/\$/${OFF}/'"
 RG="rg --ignore-vcs -t markdown -g '!**/.obsidian/**' -ig '!**/.trash/**' -L --column --line-number --no-heading --color=always --smart-case"
 COPY=pbcopy
 [ -n "$TMUX" ] && COPY="tmux load-buffer -"
-EDIT="become([[ \$(echo {+n} | awk '{print NF}') -gt 1 || -z {2} ]] && nvim {+1} || nvim {1} +{2})"
 
-[ "$1" = -o ] && { enter="become(for i in {+1}; do echo $VAULT/\$i; done)"; shift; EDIT=''; } || enter=$EDIT
+[ "$1" = -o ] && { enter="become(for i in {+1..2}; do echo $VAULT/\$i; done)"; shift; } || enter="become([[ \$(echo {+n} | awk '{print NF}') -gt 1 || -z {2} ]] && nvim {+1} || nvim {1} +{2})"
 INITIAL_QUERY="${*:-}"
 
 fzf --ansi --disabled --query "$INITIAL_QUERY" -m \
@@ -24,8 +23,7 @@ fzf --ansi --disabled --query "$INITIAL_QUERY" -m \
     --bind "start:reload:$FD_PREFIX . $FD_SUFFIX" \
     --bind "change:reload:sleep 0.1; $FD_PREFIX {q} $FD_SUFFIX || true; $RG {q} || true" \
     --bind "ctrl-y:execute-silent(echo '[['{1} | sd '\.md$' ']]' | $COPY)" \
-    --bind "ctrl-f:unbind(change,ctrl-f)+change-prompt(fzf > )+enable-search+reload($RG . || true)+clear-query" \
-    --bind "ctrl-e:$EDIT" \
+    --bind "ctrl-f:unbind(change,ctrl-f)+change-prompt(fzf > )+enable-search+reload($RG . || true)" \
     --bind "enter:$enter" \
     --delimiter : \
     --preview '[ -z {2} ] && bat --color=always {} || bat --color=always {1} --highlight-line {2}' \

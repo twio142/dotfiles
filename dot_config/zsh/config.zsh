@@ -1,4 +1,4 @@
-alias gdv='git difftool -y -t nvimdiff'
+alias gdv='git difftool -y'
 alias v='nvim'
 alias vim='nvim'
 alias t='tmux'

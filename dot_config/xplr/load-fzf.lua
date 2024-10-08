@@ -66,19 +66,30 @@ require("fzf").setup{
   callback = "custom.fif_callback"
 }
 
+require("fzf").setup{
+  name = "obsidian search",
+  bin = "obsearch",
+  args = "-o",
+  recursive = true,
+  mode = "custom.backslash",
+  key = "o",
+  callback = "custom.fif_callback"
+}
+
 xplr.fn.custom.fif_callback = function(input)
   -- if multiple lines are selected, open them all in nvim
   -- if a single line is selected, open the file at the line number in nvim
   local cmd = "nvim "
   if #input > 1 then
     for _, i in ipairs(input) do
-      local path = i:match("^([^:]+):%d+:")
+      local path = i:match("^[^:]+")
       cmd = cmd .. xplr.util.shell_escape(path) .. " "
     end
   elseif #input == 1 then
-    local path, line = input[1]:match("^([^:]+):(%d+):")
-    path = xplr.util.shell_escape(path)
-    cmd = cmd .. "+" .. line .. " " .. path
+    local path = xplr.util.shell_escape(input[1]:match("^[^:]+"))
+    local line = input[1]:match(":(%d+)$")
+    line = line and " +" .. line or ""
+    cmd = cmd .. path .. line
   else
     return
   end

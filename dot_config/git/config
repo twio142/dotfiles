@@ -19,6 +19,8 @@
 [diff]
   tool = nvimdiff
   colorMoved = default
+[difftool]
+  prompt = false
 [interactive]
   diffFilter = delta --$(~/.local/bin/background) --color-only --features=interactive
 [delta]
@@ -37,6 +39,7 @@
   hunk-header-style = syntax ul
   hunk-header-decoration-style = omit
 [merge]
+  tool = nvimdiff
   conflictStyle = diff3
 [pull]
   ff = only

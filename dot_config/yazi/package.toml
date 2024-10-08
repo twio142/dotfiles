@@ -1,17 +1,17 @@
 [plugin]
 deps = [
 	{ use = "llanosrocas/githead", rev = "bf150f3" },
-	{ use = "yazi-rs/plugins:full-border", rev = "6c11a97" },
-	{ use = "twio142/yazi-plugins:smart", rev = "188ec92" },
-	{ use = "twio142/yazi-plugins:my-fzf", rev = "188ec92" },
-	{ use = "twio142/yazi-plugins:git" , rev = "188ec92" },
-	{ use = "yazi-rs/plugins:smart-filter", rev = "6c11a97" },
+	{ use = "yazi-rs/plugins:full-border", rev = "35100e7" },
+	{ use = "twio142/yazi-plugins:smart" , rev = "ca9c99b" },
+	{ use = "twio142/yazi-plugins:my-fzf" , rev = "ca9c99b" },
+	{ use = "twio142/yazi-plugins:git" , rev = "ca9c99b" },
+	{ use = "yazi-rs/plugins:smart-filter", rev = "35100e7" },
 	# https://gitee.com/DreamMaoMao/searchjump.yazi.git
 	# https://gitee.com/DreamMaoMao/keyjump.yazi.git
 ]
 
 [flavor]
 deps = [
-	{ use = "yazi-rs/flavors:catppuccin-latte", rev = "d479f67" },
-	{ use = "yazi-rs/flavors:catppuccin-mocha", rev = "d479f67" }
+	{ use = "yazi-rs/flavors:catppuccin-latte", rev = "b081fa9" },
+	{ use = "yazi-rs/flavors:catppuccin-mocha", rev = "b081fa9" }
 ]
