@@ -20,7 +20,7 @@ local config = {
   check_for_updates = false,
   --
   -- SHELL
-  default_prog = {"tmux"},
+  default_prog = {"/bin/zsh", "-lc", "tmux"},
   set_environment_variables = {
     TERM = "wezterm",
     LANG = "en_US.UTF-8",

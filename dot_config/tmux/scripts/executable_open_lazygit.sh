@@ -1,7 +1,12 @@
 #!/bin/zsh
 
 _f() {
-  awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | fzf --preview "echo -e \"\033[1m\$(basename {})\033[0m\n\"; git -c color.status=always -C {} status -bs" --preview-window='wrap' --height=~60%
+  awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | \
+    sd '^ +- ' '' | \
+    fzf --height=~60% \
+    --preview "echo -e \"\033[1m\$(basename {})\033[0m\n\"; git -c color.status=always -C {} status -bs" \
+    --preview-window='wrap' \
+    --bind "ctrl-o:execute(tmux neww -c {})+abort"
 }
 
 if [ -d "$1" ]; then

@@ -11,6 +11,7 @@ export LS_COLORS="$(vivid generate one-light)"
 if [ "$1" = "--jump" ]; then
   cwd=$(fzf --bind "start:reload:zoxide query '' -l | awk '{ if (!seen[tolower()]++) print }' || true" \
   --bind "change:reload:zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' || true" \
+  --bind "ctrl-o:execute(tmux neww -c {})+abort" \
   --bind "ctrl-x:reload:zoxide remove '{}' && zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' || true" \
   --disabled \
   --preview "fzf-preview {}" \

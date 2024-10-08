@@ -466,3 +466,6 @@ help.messages = {
 }
 
 xplr.config.general.global_key_bindings.on_key["?"] = help
+
+xplr.config.modes.custom.xpm.key_bindings.on_key.x = xplr.config.modes.custom.xpm.key_bindings.on_key.c
+xplr.config.modes.custom.xpm.key_bindings.on_key.c = nil

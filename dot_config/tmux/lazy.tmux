@@ -128,24 +128,10 @@ bind -r C-Down resizep -D 8
 bind -r C-Up resizep -U 8
 bind -r C-Right resizep -R 8
 
-set -g default-command "$SHELL -l"
-set -ga terminal-overrides ",*-256color:Tc"
-set -ga terminal-overrides ',*:Smulx=\E[4::%p1%dm'
-set -ga terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
-
-# Proper colors
-set -ga terminal-features ',alacritty:RGB'
-
-# Undercurl
-set -ga terminal-features ",alacritty:usstyle"
-
-TERMINFO="$XDG_DATA_HOME/terminfo"
-set -g default-terminal "alacritty"
 # set -g default-terminal "screen-256color" # set terminal to 256 colors
 set -g display-time 2000 # 2 seconds for display-time
 set -g mouse on # enable mouse support
 set -g renumber-windows on # renumber windows when a window is closed
-set -g base-index 1 # start window numbering at 1
 set -g pane-base-index 1 # start pane numbering at 1
 # setw -g automatic-rename off # disable auto-rename
 # setw -g allow-rename off # disable rename
@@ -190,7 +176,7 @@ bind -n WheelDownPane if -F "#{mouse_any_flag}" 'send C-e' 'if -F "#{alternate_o
 # command aliases
 set -g command-alias[10] EF="neww -S -n config -e PATH='$HOME/.local/bin:$PATH' 'nvim $XDG_CONFIG_HOME/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/lazy.tmux'"
 set -g command-alias[11] ER="source $XDG_CONFIG_HOME/tmux/tmux.conf \; source $XDG_CONFIG_HOME/tmux/lazy.tmux \;
-displgy-message 'Config reloaded'"
+display 'Config reloaded'"
 set -g command-alias[12] man="splitw -v $XDG_CONFIG_HOME/tmux/scripts/man.sh"
 set -g command-alias[13] tmux-man="splitw -v $XDG_CONFIG_HOME/tmux/scripts/man.sh tmux"
 set -g command-alias[14] ssh="neww $XDG_CONFIG_HOME/tmux/scripts/ssh.sh"
@@ -206,7 +192,7 @@ set -g command-alias[22] toggle-sidebar="run \"$XDG_CONFIG_HOME/tmux/plugins/tre
 bind C-r ER
 bind M-h tmux-man
 bind -n f3 xplr
-bind -n S-f3 xplr --jump
+bind -n C-f3 xplr --jump
 bind Tab last
 bind ` lastp
 bind -n F1 if -F "#{==:#{pane_current_command},nvim}" "send F1" toggle-sidebar
