@@ -67,6 +67,7 @@ set -g @treemux-tree-width "32"
 set -g @treemux-tree 'ctrl-9'
 
 # extrakto
+set -g @extrakto_fzf_header "f c o g"
 set -g @extrakto_key 'ctrl-#'
 set -g @extrakto_clip_tool 'tmux load-buffer -'
 set -g @extrakto_copy_key 'ctrl-y'
