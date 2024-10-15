@@ -527,8 +527,7 @@ end
 
 local function init()
   local userConfig = {
-    -- api_token = "***REMOVED***",
-    api_token = "***REMOVED***",
+    api_token = "{{ secret "--service=assrt-api" "--user=" }}",
     use_https = true,
     auto_close = 5,
     max_lines = 15,

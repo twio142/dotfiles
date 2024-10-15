@@ -16,12 +16,12 @@ export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target,__pycache__ --pre
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd -H -L --exclude ".DS_Store" --exclude ".git" . "$1"
+  fd -H -L -E ".DS_Store" -E ".git" --strip-cwd-prefix=always "${@:-.}"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d -H -L --exclude ".git" . "$1"
+  fd --type d -H -L -E ".git" --strip-cwd-prefix=always "${@:-.}"
 }
 
 fzf-history-widget() {
@@ -95,7 +95,7 @@ zle -N _autojump_fzf
 # search for images in the current directory, and prompt into the command line
 # _fzf_image() {
 #   local query=${LBUFFER##* }
-#   local selected=$(fd --exclude ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "fzf-preview {}" --preview-window='bottom,80%')
+#   local selected=$(fd -E ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "fzf-preview {}" --preview-window='bottom,80%')
 #   local ret=$?
 #   if [ -n "$selected" ]; then
 #     LBUFFER=${LBUFFER% *}
@@ -151,12 +151,12 @@ _fzf_locate() {
   dir=$(echo "$dir" | head -n1)
   [[ -z "$dir" || ! -d "$dir" ]] && return 0
   zle redisplay
-  local selected=$(_fzf_compgen_path $dir | fzf -m --preview "fzf-preview {}" --height=~50%) || return 0
+  local selected=$(_fzf_compgen_path . --base-directory=$dir | fzf -m --preview "fzf-preview '$dir'/{}" --height=~50%) || return 0
   local ret=$?
   if [ -n "$selected" ]; then
     LBUFFER=${LBUFFER% *}
     echo $selected | while read -r line; do
-      LBUFFER+=\ ${line:q}
+      LBUFFER+=\ ${dir:q}\/${line:q}
     done
   fi
   zle reset-prompt
