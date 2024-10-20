@@ -190,14 +190,16 @@ set -g command-alias[19] lzg="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_pa
 set -g command-alias[20] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazydocker' 'display \"Docker not running\"'"
 set -g command-alias[21] btm="popup -E -w 95% -h 90% -x 3% '$SHELL -c \"btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)\"'"
 set -g command-alias[22] toggle-sidebar="run \"$XDG_CONFIG_HOME/tmux/plugins/treemux/scripts/toggle.sh '#{@treemux-key-Bspace}' '#{pane_id}'\""
+set -g command-alias[23] open="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_path.sh"
 
 bind C-r ER
 bind M-h tmux-man
 bind -n f3 xplr
-bind -n C-f3 xplr --jump
 bind Tab last
 bind ` lastp
 bind -n F1 if -F "#{==:#{pane_current_command},nvim}" "send F1" toggle-sidebar
+unbind C-o
+bind C-o open
 
 # modal bindings
 unbind b

@@ -39,7 +39,7 @@ bindings = [
   { key = "-", mods = "Super", action = "DecreaseFontSize" },
   { key = "Tab", mods = "Control", chars = "\u0000\u006e" },
   { key = "Tab", mods = "Shift|Control", chars = "\u0000\u0010" },
-  { key = "[", mods = "Super|Shift", action = "ToggleViMode" },
+  { key = "{", mods = "Super|Shift", action = "ToggleViMode" },
   { key = "Space", mods = "Super|Alt|Control|Shift", chars = "\u0000" },
   { key = "[", mods = "Super", chars = "\u0000\u005b" },
   { key = "]", mods = "Super", chars = "\u0000\u005d" },
@@ -54,6 +54,7 @@ bindings = [
   { key = "9", mods = "Super", chars = "\u0000\u0039" },
   { key = "Enter", mods = "Control", chars = "\u001b[13;5u" },
   { key = "Enter", mods = "Shift", chars = "\u001b[13;2u" },
+  { key = "O", mods = "Super", chars = "\u0000\u000f" },
 ]
 
 [mouse]

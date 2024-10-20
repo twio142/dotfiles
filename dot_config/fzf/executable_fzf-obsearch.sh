@@ -15,7 +15,7 @@ RG="rg --ignore-vcs -t markdown -g '!**/.obsidian/**' -ig '!**/.trash/**' -L --c
 COPY=pbcopy
 [ -n "$TMUX" ] && COPY="tmux load-buffer -"
 
-[ "$1" = -o ] && { enter="become(for i in {+1..2}; do echo $VAULT/\$i; done)"; shift; } || enter="become([[ \$(echo {+n} | awk '{print NF}') -gt 1 || -z {2} ]] && nvim {+1} || nvim {1} +{2})"
+[ "$1" = -o ] && { enter="become(for i in {+1..2}; do echo $VAULT/\$i; done)"; shift; } || enter="execute([[ \$(echo {+n} | awk '{print NF}') -gt 1 || -z {2} ]] && nvim {+1} || nvim {1} +{2})"
 INITIAL_QUERY="${*:-}"
 
 fzf --ansi --disabled --query "$INITIAL_QUERY" -m \

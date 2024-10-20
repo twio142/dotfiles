@@ -1532,7 +1532,7 @@
                   }
                 ],
                 "from": { "key_code": "x" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.tmux -t tmux" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.program -t tmux" }],
                 "type": "basic"
               },
               {

@@ -74,8 +74,8 @@ _autojump_fzf() {
   local query=${LBUFFER##* }
   LBUFFER=''
   local dir=$(fzf --query=${query} --bind "start:reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
-    --bind "change:reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
-    --bind "ctrl-x:reload:zoxide remove '{}' && zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
+    --bind "change:reload:eval zoxide query {q} -l --exclude \\$PWD | awk '{ if (!seen[tolower()]++) print }' || true" \
+    --bind "ctrl-x:reload:zoxide remove {} && eval zoxide query {q} -l --exclude \\$PWD | awk '{ if (!seen[tolower()]++) print }' || true" \
     --disabled \
     --preview "fzf-preview {}" \
     --height=30%)

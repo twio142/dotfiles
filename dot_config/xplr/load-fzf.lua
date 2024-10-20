@@ -48,7 +48,7 @@ xplr.config.modes.custom.backslash.key_bindings.on_key.f = {
 require("fzf").setup{
   name = "autojump",
   args = [[ --bind "start:reload:zoxide query '' -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
-    --bind "change:reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
+    --bind "change:reload:eval zoxide query {q} -l --exclude \\$PWD | awk '{ if (!seen[tolower()]++) print }' || true" \
     --disabled --preview "fzf-preview {}" | xargs -I _ rp "_" ]],
   recursive = true,
   enter_dir = true,

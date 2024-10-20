@@ -157,6 +157,14 @@ local config = {
     k.cmd_to_tmux_prefix("7", "7"),
     k.cmd_to_tmux_prefix("8", "8"),
     k.cmd_to_tmux_prefix("9", "9"),
+    {
+      mods = "SUPER",
+      key = "o",
+      action = act.Multiple({
+        act.SendKey({ mods = "CTRL", key = " " }),
+        act.SendKey({ mods = "CTRL", key = "o" }),
+      }),
+    },
     -- k.cmd_ctrl_key("t", act.EmitEvent("toggle-opacity")),
     k.cmd_key("j", "QuickSelect"),
     k.cmd_shift_key("[", "ActivateCopyMode"),
