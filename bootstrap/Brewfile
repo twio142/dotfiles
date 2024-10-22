@@ -70,6 +70,8 @@ brew "curlie"
 brew "defaultbrowser"
 # Secure communications between a client and a DNS resolver
 brew "dnscrypt-proxy"
+# Command-line DNS Client for Humans
+brew "doggo"
 # More intuitive version of du in rust
 brew "dust"
 # Simple, fast and user-friendly alternative to find

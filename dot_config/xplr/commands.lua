@@ -20,7 +20,7 @@ m.silent_cmd("vscode", "open in VSCode")(
   ]===]
 )
 
-local preview = m.silent_cmd("preview", "preview file")(
+local preview = m.silent_cmd("preview", "[p]review file")(
   m.BashExec [[ fzf-preview "${XPLR_FOCUS_PATH:?}" | less -r ]]
 )
 
@@ -173,7 +173,7 @@ local edit = m.cmd("edit", "edit file(s)")(function(ctx)
   return {{ BashExec0 = cmd }}
 end)
 
-preview.bind(xplr.config.modes.builtin.action, "tab")
+preview.bind(xplr.config.modes.builtin.action, "p")
 -- xplr.config.modes.custom.preview.key_bindings.on_key.w = preview.action
 dust.bind(xplr.config.modes.custom.space, "u")
 diff.bind(xplr.config.modes.builtin.selection_ops, "d")

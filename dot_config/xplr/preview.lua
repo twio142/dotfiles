@@ -1,6 +1,6 @@
 _G.xplr = xplr
 
-xplr.config.modes.builtin.default.key_bindings.on_key.tab = {
+xplr.config.modes.builtin.default.key_bindings.on_key.P = {
   help = "toggle preview",
   messages = { { CallLuaSilently = "custom.preview.toggle" } }
 }

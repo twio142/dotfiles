@@ -4,6 +4,7 @@
 prepend_keymap = [
   # { on = [ "g", "a" ], run = 'my-fev-command1', desc = "Just for test!" },
   { on = "<A-j>", run = [ 'select', 'arrow 1' ], desc = "Toggle selection" },
+  { on = "<Tab>", run = [ 'select', 'arrow 1' ], desc = "Toggle selection" },
   { on = "<A-k>", run = [ 'select --state=false' ], desc = "Toggle selection" },
   { on = "<Enter>", run = 'plugin smart --args=enter --sync', desc = "Open shell / edit file" },
   { on = "<A-Enter>", run = [ 'open --interactive' ], desc = "Open selected files interactively" },

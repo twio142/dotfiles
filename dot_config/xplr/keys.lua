@@ -45,6 +45,7 @@ xplr.config.general.global_key_bindings.on_key["alt-k"] = {
     "ToggleSelection",
   }
 }
+on_key.tab = xplr.config.general.global_key_bindings.on_key["alt-j"]
 xplr.fn.custom.removeLastSelection = function(ctx)
   if #ctx.selection == 0 then
     return
@@ -90,15 +91,18 @@ xplr.config.modes.builtin.action.key_bindings.on_key.m = nil
 xplr.config.modes.builtin.action.key_bindings.on_key[":"] = xplr.config.modes.builtin.action.key_bindings.on_key["!"]
 xplr.config.modes.builtin.action.key_bindings.on_key["!"] = nil
 xplr.config.modes.builtin.action.key_bindings.on_key.D = on_key["ctrl-d"]
-xplr.config.modes.builtin.action.key_bindings.on_key.p.messages = {
-  "PopMode",
-  { SwitchModeBuiltin = "edit_permissions" },
-  {
-    BashExecSilently0 = [===[
-      PERM=$(stat -f '%A' -- "${XPLR_FOCUS_PATH:?}")
-      "$XPLR" -m 'SetInputBuffer: %q' "${PERM:?}"
-    ]===],
-  }
+xplr.config.modes.builtin.action.key_bindings.on_key.P = {
+  messages = {
+    "PopMode",
+    { SwitchModeBuiltin = "edit_permissions" },
+    {
+      BashExecSilently0 = [===[
+        PERM=$(stat -f '%A' -- "${XPLR_FOCUS_PATH:?}")
+        "$XPLR" -m 'SetInputBuffer: %q' "${PERM:?}"
+      ]===],
+    }
+  },
+  help = "edit [P]ermissions",
 }
 xplr.config.modes.builtin.action.key_bindings.on_number = nil
 
@@ -151,9 +155,9 @@ xplr.config.modes.custom.type_to_nav.key_bindings.on_key['ctrl-l'] = {
 }
 xplr.config.modes.custom.type_to_nav.key_bindings.on_key.tab = xplr.config.modes.custom.type_to_nav.key_bindings.on_key['ctrl-v']
 
--- paste, move and softlink selected files
-xplr.config.modes.builtin.selection_ops.key_bindings.on_key.p = {
-  help = "[p]aste here",
+-- copy, move and softlink selected files
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.c = {
+  help = "[c]opy here",
   messages = {
     {
       BashExec0 = [===[
@@ -192,7 +196,6 @@ xplr.config.modes.builtin.selection_ops.key_bindings.on_key.p = {
     "PopMode",
   }
 }
-xplr.config.modes.builtin.selection_ops.key_bindings.on_key.c = nil
 
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.m.help = "[m]ove here"
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.m.messages = {

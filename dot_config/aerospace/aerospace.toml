@@ -69,6 +69,11 @@ if.window-title-regex-substring = 'Space \d+'
 run = ['layout floating']
 
 [[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+if.window-title-regex-substring = '^Bitwarden$'
+run = ['layout floating']
+
+[[on-window-detected]]
 if.app-id = 'com.openai.chat'
 run = ['layout floating']
 

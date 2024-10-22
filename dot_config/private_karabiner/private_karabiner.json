@@ -1550,7 +1550,7 @@
             ]
           },
           {
-            "description": "Thumb H/J/K/L → Navigation, Thumb O/\\ → ↵, Thumb Digits → Fn Keys, Thumb 􀄦/􀄧 → Volume Up / Down",
+            "description": "Thumb H/J/K/L → Navigation, Thumb \\ → ↵, Thumb Digits → Fn Keys, Thumb 􀄦/􀄧 → Volume Up / Down",
             "manipulators": [
               {
                 "conditions": [
@@ -1610,21 +1610,6 @@
                   "modifiers": { "optional": ["any"] }
                 },
                 "to": [{ "key_code": "right_arrow" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "multitouch_extension_finger_count_upper_quarter_area",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "o",
-                  "modifiers": { "optional": ["any"] }
-                },
-                "to": [{ "key_code": "return_or_enter" }],
                 "type": "basic"
               },
               {
