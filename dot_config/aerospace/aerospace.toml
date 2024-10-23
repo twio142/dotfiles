@@ -150,6 +150,7 @@ R = 'secondary'
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+d = ['close', 'mode main']
 ctrl-d = ['close-all-windows-but-current', 'mode main']
 tab = ['workspace-back-and-forth', 'mode main']
 c = ['exec-and-forget aerospace list-workspaces --monitor focused --empty --visible no | aerospace workspace --wrap-around next', 'mode main']
@@ -159,6 +160,7 @@ m = ['move-node-to-monitor --wrap-around next', 'mode main']
 shift-m = ['move-workspace-to-monitor --wrap-around next', 'mode main']
 w = ['mode workspace']
 j = ['mode join']
+a = ['mode app']
 space = ['move-mouse window-lazy-center']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
@@ -180,6 +182,14 @@ h = ['join-with left', 'mode main']
 j = ['join-with down', 'mode main']
 k = ['join-with up', 'mode main']
 l = ['join-with right', 'mode main']
+
+esc = ['reload-config', 'mode main']
+
+[mode.app.binding]
+a = ['exec-and-forget open -a Arc', 'mode main']
+f = ['exec-and-forget open -a Finder', 'mode main']
+o = ['exec-and-forget open -a Obsidian', 'mode main']
+t = ['exec-and-forget altr -w com.nyako520.program -t shell', 'mode main']
 
 esc = ['reload-config', 'mode main']
 

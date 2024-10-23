@@ -1,4 +1,4 @@
-set-environment -g PATH "$HOME/.local/bin:$PATH"
+set-environment -g PATH "~/.local/bin:$PATH"
 
 #### Plugins ####
 # tmux-resurrect 
@@ -28,7 +28,7 @@ TMUX_FZF_MENU=\
 "toggle status\ntmux toggle-status\n"
 
 # catppuccin
-if 'test "$(~/.local/bin/background)" = light' 'set -g @catppuccin_flavor "latte"' 'set -g @catppuccin_flavor "mocha"'
+if 'test "$(background)" = light' 'set -g @catppuccin_flavor "latte"' 'set -g @catppuccin_flavor "mocha"'
 # latte, frappe, macchiato or mocha
 set -g @catppuccin_window_default_text "#W"
 set -g @catppuccin_window_default_color "#{thm_fg}"
@@ -176,7 +176,7 @@ bind -n WheelUpPane if -F "#{mouse_any_flag}" 'send C-y' 'if -F "#{alternate_on}
 bind -n WheelDownPane if -F "#{mouse_any_flag}" 'send C-e' 'if -F "#{alternate_on}" "send C-e" "send -X cancel"'
 
 # command aliases
-set -g command-alias[10] EF="neww -S -n config -e PATH='$HOME/.local/bin:$PATH' 'nvim $XDG_CONFIG_HOME/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/lazy.tmux'"
+set -g command-alias[10] EF="neww -S -n config 'nvim $XDG_CONFIG_HOME/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/lazy.tmux'"
 set -g command-alias[11] ER="source $XDG_CONFIG_HOME/tmux/tmux.conf \; source $XDG_CONFIG_HOME/tmux/lazy.tmux \;
 display 'Config reloaded'"
 set -g command-alias[12] man="splitw -v $XDG_CONFIG_HOME/tmux/scripts/man.sh"
@@ -185,10 +185,10 @@ set -g command-alias[14] ssh="neww $XDG_CONFIG_HOME/tmux/scripts/ssh.sh"
 set -g command-alias[15] toggle-status="if 'tmux show -q status | grep -q off' 'set status on' 'set status off'"
 set -g command-alias[16] toggle-clipboard="if 'tmux show -g set-clipboard | grep -q on' 'set -g set-clipboard off; display \"Clipboard OFF\"' 'set -g set-clipboard on; display \"Clipboard ON\"'"
 set -g command-alias[17] xplr="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_xplr.sh"
-set -g command-alias[18] yazi="neww -c '#{pane_current_path}' -e PATH='$HOME/.local/bin:$PATH' yazi"
+set -g command-alias[18] yazi="neww -c '#{pane_current_path}' yazi"
 set -g command-alias[19] lzg="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' $XDG_CONFIG_HOME/tmux/scripts/open_lazygit.sh"
 set -g command-alias[20] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazydocker' 'display \"Docker not running\"'"
-set -g command-alias[21] btm="popup -E -w 95% -h 90% -x 3% '$SHELL -c \"btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)\"'"
+set -g command-alias[21] btm="popup -E -w 95% -h 90% -x 3% '$SHELL -c \"btm --theme nord$(test $(background) = light && echo -light)\"'"
 set -g command-alias[22] toggle-sidebar="run \"$XDG_CONFIG_HOME/tmux/plugins/treemux/scripts/toggle.sh '#{@treemux-key-Bspace}' '#{pane_id}'\""
 set -g command-alias[23] open="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_path.sh"
 

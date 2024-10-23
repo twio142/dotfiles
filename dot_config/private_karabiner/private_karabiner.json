@@ -629,7 +629,7 @@
             ]
           },
           {
-            "description": "Lft ⌃ F → Make Window Float, Lft ⌃ H/J/K/L → Focus Window, Lft ⌃ N/P → Previous / Next Workspace, Lft ⌃ V → Move / Resize Window, Lft ⌃ W → Workspace Mode, Lft ⌃ ⇥ → Last Workspace, Lft ⌃ ` → Last Window, Lft ⌃ '/Ä → Toggle Layout Tiling / Accordion, Lft ⌃⇧ H/J/K/L → Swap Window, Lft ⌃ ␣ → AeroSpace Mode",
+            "description": "Lft ⌃ F → Make Window Float, Lft ⌃ H/J/K/L → Focus Window, Lft ⌃ N/P → Previous / Next Workspace, Lft ⌃ V → Move / Resize Window, Lft ⌃ ⇥ → Last Workspace, Lft ⌃ ` → Last Window, Lft ⌃ '/Ä → Toggle Layout Tiling / Accordion, Lft ⌃⇧ H/J/K/L → Swap Window, Lft ⌃ ␣ → AeroSpace Mode",
             "manipulators": [
               {
                 "from": {
@@ -693,14 +693,6 @@
                   "modifiers": { "mandatory": ["left_control", "right_control"] }
                 },
                 "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'MoveWinMode:enter()'" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "w",
-                  "modifiers": { "mandatory": ["left_control", "right_control"] }
-                },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace mode workspace" }],
                 "type": "basic"
               },
               {
