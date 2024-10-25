@@ -1,3 +1,5 @@
+[init]
+  defaultBranch = main
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
@@ -43,3 +45,12 @@
   conflictStyle = diff3
 [pull]
   ff = only
+[gitflow "branch"]
+  master = main
+  develop = develop
+[gitflow "prefix"]
+  feature = feature/
+  release = release/
+  hotfix = hotfix/
+  support = support/
+  versiontag = v

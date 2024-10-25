@@ -497,7 +497,7 @@
             ]
           },
           {
-            "description": "MOD → ⇪, MOD C/D/E → Select Input Method, MOD X → ⌫, MOD ␣ → ↵, MOD ` → ~, Paired Marks",
+            "description": "MOD → ⇪, MOD Z → Switch Input Method, Mouse + MOD X → ⌫, Mouse + MOD ␣ → ↵, MOD ` → ~, Paired Marks",
             "manipulators": [
               {
                 "from": { "key_code": "right_control" },
@@ -515,26 +515,15 @@
               },
               {
                 "from": {
-                  "key_code": "c",
+                  "key_code": "z",
                   "modifiers": { "mandatory": ["right_control"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.alfredapp.snippettrigger -t im-select -a com.apple.inputmethod.SCIM.Shuangpin" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "d",
-                  "modifiers": { "mandatory": ["right_control"] }
-                },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.alfredapp.snippettrigger -t im-select -a com.apple.keylayout.German" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "e",
-                  "modifiers": { "mandatory": ["right_control"] }
-                },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.alfredapp.snippettrigger -t im-select -a com.apple.keylayout.US" }],
+                "to": [
+                  {
+                    "key_code": "x",
+                    "modifiers": ["left_control", "left_shift", "left_option", "left_command"]
+                  }
+                ],
                 "type": "basic"
               },
               {
