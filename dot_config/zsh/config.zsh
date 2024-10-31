@@ -5,6 +5,7 @@ alias t='tmux'
 alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -light)'
 alias ipy='ipython'
 alias lzg='lazygit'
+alias git_current_branch='git rev-parse --abbrev-ref HEAD'
 alias ssh='TERM=xterm-256color ssh'
 alias tree='tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__'
 alias reconfig='exec zsh'
@@ -161,7 +162,7 @@ _tmux_key_bindings() {
   zle -N _tmux_prev_mark
   zle -N _tmux_next_mark
   bindkey '^[[' _tmux_copy_mode
-  bindkey '^V' _tmux_copy_mode
+  bindkey '^[v' _tmux_copy_mode
   bindkey '^[/' _tmux_find
   bindkey '^[]' _tmux_paste
   bindkey '^[ ' _tmux_wk_menu

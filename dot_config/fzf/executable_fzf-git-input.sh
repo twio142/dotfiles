@@ -1,5 +1,6 @@
 #!/opt/homebrew/bin/bash
 
+git_current_branch() { git rev-parse --abbrev-ref HEAD; }
 g() { git "$@"; }
 ga() { git add "$@"; }
 gaa() { git add --all "$@"; }
