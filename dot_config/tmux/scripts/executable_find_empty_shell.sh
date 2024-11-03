@@ -8,7 +8,9 @@
 # ssh: Open an ssh connection to the given host; implies -n
 
 getSession() {
-  tmux lsc -F '#{client_pid}	#{client_session}' | awk -F '\t' -v pid="$1" '$1 == pid {print $2}'
+  [ -z "$1" ] &&
+    tmux display -p '#S' ||
+    tmux lsc -F '#{client_pid}	#{client_session}' | awk -F '\t' -v pid="$1" '$1 == pid {print $2}'
 }
 
 enter() {
@@ -19,10 +21,12 @@ enter() {
   tmux pasteb -d
 }
 
-[ -z "$SESS" ] && {
-  session=$(getSession $1)
+if [ -z "$SESS" ]; then
+  session=$(getSession "$1")
   shift
-} || session=$SESS
+else
+  session=$SESS
+fi
 [ -z "$session" ] && exit 1
 
 if [[ "$1" = ssh && -n "$2" ]]; then

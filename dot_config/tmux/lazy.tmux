@@ -12,7 +12,7 @@ set -g @resurrect-restore 'C-®'
 
 TMUX_FZF_LAUNCH_KEY="C-f"
 FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer='
-TMUX_FZF_OPTIONS="-p -w 100% -h 20 -x 0% -y 100% -m --preview-window=right,60% ${FZF_DEFAULT_OPTS}"
+TMUX_FZF_OPTIONS="-p -w 90% -h 70% -m --preview-window=up,70% ${FZF_DEFAULT_OPTS}"
 TMUX_FZF_ORDER="session|window|pane|buffer"
 TMUX_FZF_PANE_FORMAT="#{?pane_active,●,-} #{pane_current_command} ▸ #{b:pane_current_path} #{?pane_marked,󰃀 ,}"
 TMUX_FZF_WINDOW_FORMAT="#{?window_active,●,-} #{?#{==:#W,#{pane_current_command}},#W,#W (#{pane_current_command})}   #{window_panes}#{?window_marked_flag, 󰃀,}"
@@ -73,8 +73,8 @@ set -g @extrakto_clip_tool 'tmux load-buffer -'
 set -g @extrakto_copy_key 'ctrl-y'
 set -g @extrakto_insert_key 'enter'
 set -g @extrakto_split_size '20'
-set -g @extrakto_popup_position '0,100'
-set -g @extrakto_popup_size '100%,20'
+# set -g @extrakto_popup_position '0,100'
+set -g @extrakto_popup_size '90%,70%'
 set -g @extrakto_fzf_unset_default_opts "false"
 set -g @extrakto_fzf_layout "reverse"
 set -g @extrakto_editor "nvim"

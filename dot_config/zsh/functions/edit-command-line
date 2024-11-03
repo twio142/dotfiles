@@ -1,22 +1,22 @@
 edit-command-line () {
   emulate -L zsh
-  local left right prebuffer buffer=$BUFFER lbuffer=$LBUFFER 
-  local TMPSUFFIX=.zsh 
+  local left right prebuffer buffer=$BUFFER lbuffer=$LBUFFER
+  local TMPSUFFIX=.zsh
   if (( REGION_ACTIVE ))
   then
     if (( CURSOR < MARK ))
     then
-      left=$CURSOR right=$MARK 
-      lbuffer= 
+      left=$CURSOR right=$MARK
+      lbuffer=
     else
-      left=$MARK right=$CURSOR 
-      lbuffer[right-left,-1]= 
+      left=$MARK right=$CURSOR
+      lbuffer[right-left,-1]=
     fi
     (( left++ ))
-    buffer=$BUFFER[left,right] 
+    buffer=$BUFFER[left,right]
   elif (( ! ZLE_RECURSIVE ))
   then
-    prebuffer=$PREBUFFER 
+    prebuffer=$PREBUFFER
   fi
   () {
     exec < /dev/tty
@@ -26,25 +26,25 @@ edit-command-line () {
     zstyle -a :zle:$WIDGET editor editor
     if (( ! $#editor ))
     then
-      editor=("${(@Q)${(z)${VISUAL:-${EDITOR:-vi}}}}") 
+      editor=("${(@Q)${(z)${VISUAL:-${EDITOR:-vi}}}}")
     fi
     case $editor in
-      (*vim*) integer byteoffset=$(( $#prebuffer + $#lbuffer + 1 )) 
+      (*vim*) integer byteoffset=$(( $#prebuffer + $#lbuffer + 1 ))
         if [ -n "$TMUX" ]; then
           tmux popup -E -w 75% -e PATH="$HOME/.local/bin:$PATH" "\"${(@)editor}\" -c \"normal! ${byteoffset}go\" -- $1"
         else
           "${(@)editor}" -c "normal! ${byteoffset}go" -- $1
         fi
         ;;
-      (*emacs*) local lines=("${(@f):-"$prebuffer$lbuffer"}") 
+      (*emacs*) local lines=("${(@f):-"$prebuffer$lbuffer"}")
         "${(@)editor}" +${#lines}:$((${#lines[-1]} + 1)) $1 ;;
       (*) "${(@)editor}" $1 ;;
     esac
     (( $+zle_bracketed_paste )) && print -r -n - $zle_bracketed_paste[1]
     if (( REGION_ACTIVE ))
     then
-      local prelen=$#BUFFER 
-      BUFFER[left,right]="$(<$1)" 
+      local prelen=$#BUFFER
+      BUFFER[left,right]="$(<$1)"
       if (( MARK > CURSOR ))
       then
         (( MARK += $#BUFFER - prelen ))
@@ -53,7 +53,7 @@ edit-command-line () {
       fi
     elif [[ $CONTEXT != cont ]] || (( ZLE_RECURSIVE ))
     then
-      BUFFER="$(<$1)" 
+      BUFFER="$(<$1)"
     else
       print -Rz - "$(<$1)"
       zle send-break

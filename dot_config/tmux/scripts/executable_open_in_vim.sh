@@ -16,12 +16,12 @@ open_in_existing_pane() {
       [ "$NEWW" = 1 ] && return
       until (ps -o command= -p $pid | grep -Eq "^nvim --embed"); do
         pid=$(pgrep -P $pid 2> /dev/null)
-        [ -z "$pid" ] && break
+        [ -z "$pid" ] && return
       done
       local socket=$(fd "nvim\.$pid.*" $TMPDIR --type s)
       [ -n "$socket" ] && {
         if [[ $# -eq 2 && -f "$1" && "$2" =~ '^[+ ][0-9]+$' ]]; then
-          nvim --server $socket --remote "$1" 
+          nvim --server $socket --remote "$1"
           nvim --server $socket --remote-send "${2:1}G"
         elif [ $# -gt 0 ]; then
           nvim --server $socket --remote "$@";
@@ -58,13 +58,17 @@ open_in_new_window() {
 }
 
 getSession() {
-  tmux lsc -F '#{client_pid}	#{client_session}' | awk -F '\t' -v pid="$1" '$1 == pid {print $2}'
+  [ -z "$1" ] &&
+    tmux display -p '#S' ||
+    tmux lsc -F '#{client_pid}	#{client_session}' | awk -F '\t' -v pid="$1" '$1 == pid {print $2}'
 }
 
-[ -z "$SESS" ] && {
-  session=$(getSession $1)
+if [ -z "$SESS" ]; then
+  session=$(getSession "$1")
   shift
-} || session=$SESS
+else
+  session=$SESS
+fi
 [ -z "$session" ] && exit 1
 
 if [ "$1" = -n ]; then

@@ -147,9 +147,12 @@ items:
       - name: Paste
         key: p
         command: pasteb
-      - name: Extrakto
-        key: e
-        command: run "$TMUX_PLUGIN_MANAGER_PATH/extrakto/scripts/open.sh \\#{pane_id}"
+      - name: Extract word
+        key: w
+        command: run "$TMUX_PLUGIN_MANAGER_PATH/extrakto/scripts/open.sh \\#{pane_id} word"
+      - name: Extract line
+        key: l
+        command: run "$TMUX_PLUGIN_MANAGER_PATH/extrakto/scripts/open.sh \\#{pane_id} line-trim"
       - name: Copy to clipboard
         key: c
         command: run "tmux show-buffer | pbcopy"

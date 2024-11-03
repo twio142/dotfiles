@@ -200,6 +200,22 @@
                   }
                 ],
                 "from": {
+                  "key_code": "l",
+                  "modifiers": { "mandatory": ["left_control"] }
+                },
+                "to": [{ "key_code": "right_arrow" }],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "com.runningwithcrayons.Alfred"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
                   "key_code": "up_arrow",
                   "modifiers": { "mandatory": ["right_gui"] }
                 },
@@ -613,7 +629,7 @@
             ]
           },
           {
-            "description": "MOD → ⇪, MOD Z → Switch Input Method, Mouse + MOD X → ⌫, Mouse + MOD ␣ → ↵, MOD ` → ~, Paired Marks",
+            "description": "MOD / MOD Z → Switch Input Method, Mouse + MOD X → ⌫, Mouse + MOD ␣ → ↵, MOD ` → ~, Paired Marks",
             "manipulators": [
               {
                 "from": { "key_code": "right_control" },
@@ -624,8 +640,8 @@
                   }
                 ],
                 "to_if_alone": {
-                  "key_code": "caps_lock",
-                  "repeat": false
+                  "key_code": "a",
+                  "modifiers": ["left_control", "left_shift", "left_option", "left_command"]
                 },
                 "type": "basic"
               },
