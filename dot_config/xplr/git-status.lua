@@ -96,6 +96,7 @@ local function lazygit(ctx)
   if test.returncode ~= 0 then
     return {{ LogError = test.stderr }}
   else
+    pwd = test.stdout:gsub("\n", "")
     return {{ BashExec = "lazygit -p " .. xplr.util.shell_escape(pwd) }}
   end
 end

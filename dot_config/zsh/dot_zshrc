@@ -9,7 +9,7 @@ if [[ ! -z $TMUX && -z $alfred_version && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p1
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ -z "$alfred_version" && -z $XPLR && -z "$NVIM" ]]; then
+if [[ -z "$alfred_version" && -z $XPLR && -z "$NVIM" && -z "$TMUX_POPUP" ]]; then
   # if [[ -z "$TMUX" && -n "$SSH_CONNECTION" ]]; then
   #   tmux new-session -A -s ssh
   # fi

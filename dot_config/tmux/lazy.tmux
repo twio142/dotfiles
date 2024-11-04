@@ -191,6 +191,7 @@ set -g command-alias[20] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazyd
 set -g command-alias[21] btm="popup -E -w 95% -h 90% -x 3% '$SHELL -c \"btm --theme nord$(test $(background) = light && echo -light)\"'"
 set -g command-alias[22] toggle-sidebar="run \"$XDG_CONFIG_HOME/tmux/plugins/treemux/scripts/toggle.sh '#{@treemux-key-Bspace}' '#{pane_id}'\""
 set -g command-alias[23] open="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_path.sh"
+set -g command-alias[24] popup-term="popup -E -w 75% -d '#{pane_current_path}' -e TMUX_POPUP=1 'zsh -l'"
 
 bind C-r ER
 bind M-h tmux-man
@@ -221,6 +222,6 @@ bind p run "tmux #{@wk_cmd_show} #{@wk_menu_panes}"
 bind C-g lzg
 bind g run "tmux #{@wk_cmd_show} #{@wk_menu_git}"
 
+bind a run "tmux #{@wk_cmd_show} #{@wk_menu_app}"
 bind C-l run "tmux #{@wk_cmd_show} #{@wk_menu_layout}"
-bind C-a run "tmux #{@wk_cmd_show} #{@wk_menu_app}"
 bind C-h run "tmux #{@wk_cmd_show} #{@wk_menu_help}"

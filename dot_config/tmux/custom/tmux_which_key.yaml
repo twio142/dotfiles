@@ -206,8 +206,11 @@ items:
         key: m
         command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/menu.sh || true"
       - name: Sidebar
-        key: o
+        key: s
         command: toggle-sidebar
+      - name: Popup terminal
+        key: t
+        command: popup-term
       - name: xplr
         key: x
         command: xplr
