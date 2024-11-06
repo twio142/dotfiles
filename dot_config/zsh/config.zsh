@@ -152,7 +152,10 @@ tn() {
 
 _tmux_copy_mode() { tmux copy-mode }
 _tmux_find() { tmux copy-mode \; send "?" }
-_tmux_paste() { tmux pasteb }
+_tmux_paste() {
+  BUFFER+=$(tmux show-buffer)
+  CURSOR=${#BUFFER}
+}
 _tmux_wk_menu() { tmux show-wk-menu-root }
 _tmux_prev_mark() { tmux copy-mode \; send -X search-backward "^❯ " }
 _tmux_next_mark() { tmux copy-mode \; send -X search-forward "^❯ " }
