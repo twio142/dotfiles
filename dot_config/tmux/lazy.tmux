@@ -186,7 +186,7 @@ set -g command-alias[15] toggle-status="if 'tmux show -q status | grep -q off' '
 set -g command-alias[16] toggle-clipboard="if 'tmux show -g set-clipboard | grep -q on' 'set -g set-clipboard off; display \"Clipboard OFF\"' 'set -g set-clipboard on; display \"Clipboard ON\"'"
 set -g command-alias[17] xplr="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_xplr.sh"
 set -g command-alias[18] yazi="neww -c '#{pane_current_path}' yazi"
-set -g command-alias[19] lzg="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' $XDG_CONFIG_HOME/tmux/scripts/open_lazygit.sh"
+set -g command-alias[19] lzg="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_lazygit.sh"
 set -g command-alias[20] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazydocker' 'display \"Docker not running\"'"
 set -g command-alias[21] btm="popup -E -w 95% -h 90% -x 3% '$SHELL -c \"btm --theme nord$(test $(background) = light && echo -light)\"'"
 set -g command-alias[22] toggle-sidebar="run \"$XDG_CONFIG_HOME/tmux/plugins/treemux/scripts/toggle.sh '#{@treemux-key-Bspace}' '#{pane_id}'\""

@@ -62,7 +62,9 @@ _fzf_comprun() {
     cd)           fzf --preview "fzf-preview {}" "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    vim)          fzf --preview "fzf-preview {}" --bind "ctrl-f:reload(cat $XDG_CACHE_HOME/neomru/file | grep -E '^/' | head -n30)+change-header( Recent files )" "$@" ;;
+    vim)          fzf --preview "fzf-preview {}" \
+                      --bind "change:transform:[ \$FZF_PROMPT = '> ' ] || echo 'reload(fd -tf -H -L -E .DS_Store -E .git '{q}' . -X ls -t)'" \
+                      --bind "ctrl-s:clear-query+toggle-search+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ')+reload(fd -tf -H -L -E .DS_Store -E .git . . -X ls -t)" "$@" ;;
     chezmoi)      chezmoi managed -p absolute | fzf --preview "fzf-preview {}" --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
     euporie*)     fd -e ipynb | fzf --preview "euporie-preview {} 2> /dev/null" "$@" ;;
     *)            fzf --preview "fzf-preview {}" "$@" ;;
