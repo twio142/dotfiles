@@ -241,7 +241,7 @@ items:
             command: run $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/install_plugins
           - name: Update
             key: u
-            command: run $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/update_plugins
+            command: run "$TMUX_PLUGIN_MANAGER_PATH/tpm/scripts/update_plugin_prompt_handler.sh all"
           - name: Clean
             key: x
             command: run $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/clean_plugins

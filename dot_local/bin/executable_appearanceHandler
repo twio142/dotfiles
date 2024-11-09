@@ -9,15 +9,8 @@ case $1 in
 esac
 
 # Nvim
-fd 'nvim\.+|.+treemux.+' $TMPDIR -t s | while read -r socket; do
-  if [[ $socket != *treemux* ]]; then
-    pid=$(echo ${socket:t:r} | grep -oE '\d+')
-    ps -p $pid &> /dev/null || continue
-  fi
-  python3 <<EOF
-import pynvim
-pynvim.attach('socket', path='$socket').command('set background=$mode')
-EOF
+nvr --serverlist | while read -r server; do
+  nvr --servername $server --nostart -c "set background=$mode"
 done
 
 # Tmux
