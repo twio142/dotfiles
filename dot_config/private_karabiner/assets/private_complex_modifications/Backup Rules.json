@@ -7,105 +7,221 @@
         {
           "from": {
             "key_code": "h",
-            "modifiers": { "mandatory": ["fn"] }
+            "modifiers": {
+              "mandatory": [
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://move_win?d=w" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://move_win?d=w"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "j",
-            "modifiers": { "mandatory": ["fn"] }
+            "modifiers": {
+              "mandatory": [
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://move_win?d=s" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://move_win?d=s"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "k",
-            "modifiers": { "mandatory": ["fn"] }
+            "modifiers": {
+              "mandatory": [
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://move_win?d=n" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://move_win?d=n"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "l",
-            "modifiers": { "mandatory": ["fn"] }
+            "modifiers": {
+              "mandatory": [
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://move_win?d=e" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://move_win?d=e"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "m",
-            "modifiers": { "mandatory": ["fn"] }
+            "modifiers": {
+              "mandatory": [
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://move_win?d=m" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://move_win?d=m"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "h",
-            "modifiers": { "mandatory": ["control", "fn"] }
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=w" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://extend_win?d=w"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "j",
-            "modifiers": { "mandatory": ["control", "fn"] }
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=s" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://extend_win?d=s"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "k",
-            "modifiers": { "mandatory": ["control", "fn"] }
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=n" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://extend_win?d=n"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "l",
-            "modifiers": { "mandatory": ["control", "fn"] }
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://extend_win?d=e" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://extend_win?d=e"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "h",
-            "modifiers": { "mandatory": ["control", "option", "fn"] }
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "option",
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=w" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://contract_win?d=w"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "j",
-            "modifiers": { "mandatory": ["control", "option", "fn"] }
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "option",
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=s" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://contract_win?d=s"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "k",
-            "modifiers": { "mandatory": ["control", "option", "fn"] }
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "option",
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=n" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://contract_win?d=n"
+            }
+          ],
           "type": "basic"
         },
         {
           "from": {
             "key_code": "l",
-            "modifiers": { "mandatory": ["control", "option", "fn"] }
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "option",
+                "fn"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open -g hammerspoon://contract_win?d=e" }],
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://contract_win?d=e"
+            }
+          ],
           "type": "basic"
         }
       ]
@@ -121,8 +237,14 @@
               "value": 1
             }
           ],
-          "from": { "key_code": "1" },
-          "to": [{ "shell_command": "open hammerspoon://stage_manager?i=1 -g" }],
+          "from": {
+            "key_code": "1"
+          },
+          "to": [
+            {
+              "shell_command": "open hammerspoon://stage_manager?i=1 -g"
+            }
+          ],
           "type": "basic"
         },
         {
@@ -135,9 +257,17 @@
           ],
           "from": {
             "key_code": "1",
-            "modifiers": { "mandatory": ["left_gui"] }
+            "modifiers": {
+              "mandatory": [
+                "left_gui"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=1&mod=drag' -g" }],
+          "to": [
+            {
+              "shell_command": "open 'hammerspoon://stage_manager?i=1&mod=drag' -g"
+            }
+          ],
           "type": "basic"
         },
         {
@@ -148,8 +278,14 @@
               "value": 1
             }
           ],
-          "from": { "key_code": "2" },
-          "to": [{ "shell_command": "open hammerspoon://stage_manager?i=2 -g" }],
+          "from": {
+            "key_code": "2"
+          },
+          "to": [
+            {
+              "shell_command": "open hammerspoon://stage_manager?i=2 -g"
+            }
+          ],
           "type": "basic"
         },
         {
@@ -162,9 +298,17 @@
           ],
           "from": {
             "key_code": "2",
-            "modifiers": { "mandatory": ["left_gui"] }
+            "modifiers": {
+              "mandatory": [
+                "left_gui"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=2&mod=drag' -g" }],
+          "to": [
+            {
+              "shell_command": "open 'hammerspoon://stage_manager?i=2&mod=drag' -g"
+            }
+          ],
           "type": "basic"
         },
         {
@@ -175,8 +319,14 @@
               "value": 1
             }
           ],
-          "from": { "key_code": "3" },
-          "to": [{ "shell_command": "open hammerspoon://stage_manager?i=3 -g" }],
+          "from": {
+            "key_code": "3"
+          },
+          "to": [
+            {
+              "shell_command": "open hammerspoon://stage_manager?i=3 -g"
+            }
+          ],
           "type": "basic"
         },
         {
@@ -189,9 +339,17 @@
           ],
           "from": {
             "key_code": "3",
-            "modifiers": { "mandatory": ["left_gui"] }
+            "modifiers": {
+              "mandatory": [
+                "left_gui"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=3&mod=drag' -g" }],
+          "to": [
+            {
+              "shell_command": "open 'hammerspoon://stage_manager?i=3&mod=drag' -g"
+            }
+          ],
           "type": "basic"
         },
         {
@@ -202,8 +360,14 @@
               "value": 1
             }
           ],
-          "from": { "key_code": "4" },
-          "to": [{ "shell_command": "open hammerspoon://stage_manager?i=4 -g" }],
+          "from": {
+            "key_code": "4"
+          },
+          "to": [
+            {
+              "shell_command": "open hammerspoon://stage_manager?i=4 -g"
+            }
+          ],
           "type": "basic"
         },
         {
@@ -216,9 +380,17 @@
           ],
           "from": {
             "key_code": "4",
-            "modifiers": { "mandatory": ["left_gui"] }
+            "modifiers": {
+              "mandatory": [
+                "left_gui"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=4&mod=drag' -g" }],
+          "to": [
+            {
+              "shell_command": "open 'hammerspoon://stage_manager?i=4&mod=drag' -g"
+            }
+          ],
           "type": "basic"
         },
         {
@@ -229,8 +401,14 @@
               "value": 1
             }
           ],
-          "from": { "key_code": "5" },
-          "to": [{ "shell_command": "open hammerspoon://stage_manager?i=5 -g" }],
+          "from": {
+            "key_code": "5"
+          },
+          "to": [
+            {
+              "shell_command": "open hammerspoon://stage_manager?i=5 -g"
+            }
+          ],
           "type": "basic"
         },
         {
@@ -243,9 +421,161 @@
           ],
           "from": {
             "key_code": "5",
-            "modifiers": { "mandatory": ["left_gui"] }
+            "modifiers": {
+              "mandatory": [
+                "left_gui"
+              ]
+            }
           },
-          "to": [{ "shell_command": "open 'hammerspoon://stage_manager?i=5&mod=drag' -g" }],
+          "to": [
+            {
+              "shell_command": "open 'hammerspoon://stage_manager?i=5&mod=drag' -g"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Mouse + MOD X → ⌫, Mouse + MOD ␣ → ↵, Paired Marks",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "name": "multitouch_extension_finger_count_total",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "x",
+            "modifiers": {
+              "mandatory": [
+                "right_control"
+              ],
+              "optional": [
+                "command",
+                "fn",
+                "option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "name": "multitouch_extension_finger_count_total",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": [
+                "right_control"
+              ],
+              "optional": [
+                "command",
+                "fn",
+                "option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "quote",
+            "modifiers": {
+              "mandatory": [
+                "right_control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://surround?with=quotes"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "quote",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://surround?with=double_quotes"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": [
+                "right_control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://surround?with=brackets"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://surround?with=braces"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "9",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -g hammerspoon://surround?with=parentheses"
+            }
+          ],
           "type": "basic"
         }
       ]
