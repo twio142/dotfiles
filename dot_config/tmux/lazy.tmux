@@ -172,6 +172,8 @@ bind -T copy-mode-vi C-l selectp -R
 bind -T copy-mode-vi m send -X set-mark
 bind -T copy-mode-vi ` send -X jump-to-mark
 bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "pbcopy"
+bind -n DoubleClick1Pane select-pane -t = \; if-shell -F "#{||:#{pane_in_mode},#{mouse_any_flag}}" { send-keys -M } { copy-mode -H ; send-keys -X select-word ; run-shell -d 0.3 ; send-keys -X copy-pipe-and-cancel pbcopy }
+bind -n TripleClick1Pane select-pane -t = \; if-shell -F "#{||:#{pane_in_mode},#{mouse_any_flag}}" { send-keys -M } { copy-mode -H ; send-keys -X select-line ; run-shell -d 0.3 ; send-keys -X copy-pipe-and-cancel pbcopy }
 bind -n WheelUpPane if -F "#{mouse_any_flag}" 'send C-y' 'if -F "#{alternate_on}" "send C-y" "copy-mode -e"'
 bind -n WheelDownPane if -F "#{mouse_any_flag}" 'send C-e' 'if -F "#{alternate_on}" "send C-e" "send -X cancel"'
 
