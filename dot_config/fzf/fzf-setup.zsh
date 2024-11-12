@@ -7,7 +7,7 @@ source <(fzf --zsh)
 export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer= --bind="ctrl-d:preview-half-page-down" --bind="ctrl-u:preview-half-page-up" --bind="alt-j:jump"'
 
 # Use `` as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER="\`"
+export FZF_COMPLETION_TRIGGER='``'
 # Options to fzf command
 export FZF_COMPLETION_OPTS="$FZF_DEFAULT_OPTS"
 export FZF_CTRL_R_OPTS="-d '\t' --with-nth 2.. --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
@@ -62,10 +62,12 @@ _fzf_comprun() {
     cd)           fzf --preview "fzf-preview {}" "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    vim)          fzf --preview "fzf-preview {}" \
-                      --bind "change:transform:[ \$FZF_PROMPT = '> ' ] || echo 'reload(fd -tf -H -L -E .DS_Store -E .git '{q}' . -X ls -t)'" \
-                      --bind "ctrl-s:clear-query+toggle-search+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ')+reload(fd -tf -H -L -E .DS_Store -E .git . . -X ls -t)" "$@" ;;
-    chezmoi)      chezmoi managed -p absolute | fzf --preview "fzf-preview {}" --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
+    vim|nvim)     local FD='fd -tf -H -L -E .DS_Store -E .git'
+                  fzf --preview "fzf-preview {}" \
+                      --bind "change:transform:[ \$FZF_PROMPT = '> ' ] || echo 'reload($FD '{q}' . -X ls -t)'" \
+                      --bind "ctrl-s:clear-query+toggle-search+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ')+reload([ \$FZF_PROMPT = '> ' ] && $FD --strip-cwd-prefix=always . || $FD . . -X ls -t)" "$@" ;;
+    chezmoi)      chezmoi managed -p absolute | fzf --preview "fzf-preview {}" \
+                      --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
     euporie*)     fd -e ipynb | fzf --preview "euporie-preview {} 2> /dev/null" "$@" ;;
     *)            fzf --preview "fzf-preview {}" "$@" ;;
   esac

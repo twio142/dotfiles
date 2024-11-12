@@ -5,7 +5,7 @@ PATH=/opt/homebrew/bin:$PATH
 ## by default, open files in vim
 ## with `-o`, write file path to stdout
 
-VAULT=${VAULT:-$HOME/iCloud/Markdown}
+VAULT=${VAULT:-$HOME/Documents/Markdown}
 cd $VAULT &> /dev/null || exit 1
 PURPLE=$'\033[35m'
 OFF=$'\033[0m'
