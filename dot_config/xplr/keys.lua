@@ -81,9 +81,11 @@ xplr.config.general.global_key_bindings.on_key["ctrl-r"] = {
     { CallLuaSilently = "custom.reverseSelection" },
   }
 }
+xplr.config.modes.builtin.selection_ops.layout = nil
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.l = nil
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.r = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u = nil
+xplr.config.modes.builtin.action.layout = nil
 xplr.config.modes.builtin.action.key_bindings.on_key.v = xplr.config.general.global_key_bindings.on_key["alt-l"]
 xplr.config.modes.builtin.action.key_bindings.on_key.s = nil
 xplr.config.modes.builtin.action.key_bindings.on_key.q = nil
@@ -338,6 +340,7 @@ on_key.N = {
 xplr.config.modes.builtin.action.key_bindings.on_key.c = nil
 
 -- delete selected files
+xplr.config.modes.builtin.delete.layout = nil
 xplr.config.modes.builtin.delete.key_bindings.on_key.d = {
   help = "[d]elete",
   messages = {
@@ -375,6 +378,7 @@ xplr.config.modes.builtin.delete.key_bindings.on_key.E = {
 }
 
 -- go to
+xplr.config.modes.builtin.go_to.layout = nil
 xplr.config.modes.builtin.go_to.key_bindings.on_key.f.help = "[f]ollow symlink"
 xplr.config.modes.builtin.go_to.key_bindings.on_key.space = xplr.config.modes.builtin.go_to.key_bindings.on_key.p
 xplr.config.modes.builtin.go_to.key_bindings.on_key.space.help = "enter path"

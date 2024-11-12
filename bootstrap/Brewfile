@@ -142,6 +142,8 @@ brew "mas"
 brew "micromamba"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Control nvim processes using `nvr` command-line tool
+brew "neovim-remote"
 # Port scanning utility for large networks
 brew "nmap"
 # Retrieves currently playing media, and simulates media actions

@@ -128,7 +128,23 @@ xplr.config.layouts.builtin.default = {
     splits = {
       "SortAndFilter",
       "Table",
-      "Selection",
+      {
+        Horizontal = {
+          config = {
+            margin = 0,
+            horizontal_margin = 0,
+            vertical_margin = 0,
+            constraints = {
+              { Min = 0 },
+              { Max = 30 },
+            }
+          },
+          splits = {
+            "Selection",
+            "HelpMenu",
+          }
+        }
+      },
       "InputAndLogs",
     }
   }

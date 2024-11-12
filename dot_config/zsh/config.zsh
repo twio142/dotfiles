@@ -7,7 +7,6 @@ alias btm='btm --theme nord$(test $(~/.local/bin/background) = light && echo -li
 alias ipy='ipython'
 alias lzg='lazygit'
 alias leet='nvim leetcode'
-alias git_current_branch='git rev-parse --abbrev-ref HEAD'
 alias ssh='TERM=xterm-256color ssh'
 alias tree='tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__'
 alias reconfig='exec zsh'

@@ -65,6 +65,10 @@ source $ZIM_HOME/init.zsh
 
 [[ -n "$TMUX" && -s "/var/mail/$USER" ]] && echo "  You have mail."
 
+git_current_branch() {
+  git rev-parse --abbrev-ref HEAD
+}
+
 ZVM_VI_INSERT_ESCAPE_BINDKEY="^V"
 # ZVM_CURSOR_STYLE_ENABLED=false
 # ZVM_INIT_MODE=sourcing
