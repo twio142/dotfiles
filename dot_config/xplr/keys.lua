@@ -26,26 +26,26 @@ xplr.fn.custom.actionOnSelection = function(ctx)
   end
   return { "PopMode", { SwitchModeBuiltin = "selection_ops" } }
 end
-xplr.config.general.global_key_bindings.on_key["alt-l"] = {
+on_key["alt-l"] = {
   help = "action on selected files",
   messages = {
     { CallLuaSilently = "custom.actionOnSelection" },
   }
 }
-xplr.config.general.global_key_bindings.on_key["alt-j"] = {
+on_key["alt-j"] = {
   help = "toggle selection",
   messages = {
     "ToggleSelection",
     "FocusNext",
   }
 }
-xplr.config.general.global_key_bindings.on_key["alt-k"] = {
+on_key["alt-k"] = {
   help = "toggle selection",
   messages = {
     "ToggleSelection",
   }
 }
-on_key.tab = xplr.config.general.global_key_bindings.on_key["alt-j"]
+on_key.tab = on_key["alt-j"]
 xplr.fn.custom.removeLastSelection = function(ctx)
   if #ctx.selection == 0 then
     return
@@ -60,7 +60,7 @@ xplr.fn.custom.reverseSelection = function(ctx)
   end
   return messages
 end
-xplr.config.general.global_key_bindings.on_key["alt-h"] = {
+on_key["alt-h"] = {
   help = "remove last selection",
   messages = {
     { CallLuaSilently = "custom.removeLastSelection" },
@@ -70,12 +70,12 @@ on_key.backspace = {
   help = "clear selection",
   messages = { "ClearSelection" }
 }
-xplr.config.general.global_key_bindings.on_key["ctrl-a"] = {
+on_key["ctrl-a"] = {
   help = "toggle select all",
   messages = { "ToggleSelectAll" }
 }
 on_key["ctrl-r"] = nil
-xplr.config.general.global_key_bindings.on_key["ctrl-r"] = {
+on_key["ctrl-r"] = {
   help = "reverse selection",
   messages = {
     { CallLuaSilently = "custom.reverseSelection" },
@@ -86,7 +86,7 @@ xplr.config.modes.builtin.selection_ops.key_bindings.on_key.l = nil
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.r = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u = nil
 xplr.config.modes.builtin.action.layout = nil
-xplr.config.modes.builtin.action.key_bindings.on_key.v = xplr.config.general.global_key_bindings.on_key["alt-l"]
+xplr.config.modes.builtin.action.key_bindings.on_key.v = on_key["alt-l"]
 xplr.config.modes.builtin.action.key_bindings.on_key.s = nil
 xplr.config.modes.builtin.action.key_bindings.on_key.q = nil
 xplr.config.modes.builtin.action.key_bindings.on_key.m = nil

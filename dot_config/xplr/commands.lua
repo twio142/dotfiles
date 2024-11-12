@@ -174,7 +174,7 @@ local edit = m.cmd("edit", "edit file(s)")(function(ctx)
 end)
 
 preview.bind(xplr.config.modes.builtin.action, "p")
--- xplr.config.modes.custom.preview.key_bindings.on_key.w = preview.action
+-- xplr.config.modes.custom.preview.key_bindings.on_key.P = preview.action
 dust.bind(xplr.config.modes.custom.space, "u")
 diff.bind(xplr.config.modes.builtin.selection_ops, "d")
 yank_path.bind(xplr.config.modes.builtin.default, "y")
