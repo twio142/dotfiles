@@ -31,7 +31,7 @@ local dust = m.cmd("dust", "disk usage")(
   ]===]
 )
 
-local diff = m.cmd("diff", "[d]iff files")(function(ctx)
+local diff = m.cmd("diff", "diff files")(function(ctx)
   if #ctx.selection ~= 2 then
     return { { LogError = "Please select exactly 2 files to compare" } }
   end
@@ -175,7 +175,7 @@ end)
 
 preview.bind(xplr.config.modes.builtin.action, "p")
 dust.bind(xplr.config.modes.custom.space, "u")
-diff.bind(xplr.config.modes.builtin.selection_ops, "d")
+diff.bind(xplr.config.modes.builtin.selection_ops, "ctrl-d")
 yank_path.bind(xplr.config.modes.builtin.default, "y")
 paste_path.bind(xplr.config.modes.builtin.default, "p")
 yank_to_tmux.bind(xplr.config.modes.custom.space, "y")

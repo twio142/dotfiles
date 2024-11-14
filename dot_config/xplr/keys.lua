@@ -8,8 +8,24 @@ on_key.f.help = "[f]ilter"
 on_key.s.help = "[s]ort"
 on_key.g.help = "[g]o to"
 on_key.m.help = "[m]ove to"
-on_key.r.help = "[r]ename"
 on_key.t.help = "[t]ree view"
+
+xplr.fn.custom.rename = function(ctx)
+  local path = ctx.focused_node.absolute_path
+  local filename = xplr.util.basename(path)
+  local extname = ctx.focused_node.extension
+  extname = extname == "" and "" or "." .. extname
+  return {
+    "PopMode",
+    { SwitchModeBuiltin = "rename" },
+    { SetInputBuffer = filename },
+    { UpdateInputBuffer = { SetCursor = #filename - #extname } },
+  }
+end
+on_key.r = {
+  help = "[r]ename",
+  messages = { { CallLua = "custom.rename" } }
+}
 
 -- selection
 on_key.J = {
