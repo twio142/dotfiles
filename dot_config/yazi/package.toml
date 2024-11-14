@@ -1,11 +1,11 @@
 [plugin]
 deps = [
 	{ use = "llanosrocas/githead", rev = "bf150f3" },
-	{ use = "yazi-rs/plugins:full-border", rev = "fb3ae90" },
-	{ use = "twio142/yazi-plugins:my-commands" , rev = "5400620" },
-	{ use = "twio142/yazi-plugins:my-fzf" , rev = "5400620" },
-	{ use = "twio142/yazi-plugins:git" , rev = "5400620" },
-	{ use = "yazi-rs/plugins:smart-filter", rev = "fb3ae90" },
+	{ use = "yazi-rs/plugins:full-border", rev = "235437c" },
+	{ use = "twio142/yazi-plugins:my-commands" , rev = "125148b" },
+	{ use = "twio142/yazi-plugins:my-fzf" , rev = "125148b" },
+	{ use = "twio142/yazi-plugins:git" , rev = "125148b" },
+	{ use = "yazi-rs/plugins:smart-filter", rev = "235437c" },
 	# https://gitee.com/DreamMaoMao/searchjump.yazi.git
 	# https://gitee.com/DreamMaoMao/keyjump.yazi.git
 ]

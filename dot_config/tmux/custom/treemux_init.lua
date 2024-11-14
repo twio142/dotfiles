@@ -59,7 +59,7 @@ local function treemux_open()
     local command = 'pid=' .. pid .. [[;
     until (ps -o command= -p $pid | grep -Eq "^nvim --embed"); do
       pid=$(pgrep -P $pid 2> /dev/null)
-      [ -z "$pid" ] && break
+      [ -z "$pid" ] && exit
     done
     /opt/homebrew/bin/fd "nvim\.$pid.*" $TMPDIR --type s ]]
     local socket = vim.fn.system(command):gsub("\n", "")
@@ -260,8 +260,8 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.set("n", ">", api.node.run.cmd, opts "Run command")
   vim.keymap.set("n", "C", api.tree.change_root_to_node, opts "Change root to node")
   vim.keymap.set("n", "N", api.fs.create, opts "New file / folder")
-  vim.keymap.del("n", "<Tab>", { buffer = bufnr })
-  vim.keymap.set("n", "<Tab>", preview, opts "Preview file")
+  vim.keymap.del("n", "P", { buffer = bufnr })
+  vim.keymap.set("n", "P", preview, opts "Preview file")
   vim.keymap.set("n", ",", function()
     api.tree.find_file({ buf = prev_pane_path(), update_root = true, focus = true })
   end, opts "Relocate working dir")

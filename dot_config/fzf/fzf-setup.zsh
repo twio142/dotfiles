@@ -6,8 +6,8 @@ source <(fzf --zsh)
 
 export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer= --bind="ctrl-d:preview-half-page-down" --bind="ctrl-u:preview-half-page-up" --bind="alt-j:jump"'
 
-# Use `` as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER='``'
+# Use ` as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='`'
 # Options to fzf command
 export FZF_COMPLETION_OPTS="$FZF_DEFAULT_OPTS"
 export FZF_CTRL_R_OPTS="-d '\t' --with-nth 2.. --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
@@ -78,8 +78,8 @@ _autojump_fzf() {
   local query=${LBUFFER##* }
   LBUFFER=''
   local dir=$(fzf --query=${query} --bind "start:reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
-    --bind "change:reload:eval zoxide query {q} -l --exclude \\$PWD | awk '{ if (!seen[tolower()]++) print }' || true" \
-    --bind "ctrl-x:reload:zoxide remove {} && eval zoxide query {q} -l --exclude \\$PWD | awk '{ if (!seen[tolower()]++) print }' || true" \
+    --bind "change:reload:eval zoxide query {q} -l --exclude ${PWD:q:q} | awk '{ if (!seen[tolower()]++) print }' || true" \
+    --bind "ctrl-x:reload:zoxide remove {} && eval zoxide query {q} -l --exclude ${PWD:q:q} | awk '{ if (!seen[tolower()]++) print }' || true" \
     --disabled \
     --preview "fzf-preview {}" \
     --height=30%)

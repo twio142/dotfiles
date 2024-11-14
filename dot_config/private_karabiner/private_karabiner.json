@@ -517,6 +517,88 @@
             ]
           },
           {
+            "description": "⇧ Double Tap on Browsers & Editor",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "name": "r_shift",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "com.google.Chrome",
+                      "company.thebrowser.Browser",
+                      "com.apple.Safari"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": { "key_code": "right_shift" },
+                "to": [{ "shell_command": "~/.local/bin/altr -w chrome.helper -t share" }],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "r_shift",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "com.microsoft.VSCode",
+                      "md.obsidian",
+                      "abnerworks.Typora",
+                      "com.colliderli.iina"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": { "key_code": "right_shift" },
+                "to": [
+                  {
+                    "key_code": "p",
+                    "modifiers": ["left_command", "left_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": { "key_code": "right_shift" },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "r_shift",
+                      "value": 1
+                    }
+                  },
+                  { "key_code": "right_shift" }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "r_shift",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "r_shift",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              }
+            ]
+          },
+          {
             "description": "MOD ` → ~, MOD A → AeroSpace App Mode, MOD F → Make Window Float, MOD H/J/K/L → Focus Window, MOD N/P → Previous / Next Workspace, MOD S → Aerospace Space Mode, MOD V → Move / Resize Window, MOD ⇥ → Last Workspace, MOD '/\\ → Toggle Layout Tiling / Accordion, MOD⇧ H/J/K/L → Swap Window, MOD ␣ → AeroSpace Mode",
             "manipulators": [
               {
