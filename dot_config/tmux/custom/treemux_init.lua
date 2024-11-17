@@ -346,6 +346,8 @@ require("lazy").setup {
                 ignored = "",
               },
             },
+            git_placement = "right_align",
+            bookmarks_placement = "before",
           },
         },
         view = {
@@ -354,7 +356,8 @@ require("lazy").setup {
           signcolumn = "no",
         },
         filters = {
-          custom = { "^\\.git", "^\\.DS_Store$" },
+          custom = { "^\\.DS_Store$" },
+          git_ignored = false,
         },
         sort = {
           folders_first = true,

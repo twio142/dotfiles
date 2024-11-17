@@ -15,7 +15,7 @@ if [ "$1" = "--jump" ]; then
   --bind "ctrl-x:reload:zoxide remove '{}' && zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' || true" \
   --disabled \
   --preview "fzf-preview {}" \
-  --height=~60%) && xplr $cwd || exit 0
+  --preview-window='up,60%') && xplr $cwd || exit 0
 elif [ -d "$1" ]; then
   xplr "$1"
 else

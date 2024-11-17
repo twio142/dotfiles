@@ -128,7 +128,7 @@ xplr.config.modes.builtin.selection_ops.key_bindings.on_key['ctrl-e'] = {
   messages = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.e.messages,
 }
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.e = {
-  help = "[e]dit selected files",
+  help = "[e]dit file(s)",
   messages = {
     "PopMode",
     { CallLua = "custom.edit_files" },

@@ -3,9 +3,8 @@
 _f() {
   awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | \
     sd '^ +- ' '' | \
-    fzf --height=~60% \
-    --preview "echo -e \"\033[1m\$(basename {})\033[0m\n\"; git -c color.status=always -C {} status -bs" \
-    --preview-window='wrap' \
+    fzf --preview "echo -e \"\033[1m\$(basename {})\033[0m\n\"; git -c color.status=always -C {} status -bs" \
+    --preview-window='up,50%,wrap' \
     --bind "ctrl-o:execute(tmux neww -c {})+abort"
 }
 

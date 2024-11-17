@@ -240,6 +240,8 @@ cask "bartender"
 cask "betterzip"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# Write, edit, and chat about your code with AI
+cask "cursor"
 # Chinese-German dictionary
 cask "dehelper"
 # App to build and share containerised applications and microservices

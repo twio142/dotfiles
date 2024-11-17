@@ -34,10 +34,6 @@ timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
-z() {
-  command -v __zoxide_z &> /dev/null || eval "$(zoxide init zsh)"
-  __zoxide_z "$@"
-}
 
 export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
 export HOMEBREW_NO_ANALYTICS=1
@@ -117,6 +113,8 @@ for euporie_alias in $euporie_aliases; do
 done
 
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
+
+eval "$(zoxide init zsh)"
 
 export LS_COLORS="$(vivid generate one-light)"
 alias ls='lsd'

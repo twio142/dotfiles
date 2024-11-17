@@ -9,6 +9,7 @@ on_key.s.help = "[s]ort"
 on_key.g.help = "[g]o to"
 on_key.m.help = "[m]ove to"
 on_key.t.help = "[t]ree view"
+on_key.G.messages = { "FocusLast" }
 
 xplr.fn.custom.rename = function(ctx)
   local path = ctx.focused_node.absolute_path
@@ -101,6 +102,24 @@ xplr.config.modes.builtin.selection_ops.layout = nil
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.l = nil
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.r = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u = nil
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.d = {
+  help = "[d]elete file(s)",
+  messages = {
+    {
+      BashExecSilently0 = [===[
+        while IFS= read -r -d "" line; do
+          if err=$(trash -F "${line:?}"); then
+            "$XPLR" -m "LogSuccess: %q" "File trashed: $line"
+          else
+            "$XPLR" -m "LogError: %q" "$err"
+          fi
+        done < "${XPLR_PIPE_RESULT_OUT:?}"
+        "$XPLR" -m ExplorePwdAsync
+      ]===],
+    },
+    "PopMode",
+  },
+}
 xplr.config.modes.builtin.action.layout = nil
 xplr.config.modes.builtin.action.key_bindings.on_key.v = on_key["alt-l"]
 xplr.config.modes.builtin.action.key_bindings.on_key.s = nil
@@ -357,26 +376,8 @@ xplr.config.modes.builtin.action.key_bindings.on_key.c = nil
 
 -- delete selected files
 xplr.config.modes.builtin.delete.layout = nil
-xplr.config.modes.builtin.delete.key_bindings.on_key.d = {
-  help = "[d]elete",
-  messages = {
-    {
-      BashExecSilently0 = [===[
-        while IFS= read -r -d "" line; do
-          if err=$(trash -F "${line:?}"); then
-            "$XPLR" -m "LogSuccess: %q" "File trashed: $line"
-          else
-            "$XPLR" -m "LogError: %q" "$err"
-          fi
-        done < "${XPLR_PIPE_RESULT_OUT:?}"
-        "$XPLR" -m ExplorePwdAsync
-      ]===],
-    },
-    "PopMode",
-  },
-}
-
-xplr.config.modes.builtin.delete.key_bindings.on_key.D.help = "Force [D]elete"
+xplr.config.modes.builtin.delete.key_bindings.on_key.d = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.d
+xplr.config.modes.builtin.delete.key_bindings.on_key.D.help = "Force [D]elete file(s)"
 xplr.config.modes.builtin.delete.key_bindings.on_key.E = {
   help = "[E]mpty trash",
   messages = {

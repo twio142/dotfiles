@@ -22,5 +22,5 @@ cwd=$(fzf --bind "start:reload:zoxide query '' -l | awk '{ if (!seen[tolower()]+
 --bind "ctrl-x:reload:zoxide remove {} && eval zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' || true" \
 --disabled \
 --preview "fzf-preview {}" \
---height=~60%)
+--preview-window='up,60%')
 [ -n "$cwd" ] && xplr $cwd || exit 0

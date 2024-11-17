@@ -66,7 +66,6 @@ _fzf_git_files() {
     --bind "ctrl-e:execute:${EDITOR:-nvim} {+-1} > /dev/tty" \
     --bind "alt-o:execute-silent:bash $__fzf_git file {-1}" \
     --bind "ctrl-r:reload(git -c color.status=$(__fzf_git_color) status --short --no-branch)" \
-    --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+-1}" \
     --bind "ctrl-y:execute-silent:echo -n {+-1} | tmux load-buffer -" \
     --query "$query" \
     --preview "git diff --no-ext-diff --color=$(__fzf_git_color .) -- {-1} | $(__fzf_git_pager); $(__fzf_git_cat) {-1}" "$@" |
@@ -92,7 +91,6 @@ _fzf_git_branches() {
     --bind "alt-d:execute:echo {} | sed 's/^..//' | cut -d' ' -f1 | xargs git diff --color=$(__fzf_git_color) > /dev/tty | bat --style=plain --tabs 2" \
     --bind "ctrl-o:reload(git checkout \$(echo {} | sed 's/^..//' | cut -d' ' -f1); bash \"$__fzf_git\" branches)" \
     --bind "ctrl-r:reload(bash \"$__fzf_git\" branches)+change-border-label(  Branches )" \
-    --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh \$(echo {} | sed 's/^..//' | cut -d' ' -f1)" \
     --bind "ctrl-y:execute-silent:tmux set-buffer \$(echo {} | sed 's/^..//' | cut -d' ' -f1)" \
     --preview "git log --oneline --graph --date=short --color=$(__fzf_git_color .) --pretty='format:%C(auto)%cd %h%d %s' \$(sed s/^..// <<< {} | cut -d' ' -f1) --" "$@" |
   sed 's/^..//' | cut -d' ' -f1
@@ -108,7 +106,6 @@ _fzf_git_tags() {
     --bind "alt-d:execute:git diff --color=$(__fzf_git_color) {} | bat --style=plain --tabs 2" \
     --bind "ctrl-o:reload(git checkout {}; git tag --sort -version:refname)" \
     --bind "ctrl-r:reload(git tag --sort -version:refname)" \
-    --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+}" \
     --bind "ctrl-y:execute-silent:echo -n {+} | tmux load-buffer -" \
     --preview "git show --color=$(__fzf_git_color .) {} | $(__fzf_git_pager)" "$@"
 }
@@ -124,7 +121,6 @@ _fzf_git_hashes() {
     --bind "alt-d:execute:grep -o '[a-f0-9]\{7,\}' <<< {} | head -n 1 | xargs git diff --color=$(__fzf_git_color) > /dev/tty | bat --style=plain --tabs 2" \
     --bind "ctrl-o:reload(git checkout \$(echo -n {} | grep -Eo '[a-f0-9]{7,}.+' | cut -d' ' -f1); bash \"$__fzf_git\" hashes)" \
     --bind "ctrl-r:reload(bash \"$__fzf_git\" hashes)+change-border-label(  Hashes )" \
-    --bind "ctrl-x:execute:mode=hash ~/.config/fzf/fzf-git-input.sh {+}" \
     --bind "ctrl-y:execute-silent:echo -n {+} | grep -Eo '[a-f0-9]{7,}.+' | cut -d' ' -f1 | tmux load-buffer -" \
     --preview "grep -o '[a-f0-9]\{7,\}' <<< {} | head -n 1 | xargs git show --color=$(__fzf_git_color .) | $(__fzf_git_pager)" "$@" |
   awk 'match($0, /[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]*/) { print substr($0, RSTART, RLENGTH) }'
@@ -140,7 +136,6 @@ _fzf_git_remotes() {
     --bind "alt-p:reload(git push {1} HEAD; git remote -v | awk '{print \$1 \"\t\" \$2}' | uniq)" \
     --bind "ctrl-f:reload(git fetch {1}; git remote -v | awk '{print \$1 \"\t\" \$2}' | uniq)" \
     --bind "ctrl-r:reload(git remote -v | awk '{print \$1 \"\t\" \$2}' | uniq)" \
-    --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+1}" \
     --bind "ctrl-y:execute-silent:echo -n {+1} | tmux load-buffer -" \
     --preview-window right,70% \
     --preview "git log --oneline --graph --date=short --color=$(__fzf_git_color .) --pretty='format:%C(auto)%cd %h%d %s' '{1}/$(git rev-parse --abbrev-ref HEAD)' --" "$@" |
@@ -155,7 +150,6 @@ _fzf_git_stashes() {
     --bind "alt-a:reload(git stash apply -q {1}; git stash list)" \
     --bind "alt-d:reload(git stash drop -q {1}; git stash list)" \
     --bind "ctrl-r:reload(git stash list)" \
-    --bind "ctrl-x:execute:mode=stash ~/.config/fzf/fzf-git-input.sh {+1}" \
     --bind "ctrl-y:execute-silent:tmux set-buffer \$(echo {1} | cut -d: -f1)" \
     -d: --preview "git show --color=$(__fzf_git_color .) {1} | $(__fzf_git_pager)" "$@" |
   cut -d: -f1
@@ -168,7 +162,6 @@ _fzf_git_lreflogs() {
     --bind "alt-d:execute:git diff --color=$(__fzf_git_color) {1} | bat --style=plain --tabs 2" \
     --bind "ctrl-o:reload(git checkout {1}; git reflog --color=$(__fzf_git_color) --format=\"%C(blue)%gD %C(yellow)%h%C(auto)%d %gs\")" \
     --bind "ctrl-r:reload(git reflog --color=$(__fzf_git_color) --format='%C(blue)%gD %C(yellow)%h%C(auto)%d %gs')" \
-    --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+1}" \
     --bind "ctrl-y:execute-silent:echo -n {+1} | tmux load-buffer -" \
     --preview "git show --color=$(__fzf_git_color .) {1} | $(__fzf_git_pager)" "$@" |
   awk '{print $1}'
@@ -188,7 +181,6 @@ _fzf_git_each_ref() {
     --bind "ctrl-\\:change-preview-window(down,70%|hidden|)" \
     --bind "ctrl-o:reload(git checkout {2}; bash \"$__fzf_git\" refs)" \
     --bind "ctrl-r:reload(bash \"$__fzf_git\" refs)+change-border-label(  Each ref )" \
-    --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+2}" \
     --bind "ctrl-y:execute-silent:echo -n {+2} | tmux load-buffer -" \
     --preview "git log --oneline --graph --date=short --color=$(__fzf_git_color .) --pretty='format:%C(auto)%cd %h%d %s' {2} --" "$@" |
   awk '{print $2}'
@@ -201,7 +193,6 @@ _fzf_git_worktrees() {
     --header $'⌥D remove worktree\n\n' \
     --bind "alt-d:reload(git worktree remove {1} > /dev/null; git worktree list)" \
     --bind "ctrl-r:reload(git worktree list)" \
-    --bind "ctrl-x:execute:~/.config/fzf/fzf-git-input.sh {+1}" \
     --preview "
       git -c color.status=$(__fzf_git_color .) -C {1} status --short --branch
       echo
