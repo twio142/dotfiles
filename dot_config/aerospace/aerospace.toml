@@ -153,6 +153,7 @@ R = 'secondary'
 [mode.command.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
+ctrl-r = ['exec-and-forget pkill AeroSpace && open -a AeroSpace', 'mode main'] # restart AeroSpace
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 d = ['close', 'mode main'] # close window
 ctrl-d = ['close-all-windows-but-current', 'mode main'] # close all other windows

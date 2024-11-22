@@ -281,6 +281,7 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.del("n", "<C-k>", { buffer = bufnr })
   vim.keymap.del("n", "O", { buffer = bufnr })
   vim.keymap.set("n", "O", system_open, opts "Open in system")
+  vim.keymap.del("n", "<Tab>", { buffer = bufnr })
 
   vim.keymap.set("n", "<Esc>", function()
     vim.cmd [[ set nohlsearch ]]

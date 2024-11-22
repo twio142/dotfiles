@@ -20,18 +20,19 @@ local _hd = function(t)
   return table.concat(header, " / ")
 end
 
-local _fd = function(k, t)
+local _fd = function(t, k)
+  k = k or ("alt-" .. t)
   return string.format("%s:reload(fd --type %s -H -L --exclude .DS_Store --exclude .git --strip-cwd-prefix=always .)+change-header( %s )", k, t, _hd(t))
 end
 
 require("fzf").setup{
-  args = string.format('-m --preview "fzf-preview {}" --bind "%s" --bind "%s" --bind "%s" --bind "%s" --bind "%s" --bind "%s"',
-    _fd("start", "f"),
-    _fd("alt-d", "d"),
-    _fd("alt-l", "l"),
-    _fd("alt-s", "s"),
-    _fd("alt-f", "f"),
-    _fd("alt-x", "x")
+  args = string.format('-m --preview "fzf-preview {}" --preview-window=up,60%% --bind "%s" --bind "%s" --bind "%s" --bind "%s" --bind "%s" --bind "%s"',
+    _fd("f", "start"),
+    _fd("d"),
+    _fd("l"),
+    _fd("s"),
+    _fd("f"),
+    _fd("x")
   ),
   recursive = true,
   enter_dir = true,
@@ -49,7 +50,7 @@ require("fzf").setup{
   name = "autojump",
   args = [[ --bind "start:reload:zoxide query '' -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
     --bind "change:reload:eval zoxide query {q} -l --exclude \\$PWD | awk '{ if (!seen[tolower()]++) print }' || true" \
-    --disabled --preview "fzf-preview {}" | xargs -I _ rp "_" ]],
+    --disabled --preview "fzf-preview {}" --preview-window=up,60% | xargs -I _ rp "_" ]],
   recursive = true,
   enter_dir = true,
   mode = "custom.backslash",
@@ -102,7 +103,7 @@ end
 require("fzf").setup{
   name = "recent repos",
   bin = "awk",
-  args = "'/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}'" .. [[ $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv '$PWD' | fzf --preview 'echo -e "\033[1m$(basename {})\033[0m\n"; git -c color.status=always -C {} status -bs' --preview-window=wrap]] ,
+  args = "'/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}'" .. [[ $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv '$PWD' | fzf --preview 'echo -e "\033[1m$(basename {})\033[0m\n"; git -c color.status=always -C {} status -bs'  --preview-window=up,50%,wrap]] ,
   recursive = true,
   enter_dir = true,
   mode = "custom.backslash",

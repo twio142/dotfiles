@@ -1,6 +1,7 @@
 [flags]
 battery = true
 regex = true
+memory_legend = "bottom-right"
 
 # Layout - layouts follow a pattern like this:
 # [[row]] represents a row in the application.

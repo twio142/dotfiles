@@ -549,6 +549,7 @@
                   {
                     "bundle_identifiers": [
                       "com.microsoft.VSCode",
+                      "com.todesktop.230313mzl4w4u92",
                       "md.obsidian",
                       "abnerworks.Typora",
                       "com.colliderli.iina"
@@ -1947,6 +1948,7 @@
                       "org.alacritty",
                       "com.github.wez.wezterm",
                       "com.microsoft.VSCode",
+                      "com.todesktop.230313mzl4w4u92",
                       "md.obsidian",
                       "com.apple.Terminal"
                     ],
