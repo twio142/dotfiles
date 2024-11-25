@@ -478,6 +478,51 @@ f_key.down = on_key.j
 f_key.up = on_key.k
 table.insert(on_key.f.messages, { BufferInput = "[r]egex" })
 
+-- switch_layout
+xplr.config.modes.builtin.switch_layout.layout = nil
+local state = {
+  current = 1,
+  layouts = { "default", "no_help", "no_selection", "no_help_no_selection" },
+}
+xplr.fn.custom.layout_1 = function()
+  state.current = 1
+end
+xplr.fn.custom.layout_2 = function()
+  state.current = 2
+end
+xplr.fn.custom.layout_3 = function()
+  state.current = 3
+end
+xplr.fn.custom.layout_4 = function()
+  state.current = 4
+end
+xplr.fn.custom.next_layout = function()
+  state.current = state.current + 1
+  if state.current > #state.layouts then
+    state.current = 1
+  end
+  return { "PopMode", { SwitchLayoutBuiltin = state.layouts[state.current] } }
+end
+xplr.fn.custom.prev_layout = function()
+  state.current = state.current - 1
+  if state.current < 1 then
+    state.current = #state.layouts
+  end
+  return { "PopMode", { SwitchLayoutBuiltin = state.layouts[state.current] } }
+end
+table.insert(xplr.config.modes.builtin.switch_layout.key_bindings.on_key["1"].messages, { CallLuaSilently = "custom.layout_1" })
+table.insert(xplr.config.modes.builtin.switch_layout.key_bindings.on_key["2"].messages, { CallLuaSilently = "custom.layout_2" })
+table.insert(xplr.config.modes.builtin.switch_layout.key_bindings.on_key["3"].messages, { CallLuaSilently = "custom.layout_3" })
+table.insert(xplr.config.modes.builtin.switch_layout.key_bindings.on_key["4"].messages, { CallLuaSilently = "custom.layout_4" })
+xplr.config.modes.builtin.switch_layout.key_bindings.on_key["n"] = {
+  help = "[n]ext layout",
+  messages = { { CallLua = "custom.next_layout" } }
+}
+xplr.config.modes.builtin.switch_layout.key_bindings.on_key["p"] = {
+  help = "[p]revious layout",
+  messages = { { CallLua = "custom.prev_layout" } }
+}
+
 -- help
 local help = xplr.config.general.global_key_bindings.on_key["f1"]
 help.messages = {

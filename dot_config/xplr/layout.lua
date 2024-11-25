@@ -150,3 +150,44 @@ xplr.config.layouts.builtin.default = {
   }
 }
 
+xplr.config.layouts.builtin.no_help = {
+  Vertical = {
+    config = {
+      margin = 0,
+      horizontal_margin = 0,
+      vertical_margin = 0,
+      constraints = {
+        { Max = 3 },
+        { Percentage = 50 },
+        { Min = 0 },
+        { Max = 3 },
+      }
+    },
+    splits = {
+      "SortAndFilter",
+      "Table",
+      "Selection",
+      "InputAndLogs",
+    }
+  }
+}
+
+xplr.config.layouts.builtin.no_help_no_selection = {
+  Vertical = {
+    config = {
+      margin = 0,
+      horizontal_margin = 0,
+      vertical_margin = 0,
+      constraints = {
+        { Max = 3 },
+        { Min = 0 },
+        { Max = 3 },
+      }
+    },
+    splits = {
+      "SortAndFilter",
+      "Table",
+      "InputAndLogs",
+    }
+  }
+}
