@@ -42,6 +42,17 @@ M.cmd_to_tmux_prefix = function(key, tmux_key)
   )
 end
 
+M.ctrl_to_tmux_prefix = function(key, tmux_key)
+  return M.key_table(
+    "CTRL",
+    key,
+    wt_action.Multiple({
+      wt_action.SendKey({ mods = "CTRL", key = " " }),
+      wt_action.SendKey({ key = tmux_key }),
+    })
+  )
+end
+
 M.opt_key = function(key, action)
   return M.key_table("OPT", key, action)
 end
