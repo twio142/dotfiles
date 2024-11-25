@@ -100,8 +100,36 @@ on_key["ctrl-r"] = {
 }
 xplr.config.modes.builtin.selection_ops.layout = nil
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.l = nil
-xplr.config.modes.builtin.selection_ops.key_bindings.on_key.r = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.backspace = xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.u = nil
+xplr.config.modes.builtin.selection_ops.key_bindings.on_key.r = {
+  help = "Batch [r]ename",
+  messages = {
+    {
+      BashExec0 = [===[
+        TMPFILE="$(mktemp)"
+        FILES=()
+        while IFS= read -r -d '' PTH; do
+          FILES+=("$PTH")
+          basename "${PTH:?}" >> "${TMPFILE:?}"
+        done < "${XPLR_PIPE_SELECTION_OUT:?}"
+        ${EDITOR:-vi} "${TMPFILE:?}" || exit
+        [ ! -e "$TMPFILE" ] && exit
+        "$XPLR" -m ClearSelection
+        while IFS= read -r PTH_ESC; do
+          [ -z "$PTH_ESC" ] && continue
+          SRC="${FILES[$i]}"
+          TAR="$(dirname -- "${FILES[$i]}")"/"$PTH_ESC"
+          mv -- "${SRC}" "${TAR}" \
+            && "$XPLR" -m 'LogSuccess: %q' "'$SRC' renamed to '$PTH_ESC'"
+          ((i++))
+        done < "${TMPFILE:?}"
+        rm -- "${TMPFILE:?}"
+      ]===]
+    },
+    "PopMode",
+  }
+}
 xplr.config.modes.builtin.selection_ops.key_bindings.on_key.d = {
   help = "[d]elete file(s)",
   messages = {
