@@ -61,7 +61,6 @@ set -g @catppuccin_mode_style "fg=#{thm_fg},bg=#{?#{==:#{@catppuccin_flavor},lat
 
 # treemux
 set -g @treemux-tree-nvim-init-file "$XDG_CONFIG_HOME/tmux/custom/treemux_init.lua"
-set -g @treemux-nvim-command "$XDG_CONFIG_HOME/tmux/custom/treemux"
 set -g @treemux-python-command "~/.local/bin/python3"
 set -g @treemux-tree-width "32"
 set -g @treemux-tree 'ctrl-9'

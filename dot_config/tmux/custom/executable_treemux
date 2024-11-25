@@ -1,2 +1,0 @@
-#!/bin/bash
-NVIM_APPNAME=treemux nvim "$@"
