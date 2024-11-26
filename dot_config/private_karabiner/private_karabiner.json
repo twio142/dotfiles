@@ -2386,7 +2386,7 @@
                   "key_code": "a",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a 1 -v mod=use-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a a -v mod=use-clip" }],
                 "type": "basic"
               },
               {
@@ -2394,7 +2394,7 @@
                   "key_code": "s",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a 2 -v mod=use-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a s -v mod=use-clip" }],
                 "type": "basic"
               },
               {
@@ -2402,7 +2402,7 @@
                   "key_code": "d",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a 3 -v mod=use-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a d -v mod=use-clip" }],
                 "type": "basic"
               },
               {
@@ -2410,7 +2410,7 @@
                   "key_code": "f",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a 4 -v mod=use-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a f -v mod=use-clip" }],
                 "type": "basic"
               },
               {
