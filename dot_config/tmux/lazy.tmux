@@ -112,10 +112,18 @@ bind h selectp -L
 bind j selectp -D
 bind k selectp -U
 bind l selectp -R
-bind -n C-h run "$XDG_CONFIG_HOME/tmux/scripts/switch.sh h"
-bind -n C-j run "$XDG_CONFIG_HOME/tmux/scripts/switch.sh j"
-bind -n C-k run "$XDG_CONFIG_HOME/tmux/scripts/switch.sh k"
-bind -n C-l run "$XDG_CONFIG_HOME/tmux/scripts/switch.sh l"
+bind -n C-h if -F "#{==:#{pane_current_command},nvim}" { send C-h } {
+  if -F "#{pane_at_left}#{window_zoomed_flag}" "send C-h" "selectp -L"
+}
+bind -n C-j if -F "#{==:#{pane_current_command},nvim}" { send C-j } {
+  if -F "#{pane_at_bottom}#{window_zoomed_flag}" "send C-j" "selectp -D"
+}
+bind -n C-k if -F "#{==:#{pane_current_command},nvim}" { send C-k } {
+  if -F "#{pane_at_top}#{window_zoomed_flag}" "send C-k" "selectp -U"
+}
+bind -n C-l if -F "#{==:#{pane_current_command},nvim}" { send C-l } {
+  if -F "#{pane_at_right}#{window_zoomed_flag}" "send C-l" "selectp -R"
+}
 bind H swapp -t "{left-of}"
 bind J swapp -D
 bind K swapp -U

@@ -36,7 +36,7 @@ on_key.z = {
 local state = {
   file = nil,
   start_from = 0,
-  preview = "",
+  preview = {},
 }
 
 local function create_preview(node, size)
@@ -44,28 +44,28 @@ local function create_preview(node, size)
   if state.file ~= path then
     state.start_from = 0
     state.file = path
-    state.preview = ""
+    state.preview = {}
   end
-  if state.preview == "" then
+  if #state.preview == 0 then
     local cmd = "TMUX_POPUP=1 FZF_PREVIEW_COLUMNS=" .. size.width-1 .." FZF_PREVIEW_LINES=" .. size.height-1 .. " fzf-preview " .. xplr.util.shell_escape(path)
+    local preview
     local p = io.popen(cmd, "r")
     if p then
-      state.preview = p:read("*a")
+      preview = p:read("*a")
       p:close()
+    end
+    for l in preview:gmatch("([^\n]*)\n") do
+      table.insert(state.preview, l)
     end
   end
   if state.start_from == 0 then
-    return state.preview
+    return table.concat(state.preview, "\n")
+  elseif state.start_from > #state.preview - size.height + 3 then
+    state.start_from = #state.preview - size.height + 3
   end
   local lines = {}
-  for l in state.preview:gmatch("([^\n]*)\n") do
-    table.insert(lines, l)
-  end
-  if state.start_from > #lines - size.height + 2 then
-    state.start_from = #lines - size.height + 2
-  end
-  for _ = 1, state.start_from do
-    table.remove(lines, 1)
+  for i = state.start_from, size.height + state.start_from - 3 do
+    table.insert(lines, state.preview[i])
   end
   return table.concat(lines, "\n")
 end
