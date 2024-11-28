@@ -551,6 +551,15 @@ xplr.config.modes.builtin.switch_layout.key_bindings.on_key["p"] = {
   messages = { { CallLua = "custom.prev_layout" } }
 }
 
+-- tri-pane
+on_key.T = {
+  help = "[T]ri-pane",
+  messages = {
+    "PopMode",
+    { SwitchLayoutCustom = "tri_pane" },
+  },
+}
+
 -- help
 local help = xplr.config.general.global_key_bindings.on_key["f1"]
 help.messages = {

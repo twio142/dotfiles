@@ -59,6 +59,15 @@ require("xpm").setup({
         prefer_multi_map = true,
       })
     end },
+    { name = 'sayanarijit/tri-pane.xplr', rev = 'main', setup = function()
+      require("tri-pane").setup({
+        layout_key = "T",
+        as_default_layout = false,
+        left_pane_width = { Percentage = 15 },
+        middle_pane_width = { Percentage = 50 },
+        right_pane_width = { Percentage = 35 },
+      })
+    end },
     { name = 'sayanarijit/type-to-nav.xplr', rev = 'main' },
     { name = 'twio142/fzf.xplr', rev = 'main' },
     { name = 'twio142/tree-view.xplr', rev = 'main', setup = function()
