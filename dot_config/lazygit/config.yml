@@ -9,10 +9,29 @@ gui:
   showListFooter: false
   theme:
     activeBorderColor:
-      - default
-      - bold
+      - "#b15c00"
+      - "bold"
+    inactiveBorderColor:
+      - "#4094a3"
+    searchingActiveBorderColor:
+      - "#b15c00"
+      - "bold"
+    optionsTextColor:
+      - "#2e7de9"
     selectedLineBgColor:
       - underline
+    cherryPickedCommitFgColor:
+      - "#2e7de9"
+    cherryPickedCommitBgColor:
+      - "#B1E647"
+    markedBaseCommitFgColor:
+      - "#2e7de9"
+    markedBaseCommitBgColor:
+      - "#8c6c3e"
+    unstagedChangesColor:
+      - "#c64343"
+    defaultFgColor:
+      - "#5A7BC6"
 os:
   # editPreset: "nvim-remote"
   editInTerminal: false
