@@ -42,8 +42,17 @@ customCommands:
   - key: '<c-o>'
     context: "remotes"
     command: |
-      url=$(git config --get remote.{{.SelectedRemote.Name}}.url); url=$(echo $url | perl -pe 's/.+(git(hub|lab).com)[:\/]([^\/]+\/[^\/]+?)/https:\/\/\1\/\3/g'); [ -z $url ] || open $url
+      {{range .SelectedRemote.Urls}}
+        url=$(echo {{.}} | perl -pe 's/.+(git(hub|lab).com)[:\/]([^\/]+\/[^\/]+?)/https:\/\/\1\/\3/g'); [ -z $url ] || open $url
+      {{end}}
     description: "Open remote in browser"
+  - key: '<c-y>'
+    context: "remotes"
+    command: |
+      {{range .SelectedRemote.Urls}}
+        echo -n {{.}} | tmux load-buffer -
+      {{end}}
+    description: "Copy remote url"
   - key: 'f'
     command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
     context: 'commitFiles'

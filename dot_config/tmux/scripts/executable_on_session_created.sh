@@ -11,7 +11,7 @@ if [ -n "$SSH_CONNECTION" ]; then
 else
   sess=$(tmux display-message -p '#S')
   if [[ "$sess" =~ '^[0-9]+$' && "$sess" -gt 0 ]]; then
-    for i in $(seq 1 $sess); do
+    for i in $(seq 0 $sess); do
       tmux has -t $i 2> /dev/null || { tmux rename $i; break; }
     done
   fi
