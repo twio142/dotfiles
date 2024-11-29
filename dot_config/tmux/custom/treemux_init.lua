@@ -192,7 +192,10 @@ require("lazy").setup {
             if node:has_children() then
               cmd.toggle_node(state)
             elseif node.type == "directory" then
-              require("neo-tree.sources.filesystem").toggle_directory(state)
+              local _, e = pcall(require("neo-tree.sources.filesystem").toggle_directory, state)
+              if e then
+                vim.notify(e, vim.log.levels.ERROR)
+              end
             else
               require('neo-tree').config.commands.open_in_tmux(state)
             end

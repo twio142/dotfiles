@@ -210,6 +210,7 @@ bind ` lastp
 bind -n F1 if -F "#{==:#{pane_current_command},nvim}" "send F1" toggle-sidebar
 unbind C-o
 bind C-o open
+bind C-t popup-term
 
 # modal bindings
 unbind b
