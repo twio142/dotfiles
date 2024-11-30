@@ -155,7 +155,19 @@ xplr.config.modes.builtin.action.key_bindings.on_key.q = nil
 xplr.config.modes.builtin.action.key_bindings.on_key.m = nil
 xplr.config.modes.builtin.action.key_bindings.on_key[":"] = xplr.config.modes.builtin.action.key_bindings.on_key["!"]
 xplr.config.modes.builtin.action.key_bindings.on_key["!"] = nil
-xplr.config.modes.builtin.action.key_bindings.on_key.D = on_key["ctrl-d"]
+xplr.config.modes.builtin.action.key_bindings.on_key.D = {
+  help = "[D]uplicate as",
+  messages = {
+    "PopMode",
+    { SwitchModeBuiltin = "duplicate_as" },
+    {
+      BashExecSilently0 = [===[
+        NAME=$(basename "${XPLR_FOCUS_PATH:?}")
+        "$XPLR" -m 'SetInputBuffer: %q' "${NAME:?}"
+      ]===],
+    },
+  },
+}
 xplr.config.modes.builtin.action.key_bindings.on_key.P = {
   messages = {
     "PopMode",
@@ -556,7 +568,8 @@ on_key.T = {
   help = "[T]ri-pane",
   messages = {
     "PopMode",
-    { SwitchLayoutCustom = "tri_pane" },
+    -- { SwitchLayoutCustom = "tri_pane" },
+    { CallLua = "custom.tri_pane.toggle" },
   },
 }
 

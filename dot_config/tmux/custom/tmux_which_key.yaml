@@ -214,15 +214,15 @@ items:
       - name: xplr
         key: x
         command: xplr
-      - name: xplr …
-        key: X
-        command: xplr --jump
       - name: Yazi
         key: y
         command: yazi
       - name: Bottom
         key: b
         command: btm
+      - name: Lazygit
+        key: g
+        command: lzg
       - name: Lazydocker
         key: d
         command: lzd
@@ -252,42 +252,6 @@ items:
       - name: Restore sessions
         key: R
         command: "run $TMUX_PLUGIN_MANAGER_PATH/tmux-resurrect/scripts/restore.sh"
-  - name: +Git
-    key: g
-    menu:
-      - name: Lazygit
-        key: g
-        command: lzg
-      - name: Lazygit …
-        key: G
-        command: lzg --jump
-      - name: Files
-        key: f
-        command: run -b "type=files $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh" 
-      - name: Commits
-        key: c
-        command: run -b "type=hashes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
-      - name: Branches
-        key: b
-        command: run -b "type=branches $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
-      - name: Remotes
-        key: r
-        command: run -b "type=remotes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
-      - name: Log
-        key: l
-        command: run -b "type=lreflogs $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
-      - name: Each ref
-        key: e
-        command: run -b "type=each_ref $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
-      - name: Tags
-        key: t
-        command: run -b "type=tags $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
-      - name: Stash
-        key: s
-        command: run -b "type=stashes $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
-      - name: Worktree
-        key: w
-        command: run -b "type=worktrees $XDG_CONFIG_HOME/fzf/tmux-fzf-git.sh"
   - separator: true
   - name: +Help
     key: h

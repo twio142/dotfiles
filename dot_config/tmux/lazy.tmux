@@ -9,7 +9,6 @@ set -g @resurrect-save 'C-ß'
 set -g @resurrect-restore 'C-®'
 
 # tmux-fzf
-
 TMUX_FZF_LAUNCH_KEY="C-f"
 FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer='
 TMUX_FZF_OPTIONS="-p -w 90% -h 70% -m --preview-window=up,70% ${FZF_DEFAULT_OPTS}"
@@ -200,7 +199,7 @@ set -g command-alias[20] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazyd
 set -g command-alias[21] btm="popup -E -w 95% -h 90% -x 3% '$SHELL -c \"btm --theme nord$(test $(background) = light && echo -light)\"'"
 set -g command-alias[22] toggle-sidebar="run \"$XDG_CONFIG_HOME/tmux/plugins/treemux/scripts/toggle.sh '#{@treemux-key-Bspace}' '#{pane_id}'\""
 set -g command-alias[23] open="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_path.sh"
-set -g command-alias[24] popup-term="popup -E -w 75% -d '#{pane_current_path}' -e TMUX_POPUP=1 'zsh -l'"
+set -g command-alias[24] popup-term="popup -E -w 80% -d '#{pane_current_path}' -e TMUX_POPUP=1 'zsh -l'"
 
 bind C-r ER
 bind M-h tmux-man
@@ -230,7 +229,6 @@ bind C-p selectw -p
 bind p run "tmux #{@wk_cmd_show} #{@wk_menu_panes}"
 
 bind C-g lzg
-bind g run "tmux #{@wk_cmd_show} #{@wk_menu_git}"
 
 bind a run "tmux #{@wk_cmd_show} #{@wk_menu_app}"
 bind C-l run "tmux #{@wk_cmd_show} #{@wk_menu_layout}"
