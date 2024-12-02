@@ -6,6 +6,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Remove the white status bar below
 vim.o.laststatus = 0
+vim.o.ruler = false
 
 -- True colour support
 vim.o.termguicolors = true
@@ -27,10 +28,6 @@ end)
 vim.opt.rtp:prepend(lazypath)
 
 vim.env.PATH = vim.env.PATH .. ':' .. vim.fn.expand('~/.local/bin')
-
-local function escape(str)
-  return '"' .. vim.fn.escape(str, '"!$\\`') .. '"'
-end
 
 require("lazy").setup {
   {
@@ -202,7 +199,8 @@ require("lazy").setup {
           end,
           show_preview = function(state)
             local node = state.tree:get_node()
-            vim.fn.jobstart({"tmux", "popup", "-w", "75%", "-h", "90%", "-x", "30%", "-y", "54%", "-e", "TMUX_POPUP=1", vim.fn.exepath("fzf-preview"), node.path})
+            local cmd = string.format("%s %s | less -R", vim.fn.exepath("fzf-preview"), vim.fn.shellescape(node.path))
+            vim.fn.jobstart({"tmux", "popup", "-E", "-w", "75%", "-h", "90%", "-x", "30%", "-e", "TMUX_POPUP=1", cmd})
           end,
           fzf = function(state)
             local root = vim.fn.getcwd()
@@ -240,7 +238,7 @@ require("lazy").setup {
             if target == 't' then
               local cmd = { 'tmux', 'new-window' }
               if node.type == "file" then
-                table.insert(cmd, "nvim "..escape(node.path))
+                table.insert(cmd, "nvim "..vim.fn.shellescape(node.path))
               else
                 table.insert(cmd, "-c")
                 table.insert(cmd, node.path)
@@ -264,7 +262,7 @@ require("lazy").setup {
                 table.insert(cmd, '-h')
               end
               if node.type == "file" then
-                table.insert(cmd, "nvim "..escape(node.path))
+                table.insert(cmd, "nvim "..vim.fn.shellescape(node.path))
               else
                 table.insert(cmd, "-c")
                 table.insert(cmd, node.path)
@@ -289,13 +287,13 @@ require("lazy").setup {
                   return
                 end
               elseif proc == "zsh" then
-                vim.fn.jobstart({"tmux", "send", "nvim "..escape(node.path), "Enter"})
+                vim.fn.jobstart({"tmux", "send", "nvim "..vim.fn.shellescape(node.path), "Enter"})
               else
-                vim.fn.jobstart({"tmux", "splitw", "-v", "nvim "..escape(node.path), "Enter"})
+                vim.fn.jobstart({"tmux", "splitw", "-v", "nvim "..vim.fn.shellescape(node.path), "Enter"})
               end
             else
               if proc == "zsh" then
-                vim.fn.jobstart({"tmux", "send", "cd "..escape(node.path), "Enter"})
+                vim.fn.jobstart({"tmux", "send", "cd "..vim.fn.shellescape(node.path), "Enter"})
               else
                 vim.fn.jobstart({"tmux", "splitw", "-v", "-c", node.path})
               end
@@ -688,10 +686,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set({ 'n', 'x' }, '<A-k>', '12k', { noremap = true })
 vim.keymap.set({ 'n', 'x' }, '<A-j>', '12j', { noremap = true })
 
-local bg = vim.fn.exepath("background") == "" and "dark" or vim.fn.system(vim.fn.exepath("background"))
-if bg == 'light' or bg == 'dark' then
-  vim.opt.background = bg
-end
+vim.fn.jobstart({'background'}, {
+  on_stdout = function(_, data, _)
+    if data and #data[1] > 0 then
+      local bg = vim.fn.trim(data[1])
+      if bg == 'light' or bg == 'dark' then
+        vim.opt.background = bg
+      end
+    end
+  end
+})
 vim.o.cursorline = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
