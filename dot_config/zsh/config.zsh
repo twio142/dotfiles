@@ -71,46 +71,22 @@ export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=.config/asdf/tool-versions
 . $(brew --prefix asdf)/libexec/asdf.sh
 
 # >>> mamba initialize >>>
-export MAMBA_EXE='/opt/homebrew/opt/micromamba/bin/micromamba';
+export MAMBA_EXE='/opt/homebrew/opt/micromamba/bin/mamba';
 export MAMBA_ROOT_PREFIX="$XDG_DATA_HOME/micromamba";
-# __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__mamba_setup"
-# else
-#     alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-# fi
-# unset __mamba_setup
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+  eval "$__mamba_setup"
+else
+  alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
 # <<< mamba initialize <<<
-
-# lazyload mamba
-lazy_mamba_aliases=('micromamba')
-
-load_mamba() {
-  for lazy_mamba_alias in $lazy_mamba_aliases; do
-    unalias $lazy_mamba_alias 2> /dev/null
-  done
-  # >>> mamba initialize >>>
-  __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-  else
-    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-  fi
-  unset __mamba_setup
-  # <<< mamba initialize <<<
-  unset __mamba_prefix
-  # unfunction load_mamba
-}
-
-for lazy_mamba_alias in $lazy_mamba_aliases; do
-  alias $lazy_mamba_alias="load_mamba && $lazy_mamba_alias"
-done
-alias mamba="load_mamba && micromamba"
 
 euporie_aliases=('euporie' 'euporie-console' 'euporie-hub' 'euporie-notebook' 'euporie-preview')
 for euporie_alias in $euporie_aliases; do
   alias $euporie_alias=$euporie_alias' --color-scheme=$(~/.local/bin/background) --syntax-theme=gruvbox-$(~/.local/bin/background)'
 done
+unset euporie_aliases euporie_alias
 
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 
