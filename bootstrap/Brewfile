@@ -258,8 +258,6 @@ cask "font-lxgw-bright"
 cask "font-sf-pro"
 # Tool that helps teams design every part of the product experience
 cask "framer"
-# Git interface focused on visual interaction
-cask "gitup"
 # Web browser
 cask "google-chrome"
 # Desktop automation application

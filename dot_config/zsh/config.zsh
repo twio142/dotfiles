@@ -18,10 +18,6 @@ lc() {
   1=${1:a}
   [ -d $1 ] && cd $1 || cd ${1:h};
 }
-gitup() {
-  1=$(git -C "${1:-$PWD}" rev-parse --show-toplevel 2> /dev/null) || { echo "Not a git repository" >&2; return 1; }
-  open -b co.gitup.mac $1
-}
 gro() {
   local url=$(git "$@" config --get remote.${remote:-origin}.url)
   url=$(echo $url | perl -pe 's/.+(git(hub|lab).com)[:\/]([^\/]+\/[^\/]+?)/https:\/\/\1\/\3/g')
