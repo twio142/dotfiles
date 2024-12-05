@@ -35,12 +35,6 @@ fi
 # Hammerspoon
 hs -A -c "ConsoleDM()"
 
-# Marta theme
-DIR=~/Library/Application\ Support/org.yanex.marta/Themes
-if [ -f $DIR/$mode ]; then 
-  ln -sf $DIR/$mode $DIR/T.theme
-fi
-
 # lsd theme
 DIR=$XDG_CONFIG_HOME/lsd
 if [ -f $DIR/${mode}.yaml ]; then 

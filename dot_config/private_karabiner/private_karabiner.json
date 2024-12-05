@@ -13,13 +13,12 @@
         },
         "rules": [
           {
-            "description": "Alfred, Finder & Marta, PDF Reader Pro, WezTerm & Alacritty",
+            "description": "Alfred, Finder, PDF Reader Pro, WezTerm & Alacritty",
             "manipulators": [
               {
                 "conditions": [
                   {
                     "bundle_identifiers": [
-                      "org.yanex.marta",
                       "com.apple.finder"
                     ],
                     "type": "frontmost_application_if"

@@ -280,8 +280,6 @@ cask "keycastr"
 cask "lulu"
 # Adaptive brightness for external displays
 cask "lunar"
-# Extensible two-pane file manager
-cask "marta"
 # Add more gestures for Trackpad and Magic Mouse
 cask "multitouch"
 # Screensaver displaying artwork based on Spotify or Last.fm profile data
