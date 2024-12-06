@@ -29,7 +29,7 @@ PURPLE=$'\033[35m'
 OFF=$'\033[0m'
 FD_PREFIX="fd -H -L -tf -E .git -E .DS_Store -p "
 FD_SUFFIX=". -X ls -t | sed 's/^\.\//${PURPLE}/' | sed 's/\$/${OFF}/'"
-RG="rg --ignore-vcs -g '!**/.git/**' -L --column --line-number --no-heading --color=always --smart-case"
+RG="rg --ignore-vcs -. -L -S -n --column --no-heading -g '!**/.git/**' --color=always"
 COPY=pbcopy
 [ -n "$TMUX" ] && COPY="tmux load-buffer -"
 

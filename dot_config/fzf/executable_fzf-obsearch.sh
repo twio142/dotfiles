@@ -9,9 +9,9 @@ VAULT=${VAULT:-$HOME/Documents/Markdown}
 cd $VAULT &> /dev/null || exit 1
 PURPLE=$'\033[35m'
 OFF=$'\033[0m'
-FD_PREFIX="fd -H -L -tf -e md -E .trash -E .obsidian -p "
+FD_PREFIX="fd -L -tf -e md -p "
 FD_SUFFIX=". -X ls -t | sed 's/^\.\//${PURPLE}/' | sed 's/\$/${OFF}/'"
-RG="rg --ignore-vcs -t markdown -g '!**/.obsidian/**' -ig '!**/.trash/**' -L --column --line-number --no-heading --color=always --smart-case"
+RG="rg --ignore-vcs -t markdown -L -S -n --column --no-heading --color=always"
 COPY=pbcopy
 [ -n "$TMUX" ] && COPY="tmux load-buffer -"
 

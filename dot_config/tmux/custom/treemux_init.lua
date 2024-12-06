@@ -444,6 +444,9 @@ require("lazy").setup {
             ['q'] = function()
               vim.cmd 'quitall!'
             end,
+            ['<f1>'] = function()
+              vim.cmd 'quitall!'
+            end,
             ['R'] = 'refresh',
             ['?'] = 'show_help',
             ['<'] = 'prev_source',

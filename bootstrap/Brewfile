@@ -9,6 +9,7 @@ tap "homebrew/test-bot"
 tap "jesseduffield/lazydocker"
 tap "jesseduffield/lazygit"
 tap "joelekstrom/repo"
+tap "jorgerojas26/lazysql"
 tap "nikitabobko/tap"
 tap "owo-network/brew"
 tap "yt-dlp/taps"
@@ -220,6 +221,7 @@ brew "jesseduffield/lazydocker/lazydocker"
 brew "jesseduffield/lazygit/lazygit"
 # An ncurses-based minesweeper game
 brew "joelekstrom/repo/terminal-mines"
+brew "jorgerojas26/lazysql/lazysql"
 # DeepLX is a permanently free DeepL API client written in Golang.
 brew "owo-network/brew/deeplx"
 # AeroSpace is an i3-like tiling window manager for macOS

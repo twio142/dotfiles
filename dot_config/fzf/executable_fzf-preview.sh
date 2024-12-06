@@ -23,6 +23,9 @@ elif [[ ! $type =~ image/ ]]; then
   elif [[ $type =~ =binary ]]; then
     file "$1" | sed "s/: /\n\n/"
     exit
+  elif [[ $type =~ "application/json;" ]] && (command -v jq > /dev/null); then
+    cat "$1" | jq -C
+    exit
   fi
 
   if command -v batcat > /dev/null; then
