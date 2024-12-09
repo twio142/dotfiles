@@ -1792,7 +1792,7 @@
                   }
                 ],
                 "from": { "key_code": "o" },
-                "to": [{ "shell_command": "~/.local/bin/alfred o\\'" }],
+                "to": [{ "shell_command": "~/.local/bin/alfred \\\\o\\ " }],
                 "type": "basic"
               },
               {

@@ -592,20 +592,12 @@ require("lazy").setup {
     end,
   },
   {
-    'christoomey/vim-tmux-navigator',
-    cmd = {
-      'TmuxNavigateLeft',
-      'TmuxNavigateDown',
-      'TmuxNavigateUp',
-      'TmuxNavigateRight',
-      'TmuxNavigatePrevious',
-    },
+    'mrjones2014/smart-splits.nvim',
     keys = {
-      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
-      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
-      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
-      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
-      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+      { '<c-h>', '<cmd>SmartCursorMoveLeft<cr>' },
+      { '<c-j>', '<cmd>SmartCursorMoveDown<cr>' },
+      { '<c-k>', '<cmd>SmartCursorMoveUp<cr>' },
+      { '<c-l>', '<cmd>SmartCursorMoveRight<cr>' },
     },
   },
   {
