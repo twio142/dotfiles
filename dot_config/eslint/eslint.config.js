@@ -1,9 +1,21 @@
-module.exports = {
-  "rules": {
-    "no-case-declarations": 0,
-    "indent": [0, 2],
-    "quotes": [0, "double"],
-    "semi": [0, "always"],
-    "max-len": ["warn", { code: 120 }],
+module.exports = [
+  {
+    languageOptions: {
+      ecmaVersion: 'latest'
+    },
+    plugins: {
+      prettier: require('eslint-plugin-prettier')
+    },
+    rules: {
+      'prettier/prettier': [
+        'warn',
+        {
+          singleQuote: true,
+          tabWidth: 2,
+          trailingComma: 'none',
+          maxLineLength: 120
+        }
+      ]
+    }
   }
-}
+];
