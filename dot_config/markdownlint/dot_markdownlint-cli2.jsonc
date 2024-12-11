@@ -7,7 +7,7 @@
   "config": {
     "line-length": false,
     "first-line-heading": false,
-    "no-alt-text": false
+    "no-alt-text": false,
     "MD007": {
       "indent": 4
     }

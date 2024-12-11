@@ -17,6 +17,8 @@ tap "yt-dlp/taps"
 brew "libtiff"
 # High dynamic-range image file format
 brew "openexr"
+# C string library for manipulating Unicode strings
+brew "libunistring"
 # Library for command-line editing
 brew "readline"
 # Command-line interface for SQLite
@@ -45,8 +47,6 @@ brew "blueutil"
 brew "bottom"
 # Software library to render fonts
 brew "freetype"
-# C string library for manipulating Unicode strings
-brew "libunistring"
 # Core application library for C
 brew "glib"
 # X.Org: Interface to the X Window System protocol
@@ -179,6 +179,8 @@ brew "ripgrep"
 brew "sd"
 # SOcket CAT: netcat on steroids
 brew "socat"
+# Formatting tool for reformatting Swift code
+brew "swiftformat"
 # Change macOS audio source from the command-line
 brew "switchaudio-osx"
 # Manipulate and query tags on macOS files
