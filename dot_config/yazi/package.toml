@@ -1,14 +1,14 @@
 [plugin]
 deps = [
 	{ use = "llanosrocas/githead", rev = "bf150f3" },
-	{ use = "yazi-rs/plugins:full-border", rev = "ec97f88" },
+	{ use = "yazi-rs/plugins:full-border", rev = "62f0789" },
 	{ use = "twio142/yazi-plugins:my-commands" , rev = "291dc18" },
 	{ use = "twio142/yazi-plugins:my-async" , rev = "291dc18" },
 	{ use = "twio142/yazi-plugins:my-fzf" , rev = "291dc18" },
 	# { use = "twio142/yazi-plugins:git" , rev = "1e32aa8" },
-	{ use = "yazi-rs/plugins:git", rev = "ec97f88" },
-	{ use = "yazi-rs/plugins:smart-filter", rev = "ec97f88" },
-	{ use = "yazi-rs/plugins:max-preview", rev = "ec97f88" },
+	{ use = "yazi-rs/plugins:git", rev = "62f0789" },
+	{ use = "yazi-rs/plugins:smart-filter", rev = "62f0789" },
+	{ use = "yazi-rs/plugins:max-preview", rev = "62f0789" },
 	{ use = "Tyarel8/video-ffmpeg", rev = "1250b85" },
 	{ use = "ndtoan96/ouch", rev = "b869886" },
 	# https://gitee.com/DreamMaoMao/searchjump.yazi.git
