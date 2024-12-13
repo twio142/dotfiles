@@ -145,7 +145,7 @@ set -g pane-base-index 1 # start pane numbering at 1
 # setw -g allow-rename off # disable rename
 set -g set-titles on
 set -g set-titles-string "#{pane_current_command} ▸ #{b:pane_current_path}" # set title format
-set -g escape-time 15 # faster key response
+set -g escape-time 0 # faster key response
 set -g status-justify left # left justify status bar
 setw -g monitor-activity off # monitor for activity
 setw -g monitor-bell on # monitor for bell
