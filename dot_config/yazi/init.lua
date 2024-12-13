@@ -1,7 +1,4 @@
-_G.ya = ya
-_G.ui = ui
-_G.THEME = THEME
-_G.Linemode = Linemode
+---@diagnostic disable: undefined-global
 
 require("full-border"):setup({
 	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED

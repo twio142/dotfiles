@@ -23,4 +23,4 @@ cwd=$(fzf --bind "start:reload:zoxide query '' -l | awk '{ if (!seen[tolower()]+
 --disabled \
 --preview "fzf-preview {}" \
 --preview-window='up,60%')
-[ -n "$cwd" ] && xplr $cwd || exit 0
+[ -n "$cwd" ] && yazi $cwd || exit 0

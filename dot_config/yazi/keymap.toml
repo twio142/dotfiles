@@ -2,11 +2,11 @@
 
 [manager]
 prepend_keymap = [
-  # { on = [ "g", "a" ], run = 'my-fev-command1', desc = "Just for test!" },
   { on = "<A-j>", run = [ 'toggle', 'arrow 1' ], desc = "Toggle selection" },
   { on = "<Tab>", run = [ 'toggle', 'arrow 1' ], desc = "Toggle selection" },
   { on = "<A-k>", run = [ 'toggle --state=off' ], desc = "Toggle selection" },
-  { on = "<Enter>", run = "plugin my-commands --args='smart enter'", desc = "Open shell / edit file" },
+  { on = "i", run = "spot", desc = "Inspect file" },
+  { on = "<Enter>", run = "plugin my-cmd --args='smart enter'", desc = "Open shell / edit file" },
   { on = "<A-Enter>", run = [ 'open --interactive' ], desc = "Open selected files interactively" },
   { on = "?", run = 'help', desc = "Open help" },
   { on = "!", run = 'shell --interactive', desc = "Run a shell command" },
@@ -15,78 +15,118 @@ prepend_keymap = [
   { on = "Q", run = 'quit', desc = "Exit the process" },
   { on = "<C-d>", run = "seek 5", desc = "Seek down 5 units in the preview" },
   { on = "<C-u>", run = "seek -5", desc = "Seek up 5 units in the preview" },
-  { on = [ "g", "S" ], run = "shell lazygit --block", desc = "LazyGit" },
-  { on = [ "y", "c" ], run = "yank", desc = "Yank selected files (copy)" },
-  { on = [ "y", "x" ], run = "yank --cut", desc = "Yank selected files (cut)" },
+  { on = [ "g", "s" ], run = "shell lazygit --block", desc = "LazyGit" },
+  { on = [ "g", "r" ], run = "shell 'ya emit cd \"$(git rev-parse --show-toplevel)\"'", desc = "Go to git repo root" },
+  { on = [ "y", "c" ], run = "yank", desc = "Copy selected files" },
+  { on = [ "y", "x" ], run = "yank --cut", desc = "Cut selected files" },
   { on = [ "y", "p" ], run = "copy path", desc = "Copy the file path" },
   { on = [ "y", "n" ], run = "copy filename", desc = "Copy the filename" },
-  { on = "<Esc>", run = "plugin my-commands --args='smart esc'", desc = "Unyank, exit visual mode, clear seleted, or canel search" },
-  { on = "j", run = "plugin my-commands --args='smart down'", desc = "Move cursor down" },
-  { on = "k", run = "plugin my-commands --args='smart up'", desc = "Move cursor up" },
-  { on = "<Down>", run = "plugin my-commands --args='smart down'", desc = "Move cursor down" },
-  { on = "<Up>", run = "plugin my-commands --args='smart up'", desc = "Move cursor up" },
-  { on = "N", run = "plugin my-commands --args='smart new'", desc = "Go to the previous found / Create a file" },
+  { on = "<Esc>", run = "plugin my-cmd --args='smart esc'", desc = "Unyank, exit visual mode, clear seleted, or canel search" },
+  { on = "j", run = "plugin my-cmd --args='smart down'", desc = "Move cursor down" },
+  { on = "k", run = "plugin my-cmd --args='smart up'", desc = "Move cursor up" },
+  { on = "<Down>", run = "plugin my-cmd --args='smart down'", desc = "Move cursor down" },
+  { on = "<Up>", run = "plugin my-cmd --args='smart up'", desc = "Move cursor up" },
+  { on = "N", run = "plugin my-cmd --args='smart new'", desc = "Go to the previous found / Create a file" },
+  { on = "<C-t>", run = "plugin my-cmd --args='smart tab'", desc = "List tasks" },
+  { on = "]", run = "plugin my-cmd --args='smart next-tab'", desc = "Switch to the next tab" },
+  { on = [ "<Space>", "u" ], run = "shell \"dust -C -w $(stty size < /dev/tty | awk '{print $2}') -n $(stty size < /dev/tty | awk '{print $1 - 2}') . | less -r\" --block", desc = "Disk usage" },
+  { on = [ "<Space>", "C" ], run = "plugin ouch --args=zip", desc = "Compress" },
+  { on = [ "<Space>", "t" ], run = "tasks_show", desc = "Show task manager" },
+  { on = [ "<Space>", "<Enter>" ], run = "plugin my-cmd --args='smart alt-enter'", desc = "Open in new window" },
   { on = [ "\\", "g" ], run = "plugin my-fzf --args=z", desc = "Go to a directory" },
   { on = [ "\\", "f" ], run = "plugin my-fzf --args=fd", desc = "Search files" },
   { on = [ "\\", "s" ], run = "plugin my-fzf --args=fif", desc = "Search file contents" },
   { on = [ "\\", "o" ], run = "plugin my-fzf --args=obsearch", desc = "Search Obsidian vault" },
   { on = [ "\\", "r" ], run = "plugin my-fzf --args=git", desc = "Search repos" },
-  { on = [ "s", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
-  { on = [ "s", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
-  { on = [ "s", "c" ], run = [ "sort btime --reverse=no", "linemode btime" ],  desc = "Sort by created time" },
-  { on = [ "s", "C" ], run = [ "sort btime --reverse", "linemode btime" ],     desc = "Sort by created time (reverse)" },
-  { on = [ "s", "e" ], run = "sort extension --reverse=no",                      desc = "Sort by extension" },
-  { on = [ "s", "E" ], run = "sort extension --reverse",                         desc = "Sort by extension (reverse)" },
-  { on = [ "s", "a" ], run = "sort alphabetical --reverse=no",                   desc = "Sort alphabetically" },
-  { on = [ "s", "A" ], run = "sort alphabetical --reverse",                      desc = "Sort alphabetically (reverse)" },
-  { on = [ "s", "n" ], run = "sort natural --reverse=no",                        desc = "Sort naturally" },
-  { on = [ "s", "N" ], run = "sort natural --reverse",                           desc = "Sort naturally (reverse)" },
-  { on = [ "s", "s" ], run = [ "sort size --reverse=no", "linemode size" ],      desc = "Sort by size" },
-  { on = [ "s", "S" ], run = [ "sort size --reverse", "linemode size" ],         desc = "Sort by size (reverse)" },
-  { on = [ "s", "r" ], run = "sort random --reverse=no",                         desc = "Sort randomly" },
-  { on = "i", run = 'plugin searchjump --args=autocd', desc = "Searchjump" },
-  { on = "I", run = 'plugin keyjump --args=global', desc = "Keyjump global" },
-  { on = [ "[", "b" ], run = "back", desc = "Go back to the previous directory" },
-  { on = [ "]", "b" ], run = "forward",  desc = "Go forward to the next directory" },
-  { on = [ "[", "t" ], run = "tab_switch -1 --relative", desc = "Switch to the previous tab" },
-  { on = [ "]", "t" ], run = "tab_switch 1 --relative",  desc = "Switch to the next tab" },
+  { on = [ "m", "." ], run = "linemode size_and_mtime", desc = "Linemode: size & mtime" },
+  { on = [ "S", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
+  { on = [ "S", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
+  { on = [ "S", "c" ], run = [ "sort btime --reverse=no", "linemode btime" ],  desc = "Sort by created time" },
+  { on = [ "S", "C" ], run = [ "sort btime --reverse", "linemode btime" ],     desc = "Sort by created time (reverse)" },
+  { on = [ "S", "e" ], run = "sort extension --reverse=no",                      desc = "Sort by extension" },
+  { on = [ "S", "E" ], run = "sort extension --reverse",                         desc = "Sort by extension (reverse)" },
+  { on = [ "S", "a" ], run = "sort alphabetical --reverse=no",                   desc = "Sort alphabetically" },
+  { on = [ "S", "A" ], run = "sort alphabetical --reverse",                      desc = "Sort alphabetically (reverse)" },
+  { on = [ "S", "n" ], run = "sort natural --reverse=no",                        desc = "Sort naturally" },
+  { on = [ "S", "N" ], run = "sort natural --reverse",                           desc = "Sort naturally (reverse)" },
+  { on = [ "S", "s" ], run = [ "sort size --reverse=no", "linemode size" ],      desc = "Sort by size" },
+  { on = [ "S", "S" ], run = [ "sort size --reverse", "linemode size" ],         desc = "Sort by size (reverse)" },
+  { on = [ "S", "r" ], run = "sort random --reverse=no",                         desc = "Sort randomly" },
+  { on = "s", run = 'plugin searchjump --args=autocd', desc = "Searchjump" },
   { on = "F", run = "plugin smart-filter", desc = "Smart filter" },
-  { on = "a", run = "plugin my-async --args=alfred", desc = "Show file in Alfred" },
-  { on = "=", run = "plugin my-async --args='alfred buffer'", desc = "Add file to Alfred buffer" },
-  { on = "x", run = "plugin my-async --args='alfred action'", desc = "Action on file in Alfred" },
-  { on = ["<A-l>", "c"], run = "plugin my-commands --args='on_selection copy'", desc = "Copy the yanked files to here" },
-  { on = ["<A-l>", "m"], run = "plugin my-commands --args='on_selection move'", desc = "Move the yanked files to here" },
-  { on = ["<A-l>", "s"], run = "plugin my-commands --args='on_selection symlink'", desc = "Symlink the yanked files" },
-  { on = ["<A-l>", "h"], run = "plugin my-commands --args='on_selection hardlink'", desc = "Hardlink the yanked files" },
-  { on = ["<A-l>", "d"], run = "plugin my-commands --args='on_selection delete'", desc = "Delete the yanked files" },
-  { on = ["<A-l>", "e"], run = "plugin my-commands --args='on_selection edit'", desc = "Edit the yanked files" },
-  { on = ["<A-l>", "r"], run = "plugin my-commands --args='on_selection rename'", desc = "Rename the yanked files" },
+  { on = "a", run = "shell 'alfred \"$1\"'", desc = "Show file in Alfred" },
+  { on = "=", run = "shell 'altr -w com.nyako520.syspre -t buffer -a - \"$@\"'", desc = "Add file to Alfred buffer" },
+  { on = "x", run = "shell 'altr -w com.nyako520.alfred -t action -a - \"$@\"'", desc = "Action on file in Alfred" },
+  { on = ["<A-l>", "c"], run = "plugin my-cmd --args='on_selection copy'", desc = "Copy the yanked files to here" },
+  { on = ["<A-l>", "m"], run = "plugin my-cmd --args='on_selection move'", desc = "Move the yanked files to here" },
+  { on = ["<A-l>", "s"], run = "plugin my-cmd --args='on_selection symlink'", desc = "Symlink the yanked files" },
+  { on = ["<A-l>", "h"], run = "plugin my-cmd --args='on_selection hardlink'", desc = "Hardlink the yanked files" },
+  { on = ["<A-l>", "d"], run = "plugin my-cmd --args='on_selection delete'", desc = "Delete the yanked files" },
+  { on = ["<A-l>", "e"], run = "plugin my-cmd --args='on_selection edit'", desc = "Edit the yanked files" },
+  { on = ["<A-l>", "r"], run = "plugin my-cmd --args='on_selection rename'", desc = "Rename the yanked files" },
+  { on = ["<A-l>", "<C-d>"], run = "shell '[ $# -eq 2 ] && delta --$(~/.local/bin/background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1) \"$@\" | less -r || true' --block", desc = "Diff selected files" },
   { on = "P", run = "plugin max-preview", desc = "Zoom preview" },
+  { on = "1", run = "plugin relative-motions --args=1", desc = "Move in relative steps" },
+  { on = "2", run = "plugin relative-motions --args=2", desc = "Move in relative steps" },
+  { on = "3", run = "plugin relative-motions --args=3", desc = "Move in relative steps" },
+  { on = "4", run = "plugin relative-motions --args=4", desc = "Move in relative steps" },
+  { on = "5", run = "plugin relative-motions --args=5", desc = "Move in relative steps" },
+  { on = "6", run = "plugin relative-motions --args=6", desc = "Move in relative steps" },
+  { on = "7", run = "plugin relative-motions --args=7", desc = "Move in relative steps" },
+  { on = "8", run = "plugin relative-motions --args=8", desc = "Move in relative steps" },
+  { on = "9", run = "plugin relative-motions --args=9", desc = "Move in relative steps" },
+  { on = ["\\", "1"], run = "tab_switch 0", desc = "Switch to tab 1" },
+  { on = ["\\", "2"], run = "tab_switch 1", desc = "Switch to tab 2" },
+  { on = ["\\", "3"], run = "tab_switch 2", desc = "Switch to tab 3" },
+  { on = ["\\", "4"], run = "tab_switch 3", desc = "Switch to tab 4" },
+  { on = ["\\", "5"], run = "tab_switch 4", desc = "Switch to tab 5" },
+  { on = ["\\", "6"], run = "tab_switch 5", desc = "Switch to tab 6" },
+  { on = ["\\", "7"], run = "tab_switch 6", desc = "Switch to tab 7" },
+  { on = ["\\", "8"], run = "tab_switch 7", desc = "Switch to tab 8" },
+  { on = ["\\", "9"], run = "tab_switch 8", desc = "Switch to tab 9" },
 ]
 
 [tasks]
 prepend_keymap = [
-  { on = "?", run = 'help', desc = "Open help" },
+  { on = "?", run = "help", desc = "Open help" },
+  { on = "i", run = "inspect", desc = "Inspect the task" },
+]
+
+[spot]
+prepend_keymap = [
+  { on = "?", run = "help", desc = "Open help" },
+  { on = "J", run = "swipe 1", desc = "Swipe to the next file" },
+  { on = "K", run = "swipe -1", desc = "Swipe to the previous file" },
+  { on = "y", run = "copy cell", desc = "Yank selected cell" },
 ]
 
 [pick]
 prepend_keymap = [
-  { on = "?", run = 'help', desc = "Open help" },
+  { on = "?", run = "help", desc = "Open help" },
 ]
 
 [input]
 prepend_keymap = [
-  { on = "<esc>", run = 'close', desc = "cancel input" },
-  { on = "?", run = 'help', desc = "Open help" },
+  { on = "<esc>", run = "close", desc = "cancel input" },
+  { on = "?", run = "help", desc = "Open help" },
 ]
 
 [confirm]
 prepend_keymap = [
-  { on = "?", run = 'help', desc = "Open help" },
+  { on = "?", run = "help", desc = "Open help" },
 ]
 
 [completion]
 prepend_keymap = [
-  { on = "?", run = 'help', desc = "Open help" },
+  { on = "?", run = "help", desc = "Open help" },
 ]
 
+[filter]
+prepend_keymap = [
+  { on = "?", run = "help", desc = "Open help" },
+]
+
+[help]
+prepend_keymap = [
+  { on = "/", run = "filter", desc = "Search for help items" },
+]
