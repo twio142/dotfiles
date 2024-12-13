@@ -105,9 +105,8 @@ local cd_in_tmux = m.cmd("cd-in-tmux", "cd path in tmux")(function(ctx)
   if os.getenv("TMUX") == nil then
     return { { LogError = "Not in tmux" } }
   end
-  local pid = xplr.util.shell_execute("tmux", { "display", "-p", "#{client_pid}" }).stdout:match("(%d+)")
   local scpt = os.getenv("XDG_CONFIG_HOME") .. "/tmux/scripts/find_empty_shell.sh"
-  xplr.util.shell_execute(scpt, { pid, "cd", ctx.pwd })
+  xplr.util.shell_execute(scpt, { "", "cd", ctx.pwd })
   return { "Quit" }
 end)
 
@@ -115,9 +114,8 @@ local cd_in_tmux_neww = m.cmd("cd-in-tmux-neww", "cd path in new tmux window")(f
   if os.getenv("TMUX") == nil then
     return { { LogError = "Not in tmux" } }
   end
-  local pid = xplr.util.shell_execute("tmux", { "display", "-p", "#{client_pid}" }).stdout:match("(%d+)")
   local scpt = os.getenv("XDG_CONFIG_HOME") .. "/tmux/scripts/find_empty_shell.sh"
-  xplr.util.shell_execute(scpt, { pid, "-n", "cd", ctx.pwd })
+  xplr.util.shell_execute(scpt, { "", "-n", "cd", ctx.pwd })
   return { "Quit" }
 end)
 
@@ -125,9 +123,8 @@ local vim_in_tmux = m.cmd("vim-in-tmux", "[e]dit file(s) in tmux")(function(ctx)
   if os.getenv("TMUX") == nil then
     return { { LogError = "Not in tmux" } }
   end
-  local pid = xplr.util.shell_execute("tmux", { "display", "-p", "#{pane_current_command} #{client_pid}" }).stdout:match("(%d+)")
   local scpt = os.getenv("XDG_CONFIG_HOME") .. "/tmux/scripts/open_in_vim.sh"
-  local args = { pid }
+  local args = { "" }
   if #ctx.selection > 0 then
     for _, node in ipairs(ctx.selection) do
       table.insert(args, node.absolute_path)
@@ -143,9 +140,8 @@ local vim_in_tmux_neww = m.cmd("vim-in-tmux-neww", "[E]dit file(s) in new tmux w
   if os.getenv("TMUX") == nil then
     return { { LogError = "Not in tmux" } }
   end
-  local pid = xplr.util.shell_execute("tmux", { "display", "-p", "#{pane_current_command} #{client_pid}" }).stdout:match("(%d+)")
   local scpt = os.getenv("XDG_CONFIG_HOME") .. "/tmux/scripts/open_in_vim.sh"
-  local args = { pid, "-n" }
+  local args = { "", "-n" }
   if #ctx.selection > 0 then
     for _, node in ipairs(ctx.selection) do
       table.insert(args, node.absolute_path)
