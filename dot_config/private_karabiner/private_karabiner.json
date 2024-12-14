@@ -422,6 +422,10 @@
                       "com.github.wez.wezterm",
                       "org.alacritty"
                     ],
+                    "file_paths": [
+                      "/alacritty$",
+                      "/wezterm$"
+                    ],
                     "type": "frontmost_application_if"
                   }
                 ],
@@ -444,6 +448,10 @@
                       "com.github.wez.wezterm",
                       "org.alacritty"
                     ],
+                    "file_paths": [
+                      "/alacritty$",
+                      "/wezterm$"
+                    ],
                     "type": "frontmost_application_if"
                   }
                 ],
@@ -465,6 +473,10 @@
                     "bundle_identifiers": [
                       "com.github.wez.wezterm",
                       "org.alacritty"
+                    ],
+                    "file_paths": [
+                      "/alacritty$",
+                      "/wezterm$"
                     ],
                     "type": "frontmost_application_if"
                   }
