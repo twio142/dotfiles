@@ -169,6 +169,8 @@ brew "pipenv"
 brew "pipx"
 # Paste PNG into files
 brew "pngpaste"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
 # Theme for zsh
 brew "powerlevel10k"
 # Protocol buffers (Google's data interchange format)
@@ -194,7 +196,7 @@ brew "tlrc"
 # Terminal multiplexer
 brew "tmux"
 # CLI tool that moves files or folder to the trash
-brew "trash"
+brew "trash", link: true
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Generator for LS_COLORS with support for multiple color themes
