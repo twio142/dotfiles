@@ -695,7 +695,10 @@
                   "key_code": "p",
                   "modifiers": { "mandatory": ["right_control"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace list-workspaces --monitor focused --empty no | /opt/homebrew/bin/aerospace workspace --wrap-around prev" }],
+                "to": [{
+                  "key_code": "p",
+                  "modifiers": ["left_option", "left_shift"]
+                }],
                 "type": "basic"
               },
               {
@@ -796,7 +799,15 @@
                   "key_code": "spacebar",
                   "modifiers": { "mandatory": ["right_control"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace mode command" }],
+                "to": [
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                ],
                 "type": "basic"
               }
             ]
