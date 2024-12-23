@@ -1464,6 +1464,12 @@
                 "type": "basic"
               },
               {
+                "conditions": [
+                  {
+                    "input_sources": [{ "language": "zh-Hans" }],
+                    "type": "input_source_if"
+                  }
+                ],
                 "from": { "key_code": "grave_accent_and_tilde" },
                 "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- \\`" }],
                 "type": "basic"
