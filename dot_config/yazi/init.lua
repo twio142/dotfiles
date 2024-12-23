@@ -5,7 +5,7 @@ require("full-border"):setup({
 	type = ui.Border.ROUNDED,
 })
 
-require("searchjump"):setup {
+require("searchjump"):setup({
 	unmatch_fg = "#b2a496",
 	match_str_fg = "#000000",
 	match_str_bg = "#73AC3A",
@@ -17,8 +17,29 @@ require("searchjump"):setup {
 	show_search_in_statusbar = false,
 	auto_exit_when_unmatch = true,
 	enable_capital_lable = false,
-	search_patterns = {}  -- demo:{"%.e%d+","s%d+e%d+"}
-}
+	search_patterns = {}, -- demo:{"%.e%d+","s%d+e%d+"}
+})
+
+require("mactag"):setup({
+	-- Keys used to add or remove tags
+	keys = {
+		r = "Red",
+		o = "Orange",
+		y = "Yellow",
+		g = "Green",
+		b = "Blue",
+		p = "Purple",
+	},
+	-- Colors used to display tags
+	colors = {
+		Red = "#ee7b70",
+		Orange = "#f5bd5c",
+		Yellow = "#fbe764",
+		Green = "#91fc87",
+		Blue = "#5fa3f8",
+		Purple = "#cb88f8",
+	},
+})
 
 THEME.git = THEME.git or {}
 THEME.git.modified_sign = "M"
@@ -48,7 +69,7 @@ end
 function Status:name()
 	local h = self._tab.current.hovered
 	if not h then
-		return ui.Line {}
+		return ui.Line({})
 	end
 
 	local linked = ""

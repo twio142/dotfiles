@@ -84,6 +84,8 @@ prepend_keymap = [
   { on = ["\\", "7"], run = "tab_switch 6", desc = "Switch to tab 7" },
   { on = ["\\", "8"], run = "tab_switch 7", desc = "Switch to tab 8" },
   { on = ["\\", "9"], run = "tab_switch 8", desc = "Switch to tab 9" },
+  { on = ["b", "a"], run = "plugin mactag --args=add", desc = "Tag selected files" },
+  { on = ["b", "r"], run = "plugin mactag --args=remove", desc = "Untag selected files" }
 ]
 
 [tasks]

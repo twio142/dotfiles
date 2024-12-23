@@ -6,10 +6,11 @@ deps = [
 	{ use = "twio142/githead", rev = "b93b24a" },
 	{ use = "twio142/yazi-plugins:my-cmd", rev = "414b2d4" },
 	{ use = "twio142/yazi-plugins:my-fzf", rev = "414b2d4" },
-	{ use = "yazi-rs/plugins:full-border", rev = "62f0789" },
-	{ use = "yazi-rs/plugins:git", rev = "62f0789" },
-	{ use = "yazi-rs/plugins:max-preview", rev = "62f0789" },
-	{ use = "yazi-rs/plugins:smart-filter", rev = "62f0789" },
+	{ use = "yazi-rs/plugins:full-border", rev = "7afba3a" },
+	{ use = "yazi-rs/plugins:git", rev = "7afba3a" },
+	{ use = "yazi-rs/plugins:max-preview", rev = "7afba3a" },
+	{ use = "yazi-rs/plugins:smart-filter", rev = "7afba3a" },
+	{ use = "yazi-rs/plugins:mactag", rev = "7afba3a" },
 ]
 
 [flavor]
