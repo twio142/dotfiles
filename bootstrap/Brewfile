@@ -252,8 +252,6 @@ cask "chatgpt"
 cask "cursor"
 # Chinese-German dictionary
 cask "dehelper"
-# App to build and share containerised applications and microservices
-cask "docker"
 # Calendar software
 cask "fantastical"
 # Collaborative team software
@@ -294,6 +292,8 @@ cask "nextcloud"
 cask "obsidian"
 # Finds large, unwanted files and deletes them
 cask "omnidisksweeper"
+# Replacement for Docker Desktop
+cask "orbstack"
 # Read, annotate, edit, convert, create, OCR, fill forms and sign PDFs
 cask "pdf-reader-pro"
 # VPN client focusing on security

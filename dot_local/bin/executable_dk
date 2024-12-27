@@ -1,2 +1,0 @@
-#!/bin/bash
-pgrep -qx Docker\ Desktop && pkill -x Docker\ Desktop || open --hide --background -a Docker\ Desktop
