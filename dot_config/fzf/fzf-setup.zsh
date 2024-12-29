@@ -77,9 +77,9 @@ _fzf_comprun() {
 _autojump_fzf() {
   local query=${LBUFFER##* }
   LBUFFER=''
-  local dir=$(fzf --query=${query} --bind "start:reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
-    --bind "change:reload:eval zoxide query {q} -l --exclude ${PWD:q:q} | awk '{ if (!seen[tolower()]++) print }' || true" \
-    --bind "ctrl-x:reload:zoxide remove {} && eval zoxide query {q} -l --exclude ${PWD:q:q} | awk '{ if (!seen[tolower()]++) print }' || true" \
+  local dir=$(fzf --query=${query} --bind "start:reload:zoxide query {q} -l --exclude '${PWD}' || true" \
+    --bind "change:reload:eval zoxide query {q} -l --exclude ${PWD:q:q} || true" \
+    --bind "ctrl-x:reload:zoxide remove {} && eval zoxide query {q} -l --exclude ${PWD:q:q} || true" \
     --disabled \
     --preview "fzf-preview {}" \
     --height=30%)
@@ -116,7 +116,7 @@ zle -N _autojump_fzf
 _fzf_repos() {
   local query=${LBUFFER##* }
   LBUFFER=''
-  local dir=$(awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | awk '{ if (!seen[tolower()]++) print }' | grep -Fxv "$PWD" | fzf --query=${query} --bind "ctrl-e:become(lazygit -p {})" --preview "echo -e \"\033[1m\$(basename {})\033[0m\n\"; git -c color.status=always -C {} status -bs" --preview-window='wrap' --height=~50%)
+  local dir=$(awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv "$PWD" | fzf --query=${query} --bind "ctrl-e:become(lazygit -p {})" --preview "echo -e \"\033[1m\$(basename {})\033[0m\n\"; git -c color.status=always -C {} status -bs" --preview-window='wrap' --height=~50%)
   local ret=$?
   if [ -z "$dir" ]; then
     zle redisplay
@@ -135,8 +135,8 @@ zle -N _fzf_repos
 # and prompt into the command line
 _fzf_locate() {
   local query=${LBUFFER##* }
-  local dir=$(fzf --query=${query} -m --bind "start:reload:zoxide query {q} -l --exclude '${PWD}' | awk '{ if (!seen[tolower()]++) print }' || true" \
-    --bind "change:reload:eval zoxide query {q} -l --exclude ${PWD:q:q} | awk '{ if (!seen[tolower()]++) print }' || true" \
+  local dir=$(fzf --query=${query} -m --bind "start:reload:zoxide query {q} -l --exclude '${PWD}' || true" \
+    --bind "change:reload:eval zoxide query {q} -l --exclude ${PWD:q:q} || true" \
     --bind "alt-enter:print(accept)+accept" \
     --disabled \
     --preview "fzf-preview {}" \
