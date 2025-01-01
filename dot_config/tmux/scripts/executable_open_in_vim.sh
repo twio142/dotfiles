@@ -32,7 +32,7 @@ open_in_existing_pane() {
     zsh)
       local line=$(tmux capturep -p -t $win -E - | grep -v '^\s*$' | tail -n1)
       if [[ "$line" = ❯ ]]; then
-        cmd="vim"
+        cmd="nvim"
         for file in $@; do
           file=$(echo $file | sd '^ (\d+)$' '+$1')
           cmd+=" ${file:q}"
@@ -49,7 +49,7 @@ open_in_new_window() {
   shift
   tmux neww -t "$window" -c "$HOME"
   local pane=$(tmux display -t "${window%:*}" -p "#P")
-  local cmd="vim"
+  local cmd="nvim"
   for file in $@; do
     file=$(echo $file | sd '^ (\d+)$' '+$1')
     cmd+=" ${file:q}"
