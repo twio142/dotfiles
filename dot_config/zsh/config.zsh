@@ -100,6 +100,8 @@ chpwd_functions=(auto-ls $chpwd_functions)
 
 export PATH="$HOME/.local/bin:$PATH"
 
+WORDCHARS=${WORDCHARS//[\/]}
+
 # tmux
 
 ta() {
