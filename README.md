@@ -1,13 +1,19 @@
+# My Dotfiles
+
+## References
+
+- [Documentation](https://www.chezmoi.io/reference/)
+
 ## Usage
 
-**Install**
+- Install
 
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)"
-chezmoi init <REMOTE-REPO>
+chezmoi init [--ssh] <USER>
 ```
 
-**Sync**
+- Sync
 
 ```bash
 chezmoi update
