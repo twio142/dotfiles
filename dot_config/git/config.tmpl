@@ -6,8 +6,8 @@
   process = git-lfs filter-process
   required = true
 [user]
-  email = 64556708+twio142@users.noreply.github.com
-  name = twio142
+  email = {{ env "GITHUB_EMAIL" }}
+  name = {{ env "GITHUB_USER" }}
   signingkey = 44703707F9B90BDE
 [color]
   ui = true

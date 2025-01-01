@@ -26,7 +26,7 @@ source $ZIM_HOME/init.zsh
 zimfw install
 
 echo "Installing kickstart"
-[ -d $XDG_CONFIG_HOME/kickstart ] || git clone git@github.com:twio142/kickstart.nvim.git
+[ -d $XDG_CONFIG_HOME/kickstart ] || git clone git@github.com:{{ env "GITHUB_USER" }}/kickstart.nvim.git
 git -C $XDG_CONFIG_HOME/kickstart pull --ff-only
 
 {{ end -}}
