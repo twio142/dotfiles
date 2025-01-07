@@ -10,6 +10,7 @@ tap "jesseduffield/lazydocker"
 tap "jesseduffield/lazygit"
 tap "joelekstrom/repo"
 tap "jorgerojas26/lazysql"
+tap "jstkdng/programs"
 tap "nikitabobko/tap"
 tap "owo-network/brew"
 tap "yt-dlp/taps"
@@ -262,6 +263,8 @@ cask "font-lxgw-bright"
 cask "font-sf-pro"
 # Tool that helps teams design every part of the product experience
 cask "framer"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Web browser
 cask "google-chrome"
 # Desktop automation application
