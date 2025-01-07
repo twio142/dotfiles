@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+node_modules/
+.git/
+*.tmp
+*.swp
+.build/
+dist/
+target/
+out/

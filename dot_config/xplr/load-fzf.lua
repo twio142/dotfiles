@@ -22,7 +22,7 @@ end
 
 local _fd = function(t, k)
   k = k or ("alt-" .. t)
-  return string.format("%s:reload(fd --type %s -H -L --exclude .DS_Store --exclude .git --strip-cwd-prefix=always .)+change-header( %s )", k, t, _hd(t))
+  return string.format("%s:reload(fd -t%s -HL --strip-cwd-prefix=always .)+change-header( %s )", k, t, _hd(t))
 end
 
 require("fzf").setup{

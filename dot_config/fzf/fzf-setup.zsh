@@ -16,12 +16,12 @@ export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target,__pycache__ --pre
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd -H -L -E ".DS_Store" -E ".git" --strip-cwd-prefix=always "${@:-.}"
+  fd -H -L --strip-cwd-prefix=always "${@:-.}"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d -H -L -E ".git" --strip-cwd-prefix=always "${@:-.}"
+  fd -td -H -L --strip-cwd-prefix=always "${@:-.}"
 }
 
 fzf-history-widget() {
@@ -62,7 +62,7 @@ _fzf_comprun() {
     cd)           fzf --preview "fzf-preview {}" "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    vim|nvim)     local FD='fd -tf -H -L -E .DS_Store -E .git'
+    vim|nvim)     local FD='fd -tf -H -L'
                   fzf --preview "fzf-preview {}" \
                       --bind "change:transform:[ \$FZF_PROMPT = '> ' ] || echo 'reload($FD '{q}' . -X ls -t)'" \
                       --bind "ctrl-s:clear-query+toggle-search+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ')+reload([ \$FZF_PROMPT = '> ' ] && $FD --strip-cwd-prefix=always . || $FD . . -X ls -t)" "$@" ;;
@@ -99,7 +99,7 @@ zle -N _autojump_fzf
 # search for images in the current directory, and prompt into the command line
 # _fzf_image() {
 #   local query=${LBUFFER##* }
-#   local selected=$(fd -E ".git" -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "fzf-preview {}" --preview-window='bottom,80%')
+#   local selected=$(fd -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e webp | fzf -m --query=${query} --preview "fzf-preview {}" --preview-window='bottom,80%')
 #   local ret=$?
 #   if [ -n "$selected" ]; then
 #     LBUFFER=${LBUFFER% *}

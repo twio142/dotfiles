@@ -27,7 +27,7 @@ PATH=/opt/homebrew/bin:$PATH
 
 PURPLE=$'\033[35m'
 OFF=$'\033[0m'
-FD_PREFIX="fd -H -L -tf -E .git -E .DS_Store -p "
+FD_PREFIX="fd -H -L -tf -p "
 FD_SUFFIX=". -X ls -t | sed 's/^\.\//${PURPLE}/' | sed 's/\$/${OFF}/'"
 RG="rg --ignore-vcs -. -L -S -n --column --no-heading -g '!**/.git/**' --color=always"
 COPY=pbcopy
