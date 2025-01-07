@@ -23,21 +23,23 @@ require("searchjump"):setup({
 require("mactag"):setup({
 	-- Keys used to add or remove tags
 	keys = {
-		r = "Red",
-		o = "Orange",
-		y = "Yellow",
-		g = "Green",
-		b = "Blue",
-		p = "Purple",
+		r = "red",
+		o = "orange",
+		y = "yellow",
+		g = "green",
+		b = "blue",
+		p = "purple",
+		x = "grey",
 	},
 	-- Colors used to display tags
 	colors = {
-		Red = "#ee7b70",
-		Orange = "#f5bd5c",
-		Yellow = "#fbe764",
-		Green = "#91fc87",
-		Blue = "#5fa3f8",
-		Purple = "#cb88f8",
+		red = "#da6963",
+		orange = "#f1a26f",
+		yellow = "#fbff6a",
+		green = "#91fc87",
+		blue = "#43a1ff",
+		purple = "#8764d2",
+		grey = "#b2b2b2",
 	},
 })
 
@@ -50,6 +52,10 @@ THEME.git.ignored_sign = ""
 require("git"):setup()
 
 require("githead"):setup()
+
+require("session"):setup {
+	sync_yanked = true,
+}
 
 function Linemode:size_and_mtime()
 	local year = os.date("%Y")

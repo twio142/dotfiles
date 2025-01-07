@@ -34,6 +34,7 @@ prepend_keymap = [
   { on = [ "<Space>", "u" ], run = "shell \"dust -C -w $(stty size < /dev/tty | awk '{print $2}') -n $(stty size < /dev/tty | awk '{print $1 - 2}') . | less -r\" --block", desc = "Disk usage" },
   { on = [ "<Space>", "C" ], run = "plugin ouch --args=zip", desc = "Compress" },
   { on = [ "<Space>", "t" ], run = "tasks_show", desc = "Show task manager" },
+  { on = [ "<Space>", "s" ], run = "plugin my-fzf --args=selected", desc = "List selected files" },
   { on = [ "<Space>", "<Enter>" ], run = "plugin my-cmd --args='smart alt-enter'", desc = "Open in new window" },
   { on = [ "\\", "g" ], run = "plugin my-fzf --args=z", desc = "Go to a directory" },
   { on = [ "\\", "f" ], run = "plugin my-fzf --args=fd", desc = "Search files" },
@@ -87,7 +88,8 @@ prepend_keymap = [
   { on = ["\\", "8"], run = "tab_switch 7", desc = "Switch to tab 8" },
   { on = ["\\", "9"], run = "tab_switch 8", desc = "Switch to tab 9" },
   { on = ["b", "a"], run = "plugin mactag --args=add", desc = "Tag selected files" },
-  { on = ["b", "r"], run = "plugin mactag --args=remove", desc = "Untag selected files" }
+  { on = ["b", "r"], run = "plugin mactag --args=remove", desc = "Untag selected files" },
+  { on = ["b", "l"], run = "shell 'fzf-tag | while read f; do ya emit reveal \"$f\"; ya emit toggle --state=on; done' --block", desc = "List tagged files" }
 ]
 
 [tasks]
