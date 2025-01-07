@@ -13,9 +13,9 @@ TMUX_FZF_LAUNCH_KEY="C-f"
 FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer='
 TMUX_FZF_OPTIONS="-p -w 90% -h 70% -m --preview-window=up,70% ${FZF_DEFAULT_OPTS}"
 TMUX_FZF_ORDER="session|window|pane|buffer"
-TMUX_FZF_PANE_FORMAT="#{?pane_active,●,-} #{pane_current_command} ▸ #{b:pane_current_path} #{?pane_marked,󰃀 ,}"
-TMUX_FZF_WINDOW_FORMAT="#{?window_active,●,-} #{?#{==:#W,#{pane_current_command}},#W,#W (#{pane_current_command})}   #{window_panes}#{?window_marked_flag, 󰃀,}"
-TMUX_FZF_SESSION_FORMAT="#{?session_attached,●,-}   #{session_windows} ▸ #{b:session_path}"
+TMUX_FZF_PANE_FORMAT="#{?pane_active,●,-} #{pane_current_command}#{?pane_marked,\t󰃀,}\t #{b:pane_current_path} "
+TMUX_FZF_WINDOW_FORMAT="#{?window_active,●,-} #{?#{==:#W,#{pane_current_command}},#W,#W (#{pane_current_command})}\t #{window_panes}#{?window_marked_flag,  󰃀,}   #{b:pane_current_path} "
+TMUX_FZF_SESSION_FORMAT="#{?session_attached,●,-}  #{session_windows}   #{b:session_path} "
 TMUX_FZF_MENU=\
 "edit config\ntmux edit-config\n"\
 "tmux manual\ntmux tmux-man\n"\
