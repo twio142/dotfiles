@@ -20,23 +20,46 @@ tab_size = 2
 
 [opener]
 edit = [
-	{ run = 'nvim "$@"', block = true, for = "unix" },
-	{ run = "nvim %*",  block = true, for = "windows" },
+	{ run = 'nvim "$@"', block = true, for = "unix", desc = "Edit" },
+	{ run = "nvim %*",  block = true, for = "windows", desc = "Edit" },
+	{ run = '[ -f "$1" ] && { code "${1:h}"; sleep 1; code -g "$1"; } || code "$1"', desc = "Open in VSCode" }
 ]
 extract = [
-	{ run = 'ouch d -y "$@"', desc = "Extract here", for = "macos" },
 	{ run = 'ouch d -y "$@"', desc = "Extract here", for = "unix" },
 	{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
 ]
-	reveal = [
+reveal = [
 	{ run = 'xdg-open "$(dirname "$1")"',           desc = "Reveal", for = "linux" },
 	{ run = 'open -R "$1"',                         desc = "Reveal", for = "macos" },
 	{ run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
 ]
 play = [
-	{ run = 'open "$@"', for = "macos" },
-	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+	{ run = 'open "$@"', for = "macos", desc = "Play" },
+	# { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
 	{ run = 'mpv --force-window %*', orphan = true, for = "windows" },
+	{ run = 'l=$(echo "$1" | grep -Eq "\.m3u$" && echo loadlist || echo loadfile); ~/.local/bin/iina $l "$1" append', desc = "Append to playlist" }
+]
+load_sub = [
+	{ run = '~/.local/bin/iina sub-add "$1"', orphan = true, desc = "Load subtitle" }
+]
+uninstall_app = [
+	{ run = 'open "$1" -a AppCleaner', desc = "Uninstall app" }
+]
+image = [
+	{ run = '~/.local/bin/copy-img "$1"', desc = "Copy image" },
+	{ run = '~/.local/share/npm/bin/picgo u "$1"', desc = "Upload image" }
+]
+open_db = [
+	{ run = 'lazysql "$1"', block = true, desc = "Open database" }
+]
+
+[open]
+prepend_rules = [
+	{ mime = "image/*", use = ["open", "reveal", "image"] },
+	{ name = "*.m3u", use = ["play", "edit", "reveal"] },
+	{ name = "*.{ass,srt,sub}", use = ["load_sub", "edit"] },
+	{ name = "*.app/", use = ["open", "uninstall_app"] },
+	{ mime = "application/sqlite3", use = ["open_db", "open"] },
 ]
 
 [tasks]
@@ -62,6 +85,9 @@ prepend_fetchers = [
 	{ id = "mactag", name = "*", run = "mactag" },
 	{ id = "mactag", name = "*/", run = "mactag" },
 ]
+
+[which]
+sort_by = "key"
 
 [log]
 enabled = false
