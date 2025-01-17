@@ -1,6 +1,5 @@
 tap "buo/cask-upgrade"
 tap "cormacrelf/tap"
-tap "daipeihust/tap"
 tap "dimentium/autoraise"
 tap "finestructure/hummingbird"
 tap "homebrew/bundle"
@@ -11,6 +10,7 @@ tap "jesseduffield/lazygit"
 tap "joelekstrom/repo"
 tap "jorgerojas26/lazysql"
 tap "jstkdng/programs"
+tap "laishulu/homebrew"
 tap "nikitabobko/tap"
 tap "owo-network/brew"
 tap "yt-dlp/taps"
@@ -216,8 +216,6 @@ brew "yt-dlp"
 brew "zoxide"
 # Watcher for macOS 10.14+ light/dark mode changes
 brew "cormacrelf/tap/dark-notify"
-# Switch your input method through terminal
-brew "daipeihust/tap/im-select"
 # Focus-follows-mouse for MacOS
 brew "dimentium/autoraise/autoraise", args: ["with-dexperimental_focus_first"]
 # A simple terminal UI for docker, written in Go
@@ -227,6 +225,8 @@ brew "jesseduffield/lazygit/lazygit"
 # An ncurses-based minesweeper game
 brew "joelekstrom/repo/terminal-mines"
 brew "jorgerojas26/lazysql/lazysql"
+# MacOS Input Source Manager
+brew "laishulu/homebrew/macism"
 # DeepLX is a permanently free DeepL API client written in Golang.
 brew "owo-network/brew/deeplx"
 # AeroSpace is an i3-like tiling window manager for macOS
@@ -249,8 +249,6 @@ cask "bartender"
 cask "betterzip"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
-# Write, edit, and chat about your code with AI
-cask "cursor"
 # Chinese-German dictionary
 cask "dehelper"
 # Calendar software
@@ -351,17 +349,14 @@ vscode "animaapp.vscode-anima"
 vscode "baurine.vscode-pangu"
 vscode "davidanson.vscode-markdownlint"
 vscode "dbaeumer.vscode-eslint"
-vscode "donjayamanne.githistory"
 vscode "eamodio.gitlens"
 vscode "ecmel.vscode-html-css"
 vscode "eeyore.yapf"
 vscode "esbenp.prettier-vscode"
-vscode "felipecaputo.git-project-manager"
 vscode "figma.figma-vscode-extension"
 vscode "formulahendry.auto-close-tag"
 vscode "formulahendry.auto-rename-tag"
 vscode "formulahendry.code-runner"
-vscode "gera2ld.markmap-vscode"
 vscode "github.codespaces"
 vscode "github.copilot"
 vscode "github.copilot-chat"
@@ -392,8 +387,6 @@ vscode "mtxr.sqltools"
 vscode "mtxr.sqltools-driver-sqlite"
 vscode "notzaki.pandocciter"
 vscode "qwtel.sqlite-viewer"
-vscode "rdebugger.r-debugger"
-vscode "reditorsupport.r"
 vscode "rvest.vs-code-prettier-eslint"
 vscode "sswg.swift-lang"
 vscode "streetsidesoftware.code-spell-checker"

@@ -1,20 +1,20 @@
 [plugin]
 deps = [
-	{ use = "DreamMaoMao/searchjump", rev = "bb6607a" },
-	{ use = "dedukun/relative-motions", rev = "df97039" },
-	{ use = "ndtoan96/ouch", rev = "083d564" },
-	{ use = "twio142/githead", rev = "b93b24a" },
-	{ use = "twio142/yazi-plugins:smart-filter", rev = "b2f153a" },
-	{ use = "twio142/yazi-plugins:my-cmd", rev = "b2f153a" },
-	{ use = "twio142/yazi-plugins:my-fzf", rev = "b2f153a" },
-	{ use = "yazi-rs/plugins:full-border", rev = "600614a" },
-	{ use = "yazi-rs/plugins:git", rev = "600614a" },
-	{ use = "yazi-rs/plugins:mactag", rev = "600614a" },
-	{ use = "yazi-rs/plugins:max-preview", rev = "600614a" },
+	{ use = "DreamMaoMao/searchjump",            rev = "05f1716" },
+	{ use = "dedukun/relative-motions",          rev = "df97039" },
+	{ use = "ndtoan96/ouch",                     rev = "083d564" },
+	{ use = "twio142/githead",                   rev = "e763ccf" },
+	{ use = "twio142/yazi-plugins:smart-filter", rev = "f07836f" },
+	{ use = "twio142/yazi-plugins:my-cmd",       rev = "f07836f" },
+	{ use = "twio142/yazi-plugins:my-fzf",       rev = "f07836f" },
+	{ use = "yazi-rs/plugins:full-border",       rev = "e4aaf43" },
+	{ use = "yazi-rs/plugins:git",               rev = "e4aaf43" },
+	{ use = "yazi-rs/plugins:mactag",            rev = "e4aaf43" },
+	{ use = "yazi-rs/plugins:max-preview",       rev = "e4aaf43" },
 ]
 
 [flavor]
 deps = [
-	{ use = "yazi-rs/flavors:catppuccin-latte", rev = "fc8eeaa" },
-	{ use = "yazi-rs/flavors:catppuccin-mocha", rev = "fc8eeaa" }
+	{ use = "yazi-rs/flavors:catppuccin-latte",  rev = "78d1d19" },
+	{ use = "yazi-rs/flavors:catppuccin-mocha",  rev = "78d1d19" }
 ]
