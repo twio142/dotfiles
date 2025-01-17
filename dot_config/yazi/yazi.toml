@@ -52,6 +52,9 @@ image = [
 open_db = [
 	{ run = 'lazysql "$1"', block = true, desc = "Open database" }
 ]
+osascript = [
+	{ run = 'osascript "$1"', desc = "Run AppleScript" }
+]
 
 [open]
 prepend_rules = [
@@ -60,6 +63,7 @@ prepend_rules = [
 	{ name = "*.{ass,srt,sub}", use = ["load_sub", "edit"] },
 	{ name = "*.app/", use = ["open", "uninstall_app"] },
 	{ mime = "application/sqlite3", use = ["open_db", "open"] },
+	{ name = "*.scpt", use = ["open", "osascript", "reveal" ]}
 ]
 
 [tasks]
@@ -74,9 +78,7 @@ suppress_preload = false
 prepend_previewers = [
 	{ mime = "image/vnd.djvu", run = "noop" },
 	# Archive
-	{ mime = "application/zip", run = "ouch" },
-	{ mime = "application/gzip", run = "ouch" },
-	{ mime = "application/{tar,bzip*,7z-compressed,xz,rar}", run = "ouch" },
+	{ mime = "application/{zip,gzip,tar,bzip*,7z-compressed,xz,rar}", run = "ouch" },
 ]
 
 prepend_fetchers = [
