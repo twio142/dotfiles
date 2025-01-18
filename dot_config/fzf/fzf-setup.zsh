@@ -8,20 +8,24 @@ export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,b
 
 # Use ` as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER='`'
-# Options to fzf command
+# Commands and options to fzf command
 export FZF_COMPLETION_OPTS="$FZF_DEFAULT_OPTS"
 export FZF_CTRL_R_OPTS="-d '\t' --with-nth 2.. --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
-export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target,__pycache__ --preview 'fzf-preview {}'"
+export FZF_CTRL_T_COMMAND='fd -H -L'
+export FZF_CTRL_T_OPTS="--preview 'fzf-preview {}' -m"
+export FZF_ALT_C_COMMAND='fd -td -H -L'
+export FZF_ALT_C_OPTS="--preview 'fzf-preview {}' -m"
+
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd -H -L --strip-cwd-prefix=always "${@:-.}"
+  fd -H -L . "${@:-.}"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd -td -H -L --strip-cwd-prefix=always "${@:-.}"
+  fd -td -H -L . "${@:-.}"
 }
 
 fzf-history-widget() {
@@ -160,6 +164,7 @@ _fzf_locate() {
   if [ -n "$selected" ]; then
     LBUFFER=${LBUFFER% *}
     echo $selected | while read -r line; do
+      line=${line/#.\/}
       LBUFFER+=\ ${dir:q}\/${line:q}
     done
   fi
@@ -168,6 +173,7 @@ _fzf_locate() {
 }
 zle -N _fzf_locate
 
+bindkey '^[t' fzf-file-widget
 bindkey '^[g' _autojump_fzf
 bindkey '^[r' _fzf_repos
 bindkey '^[l' _fzf_locate
