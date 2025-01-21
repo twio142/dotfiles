@@ -165,9 +165,11 @@ bind C-v copy-mode
 bind -n M-v copy-mode
 bind -T copy-mode-vi v send -X begin-selection # start selection with v
 bind -T copy-mode-vi y send -X copy-selection # copy selection with y
-bind -T copy-mode-vi Y send 'v$y' # copy to end of line
+bind -T copy-mode-vi Y send -X copy-end-of-line-and-cancel
 bind -T copy-mode-vi Enter send -X copy-selection-and-cancel \; paste-buffer # paste selection
 bind -T copy-mode-vi C send -X copy-pipe "pbcopy"
+bind -T copy-mode-vi H send -X back-to-indentation
+bind -T copy-mode-vi L send -X end-of-line
 bind -T copy-mode-vi O send -X copy-pipe-and-cancel "xargs -I _ open '_'"
 bind -T copy-mode-vi i send -X cancel # cancel with Escape
 bind -T copy-mode-vi M-Up send -X search-backward "^❯ "
