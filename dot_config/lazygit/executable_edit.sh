@@ -10,5 +10,5 @@ elif [ -n "$TMUX_POPUP" ]; then
   $XDG_CONFIG_HOME/tmux/scripts/open_in_vim.sh '' "$@"
   tmux popup -C
 else
-  nvim -- "$@"
+  nvim "$@"
 fi
