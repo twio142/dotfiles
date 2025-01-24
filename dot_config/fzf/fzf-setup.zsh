@@ -2,44 +2,53 @@
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-# [ -z $alfred_version ] && . ${XDG_CONFIG_HOME:-~/.config}/fzf/fzf-git.sh
 
+## ctrl-d / ctrl-u: scroll preview
+## alt-j: jump
 export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer= --bind="ctrl-d:preview-half-page-down" --bind="ctrl-u:preview-half-page-up" --bind="alt-j:jump"'
 
 # Use ` as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER='`'
 # Commands and options to fzf command
 export FZF_COMPLETION_OPTS="$FZF_DEFAULT_OPTS"
+
+# CTRL-R: search history
+## ctrl-y -> copy
 export FZF_CTRL_R_OPTS="-d '\t' --with-nth 2.. --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
+
+# CTRL-T: search files
+# ALT-C: search directories
+## ctrl-f -> toggle ignore vcs
 export FZF_CTRL_T_COMMAND='fd -H -L'
-export FZF_CTRL_T_OPTS="--preview 'fzf-preview {}' -m"
+NO_IGNORE='--no-ignore-vcs --strip-cwd-prefix=always'
+export FZF_CTRL_T_OPTS="--preview 'fzf-preview {}' -m --bind \"ctrl-f:clear-query+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ' )+reload( [ \$FZF_PROMPT = '> ' ] && $FZF_CTRL_T_COMMAND || $FZF_CTRL_T_COMMAND $NO_IGNORE )\""
 export FZF_ALT_C_COMMAND='fd -td -H -L'
-export FZF_ALT_C_OPTS="--preview 'fzf-preview {}' -m"
+export FZF_ALT_C_OPTS="--preview 'fzf-preview {}' -m --bind \"ctrl-f:clear-query+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ' )+reload( [ \$FZF_PROMPT = '> ' ] && $FZF_ALT_C_COMMAND || $FZF_ALT_C_COMMAND $NO_IGNORE )\""
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd -H -L . "${@:-.}"
+  fd -H -L . "${@:-.}" | sd '^./' ''
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd -td -H -L . "${@:-.}"
+  fd -td -H -L . "${@:-.}" | sd '^./' ''
 }
 
 fzf-history-widget() {
-  # enter -> execute; ctrl-e -> edit
+  # enter -> execute; ctrl-e -> edit; ctrl-s -> toggle-sort
   local selected
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases noglob nobash_rematch 2> /dev/null
   if zmodload -F zsh/parameter p:history 2>/dev/null && (( ${#commands[perl]} )); then
     selected="$(printf '%s\t%s\000' "${(kv)history[@]}" |
       perl -0 -ne 'if (!$seen{(/^\s*[0-9]+\**\t(.*)/s, $1)}++) { s/\n/\n\t/g; print; }' |
-      FZF_DEFAULT_OPTS=$(__fzf_defaults "" "-n2..,.. --scheme=history --bind=ctrl-r:toggle-sort --wrap-sign '\t↳ ' --highlight-line ${FZF_CTRL_R_OPTS-} --expect=ctrl-e --query=${(qqq)LBUFFER} +m --read0") \
+      FZF_DEFAULT_OPTS=$(__fzf_defaults "" "-n2..,.. --scheme=history --bind=ctrl-s:toggle-sort --wrap-sign '\t↳ ' --highlight-line ${FZF_CTRL_R_OPTS-} --expect=ctrl-e --query=${(qqq)LBUFFER} +m --read0") \
       FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd))"
   else
     selected="$(fc -rl 1 | awk '{ cmd=$0; sub(/^[ \t]*[0-9]+\**[ \t]+/, "", cmd); if (!seen[cmd]++) print $0 }' |
-      FZF_DEFAULT_OPTS=$(__fzf_defaults "" "-n2..,.. --scheme=history --bind=ctrl-r:toggle-sort --wrap-sign '\t↳ ' --highlight-line ${FZF_CTRL_R_OPTS-} --expect=ctrl-e --query=${(qqq)LBUFFER} +m") \
+      FZF_DEFAULT_OPTS=$(__fzf_defaults "" "-n2..,.. --scheme=history --bind=ctrl-s:toggle-sort --wrap-sign '\t↳ ' --highlight-line ${FZF_CTRL_R_OPTS-} --expect=ctrl-e --query=${(qqq)LBUFFER} +m") \
       FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd))"
   fi
   local ret=$?
@@ -70,8 +79,10 @@ _fzf_comprun() {
                   fzf --preview "fzf-preview {}" \
                       --bind "change:transform:[ \$FZF_PROMPT = '> ' ] || echo 'reload($FD '{q}' . -X ls -t)'" \
                       --bind "ctrl-s:clear-query+toggle-search+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ')+reload([ \$FZF_PROMPT = '> ' ] && $FD --strip-cwd-prefix=always . || $FD . . -X ls -t)" "$@" ;;
+                  # ctrl-s -> sort by mtime
     chezmoi)      chezmoi managed -p absolute | fzf --preview "fzf-preview {}" \
-                      --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Unstaged files )" "$@" ;;
+                      --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Changed files )" "$@" ;;
+                  # ctrl-f -> filter changed files
     euporie*)     fd -e ipynb | fzf --preview "euporie-preview {} 2> /dev/null" "$@" ;;
     *)            fzf --preview "fzf-preview {}" "$@" ;;
   esac
@@ -79,6 +90,7 @@ _fzf_comprun() {
 
 # search for a directory using zoxide, and enter it
 _autojump_fzf() {
+  # ctrl-x -> remove from history
   local query=${LBUFFER##* }
   LBUFFER=''
   local dir=$(fzf --query=${query} --bind "start:reload:zoxide query {q} -l --exclude '${PWD}' || true" \
@@ -118,6 +130,7 @@ zle -N _autojump_fzf
 
 # search for a git repository, and enter it
 _fzf_repos() {
+  # ctrl-e -> open in lazygit
   local query=${LBUFFER##* }
   LBUFFER=''
   local dir=$(awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | sd '^ +- ' '' | grep -Fxv "$PWD" | fzf --query=${query} --bind "ctrl-e:become(lazygit -p {})" --preview "echo -e \"\033[1m\$(basename {})\033[0m\n\"; git -c color.status=always -C {} status -bs" --preview-window='wrap' --height=~50%)
@@ -138,6 +151,7 @@ zle -N _fzf_repos
 # search for a directory, and then for files / directories inside it
 # and prompt into the command line
 _fzf_locate() {
+  # alt-enter -> accept directory
   local query=${LBUFFER##* }
   local dir=$(fzf --query=${query} -m --bind "start:reload:zoxide query {q} -l --exclude '${PWD}' || true" \
     --bind "change:reload:eval zoxide query {q} -l --exclude ${PWD:q:q} || true" \
