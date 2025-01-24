@@ -4,10 +4,10 @@ LANG = "en_US.UTF-8"
 
 [font]
 size = 12.0
-normal = { family = "FiraCode Nerd Font", style = "Light" }
-bold = { family = "FiraCode Nerd Font", style = "SemiBold" }
-italic = { family = "JetBrainsMono Nerd Font", style = "Thin Italic" }
-bold_italic = { family = "JetBrainsMono Nerd Font", style = "SemiBold Italic" }
+normal = { family = "FiraCode Nerd Font Propo", style = "Light" }
+bold = { family = "FiraCode Nerd Font Propo", style = "SemiBold" }
+italic = { family = "JetBrainsMono Nerd Font Propo", style = "Thin Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font Propo", style = "SemiBold Italic" }
 offset = { x = 0, y = 1 }
 glyph_offset = { x = 0, y = 0 }
 

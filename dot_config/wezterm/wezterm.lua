@@ -37,21 +37,21 @@ local config = {
   -- }),
   font_rules = {
     { intensity = "Normal", italic = true, font = wezterm.font_with_fallback({
-      { family = "JetBrainsMono NF", weight = "Regular", italic = true },
+      { family = "JetBrainsMono Nerd Font Propo", weight = "Regular", italic = true },
       { family = "SF Pro", weight = "Regular", italic = true },
     }) },
     { intensity = "Bold", italic = true, font = wezterm.font_with_fallback({
-      { family = "JetBrainsMono Nerd Font", weight = "ExtraBold", italic = true },
+      { family = "JetBrainsMono Nerd Font Propo", weight = "ExtraBold", italic = true },
       { family = "SF Pro", weight = "Bold" , italic = true },
     }) },
     { intensity = "Normal", font = wezterm.font_with_fallback({
-      { family = "FiraCode Nerd Font", weight = "Regular" },
-      { family = "JetBrainsMono NF", weight = "Regular" },
+      { family = "FiraCode Nerd Font Propo", weight = "Regular" },
+      { family = "JetBrainsMono Nerd Font Propo", weight = "Regular" },
       { family = "SF Pro", weight = "Regular" },
     }) },
     { intensity = "Bold", font = wezterm.font_with_fallback({
-      { family = "FiraCode Nerd Font", weight = "Bold" },
-      { family = "JetBrainsMono NF", weight = "ExtraBold" },
+      { family = "FiraCode Nerd Font Propo", weight = "Bold" },
+      { family = "JetBrainsMono Nerd Font Propo", weight = "ExtraBold" },
       { family = "SF Pro", weight = "Bold" },
     }) },
   },
