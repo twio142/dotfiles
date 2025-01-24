@@ -4,17 +4,17 @@ deps = [
 	{ use = "dedukun/relative-motions",          rev = "df97039" },
 	{ use = "ndtoan96/ouch",                     rev = "083d564" },
 	{ use = "twio142/githead",                   rev = "e763ccf" },
-	{ use = "twio142/yazi-plugins:smart-filter", rev = "f07836f" },
-	{ use = "twio142/yazi-plugins:my-cmd",       rev = "f07836f" },
-	{ use = "twio142/yazi-plugins:my-fzf",       rev = "f07836f" },
-	{ use = "yazi-rs/plugins:full-border",       rev = "e4aaf43" },
-	{ use = "yazi-rs/plugins:git",               rev = "e4aaf43" },
-	{ use = "yazi-rs/plugins:mactag",            rev = "e4aaf43" },
-	{ use = "yazi-rs/plugins:max-preview",       rev = "e4aaf43" },
+	{ use = "twio142/yazi-plugins:smart-filter", rev = "70d4dd9" },
+	{ use = "twio142/yazi-plugins:my-cmd",       rev = "70d4dd9" },
+	{ use = "twio142/yazi-plugins:my-fzf",       rev = "70d4dd9" },
+	{ use = "yazi-rs/plugins:full-border",       rev = "8ed2537" },
+	{ use = "yazi-rs/plugins:git",               rev = "8ed2537" },
+	{ use = "yazi-rs/plugins:mactag",            rev = "8ed2537" },
+	{ use = "yazi-rs/plugins:max-preview",       rev = "8ed2537" },
 ]
 
 [flavor]
 deps = [
-	{ use = "yazi-rs/flavors:catppuccin-latte",  rev = "78d1d19" },
-	{ use = "yazi-rs/flavors:catppuccin-mocha",  rev = "78d1d19" }
+	{ use = "yazi-rs/flavors:catppuccin-latte",  rev = "fd85060" },
+	{ use = "yazi-rs/flavors:catppuccin-mocha",  rev = "fd85060" }
 ]
