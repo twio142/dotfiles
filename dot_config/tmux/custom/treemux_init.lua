@@ -237,7 +237,7 @@ require("lazy").setup {
             })
           end,
           open_in_tmux = function(state, target)
-            local node = state.tree:get_node()
+            local node = state._node or state.tree:get_node()
             if target == 't' then
               local cmd = { 'tmux', 'new-window' }
               if node.type == "file" then
@@ -583,6 +583,15 @@ require("lazy").setup {
               ['Ss'] = { 'order_by_size', nowait = false },
               ['St'] = { 'order_by_type', nowait = false },
             },
+          },
+        },
+        event_handlers = {
+          {
+            event = 'file_opened',
+            handler = function(file)
+              require('neo-tree').config.commands.open_in_tmux({ _node = { type = 'file', path = file } })
+              vim.cmd 'quit'
+            end,
           },
         },
       }
