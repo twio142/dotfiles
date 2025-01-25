@@ -1404,7 +1404,7 @@
               {
                 "conditions": [
                   {
-                    "input_sources": [{ "language": "zh-Hans" }],
+                    "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.Shuangpin" }],
                     "type": "input_source_if"
                   }
                 ],
@@ -1420,7 +1420,7 @@
               {
                 "conditions": [
                   {
-                    "input_sources": [{ "language": "zh-Hans" }],
+                    "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.Shuangpin" }],
                     "type": "input_source_if"
                   }
                 ],
@@ -1436,7 +1436,7 @@
               {
                 "conditions": [
                   {
-                    "input_sources": [{ "language": "zh-Hans" }],
+                    "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.Shuangpin" }],
                     "type": "input_source_if"
                   },
                   {
@@ -1452,7 +1452,7 @@
               {
                 "conditions": [
                   {
-                    "input_sources": [{ "language": "zh-Hans" }],
+                    "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.Shuangpin" }],
                     "type": "input_source_if"
                   }
                 ],
@@ -1466,7 +1466,7 @@
               {
                 "conditions": [
                   {
-                    "input_sources": [{ "language": "zh-Hans" }],
+                    "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.Shuangpin" }],
                     "type": "input_source_if"
                   }
                 ],
