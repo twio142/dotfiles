@@ -132,6 +132,8 @@ brew "jq"
 brew "less"
 # Configuration file processing library
 brew "libconfig"
+# Rime Input Method Engine
+brew "librime"
 # X.Org: X Toolkit Intrinsics library
 brew "libxt"
 # Clone of ls with colorful output, file type icons, and more
@@ -315,6 +317,8 @@ cask "quicklook-json"
 cask "r"
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
+# Rime input method engine
+cask "squirrel"
 # Quicklook extension for source files
 cask "syntax-highlight"
 # Utility for producing audio feedback when typing

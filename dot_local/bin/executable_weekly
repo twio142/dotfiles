@@ -51,6 +51,7 @@ echo "Pruned $(plural $link_count "symbolic link"), $(plural $file_count "file")
 nvim --headless -c "lua require('lazy').sync()" -c "lua require('mason-registry').update()" -c qa
 
 git -C ~/Projects/ProperTree pull
+git -C ~/Library/Rime fetch --depth=1
 mas upgrade
 zimfw uninstall -q
 zimfw upgrade
