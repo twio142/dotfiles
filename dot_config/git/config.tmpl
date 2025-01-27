@@ -8,7 +8,7 @@
 [user]
   email = {{ env "GITHUB_EMAIL" }}
   name = {{ env "GITHUB_USER" }}
-  signingkey = 44703707F9B90BDE
+  signingkey = {{ env "GIT_USER_SIGNINGKEY" }}
 [color]
   ui = true
 [core]
@@ -45,6 +45,7 @@
 [merge]
   tool = diffview
   conflictStyle = diff3
+  ff = false
 [mergetool "diffview"]
   cmd = ~/.config/lazygit/edit.sh -c "DiffviewOpen"
 [pull]
