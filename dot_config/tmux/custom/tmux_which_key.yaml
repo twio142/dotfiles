@@ -214,9 +214,6 @@ items:
       - name: Popup terminal
         key: t
         command: popup-term
-      - name: xplr
-        key: x
-        command: xplr
       - name: Yazi
         key: y
         command: yazi

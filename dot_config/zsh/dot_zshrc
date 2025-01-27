@@ -9,7 +9,7 @@ if [[ ! -z $TMUX && -z $alfred_version && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p1
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ -z "$alfred_version" && -z "$XPLR" && -z "$YAZI_LEVEL" && -z "$NVIM" && -z "$TMUX_POPUP" ]]; then
+if [[ -z "$alfred_version" && -z "$YAZI_LEVEL" && -z "$NVIM" && -z "$TMUX_POPUP" ]]; then
   t=$(echo "evening morning afternoon" | awk -v h="$(gdate +%H)" '{ print (h < 3 || h > 18) ? $1 : (h < 12) ? $2 : $3 }')
   echo -e "\e[38;5;57m\e[1mGood $t, Shin ฅ^•ﻌ•^ฅ\e[0m"
   unset t

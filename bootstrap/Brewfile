@@ -206,8 +206,6 @@ brew "tree"
 brew "vivid"
 # Check your $HOME for unwanted files and directories
 brew "xdg-ninja"
-# Hackable, minimal, fast TUI file explorer
-brew "xplr"
 # JavaScript package manager
 brew "yarn"
 # Blazing fast terminal file manager written in Rust, based on async I/O
