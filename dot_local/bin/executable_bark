@@ -62,13 +62,17 @@ parseArgs() {
 # Example usage:
 # notify --title "New Message" --body "You have a new notification!" --sound "ping" --icon "bell.png" --url "https://example.com"
 
+secret() {
+  security find-generic-password -s bark -a "$1" -w
+}
+
 # bark key
-deviceKey='{{secret "--service=bark" "--user=deviceKey"}}'
+deviceKey=$(secret deviceKey)
 
 # Must be 32 bit long
-key='{{secret "--service=bark" "--user=key"}}'
+key=$(secret key)
 # IV can be randomly generated, but if it is random, it needs to be passed in the iv parameter.
-iv='{{secret "--service=bark" "--user=iv"}}'
+iv=$(secret iv)
 
 # openssl requires Hex encoding of manual keys and IVs, not ASCII encoding.
 key=$(printf $key | xxd -ps -c 200)
