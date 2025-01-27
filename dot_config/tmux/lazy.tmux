@@ -207,7 +207,8 @@ set -g command-alias[25] popup-term="popup -E -w 80% -d '#{pane_current_path}' -
 
 bind C-r ER
 bind M-h tmux-man
-bind -n f3 yazi-popup
+bind -n F3 if -F "#{==:#{pane_current_command},nvim}" "send F3" yazi-popup
+bind -n S-F3 yazi
 bind Tab last
 bind ` lastp
 bind -n F1 if -F "#{==:#{pane_current_command},nvim}" "send F1" toggle-sidebar
