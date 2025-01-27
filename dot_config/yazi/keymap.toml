@@ -68,7 +68,7 @@ prepend_keymap = [
   { on = "F", run = "plugin smart-filter", desc = "Smart filter" },
   { on = "a", run = "shell 'alfred \"$1\"'", desc = "Show file in Alfred" },
   { on = "=", run = "shell 'altr -w com.nyako520.syspre -t buffer -a - \"$@\"'", desc = "Add file to Alfred buffer" },
-  { on = "x", run = "shell 'altr -w com.nyako520.alfred -t action -a - \"$@\"'", desc = "Action on file in Alfred" },
+  { on = "A", run = "shell 'altr -w com.nyako520.alfred -t action -a - \"$@\"'", desc = "Action on file in Alfred" },
   { on = ["<A-l>", "c"], run = "plugin my-cmd --args='on_selection copy'", desc = "Copy selected files here" },
   { on = ["<A-l>", "C"], run = "plugin my-cmd --args='on_selection copy-force'", desc = "Force-copy selected files here" },
   { on = ["<A-l>", "m"], run = "plugin my-cmd --args='on_selection move'", desc = "Move selected files here" },

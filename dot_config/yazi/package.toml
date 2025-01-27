@@ -1,16 +1,16 @@
 [plugin]
 deps = [
 	{ use = "DreamMaoMao/searchjump",            rev = "05f1716" },
-	{ use = "dedukun/relative-motions",          rev = "df97039" },
+	{ use = "dedukun/relative-motions",          rev = "0d9c8cf" },
 	{ use = "ndtoan96/ouch",                     rev = "083d564" },
 	{ use = "twio142/githead",                   rev = "e763ccf" },
-	{ use = "twio142/yazi-plugins:smart-filter", rev = "70d4dd9" },
-	{ use = "twio142/yazi-plugins:my-cmd",       rev = "70d4dd9" },
-	{ use = "twio142/yazi-plugins:my-fzf",       rev = "70d4dd9" },
-	{ use = "yazi-rs/plugins:full-border",       rev = "8ed2537" },
-	{ use = "yazi-rs/plugins:git",               rev = "8ed2537" },
-	{ use = "yazi-rs/plugins:mactag",            rev = "8ed2537" },
-	{ use = "yazi-rs/plugins:max-preview",       rev = "8ed2537" },
+	{ use = "twio142/yazi-plugins:smart-filter", rev = "4473b13" },
+	{ use = "twio142/yazi-plugins:my-cmd",       rev = "4473b13" },
+	{ use = "twio142/yazi-plugins:my-fzf",       rev = "4473b13" },
+	{ use = "yazi-rs/plugins:full-border",       rev = "02d18be" },
+	{ use = "yazi-rs/plugins:git",               rev = "02d18be" },
+	{ use = "yazi-rs/plugins:mactag",            rev = "02d18be" },
+	{ use = "yazi-rs/plugins:max-preview",       rev = "02d18be" },
 ]
 
 [flavor]

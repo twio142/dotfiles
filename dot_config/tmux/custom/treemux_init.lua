@@ -477,7 +477,7 @@ require("lazy").setup {
                 local path = state.tree:get_node().path
                 path = vim.fn.shellescape(path)
                 vim.api.nvim_feedkeys(': ' .. path, 'n', true)
-                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Home>', true, false, true), 'n', true)
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Home>', true, true, true), 'n', true)
                 vim.api.nvim_feedkeys('!', 'n', true)
               end,
               desc = 'run command with path',
