@@ -2,9 +2,10 @@
 
 # Open files in nvim in the current pane if it is nvim
 # Otherwise open in a new window
-# Usage: [NEWW=1] [SESS=...] open_in_vim.sh <client_pid> [-n] <file>...
-# NEWW=1|-n: Open in a new window
-# SESS: Session name. If given, client_pid is ignored
+# Usage: [NEWW=1] [SESS=...] [PID=...] tmux_edit <file>...
+# NEWW=1: Open in a new window
+# SESS: Session name. If given, PID is ignored
+# PID: Client PID
 
 open_in_existing_pane() {
   pane=$1
@@ -18,10 +19,10 @@ open_in_existing_pane() {
         pid=$(pgrep -P $pid 2> /dev/null)
         [ -z "$pid" ] && return
       done
-      local socket=$(fd "nvim\.$pid.*" $TMPDIR --type s)
+      local socket=$(nvr --serverlist | grep "nvim\.$pid\..*")
       [ -n "$socket" ] && {
         if [[ $# -eq 2 && -f "$1" && "$2" =~ '^[+ ][0-9]+$' ]]; then
-          nvr --servername $socket "$1" -c "${2:1}G"
+          nvr --servername $socket "$1" -c "${2:1}"
         elif [ $# -gt 0 ]; then
           nvr --servername $socket "$@"
         fi
@@ -63,22 +64,14 @@ getSession() {
 }
 
 if [ -z "$SESS" ]; then
-  session=$(getSession "$1")
-  shift
-else
-  session=$SESS
+  SESS=$(getSession "$PID")
 fi
-[ -z "$session" ] && exit 1
+[ -z "$SESS" ] && exit 1
 
-if [ "$1" = -n ]; then
-  NEWW=1
-  shift
-fi
-
-tmux lsw -t "$session" -F "#{window_active}	#{window_index}" | awk -F '\t' '$1 == "1" {print $2}' | while read window; do
-  tmux lsp -t "$session:$window" -F "#{pane_active}	#S:#{window_index}.#P	#{pane_current_command}	#{pane_pid}" | awk -F '\t' '$1 == "1" { $1=""; print $0 }' | while read pane; do
+tmux lsw -t "$SESS:" -F "#{window_active}	#{window_index}" | awk -F '\t' '$1 == "1" {print $2}' | while read window; do
+  tmux lsp -t "$SESS:$window" -F "#{pane_active}	#S:#{window_index}.#P	#{pane_current_command}	#{pane_pid}" | awk -F '\t' '$1 == "1" { $1=""; print $0 }' | while read pane; do
     open_in_existing_pane $pane "$@"
   done
 done
 
-open_in_new_window $session:$window "$@"
+open_in_new_window $SESS:$window "$@"

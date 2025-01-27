@@ -7,7 +7,7 @@ if [ -n "$NVIM" ]; then
   nvr -cc quit "$@"
   exit 0
 elif [ -n "$TMUX_POPUP" ]; then
-  $XDG_CONFIG_HOME/tmux/scripts/open_in_vim.sh '' "$@"
+  ~/.local/bin/tmux_edit "$@"
   tmux popup -C
 else
   nvim "$@"

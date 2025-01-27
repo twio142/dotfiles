@@ -73,7 +73,7 @@ _fzf_git_files() {
 }
 
 open_in_nvim() {
-  SESS="$(tmux display -p '#S')" $XDG_CONFIG_HOME/tmux/scripts/open_in_vim.sh "$@"
+  SESS="$(tmux display -p '#S')" ~/.local/bin/tmux_edit "$@"
 }
 
 _fzf_git_branches() {
