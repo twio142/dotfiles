@@ -29,4 +29,8 @@ echo "Installing kickstart"
 [ -d $XDG_CONFIG_HOME/kickstart ] || git clone git@github.com:{{ env "GITHUB_USER" }}/kickstart.nvim.git
 git -C $XDG_CONFIG_HOME/kickstart pull --ff-only
 
+echo "Installing rime-frost"
+[ -d ~/Library/Rime ] || git clone git@github.com:gaboolic/rime-frost.git --depth 1 ~/Library/Rime
+[ -d $XDG_DATA_HOME/rime-ls ] || git -C ~/Library/Rime worktree add $XDG_DATA_HOME/rime-ls HEAD --detach
+
 {{ end -}}
