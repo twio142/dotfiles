@@ -43,7 +43,7 @@ items:
         command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/window.sh || true"
       - name: Next
         key: n
-        command: "run $XDG_CONFIG_HOME/tmux/scripts/next_window.sh" 
+        command: if -F "#{>:#{session_windows},1}" next "neww -c '$HOME'"
       - name: Previous
         key: p
         command: previous
@@ -238,7 +238,7 @@ items:
         menu:
           - name: Install
             key: i
-            command: run $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/install_plugins
+            command: run $TMUX_PLUGIN_MANAGER_PATH/tpm/scripts/install_plugins.sh
           - name: Update
             key: u
             command: run "$TMUX_PLUGIN_MANAGER_PATH/tpm/scripts/update_plugin_prompt_handler.sh all"
@@ -248,10 +248,10 @@ items:
       - separator: true
       - name: Store sessions
         key: S
-        command: "run $XDG_CONFIG_HOME/tmux/scripts/store_sessions.sh"
+        command: run $XDG_CONFIG_HOME/tmux/scripts/store_sessions.sh
       - name: Restore sessions
         key: R
-        command: "run $TMUX_PLUGIN_MANAGER_PATH/tmux-resurrect/scripts/restore.sh"
+        command: run $TMUX_PLUGIN_MANAGER_PATH/tmux-resurrect/scripts/restore.sh
   - separator: true
   - name: +Help
     key: h

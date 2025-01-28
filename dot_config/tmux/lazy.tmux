@@ -24,7 +24,10 @@ TMUX_FZF_MENU=\
 "lazygit\ntmux lazygit\n"\
 "lazydocker\ntmux lazydocker\n"\
 "confetty\ntmux neww timeout 3s $XDG_DATA_HOME/go/bin/confetty\n"\
-"toggle status\ntmux toggle-status\n"
+"toggle status\ntmux toggle-status\n"\
+"toggle mouse\ntmux toggle-mouse\n"\
+"toggle clipboard\ntmux toggle-clipboard\n"\
+"toggle sidebar\ntmux toggle-sidebar\n"
 
 # catppuccin
 if 'test "$(background)" = light' 'set -g @catppuccin_flavor "latte"' 'set -g @catppuccin_flavor "mocha"'
@@ -170,7 +173,7 @@ bind -T copy-mode-vi C send -X copy-pipe "pbcopy"
 bind -T copy-mode-vi H send -X back-to-indentation
 bind -T copy-mode-vi L send -X end-of-line
 bind -T copy-mode-vi O send -X copy-pipe-and-cancel "xargs -I _ open '_'"
-bind -T copy-mode-vi i send -X cancel # cancel with Escape
+bind -T copy-mode-vi i send -X cancel
 bind -T copy-mode-vi M-Up send -X search-backward "^❯ "
 bind -T copy-mode-vi M-Down send -X search-forward "^❯ "
 bind -T copy-mode-vi C-h selectp -L
@@ -194,19 +197,20 @@ set -g command-alias[13] tmux-man="splitw -v $XDG_CONFIG_HOME/tmux/scripts/man.s
 set -g command-alias[14] ssh="neww $XDG_CONFIG_HOME/tmux/scripts/ssh.sh"
 set -g command-alias[15] toggle-status="if 'tmux show -q status \\; show -gq status | grep -q off' 'set status on' 'set status off'"
 set -g command-alias[16] toggle-clipboard="if 'tmux show -g set-clipboard | grep -q on' 'set -g set-clipboard off; display \"Clipboard OFF\"' 'set -g set-clipboard on; display \"Clipboard ON\"'"
-set -g command-alias[17] yazi-popup="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 yazi"
-set -g command-alias[18] yazi="neww -c '#{pane_current_path}' yazi"
-set -g command-alias[19] lzg="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_lazygit.sh"
-set -g command-alias[20] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazydocker' 'display \"Docker not running\"'"
-set -g command-alias[21] btm="popup -E -w 95% -h 90% -x 3% '$SHELL -c \"btm --theme nord$(test $(background) = light && echo -light)\"'"
-set -g command-alias[22] toggle-sidebar="run \"$XDG_CONFIG_HOME/tmux/plugins/treemux/scripts/toggle.sh '#{@treemux-key-Bspace}' '#{pane_id}'\""
-set -g command-alias[23] open="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_path.sh"
-set -g command-alias[24] popup-term="popup -E -w 80% -d '#{pane_current_path}' -e TMUX_POPUP=1 'zsh -l'"
+set -g command-alias[17] toggle-mouse="if 'tmux show -q mouse \\; show -gq mouse | grep -q off' 'set mouse on' 'set mouse off'"
+set -g command-alias[18] toggle-sidebar="run \"$XDG_CONFIG_HOME/tmux/plugins/treemux/scripts/toggle.sh '#{@treemux-key-Bspace}' '#{pane_id}'\""
+set -g command-alias[19] yazi-popup="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 yazi"
+set -g command-alias[20] yazi="neww -c '#{pane_current_path}' yazi"
+set -g command-alias[21] lzg="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_lazygit.sh"
+set -g command-alias[22] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazydocker' 'display \"Docker not running\"'"
+set -g command-alias[23] btm="popup -E -w 95% -h 90% -x 3% '$SHELL -c \"btm --theme nord$(test $(background) = light && echo -light)\"'"
+set -g command-alias[24] open="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_path.sh"
+set -g command-alias[25] popup-term="popup -E -w 80% -d '#{pane_current_path}' -e TMUX_POPUP=1 'zsh -l'"
 
 bind C-r ER
 bind M-h tmux-man
 bind -n F3 if -F "#{==:#{pane_current_command},nvim}" "send F3" yazi-popup
-bind -n S-F3 yazi
+bind -n C-F3 yazi
 bind Tab last
 bind ` lastp
 bind -n F1 if -F "#{==:#{pane_current_command},nvim}" "send F1" toggle-sidebar
