@@ -14,4 +14,7 @@ patch:
   translator/keep_comments: false
   translator/preedit_format:
 
+  "engine/translators/@after 2": lua_translator@*cloud_private*translator
+
   "engine/processors/@after 1": lua_processor@*switch_private
+  "engine/processors/@after 2": lua_processor@*cloud_private*processor
