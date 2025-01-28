@@ -147,6 +147,7 @@ _tmux_key_bindings() {
   bindkey '^[[1;3B' _tmux_next_mark
   bindkey '^[[1;3C' forward-word
   bindkey '^[[1;3D' backward-word
+  echo -ne '\e[5 q' # force cursor to blink
 }
 
 # restore ↑ and ↓ keys

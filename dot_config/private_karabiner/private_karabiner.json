@@ -13,7 +13,7 @@
         },
         "rules": [
           {
-            "description": "Alfred, Finder, PDF Reader Pro, WezTerm & Alacritty",
+            "description": "Alfred, Finder, PDF Reader Pro, Terminals",
             "manipulators": [
               {
                 "conditions": [
@@ -420,10 +420,12 @@
                   {
                     "bundle_identifiers": [
                       "com.github.wez.wezterm",
+                      "com.mitchellh.ghostty",
                       "org.alacritty"
                     ],
                     "file_paths": [
                       "/alacritty$",
+                      "/ghostty$",
                       "/wezterm$"
                     ],
                     "type": "frontmost_application_if"
@@ -446,10 +448,12 @@
                   {
                     "bundle_identifiers": [
                       "com.github.wez.wezterm",
+                      "com.mitchellh.ghostty",
                       "org.alacritty"
                     ],
                     "file_paths": [
                       "/alacritty$",
+                      "/ghostty$",
                       "/wezterm$"
                     ],
                     "type": "frontmost_application_if"
@@ -472,10 +476,12 @@
                   {
                     "bundle_identifiers": [
                       "com.github.wez.wezterm",
+                      "com.mitchellh.ghostty",
                       "org.alacritty"
                     ],
                     "file_paths": [
                       "/alacritty$",
+                      "/ghostty$",
                       "/wezterm$"
                     ],
                     "type": "frontmost_application_if"
@@ -916,6 +922,12 @@
                     "name": "caps_lock_hit",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "com.mitchellh.ghostty"
+                    ],
+                    "type": "frontmost_application_unless"
                   }
                 ],
                 "from": {
@@ -936,6 +948,12 @@
                     "name": "caps_lock_hit",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "com.mitchellh.ghostty"
+                    ],
+                    "type": "frontmost_application_unless"
                   }
                 ],
                 "from": {
@@ -1996,6 +2014,7 @@
                       "com.googlecode.iterm2",
                       "org.alacritty",
                       "com.github.wez.wezterm",
+                      "com.mitchellh.ghostty",
                       "com.microsoft.VSCode",
                       "com.todesktop.230313mzl4w4u92",
                       "md.obsidian",
