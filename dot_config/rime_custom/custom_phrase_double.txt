@@ -1,5 +1,5 @@
 # 各字段以 tab 分隔
-# chars	code	weight (optional)
+# text	code	weight (optional)
 
 这儿	ver
 哈哈哈	hhh

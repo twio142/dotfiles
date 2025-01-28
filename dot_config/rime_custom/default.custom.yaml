@@ -1,3 +1,9 @@
+# https://github.com/LEOYoon-Tsaw/squirrel  鼠鬚管
+# https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md 按键速查
+# https://dvel.me/posts/rime-ice/           雾凇拼音
+# https://github.com/gaboolic/rime-frost/   白霜拼音
+# https://github.com/hchunhui/librime-lua   Lua extensions for librime
+
 patch:
   schema_list:
     - schema: rime_frost_double_pinyin_flypy
@@ -17,7 +23,8 @@ patch:
     - { when: composing, accept: Control+h, send: BackSpace }
     - { when: composing, accept: Control+a, send: Home }
     - { when: composing, accept: Control+e, send: End }
-    - { when: composing, accept: Control+w, send: Shift+BackSpace }
+    - { when: composing, accept: Control+x, send: Shift+Delete }    # Reset item weight
+    - { when: composing, accept: Control+w, send: Shift+BackSpace } # Delete previous word
     - { when: composing, accept: Alt+BackSpace, send: Shift+BackSpace }
 
   switcher/caption: …
@@ -25,3 +32,13 @@ patch:
   switcher/hotkeys:
     - Control+Shift+grave
     - Shift+F12
+
+  # 自定义符号上屏
+  punctuator/half_shape/+:
+    '\': '\'
+    "|": "、"
+    "$": ["¥", "$", "€", "£"]
+    "[": "「"
+    "]": "」"
+    "{": "『"
+    "}": "』"
