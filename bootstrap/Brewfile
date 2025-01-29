@@ -45,8 +45,8 @@ brew "bitwarden-cli"
 brew "bluetoothconnector"
 # Get/set bluetooth power and discoverable state
 brew "blueutil"
-# Yet another cross-platform graphical process/system monitor
-brew "bottom"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
 # Software library to render fonts
 brew "freetype"
 # Core application library for C

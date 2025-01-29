@@ -19,7 +19,7 @@ TMUX_FZF_SESSION_FORMAT="#{?session_attached,●,-}  #{session_windows}   
 TMUX_FZF_MENU=\
 "edit config\ntmux edit-config\n"\
 "tmux manual\ntmux tmux-man\n"\
-"bottom\ntmux bottom\n"\
+"btop\ntmux btop\n"\
 "yazi\ntmux yazi\n"\
 "lazygit\ntmux lazygit\n"\
 "lazydocker\ntmux lazydocker\n"\
@@ -208,7 +208,7 @@ set -g command-alias[19] yazi-popup="popup -E -w 95% -h 90% -x 3% -d '#{pane_cur
 set -g command-alias[20] yazi="neww -c '#{pane_current_path}' yazi"
 set -g command-alias[21] lzg="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_lazygit.sh"
 set -g command-alias[22] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazydocker' 'display \"Docker not running\"'"
-set -g command-alias[23] btm="popup -E -w 95% -h 90% -x 3% '$SHELL -c \"btm --theme nord$(test $(background) = light && echo -light)\"'"
+set -g command-alias[23] btop="popup -E -w 95% -h 90% -x 3% '$SHELL -c btop'"
 set -g command-alias[24] open="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_path.sh"
 set -g command-alias[25] popup-term="popup -E -w 80% -d '#{pane_current_path}' -e TMUX_POPUP=1 'zsh -l'"
 

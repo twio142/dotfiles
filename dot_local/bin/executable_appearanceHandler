@@ -44,6 +44,8 @@ if [ -f $DIR/${mode}.yaml ]; then
   ln -sf $DIR/${mode}.yaml $DIR/colors.yaml
 fi
 
-# Terminal theme
-defaults write com.apple.Terminal 'Default Window Settings' "T ${mode:0:1:u}${mode:1}"
-defaults write com.apple.Terminal 'Startup Window Settings' "T ${mode:0:1:u}${mode:1}"
+# Btop theme
+FILE=$XDG_CONFIG_HOME/btop/btop.conf
+if [ -f $FILE ]; then
+  sd '(^color_theme = .*)light|dark' "\${1}$mode" $FILE
+fi
