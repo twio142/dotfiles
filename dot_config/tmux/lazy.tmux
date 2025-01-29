@@ -81,6 +81,9 @@ set -g @extrakto_fzf_layout "reverse"
 set -g @extrakto_editor "nvim"
 set -g @extrakto_filter_order "word line-trim url all"
 
+# tmux-fingers
+if -F "#{==:#(background),light}" 'set -g @fingers-backdrop-style "fg=white,bright"' 'set -g @fingers-backdrop-style "fg=black,bright"'
+
 run "$XDG_CONFIG_HOME/tmux/plugins/tpm/tpm" &
 # Prefix I   install
 # prefix U   update
@@ -182,6 +185,8 @@ bind -T copy-mode-vi C-k selectp -U
 bind -T copy-mode-vi C-l selectp -R
 bind -T copy-mode-vi m send -X set-mark
 bind -T copy-mode-vi ` send -X jump-to-mark
+bind -T copy-mode-vi r run -b "#{@fingers-cli} start #{pane_id}"
+bind -T copy-mode-vi s run -b "#{@fingers-cli} start #{pane_id} --mode jump"
 bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "pbcopy"
 bind -n DoubleClick1Pane select-pane -t = \; if-shell -F "#{||:#{pane_in_mode},#{mouse_any_flag}}" { send-keys -M } { copy-mode -H ; send-keys -X select-word ; run-shell -d 0.3 ; send-keys -X copy-pipe-and-cancel pbcopy }
 bind -n TripleClick1Pane select-pane -t = \; if-shell -F "#{||:#{pane_in_mode},#{mouse_any_flag}}" { send-keys -M } { copy-mode -H ; send-keys -X select-line ; run-shell -d 0.3 ; send-keys -X copy-pipe-and-cancel pbcopy }

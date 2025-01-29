@@ -147,6 +147,9 @@ items:
       - name: Paste
         key: p
         command: pasteb
+      - name: Jump
+        key: j
+        command: run -b "\\#{@fingers-cli} start \\#{pane_id}"
       - name: Extract words
         key: w
         command: run "$TMUX_PLUGIN_MANAGER_PATH/extrakto/scripts/open.sh \\#{pane_id} word"
