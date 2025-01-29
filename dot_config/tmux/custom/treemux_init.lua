@@ -127,7 +127,7 @@ require("lazy").setup {
               renamed = '󰁕',
               untracked = '',
               ignored = '',
-              unstaged = '*',
+              unstaged = '!',
               staged = '󰐕',
               conflict = '',
             },

@@ -59,8 +59,8 @@ get_git_status() {
   icon=
   head=$(git -C "$cwd" rev-parse --abbrev-ref HEAD 2> /dev/null) || return 0;
   if [ "$head" = HEAD ]; then
-    { icon=; head=$(git -C "$cwd" describe --tags --exact-match 2> /dev/null); } ||
-    { icon=; head=$(git -C "$cwd" rev-parse --short HEAD); }
+    { icon= ; head=$(git -C "$cwd" describe --tags --exact-match 2> /dev/null); } ||
+    { icon= ; head=$(git -C "$cwd" rev-parse --short HEAD); }
   fi
   if [ "$client_width" -le 80 ]; then
     text="$head "
@@ -68,7 +68,7 @@ get_git_status() {
     staged=$(git -C "$cwd" diff --staged --name-only | wc -l)
     [ "$staged" -gt 0 ] && staged=" +${staged// }" || staged=''
     dirty=$(git -C "$cwd" diff --name-only | wc -l)
-    [ "$dirty" -gt 0 ] && dirty=" ✷${dirty// }" || dirty=''
+    [ "$dirty" -gt 0 ] && dirty=" !${dirty// }" || dirty=''
     new=$(git -C "$cwd" ls-files --others --exclude-standard | wc -l)
     [ "$new" -gt 0 ] && new=" ?${new// }" || new=''
     ahead=$(git -C "$cwd" rev-list --count HEAD "^$(git -C "$cwd" for-each-ref --format '%(upstream:short)' $(git -C "$cwd" symbolic-ref -q HEAD))" 2> /dev/null)
@@ -78,7 +78,7 @@ get_git_status() {
     [ -n "$ahead$behind" ] && sep=" " || sep=''
     stash=$(git -C "$cwd" stash list | wc -l)
     [ "$stash" -gt 0 ] && stash=" *${stash// }" || stash=''
-    text="$head$staged$dirty$new$sep$ahead$behind$stash "
+    text="$head$staged$sep$behind$ahead$dirty$new$stash "
   fi
 
   echo "$left_separator$icon_prefix$icon $middle_separator$text_prefix$text$right_separator"

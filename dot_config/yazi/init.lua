@@ -44,18 +44,30 @@ require("mactag"):setup({
 })
 
 THEME.git = THEME.git or {}
-THEME.git.modified_sign = "M"
-THEME.git.added_sign = "A"
-THEME.git.untracked_sign = "?"
-THEME.git.deleted_sign = "D"
+THEME.git.modified_sign = ""
+THEME.git.added_sign = "󰐕"
+THEME.git.untracked_sign = ""
+THEME.git.deleted_sign = "✖"
 THEME.git.ignored_sign = ""
 require("git"):setup()
 
-require("githead"):setup()
+require("githead"):setup({
+	branch_prefix = "",
+	branch_borders = "",
+	branch_symbol = "",
+	commit_symbol = "@",
+	behind_symbol = "⇣",
+	ahead_symbol = "⇡",
+	stashes_symbol = "*",
+	state_symbol = "~",
+	staged_symbol = "+",
+	unstaged_symbol = "!",
+	untracked_symbol = "?",
+})
 
-require("session"):setup {
+require("session"):setup({
 	sync_yanked = true,
-}
+})
 
 function Linemode:size_and_mtime()
 	local year = os.date("%Y")
