@@ -1,21 +1,21 @@
 [plugin]
 deps = [
-	{ use = "DreamMaoMao/bookmarks",             rev = "8358020" },
-	{ use = "dedukun/relative-motions",          rev = "0d9c8cf" },
-	{ use = "ndtoan96/ouch",                     rev = "083d564" },
-	{ use = "twio142/githead",                   rev = "e763ccf" },
-	{ use = "twio142/searchjump",                rev = "de52ce2" },
-	{ use = "twio142/yazi-plugins:my-cmd",       rev = "4473b13" },
-	{ use = "twio142/yazi-plugins:my-fzf",       rev = "4473b13" },
-	{ use = "twio142/yazi-plugins:smart-filter", rev = "4473b13" },
-	{ use = "yazi-rs/plugins:full-border",       rev = "02d18be" },
-	{ use = "yazi-rs/plugins:git",               rev = "02d18be" },
-	{ use = "yazi-rs/plugins:mactag",            rev = "02d18be" },
-	{ use = "yazi-rs/plugins:max-preview",       rev = "02d18be" },
+	{ use = "DreamMaoMao/bookmarks", rev = "8358020" },
+	{ use = "dedukun/relative-motions", rev = "0d9c8cf" },
+	{ use = "ndtoan96/ouch", rev = "ce6fb75" },
+	{ use = "twio142/githead", rev = "e763ccf" },
+	{ use = "twio142/searchjump", rev = "eaaf180" },
+	{ use = "twio142/yazi-plugins:my-cmd", rev = "30bce62" },
+	{ use = "twio142/yazi-plugins:my-fzf", rev = "30bce62" },
+	{ use = "twio142/yazi-plugins:smart-filter", rev = "30bce62" },
+	{ use = "yazi-rs/plugins:full-border", rev = "02d18be" },
+	{ use = "yazi-rs/plugins:git", rev = "02d18be" },
+	{ use = "yazi-rs/plugins:mactag", rev = "02d18be" },
+	{ use = "yazi-rs/plugins:max-preview", rev = "02d18be" },
 ]
 
 [flavor]
 deps = [
-	{ use = "yazi-rs/flavors:catppuccin-latte",  rev = "fd85060" },
-	{ use = "yazi-rs/flavors:catppuccin-mocha",  rev = "fd85060" }
+	{ use = "yazi-rs/flavors:catppuccin-latte", rev = "fd85060" },
+	{ use = "yazi-rs/flavors:catppuccin-mocha", rev = "fd85060" }
 ]

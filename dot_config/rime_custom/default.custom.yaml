@@ -14,6 +14,8 @@ patch:
   key_binder/bindings:
     - { when: paging, accept: Control+h, send: Page_Up }
     - { when: has_menu, accept: Control+l, send: Page_Down }
+    - { when: paging, accept: Control+u, send: Page_Up }
+    - { when: has_menu, accept: Control+d, send: Page_Down }
     - { when: composing, accept: Control+k, send: Up }
     - { when: composing, accept: Control+j, send: Down }
     - { when: composing, accept: Control+p, send: Up }
