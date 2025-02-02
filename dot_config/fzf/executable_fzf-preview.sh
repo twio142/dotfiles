@@ -46,18 +46,9 @@ if [[ $dim = x ]]; then
   dim=$(stty size < /dev/tty | awk '{print $2 "x" $1}')
 fi
 
-# 1. Use chafa with Sixel output
+# 1. Use chafa
 if command -v chafa > /dev/null; then
-  if [ -n "$FORMATTER" ]; then
-    chafa -f $FORMATTER -s "$dim" -c full "$file"
-  elif [ -n "$TMUX_POPUP" ]; then
-    chafa -f symbols -s "$dim" -c full "$file"
-  else
-    if [[ -n "$TMUX" ]] && [[ "${dim#*x}" -gt 58 || ${dim%x*} -gt 58 ]]; then
-      dim=58x58
-    fi
-    chafa -f sixel -s "$dim" -c full "$file"
-  fi
+  chafa -f ${FORMATTER:-symbols} -s "$dim" -c full "$file"
   # Add a new line character so that fzf can display multiple images in the preview window
   echo
 
