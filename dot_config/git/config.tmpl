@@ -19,10 +19,8 @@
 [fetch]
   recurseSubmodules = true
 [diff]
-  tool = diffview
+  tool = nvimdiff
   colorMoved = default
-[difftool "diffview"]
-  cmd = ~/.config/lazygit/edit.sh -c "DiffviewOpen $@"
 [difftool]
   prompt = false
 [interactive]
@@ -47,7 +45,7 @@
   conflictStyle = diff3
   ff = false
 [mergetool "diffview"]
-  cmd = ~/.config/lazygit/edit.sh -c "DiffviewOpen"
+  cmd = ~/.config/lazygit/edit.sh -c DiffviewOpen
 [pull]
   ff = only
 [gitflow "branch"]

@@ -72,7 +72,3 @@ customCommands:
         echo -n {{.}} | tmux load-buffer -
       {{end}}
     description: "Copy remote url"
-  - key: 'f'
-    command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
-    context: 'commitFiles'
-    description: 'Compare (difftool) with local copy'
