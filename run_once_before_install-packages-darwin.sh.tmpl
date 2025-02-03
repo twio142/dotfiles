@@ -11,20 +11,6 @@ command -v brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubuse
 BREWFILE="{{ .chezmoi.sourceDir }}/bootstrap/Brewfile"
 brew bundle check --file $BREWFILE || brew bundle --no-lock --file $BREWFILE -q
 
-echo "Installing zim"
-ZIM_CONFIG_FILE=${XDG_CONFIG_HOME}/zsh/zimrc
-ZIM_HOME=${XDG_CONFIG_HOME}/zim
-if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  mkdir -p ${ZIM_HOME}
-  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-fi
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
-fi
-source $ZIM_HOME/init.zsh
-zimfw install
-
 echo "Installing kickstart"
 [ -d $XDG_CONFIG_HOME/kickstart ] || git clone git@github.com:{{ env "GITHUB_USER" }}/kickstart.nvim.git
 git -C $XDG_CONFIG_HOME/kickstart pull --ff-only

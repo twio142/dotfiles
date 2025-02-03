@@ -27,10 +27,6 @@ brew "readline"
 brew "sqlite"
 # Download with resuming and segmented downloading
 brew "aria2"
-# GNU File, Shell, and Text utilities
-brew "coreutils"
-# YAML Parser
-brew "libyaml"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -65,10 +61,14 @@ brew "chezmoi"
 brew "choose-rust"
 # Tool for emulating mouse and keyboard events
 brew "cliclick"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
 # Apjanke's fork of the classic cowsay project
 brew "cowsay"
 # Asynchronous event library
 brew "libevent"
+# YAML Parser
+brew "libyaml"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Power of curl, ease of use of httpie
@@ -236,8 +236,6 @@ brew "morantron/tmux-fingers/tmux-fingers"
 brew "owo-network/brew/deeplx"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "aerospace"
-# GPU-accelerated terminal emulator
-cask "alacritty"
 # Application launcher and productivity software
 cask "alfred"
 # Enable Windows-like alt-tab
@@ -292,8 +290,6 @@ cask "lunar"
 cask "multitouch"
 # Screensaver displaying artwork based on Spotify or Last.fm profile data
 cask "musaicfm"
-# Desktop sync client for Nextcloud software products
-cask "nextcloud"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Finds large, unwanted files and deletes them
@@ -351,16 +347,10 @@ mas "uBlacklist for Safari", id: 1547912640
 mas "Vimari", id: 1480933944
 mas "WireGuard", id: 1451685025
 vscode "animaapp.vscode-anima"
-vscode "baurine.vscode-pangu"
+vscode "asvetliakov.vscode-neovim"
 vscode "davidanson.vscode-markdownlint"
-vscode "dbaeumer.vscode-eslint"
 vscode "eamodio.gitlens"
-vscode "ecmel.vscode-html-css"
-vscode "eeyore.yapf"
-vscode "esbenp.prettier-vscode"
 vscode "figma.figma-vscode-extension"
-vscode "formulahendry.auto-close-tag"
-vscode "formulahendry.auto-rename-tag"
 vscode "formulahendry.code-runner"
 vscode "github.codespaces"
 vscode "github.copilot"
@@ -374,7 +364,6 @@ vscode "gruntfuggly.todo-tree"
 vscode "ionutvmi.path-autocomplete"
 vscode "kortina.vscode-markdown-notes"
 vscode "mdickin.markdown-shortcuts"
-vscode "mechatroner.rainbow-csv"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-python.debugpy"
 vscode "ms-python.python"
@@ -388,18 +377,10 @@ vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
 vscode "ms-vscode.remote-explorer"
 vscode "ms-vscode.remote-repositories"
-vscode "mtxr.sqltools"
-vscode "mtxr.sqltools-driver-sqlite"
 vscode "notzaki.pandocciter"
-vscode "qwtel.sqlite-viewer"
-vscode "rvest.vs-code-prettier-eslint"
 vscode "sswg.swift-lang"
 vscode "streetsidesoftware.code-spell-checker"
-vscode "streetsidesoftware.code-spell-checker-german"
+vscode "swiftlang.swift-vscode"
 vscode "tomoki1207.pdf"
 vscode "vadimcn.vscode-lldb"
-vscode "vincaslt.highlight-matching-tag"
 vscode "vscodevim.vim"
-vscode "vsls-contrib.gistfs"
-vscode "yzhang.markdown-all-in-one"
-vscode "zainchen.json"
