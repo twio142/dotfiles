@@ -20,4 +20,4 @@ fi
 client=$(tmux display -p '#{client_pid}')
 client=$(ps -o ppid= -p $client)
 client=$(ps -o ppid= -p $client)
-ps -p $client -o comm= | grep -q 'Code Helper' && tmux set escape-time 10 || true
+ps -p $client -o comm= | grep -q 'Visual Studio Code' && tmux set escape-time 10 || true

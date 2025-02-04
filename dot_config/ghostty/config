@@ -50,7 +50,7 @@
 # Changing this configuration at runtime will only affect new terminals, i.e.
 # new windows, tabs, etc.
 font-family = "FiraCode Nerd Font Propo"
-font-family-bold = "FiraCode Nerd Font Propo"
+font-family = "PingFang SC"
 font-family-italic = "JetBrainsMono Nerd Font Propo"
 font-family-bold-italic = "JetBrainsMono Nerd Font Propo"
 
@@ -177,8 +177,6 @@ font-variation-bold-italic =
 # Changing this configuration at runtime will only affect new terminals,
 # i.e. new windows, tabs, etc.
 # font-codepoint-map = U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0=Symbols Nerd Font Mono
-font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF=Noto Sans Mono CJK SC
-# font-codepoint-map = U+100000-U+10FFFD=SF Mono
 
 # Draw fonts with a thicker stroke, if supported. This is only supported
 # currently on MacOS.
