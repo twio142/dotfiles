@@ -82,7 +82,7 @@ set -g @extrakto_editor "nvim"
 set -g @extrakto_filter_order "word line-trim url all"
 
 # tmux-fingers
-if -F "#{==:#(background),light}" 'set -g @fingers-backdrop-style "fg=white,bright"' 'set -g @fingers-backdrop-style "fg=black,bright"'
+if "[ $(background) = light ]" 'set -g @fingers-backdrop-style "fg=white,bright"' 'set -g @fingers-backdrop-style "fg=black,bright"'
 
 run "$XDG_CONFIG_HOME/tmux/plugins/tpm/tpm" &
 # Prefix I   install

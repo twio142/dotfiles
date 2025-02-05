@@ -456,7 +456,7 @@ require("lazy").setup {
             ['<C-d>'] = '',
             ['y'] = {
               function(state)
-                local path = state.tree:get_node().path
+                local path = vim.fn.fnamemodify(state.tree:get_node().path, ':.')
                 vim.fn.setreg('*', path)
                 vim.notify('Yanked path to clipboard: ' .. path)
               end,
