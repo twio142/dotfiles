@@ -4,6 +4,4 @@
 
 export ASDF_DATA_DIR=~/.local/share/asdf;
 export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=.config/asdf/tool-versions;
-. /opt/homebrew/opt/asdf/libexec/asdf.sh;
-
-asdf exec node "$@"
+${ASDF_DATA_DIR}/shims/node "$@"

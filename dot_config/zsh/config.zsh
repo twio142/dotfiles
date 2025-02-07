@@ -64,7 +64,8 @@ export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 # asdf
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
 export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=.config/asdf/tool-versions
-. $(brew --prefix asdf)/libexec/asdf.sh
+export PATH="${ASDF_DATA_DIR}/shims:$PATH"
+[ -d ${ASDF_DATA_DIR}/completions ] && fpath=(${ASDF_DATA_DIR}/completions $fpath)
 
 # >>> mamba initialize >>>
 export MAMBA_EXE='/opt/homebrew/opt/micromamba/bin/mamba';
