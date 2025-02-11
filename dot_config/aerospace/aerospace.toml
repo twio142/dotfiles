@@ -208,8 +208,13 @@ esc = ['reload-config', 'mode main']
 [mode.app.binding]
 a = ['exec-and-forget open -a Arc', 'mode main']
 f = ['exec-and-forget open -a Finder', 'mode main']
+c = ['exec-and-forget open -a ChatGPT', 'mode main']
+i = ['exec-and-forget open -a IINA', 'mode main']
+m = ['exec-and-forget open -a Spark', 'mode main']
 o = ['exec-and-forget open -a Obsidian', 'mode main']
+p = ['exec-and-forget open -a Pixelmator', 'mode main']
 t = ['exec-and-forget altr -w com.nyako520.program -t shell', 'mode main']
+v = ['exec-and-forget open -a Visual\ Studio\ Code', 'mode main']
 
 esc = ['reload-config', 'mode main']
 
