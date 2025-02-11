@@ -12,7 +12,7 @@ patch:
     - name: emoji
 
   translator/keep_comments: false
-  translator/preedit_format:
+  translator/preedit_format: []
 
   "engine/translators/@after 2": lua_translator@*cloud_private*translator
 

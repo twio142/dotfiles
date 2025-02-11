@@ -1,7 +1,9 @@
 patch:
   show_notifications_when: appropriate     # 状态通知，可设为全开（always）全关（never）  
   us_keyboard_layout: true                 # 美式键盘布局
-  style/horizontal: false                  # 候选词横排
+  style/horizontal: false                  # 候选词竖排
+  style/candidate_list_layout: stacked     # stacked | linear  候选项排列方向
+  style/text_orientation: horizontal       # horizontal | vertical  文字排列方向
 
   # 皮肤主题名称输入在下方，分为浅色和深色
   # 浅色主题
@@ -12,8 +14,7 @@ patch:
   # 皮肤主题
   preset_color_schemes:
     mac_light:
-      name: Mac浅色
-      horizontal: false                       # true横排，false竖排
+      name: Mac Light
       candidate_format: "%c  %@ "             # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
       corner_radius: 5                        # 窗口圆角
       hilited_corner_radius: 0                # 高亮圆角
@@ -37,8 +38,7 @@ patch:
       hilited_comment_text_color: 0xBBBBBB    # 注解文字高亮 #BBBBBB
 
     mac_dark:
-      name: Mac深色
-      horizontal: false                       # true横排，false竖排
+      name: Mac Dark
       candidate_format: "%c  %@ "             # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
       corner_radius: 5                        # 窗口圆角
       hilited_corner_radius: 0                # 高亮圆角
