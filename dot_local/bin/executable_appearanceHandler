@@ -28,13 +28,6 @@ if [ -d $DIR ]; then
   echo "dark = \"catppuccin-$flavor\"" >> $DIR/theme.toml
 fi
 
-# Alacritty theme
-DIR=${XDG_CONFIG_HOME}/alacritty
-if [ -f $DIR/$mode.toml ]; then
-  ln -sf $DIR/$mode.toml $DIR/colors.toml
-  touch $DIR/alacritty.toml
-fi
-
 # Hammerspoon
 hs -A -c "ConsoleDM()"
 
