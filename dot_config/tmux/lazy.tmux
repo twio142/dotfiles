@@ -204,7 +204,7 @@ set -g command-alias[15] toggle-status="if 'tmux show -q status \\; show -gq sta
 set -g command-alias[16] toggle-clipboard="if 'tmux show -g set-clipboard | grep -q on' 'set -g set-clipboard off; display \"Clipboard OFF\"' 'set -g set-clipboard on; display \"Clipboard ON\"'"
 set -g command-alias[17] toggle-mouse="if 'tmux show -q mouse \\; show -gq mouse | grep -q off' 'set mouse on' 'set mouse off'"
 set -g command-alias[18] toggle-sidebar="run \"$XDG_CONFIG_HOME/tmux/plugins/treemux/scripts/toggle.sh '#{@treemux-key-Bspace}' '#{pane_id}'\""
-set -g command-alias[19] yazi-popup="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 'nvim +YaziFull'"
+set -g command-alias[19] yazi-popup="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 'nvim -u $XDG_CONFIG_HOME/tmux/custom/yazi_init.lua'"
 set -g command-alias[20] yazi="neww -c '#{pane_current_path}' yazi"
 set -g command-alias[21] lzg="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_lazygit.sh"
 set -g command-alias[22] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazydocker' 'display \"Docker not running\"'"

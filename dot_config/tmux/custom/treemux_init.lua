@@ -11,6 +11,12 @@ vim.o.ruler = false
 -- True colour support
 vim.o.termguicolors = true
 
+vim.g.shadafile = "NONE"
+vim.o.cursorline = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.fillchars = "eob: "
+
 -- lazy.nvim plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.uv.fs_stat(lazypath, function(err)
@@ -205,8 +211,6 @@ require("lazy").setup({
 							"90%",
 							"-x",
 							"30%",
-							"-e",
-							"TMUX_POPUP=1",
 							cmd,
 						})
 					end,
@@ -405,12 +409,6 @@ require("lazy").setup({
 						["<2-LeftMouse>"] = "open_in_tmux",
 						["l"] = "toggle_open",
 						["<esc>"] = "cancel",
-						["<tab>"] = {
-							function(state)
-								local node = state.tree:get_node()
-								vim.fn.jobstart({ "qlmanage", "-p", node.path })
-							end,
-						},
 						["<C-s>"] = {
 							function(state)
 								require("neo-tree").config.commands.open_in_tmux(state, "s")
@@ -719,9 +717,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.keymap.set({ "n", "x" }, "<A-k>", "12k", { noremap = true })
-vim.keymap.set({ "n", "x" }, "<A-j>", "12j", { noremap = true })
-
 vim.fn.jobstart({ "background" }, {
 	on_stdout = function(_, data, _)
 		if data and #data[1] > 0 then
@@ -732,7 +727,3 @@ vim.fn.jobstart({ "background" }, {
 		end
 	end,
 })
-vim.o.cursorline = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.fillchars = "eob: "

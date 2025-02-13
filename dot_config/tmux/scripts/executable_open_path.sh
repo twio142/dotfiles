@@ -18,7 +18,7 @@ fzf --bind "start:reload:zoxide query '' -l | awk '{ if (!seen[tolower()]++) pri
 --bind "ctrl-v:execute(tmux splitw -h -c {})+abort" \
 --bind "ctrl-g:execute(lazygit -p {})" \
 --bind "enter:execute(tmux neww -c {})+abort" \
---bind "ctrl-e:execute(nvim +YaziFull\\ {})" \
+--bind "ctrl-e:execute(nvim -u $XDG_CONFIG_HOME/tmux/custom/yazi_init.lua {})" \
 --bind "ctrl-x:reload:zoxide remove {} && eval zoxide query {q} -l | awk '{ if (!seen[tolower()]++) print }' || true" \
 --disabled \
 --preview "fzf-preview {}" \
