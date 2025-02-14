@@ -21,7 +21,7 @@ open_in_existing_pane() {
       done
       local socket=$(nvr --serverlist | grep "nvim\.$pid\..*")
       [ -n "$socket" ] && {
-        if [[ $# -eq 2 && -f "$1" && "$2" =~ '^[+ ][0-9]+$' ]]; then
+        if [[ $# -eq 2 && -f "$1" && "$2" =~ '^\+[0-9]+$' ]]; then
           nvr --servername $socket "$1" -c "${2:1}"
         elif [ $# -gt 0 ]; then
           nvr --servername $socket "$@"
@@ -34,7 +34,6 @@ open_in_existing_pane() {
       if [[ "$line" = ❯ ]]; then
         cmd="nvim"
         for file in $@; do
-          file=$(echo $file | sd '^ (\d+)$' '+$1')
           cmd+=" ${file:q}"
         done
         tmux send -t $win "$cmd" Enter
@@ -51,7 +50,6 @@ open_in_new_window() {
   local pane=$(tmux display -t "${window%:*}" -p "#P")
   local cmd="nvim"
   for file in $@; do
-    file=$(echo $file | sd '^ (\d+)$' '+$1')
     cmd+=" ${file:q}"
   done
   tmux send -t $pane "$cmd" Enter
