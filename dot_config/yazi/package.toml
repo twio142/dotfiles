@@ -5,8 +5,8 @@ hash = "ef1e65875d3c0e8dd56ad3e78b3dcb20"
 
 [[plugin.deps]]
 use = "dedukun/relative-motions"
-rev = "0d9c8cf"
-hash = "561ad872c77b95360c2657c5e8d395ed"
+rev = "acdcf11"
+hash = "55a207063976c9cfbfaf03774ce71e7f"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
@@ -40,35 +40,40 @@ hash = "38941dddad05611eb78cea912fd5ae4e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "8945e54"
+rev = "beb586a"
 hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "8945e54"
+rev = "beb586a"
 hash = "771f18427fb75fb19990ce602bb322f4"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mactag"
-rev = "8945e54"
+rev = "beb586a"
 hash = "5f957d83569f0bdb52e0e2d1b8f1e64c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
-rev = "8945e54"
+rev = "beb586a"
 hash = "15b2ff7f6563c14d5b2e93b3e9da35de"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "8945e54"
-hash = "f3ade4dba8fb56b85e8363b66f677f9"
+rev = "beb586a"
+hash = "5c4d8080367dd2561a18c1cf5a1dd295"
+
+[[plugin.deps]]
+use = "twio142/miller"
+rev = "3345265"
+hash = "b5816ec1dfe09ff9231532616a27b31d"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
-rev = "302c0d5"
+rev = "1a419b2"
 hash = "8c24a91f7e6abb2a9ac268bfbd356e77"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "302c0d5"
+rev = "1a419b2"
 hash = "c40e434318a8ceffd01842f8dfb2390e"

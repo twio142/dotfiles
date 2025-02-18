@@ -147,6 +147,8 @@ brew "luarocks"
 brew "mas"
 # Fast Cross-Platform Package Manager
 brew "micromamba"
+# Like sed, awk, cut, join & sort for name-indexed data such as CSV
+brew "miller"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Control nvim processes using `nvr` command-line tool

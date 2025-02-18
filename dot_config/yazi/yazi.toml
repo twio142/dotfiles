@@ -79,6 +79,8 @@ prepend_previewers = [
 	{ mime = "image/vnd.djvu", run = "noop" },
 	# Archive
 	{ mime = "application/{zip,gzip,tar,bzip*,7z-compressed,xz,rar}", run = "ouch" },
+	{ mime = "text/csv", run = "miller" },
+	{ name = "*.csv", run = "miller" },
 ]
 
 prepend_fetchers = [
