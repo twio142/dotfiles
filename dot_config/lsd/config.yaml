@@ -100,7 +100,7 @@ size: default
 sorting:
   # Specify what to sort by.
   # Possible values: extension, name, time, size, version
-  column: name
+  column: version
   # Whether to reverse the sorting.
   # Possible values: false, true
   reverse: false
@@ -126,7 +126,7 @@ hyperlink: auto
 
 # == Symlink arrow ==
 # Specifies how the symlink arrow display, chars in both ascii and utf8
-symlink-arrow: ⇒
+symlink-arrow: →
 
 # == Header ==
 # Whether to display block headers.
