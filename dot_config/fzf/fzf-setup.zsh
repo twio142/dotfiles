@@ -18,12 +18,12 @@ export FZF_CTRL_R_OPTS="-d '\t' --with-nth 2.. --bind 'ctrl-y:execute-silent(ech
 
 # CTRL-T: search files
 # ALT-C: search directories
-## ctrl-f -> toggle ignore vcs
+## alt-i -> toggle ignore vcs
 export FZF_CTRL_T_COMMAND='fd -H -L'
 NO_IGNORE='--no-ignore-vcs --strip-cwd-prefix=always'
-export FZF_CTRL_T_OPTS="--preview 'fzf-preview {}' -m --bind \"ctrl-f:clear-query+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ' )+reload( [ \$FZF_PROMPT = '> ' ] && $FZF_CTRL_T_COMMAND || $FZF_CTRL_T_COMMAND $NO_IGNORE )\""
+export FZF_CTRL_T_OPTS="--preview 'fzf-preview {}' -m --bind \"alt-i:clear-query+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ' )+reload( [ \$FZF_PROMPT = '> ' ] && $FZF_CTRL_T_COMMAND || $FZF_CTRL_T_COMMAND $NO_IGNORE )\""
 export FZF_ALT_C_COMMAND='fd -td -H -L'
-export FZF_ALT_C_OPTS="--preview 'fzf-preview {}' -m --bind \"ctrl-f:clear-query+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ' )+reload( [ \$FZF_PROMPT = '> ' ] && $FZF_ALT_C_COMMAND || $FZF_ALT_C_COMMAND $NO_IGNORE )\""
+export FZF_ALT_C_OPTS="--preview 'fzf-preview {}' -m --bind \"alt-i:clear-query+transform-prompt( [ \$FZF_PROMPT = '> ' ] && echo ' > ' || echo '> ' )+reload( [ \$FZF_PROMPT = '> ' ] && $FZF_ALT_C_COMMAND || $FZF_ALT_C_COMMAND $NO_IGNORE )\""
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
@@ -104,7 +104,7 @@ _autojump_fzf() {
     return 0
   fi
   zle push-line
-  BUFFER="builtin cd -- ${(q)dir:a}"
+  BUFFER="cd ${(q)dir:a}"
   zle accept-line
   local ret=$?
   zle reset-prompt
@@ -140,7 +140,7 @@ _fzf_repos() {
     return 0
   fi
   zle push-line
-  BUFFER="builtin cd -- ${(q)dir:a}"
+  BUFFER="cd ${(q)dir:a}"
   zle accept-line
   local ret=$?
   zle reset-prompt

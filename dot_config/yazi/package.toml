@@ -5,8 +5,8 @@ hash = "ef1e65875d3c0e8dd56ad3e78b3dcb20"
 
 [[plugin.deps]]
 use = "dedukun/relative-motions"
-rev = "acdcf11"
-hash = "55a207063976c9cfbfaf03774ce71e7f"
+rev = "a1466a9"
+hash = "26d7fd10e163e0624d733c067eba4b61"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
@@ -25,42 +25,42 @@ hash = "b2f549f7c7f9d69b074d4f7cc957209f"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-cmd"
-rev = "fca848f"
+rev = "0b23742"
 hash = "f09591d35e910c03c06a75af42d06c1d"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-fzf"
-rev = "fca848f"
-hash = "e962f622d80135ad2448535366c056e5"
+rev = "0b23742"
+hash = "6f837bb70d42d85a98a6c6a3170f831"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:smart-filter"
-rev = "fca848f"
+rev = "0b23742"
 hash = "38941dddad05611eb78cea912fd5ae4e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "beb586a"
+rev = "781a798"
 hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "beb586a"
+rev = "781a798"
 hash = "771f18427fb75fb19990ce602bb322f4"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mactag"
-rev = "beb586a"
+rev = "781a798"
 hash = "5f957d83569f0bdb52e0e2d1b8f1e64c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
-rev = "beb586a"
-hash = "15b2ff7f6563c14d5b2e93b3e9da35de"
+rev = "781a798"
+hash = "a8025f2bb311e869069364fba01abffc"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "beb586a"
+rev = "781a798"
 hash = "5c4d8080367dd2561a18c1cf5a1dd295"
 
 [[plugin.deps]]
