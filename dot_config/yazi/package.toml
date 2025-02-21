@@ -14,11 +14,6 @@ rev = "ce6fb75"
 hash = "ed6c185514109d7c5463f609282b220c"
 
 [[plugin.deps]]
-use = "llanosrocas/githead"
-rev = "2375024"
-hash = "f46c42b1146bed331c7000b1efd076f5"
-
-[[plugin.deps]]
 use = "twio142/searchjump"
 rev = "ae4bf8e"
 hash = "b2f549f7c7f9d69b074d4f7cc957209f"
@@ -54,11 +49,6 @@ rev = "781a798"
 hash = "5f957d83569f0bdb52e0e2d1b8f1e64c"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:max-preview"
-rev = "781a798"
-hash = "a8025f2bb311e869069364fba01abffc"
-
-[[plugin.deps]]
 use = "yazi-rs/plugins:mount"
 rev = "781a798"
 hash = "5c4d8080367dd2561a18c1cf5a1dd295"
@@ -67,6 +57,16 @@ hash = "5c4d8080367dd2561a18c1cf5a1dd295"
 use = "twio142/miller"
 rev = "3345265"
 hash = "b5816ec1dfe09ff9231532616a27b31d"
+
+[[plugin.deps]]
+use = "twio142/yazi-plugins:toggle-pane"
+rev = "c8b75b5"
+hash = "23d77dd0ab57135ef7cd666a8fbac42b"
+
+[[plugin.deps]]
+use = "twio142/githead"
+rev = "e80b544"
+hash = "f2a99939ff74b2e7db58f1848172f031"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"

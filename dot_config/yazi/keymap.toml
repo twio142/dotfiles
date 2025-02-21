@@ -99,7 +99,8 @@ prepend_keymap = [
   { on = ["<A-l>", "e"], run = "plugin my-cmd 'on_selection edit'", desc = "Edit selected files" },
   { on = ["<A-l>", "r"], run = "plugin my-cmd 'on_selection rename'", desc = "Rename selected files" },
   { on = ["<A-l>", "<C-d>"], run = 'shell --block -- [ $# -eq 2 ] && delta --$(~/.local/bin/background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1) "$@" | less -R || true', desc = "Diff selected files" },
-  { on = "P", run = "plugin max-preview", desc = "Zoom preview" },
+  { on = ["z", "p"], run = "plugin toggle-pane max-preview", desc = "Zoom preview" },
+  { on = ["z", "z"], run = "plugin toggle-pane ratio-1,4,0", desc = "Hide preview" },
   { on = "1", run = "plugin relative-motions 1", desc = "Move in relative steps" },
   { on = "2", run = "plugin relative-motions 2", desc = "Move in relative steps" },
   { on = "3", run = "plugin relative-motions 3", desc = "Move in relative steps" },
@@ -158,7 +159,7 @@ prepend_keymap = [
   { on = "?", run = "help", desc = "Open help" },
 ]
 
-[completion]
+[cmp]
 prepend_keymap = [
   { on = "?", run = "help", desc = "Open help" },
 ]

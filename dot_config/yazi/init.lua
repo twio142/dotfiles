@@ -69,9 +69,15 @@ require("session"):setup({
 	sync_yanked = true,
 })
 
+local width = io.popen("tput cols", "r"):read("*a")
+if tonumber(width) and tonumber(width) < 95 then
+	require("toggle-pane"):entry("min-preview")
+	MANAGER.ratio.preview = 0
+end
+
 function Linemode:size_and_mtime()
 	local year = os.date("%Y")
-	local ts = math.floor((self._file.cha.mtime or 0))
+	local ts = math.floor(self._file.cha.mtime or 0)
 	local time
 
 	if ts > 0 and os.date("%Y", ts) == year then
@@ -92,7 +98,22 @@ function Status:name()
 
 	local linked = ""
 	if h.link_to ~= nil then
-		linked = " → " .. tostring(h.link_to)
+    local home = os.getenv("HOME")
+		linked = " → " .. tostring(h.link_to):gsub("^" .. home .. "/", "~/")
 	end
 	return ui.Line(" " .. h.name .. linked)
 end
+
+-- -- Show ownership in status bar
+-- Status:children_add(function()
+-- 	local h = cx.active.current.hovered
+-- 	if h == nil or ya.target_family() ~= "unix" then
+-- 		return ""
+-- 	end
+-- 	return ui.Line({
+-- 		ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("magenta"),
+-- 		":",
+-- 		ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
+-- 		" ",
+-- 	})
+-- end, 500, Status.RIGHT)
