@@ -46,8 +46,8 @@ ZIM_HOME=${XDG_CONFIG_HOME}/zim
 
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
   mkdir -p ${ZIM_HOME}
-  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  brew install zimfw
+  ln -s $(brew --prefix zimfw)/share/zimfw.zsh ${ZIM_HOME}/
 fi
 
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then

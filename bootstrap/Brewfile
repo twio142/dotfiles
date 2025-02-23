@@ -115,6 +115,8 @@ brew "glow"
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Ping, but with a graph
+brew "gping"
 # GNU grep, egrep and fgrep
 brew "grep"
 # Powerful, lightweight programming language
@@ -217,6 +219,8 @@ brew "yarn"
 brew "yazi"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
+# Zsh plugin manager
+brew "zimfw"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # Watcher for macOS 10.14+ light/dark mode changes
@@ -268,8 +272,6 @@ cask "font-sf-pro"
 cask "framer"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Web browser
-cask "google-chrome"
 # Desktop automation application
 cask "hammerspoon"
 # Free and open-source media player
@@ -278,8 +280,6 @@ cask "iina"
 cask "jitouch"
 # Keyboard customiser
 cask "karabiner-elements"
-# Password manager app
-cask "keepassxc"
 # File archiver
 cask "keka"
 # Open-source keystroke visualiser
@@ -336,6 +336,7 @@ mas "Bitwarden", id: 1352778147
 mas "Bob", id: 1630034110
 mas "Dark Reader for Safari", id: 1438243180
 mas "Encrypto", id: 935235287
+mas "Folder Preview", id: 6698876601
 mas "Keynote 讲演", id: 409183694
 mas "Keyword Search", id: 1558453954
 mas "Numbers 表格", id: 409203825
