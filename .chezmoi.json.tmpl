@@ -1,0 +1,6 @@
+{{ $color := promptStringOnce . "color" "What is your tmux theme color" -}}
+{
+  "env": {
+    "TMUX_THEME_COLOR": "{{ $color }}"
+  }
+}

@@ -116,7 +116,7 @@ set -g @catppuccin_host_icon "#{?#{==:#(uname),Darwin}, ,#{?#{==:#(uname),Lin
 set -g @catppuccin_host_text " #(whoami)@#h"
 set -g @catppuccin_session_color "#{?client_prefix,#{E:@thm_flamingo},#{E:@thm_teal}}"
 set -g window-status-format "#[bg=#{@thm_surface_1},fg=#{@thm_fg}] #{b:pane_current_path} | #I "
-set -g window-status-current-format "#[bg=#{@thm_lavender},fg=#{@thm_crust}] #{b:pane_current_path} | #I "
+set -g window-status-current-format "#[bg=#{@thm_{{ env "TMUX_THEME_COLOR" }}},fg=#{@thm_crust}] #{b:pane_current_path} | #I "
 set -g status-left "#{E:@catppuccin_status_session}"
 set -g status-right "#{E:@catppuccin_status_host}"
 
