@@ -1,19 +1,22 @@
 {{- if eq .chezmoi.os "darwin" -}}
-#!/bin/zsh
-[ -z $XDG_CONFIG_HOME ] && export XDG_CONFIG_HOME=$HOME/.config
-[ -z $XDG_DATA_HOME ] && export XDG_DATA_HOME=$HOME/.local/share
-[ -z $XDG_CACHE_HOME ] && export XDG_CACHE_HOME=$HOME/.cache
-[ -z $XDG_STATE_HOME ] && export XDG_STATE_HOME=$HOME/.local/state
-[ -z $ZDOTDIR ] && export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+#!/bin/bash
+[ -z $XDG_CONFIG_HOME ] && export XDG_CONFIG_HOME="$HOME/.config"
+[ -z $XDG_DATA_HOME ] && export XDG_DATA_HOME="$HOME/.local/share"
+[ -z $XDG_CACHE_HOME ] && export XDG_CACHE_HOME="$HOME/.cache"
+[ -z $XDG_STATE_HOME ] && export XDG_STATE_HOME="$HOME/.local/state"
+[ -z $ZDOTDIR ] && export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 echo "Installing homebrew & packages"
-command -v brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if ! command -v brew &> /dev/null; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval $(/opt/homebrew/bin/brew shellenv)
+fi
 BREWFILE="{{ .chezmoi.sourceDir }}/bootstrap/Brewfile"
 brew bundle check --file $BREWFILE || brew bundle --no-lock --file $BREWFILE -q
 
-echo "Installing kickstart"
-[ -d $XDG_CONFIG_HOME/kickstart ] || git clone git@github.com:{{ env "GITHUB_USER" }}/kickstart.nvim.git
-git -C $XDG_CONFIG_HOME/kickstart pull --ff-only
+echo "Installing nvim configuration"
+[ -d $XDG_CONFIG_HOME/nvim ] || git clone git@github.com:{{ env "GITHUB_USER" }}/kickstart.nvim.git $XDG_CONFIG_HOME/nvim
+git -C $XDG_CONFIG_HOME/nvim pull --ff-only
 
 echo "Installing rime-frost"
 [ -d ~/Library/Rime ] || git clone git@github.com:gaboolic/rime-frost.git --depth 1 ~/Library/Rime
