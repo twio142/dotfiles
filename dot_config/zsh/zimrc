@@ -1,0 +1,14 @@
+zstyle ':zim:zmodule' use 'degit'
+
+zmodule environment
+
+zmodule z-shell/F-Sy-H
+zmodule ohmyzsh/ohmyzsh -r lib --source key-bindings.zsh
+zmodule ohmyzsh/ohmyzsh -r plugins/docker -f completions
+zmodule completion
+zmodule ohmyzsh/ohmyzsh -r plugins/git
+zmodule ohmyzsh/ohmyzsh -r plugins/git-flow
+zmodule ohmyzsh/ohmyzsh -r plugins/npm
+zmodule zsh-users/zsh-autosuggestions
+
+zmodule sindresorhus/pure --source async.zsh --source pure.zsh

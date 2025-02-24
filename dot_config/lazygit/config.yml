@@ -1,0 +1,44 @@
+disableStartupPopups: true
+promptToReturnFromSubprocess: false
+quitOnTopLevelReturn: true
+gui:
+  shortTimeFormat: "15:04"
+  showBottomLine: false
+  nerdFontsVersion: "3"
+  showFileIcons: false
+  showListFooter: false
+  theme:
+    activeBorderColor:
+      - default
+      - bold
+    selectedLineBgColor:
+      - underline
+os:
+  editPreset: "nvim-remote"
+  editInTerminal: true
+  copyToClipboardCmd: "echo -n {{text}} | tmux load-buffer -"
+git:
+  paging:
+    colorArg: always
+    pager: delta --$(~/.local/bin/background) --paging=never --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  truncateCopiedCommitHashesTo: 12
+keybinding:
+  universal:
+    optionMenu: '?'
+    optionMenu-alt1: '?'
+customCommands:
+  - key: 'P'
+    context: "remotes"
+    command: "git push {{.SelectedRemote.Name}}"
+    description: "Push to remote"
+  - key: 'p'
+    context: "remotes"
+    command: "git pull {{.SelectedRemote.Name}}"
+    description: "Pull from remote"
+  - key: '<c-y>'
+    context: "remotes"
+    command: |
+      {{range .SelectedRemote.Urls}}
+        echo -n {{.}} | tmux load-buffer -
+      {{end}}
+    description: "Copy remote url"

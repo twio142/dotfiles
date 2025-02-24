@@ -1,0 +1,131 @@
+# https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
+
+[manager]
+prepend_keymap = [
+  { on = "<A-j>", run = [ "toggle", "arrow 1" ], desc = "Toggle selection" },
+  { on = "<Tab>", run = [ "toggle", "arrow 1" ], desc = "Toggle selection" },
+  { on = "<A-k>", run = "toggle --state=off", desc = "Toggle selection" },
+  { on = "<A-a>", run = "toggle_all", desc = "Toggle select all" },
+  { on = "i", run = "spot", desc = "Inspect file" },
+  { on = "<Enter>", run = "plugin my-cmd 'smart enter'", desc = "Open shell / edit file" },
+  { on = "<A-Enter>", run = "open --interactive", desc = "Open selected files interactively" },
+  { on = "?", run = "help", desc = "Open help" },
+  { on = "!", run = "shell --interactive", desc = "Run a shell command" },
+  { on = "~", run = "cd ~", desc = "Go to home directory" },
+  { on = "q", run = "close", desc = "Close current tab, or quit if it is last tab" },
+  { on = "Q", run = "quit", desc = "Exit" },
+  { on = "<C-d>", run = "seek 5", desc = "Seek down 5 units in preview" },
+  { on = "<C-u>", run = "seek -5", desc = "Seek up 5 units in preview" },
+  { on = [ "g", "d" ], run = "noop" },
+  { on = [ "g", "c" ], run = "noop" },
+  { on = [ "g", "o" ], run = 'shell -- ya emit reveal "$(realpath "$1")"', desc = "Go to original" },
+  { on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Go interactively" },
+  { on = [ "g", "s" ], run = 'shell --block lazygit', desc = "LazyGit" },
+  { on = [ "g", "r" ], run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"', desc = "Go to git repo root" },
+  { on = [ "g", "<C-d>" ], run = 'shell --block -- git diff "$1" | delta --$(background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1)  | less -R', desc = "Git diff" },
+  { on = [ "y", "c" ], run = "yank", desc = "Copy selected files" },
+  { on = [ "y", "x" ], run = "yank --cut", desc = "Cut selected files" },
+  { on = [ "y", "p" ], run = "copy path", desc = "Copy file path" },
+  { on = [ "y", "n" ], run = "copy filename", desc = "Copy filename" },
+  { on = "<Esc>", run = "plugin my-cmd 'smart esc'", desc = "Unyank, exit visual mode, clear selected, or cancel search" },
+  { on = "j", run = "plugin my-cmd 'smart down'", desc = "Move cursor down" },
+  { on = "k", run = "plugin my-cmd 'smart up'", desc = "Move cursor up" },
+  { on = "<Down>", run = "plugin my-cmd 'smart down'", desc = "Move cursor down" },
+  { on = "<Up>", run = "plugin my-cmd 'smart up'", desc = "Move cursor up" },
+  { on = "<", run = "back", desc = "Back" },
+  { on = ">", run = "forward", desc = "Forward" },
+  { on = "N", run = "plugin my-cmd 'smart new'", desc = "Go to previous found / Create a file" },
+  { on = "<C-t>", run = "plugin my-cmd 'smart tab'", desc = "Create new tab" },
+  { on = "]", run = "plugin my-cmd 'smart next-tab'", desc = "Switch to next tab" },
+  { on = [ "<Space>", "t" ], run = "tasks_show", desc = "Show task manager" },
+  { on = [ "\\", "g" ], run = "plugin zoxide", desc = "Go to a directory" },
+  { on = [ "\\", "f" ], run = "plugin fzf", desc = "Search files" },
+  { on = [ "M", "." ], run = "linemode size_and_mtime", desc = "Linemode: size & mtime" },
+  { on = [ "M", "s" ], run = "linemode size",        desc = "Linemode: size" },
+  { on = [ "M", "p" ], run = "linemode permissions", desc = "Linemode: permissions" },
+  { on = [ "M", "b" ], run = "linemode btime",       desc = "Linemode: btime" },
+  { on = [ "M", "m" ], run = "linemode mtime",       desc = "Linemode: mtime" },
+  { on = [ "M", "o" ], run = "linemode owner",       desc = "Linemode: owner" },
+  { on = [ "M", "n" ], run = "linemode none",        desc = "Linemode: none" },
+  { on = [ "m", "s" ], run = "noop" },
+  { on = [ "m", "p" ], run = "noop" },
+  { on = [ "m", "b" ], run = "noop" },
+  { on = [ "m", "m" ], run = "noop" },
+  { on = [ "m", "o" ], run = "noop" },
+  { on = [ "m", "n" ], run = "noop" },
+  { on = [ "S", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
+  { on = [ "S", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
+  { on = [ "S", "c" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort by created time" },
+  { on = [ "S", "C" ], run = [ "sort btime --reverse", "linemode btime" ],    desc = "Sort by created time (reverse)" },
+  { on = [ "S", "e" ], run = "sort extension --reverse=no",                   desc = "Sort by extension" },
+  { on = [ "S", "E" ], run = "sort extension --reverse",                      desc = "Sort by extension (reverse)" },
+  { on = [ "S", "a" ], run = "sort alphabetical --reverse=no",                desc = "Sort alphabetically" },
+  { on = [ "S", "A" ], run = "sort alphabetical --reverse",                   desc = "Sort alphabetically (reverse)" },
+  { on = [ "S", "n" ], run = "sort natural --reverse=no",                     desc = "Sort naturally" },
+  { on = [ "S", "N" ], run = "sort natural --reverse",                        desc = "Sort naturally (reverse)" },
+  { on = [ "S", "s" ], run = [ "sort size --reverse=no", "linemode size" ],   desc = "Sort by size" },
+  { on = [ "S", "S" ], run = [ "sort size --reverse", "linemode size" ],      desc = "Sort by size (reverse)" },
+  { on = [ "S", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
+  { on = "s", run = "plugin searchjump autocd", desc = "Searchjump" },
+  { on = "F", run = "plugin smart-filter", desc = "Smart filter" },
+  { on = ["<A-l>", "c"], run = "plugin my-cmd 'on_selection copy'", desc = "Copy selected files here" },
+  { on = ["<A-l>", "C"], run = "plugin my-cmd 'on_selection copy-force'", desc = "Force-copy selected files here" },
+  { on = ["<A-l>", "m"], run = "plugin my-cmd 'on_selection move'", desc = "Move selected files here" },
+  { on = ["<A-l>", "M"], run = "plugin my-cmd 'on_selection move-force'", desc = "Force-move selected files here" },
+  { on = ["<A-l>", "n"], run = "plugin my-cmd 'on_selection move-new-dir'", desc = "Create folder with selected files" },
+  { on = ["<A-l>", "N"], run = "plugin my-cmd 'on_selection copy-new-dir'", desc = "Create folder with selected files (copy)" },
+  { on = ["<A-l>", "l"], run = "plugin my-cmd 'on_selection symlink'", desc = "Symlink selected files here" },
+  { on = ["<A-l>", "L"], run = "plugin my-cmd 'on_selection symlink-force'", desc = "Force-symlink selected files here" },
+  { on = ["<A-l>", "h"], run = "plugin my-cmd 'on_selection hardlink'", desc = "Hardlink selected files here" },
+  { on = ["<A-l>", "H"], run = "plugin my-cmd 'on_selection hardlink-force'", desc = "Force-hardlink selected files here" },
+  { on = ["<A-l>", "d"], run = "plugin my-cmd 'on_selection delete'", desc = "Delete selected files" },
+  { on = ["<A-l>", "e"], run = "plugin my-cmd 'on_selection edit'", desc = "Edit selected files" },
+  { on = ["<A-l>", "r"], run = "plugin my-cmd 'on_selection rename'", desc = "Rename selected files" },
+  { on = ["<A-l>", "<C-d>"], run = 'shell --block -- [ $# -eq 2 ] && delta --$(~/.local/bin/background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1) "$@" | less -R || true', desc = "Diff selected files" },
+]
+
+[tasks]
+prepend_keymap = [
+  { on = "?", run = "help", desc = "Open help" },
+  { on = "i", run = "inspect", desc = "Inspect the task" },
+]
+
+[spot]
+prepend_keymap = [
+  { on = "?", run = "help", desc = "Open help" },
+  { on = "i", run = "close", desc = "Close the spot" },
+  { on = "J", run = "swipe 1", desc = "Swipe to next file" },
+  { on = "K", run = "swipe -1", desc = "Swipe to previous file" },
+  { on = "y", run = "copy cell", desc = "Yank selected cell" },
+]
+
+[pick]
+prepend_keymap = [
+  { on = "?", run = "help", desc = "Open help" },
+]
+
+[input]
+prepend_keymap = [
+  { on = "<esc>", run = "close", desc = "cancel input" },
+  { on = "?", run = "help", desc = "Open help" },
+]
+
+[confirm]
+prepend_keymap = [
+  { on = "?", run = "help", desc = "Open help" },
+]
+
+[completion]
+prepend_keymap = [
+  { on = "?", run = "help", desc = "Open help" },
+]
+
+[filter]
+prepend_keymap = [
+  { on = "?", run = "help", desc = "Open help" },
+]
+
+[help]
+prepend_keymap = [
+  { on = "/", run = "filter", desc = "Search for help items" },
+]

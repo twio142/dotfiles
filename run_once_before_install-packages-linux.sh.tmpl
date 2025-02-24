@@ -1,0 +1,33 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+[ -z $XDG_CONFIG_HOME ] && export XDG_CONFIG_HOME="$HOME/.config"
+[ -z $XDG_DATA_HOME ] && export XDG_DATA_HOME="$HOME/.local/share"
+[ -z $XDG_CACHE_HOME ] && export XDG_CACHE_HOME="$HOME/.cache"
+[ -z $XDG_STATE_HOME ] && export XDG_STATE_HOME="$HOME/.local/state"
+[ -z $ZDOTDIR ] && export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# Install Homebrew
+if ! command -v brew &> /dev/null; then
+  test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)";
+  test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)";
+  if ! command -v brew &> /dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)";
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)";
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)";
+  fi
+fi
+
+# Install packages
+BREWFILE="{{ .chezmoi.sourceDir }}/bootstrap/Brewfile"
+brew bundle check --file $BREWFILE || brew bundle --no-lock --file $BREWFILE -q
+
+# Set shell to zsh.
+ZSH="$(brew --prefix)/bin/zsh"
+grep -q $ZSH /etc/shells || sudo sh -c "echo $ZSH >> /etc/shells"
+[ "$SHELL" != "$ZSH" ] && chsh -s $ZSH
+
+# Install nvim configuration
+[ -d $XDG_CONFIG_HOME/nvim ] || git clone git@github.com:{{ env "GITHUB_USER" }}/kickstart.nvim.git -b minimum $XDG_CONFIG_HOME/nvim
+git -C $XDG_CONFIG_HOME/nvim pull --ff-only
+
+{{ end -}}

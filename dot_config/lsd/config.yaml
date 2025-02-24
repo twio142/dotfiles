@@ -1,0 +1,10 @@
+date: '+ %F %R '
+display: almost-all
+indicators: true
+sorting:
+  column: version
+  dir-grouping: first
+total-size: true
+hyperlink: auto
+literal: true
+symlink-arrow: →

@@ -1,0 +1,34 @@
+[[plugin.deps]]
+use = "llanosrocas/githead"
+rev = "2375024"
+hash = "f46c42b1146bed331c7000b1efd076f5"
+
+[[plugin.deps]]
+use = "twio142/yazi-plugins:my-cmd"
+rev = "d6d5a24"
+hash = "b043b498dc080d8a3c0577ba8abe5d2a"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "8945e54"
+hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "8945e54"
+hash = "771f18427fb75fb19990ce602bb322f4"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "8945e54"
+hash = "b482f4f2d3c4e0aa3f8db89a95699439"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-latte"
+rev = "302c0d5"
+hash = "8c24a91f7e6abb2a9ac268bfbd356e77"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "302c0d5"
+hash = "c40e434318a8ceffd01842f8dfb2390e"

@@ -1,0 +1,91 @@
+export TERM=screen-256color
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export EDITOR=nvim
+export HISTFILE="$ZDOTDIR"/history
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export LESSHISTFILE="$XDG_STATE_HOME"/less/history
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export GOPATH=$XDG_DATA_HOME/go
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export PATH=$GOPATH/bin:$CARGO_HOME/bin:$PATH
+
+# HOMEBREW
+export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew";
+export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar";
+export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew";
+fpath[1,0]="/home/linuxbrew/.linuxbrew/share/zsh/site-functions";
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin${PATH+:$PATH}";
+[ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
+export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}";
+
+export PATH=$HOME/.local/bin:$PATH
+
+back() { cd "$OLDPWD" }
+lc() { 1=${1:a}; [ -d $1 ] && cd $1 || cd ${1:h}; }
+reconfig() { exec zsh }
+alias ls='lsd'
+alias lzd='lazydocker'
+alias lzg='lazygit'
+alias v='nvim'
+alias t='tmux'
+alias vim='nvim'
+alias wget='wget --hsts-file="$XDG_STATE_HOME/wget-hsts"'
+
+# >>> zim >>>
+ZIM_CONFIG_FILE=${XDG_CONFIG_HOME}/zsh/zimrc
+ZIM_HOME=${XDG_CONFIG_HOME}/zim
+
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  mkdir -p ${ZIM_HOME}
+  brew install zimfw
+  ln -s $(brew --prefix zimfw)/share/zimfw.zsh ${ZIM_HOME}/
+fi
+
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+
+source $ZIM_HOME/init.zsh
+# <<< zim <<<
+
+if [ -d "$ZDOTDIR/completions" ] && set -- $ZDOTDIR/completions/_*(N); [ "$#" -gt 0 ]; then
+  for x in $ZDOTDIR/completions/_*; do
+    source "$x"
+  done
+fi
+
+auto-lsd() {
+  lsd -A
+  zle accept-line 2> /dev/null
+}
+
+chpwd_functions=(auto-lsd $chpwd_functions)
+
+eval "$(zoxide init zsh)"
+zle -N __zoxide_zi
+bindkey '^[g' __zoxide_zi
+
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3D' backward-word
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
+bindkey 'jh' vi-cmd-mode
+bindkey '^[k' kill-line
+bindkey '^U' backward-kill-line
+
+source <(fzf --zsh)
+export FZF_COMPLETION_TRIGGER="\`"
+
+[ -n "$TMUX" ] && {
+  tmux_copy_mode() { tmux copy-mode -e }
+  tmux_paste_buffer() { tmux paste-buffer }
+  zle -N tmux_copy_mode
+  zle -N tmux_paste_buffer
+  bindkey '^[[' tmux_copy_mode
+  bindkey '^[]' tmux_paste_buffer
+}
+
+[[ -n "$TMUX" && -s "/var/mail/$USER" ]] && echo "  You have mail." || true
