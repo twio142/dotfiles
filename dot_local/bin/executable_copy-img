@@ -1,5 +1,5 @@
 #!/usr/bin/osascript -l JavaScript
-## Copy image content to clipboard
+// Copy image content to clipboard
 
 ObjC.import('AppKit');
 run=(a)=>{
