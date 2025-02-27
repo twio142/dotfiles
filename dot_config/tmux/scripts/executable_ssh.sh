@@ -7,15 +7,16 @@ if [ -z "$1" ]; then
   tmux display "hostname required"
   exit 1
 fi
-if [ "$#" -gt 1 ]; then
+if [[ "$#" -gt 1 && "$1" != - ]]; then
   _first=$1
   shift
   for i in "$@"; do
-    tmux splitw -v "TERM=screen-256color ssh $i"
+    tmux splitw -v "ssh $i"
   done
   tmux selectl -E
-  TERM=screen-256color ssh "$_first"
+  ssh "$_first"
 else
+  [ "$1" = - ] && shift
   tmux renamew "$1"
-  TERM=screen-256color ssh "$1"
+  ssh "$@"
 fi
