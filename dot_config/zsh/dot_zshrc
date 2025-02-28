@@ -62,8 +62,4 @@ source $ZIM_HOME/init.zsh
 
 [[ -n "$TMUX" && -s "/var/mail/$USER" ]] && echo "  You have mail."
 
-git_current_branch() {
-  git rev-parse --abbrev-ref HEAD
-}
-
 source $ZDOTDIR/config.zsh

@@ -22,12 +22,22 @@ gro() {
   url=$(echo $url | perl -pe 's/.+(git(hub|lab).com)[:\/]([^\/]+\/[^\/]+?)/https:\/\/\1\/\3/g')
   [ -z $url ] || open $url
 }
+git_current_branch() {
+  git rev-parse --abbrev-ref HEAD
+}
 lzd() {
   docker ps &> /dev/null && lazydocker || { echo "Docker not running" >&2; return 1 }
 }
 timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+docker() {
+  case "$1" in
+    version|help) /usr/local/bin/docker "$@" ;;
+    quit|q) /usr/local/bin/orbctl stop docker; pkill -x OrbStack\ Helper ;;
+    *) docker version &> /dev/null || /usr/local/bin/orbctl start docker; /usr/local/bin/docker "$@" ;;
+  esac
 }
 
 export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
@@ -205,8 +215,6 @@ bindkey '^Xu' undo
 bindkey '^Xv' paste_escape
 bindkey '^X/' recent-paths
 
-[ -n "$TMUX" ] && {
-  _tmux_key_bindings
-}
+[ -n "$TMUX" ] && _tmux_key_bindings
 
 echo -ne '\e[5 q' # force cursor to blink
