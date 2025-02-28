@@ -70,13 +70,14 @@ export PATH="${ASDF_DATA_DIR}/shims:$PATH"
 # >>> mamba initialize >>>
 export MAMBA_EXE='/opt/homebrew/opt/micromamba/bin/mamba';
 export MAMBA_ROOT_PREFIX="$XDG_DATA_HOME/micromamba";
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-  eval "$__mamba_setup"
-else
-  alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-fi
-unset __mamba_setup
+mamba() {
+  {
+    __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+    eval "$__mamba_setup" 2> /dev/null
+    unset __mamba_setup
+  } > /dev/null 2>&1
+  __mamba_wrap "$@"
+}
 # <<< mamba initialize <<<
 
 # custom p10k segments
@@ -94,7 +95,6 @@ source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 
 eval "$(zoxide init zsh)"
 
-export LS_COLORS="$(vivid generate one-light)"
 alias ls='lsd'
 auto-ls() {
   emulate -L zsh
@@ -152,7 +152,6 @@ _tmux_key_bindings() {
   bindkey '^[[1;3B' _tmux_next_mark
   bindkey '^[[1;3C' forward-word
   bindkey '^[[1;3D' backward-word
-  echo -ne '\e[5 q' # force cursor to blink
 }
 
 # restore ↑ and ↓ keys
@@ -193,7 +192,7 @@ bindkey '^[[1;9D' backward-word
 bindkey '^U' backward-kill-line
 bindkey -M vicmd '^U' backward-kill-line
 bindkey -M vicmd '^W' backward-kill-word
-# bindkey '^V' vi-cmd-mode
+bindkey jh vi-cmd-mode
 
 bindkey '^N' down-line-or-select
 bindkey '^J' down-line-or-select
@@ -207,7 +206,7 @@ bindkey '^Xv' paste_escape
 bindkey '^X/' recent-paths
 
 [ -n "$TMUX" ] && {
-  autoload -Uz add-zsh-hook
-  add-zsh-hook precmd _tmux_key_bindings
-  zvm_after_lazy_keybindings_commands+=(_tmux_key_bindings)
+  _tmux_key_bindings
 }
+
+echo -ne '\e[5 q' # force cursor to blink

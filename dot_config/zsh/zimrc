@@ -12,6 +12,5 @@ zmodule ohmyzsh/ohmyzsh -r plugins/git-flow
 zmodule ohmyzsh/ohmyzsh -r plugins/npm
 zmodule ohmyzsh/ohmyzsh -r plugins/vscode
 zmodule zsh-users/zsh-autosuggestions
-zmodule jeffreytse/zsh-vi-mode
 
 zmodule romkatv/powerlevel10k --use degit
