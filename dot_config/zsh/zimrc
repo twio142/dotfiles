@@ -6,6 +6,7 @@ zmodule z-shell/F-Sy-H
 zmodule marlonrichert/zsh-autocomplete --source zsh-autocomplete.plugin.zsh
 zmodule ohmyzsh/ohmyzsh -r lib --source key-bindings.zsh
 zmodule ohmyzsh/ohmyzsh -r plugins/brew
+zmodule ohmyzsh/ohmyzsh -r plugins/direnv
 zmodule ohmyzsh/ohmyzsh -r plugins/docker -f completions
 zmodule ohmyzsh/ohmyzsh -r plugins/git
 zmodule ohmyzsh/ohmyzsh -r plugins/git-flow

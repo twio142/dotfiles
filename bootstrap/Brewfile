@@ -75,6 +75,8 @@ brew "curl"
 brew "curlie"
 # Command-line tool for getting & setting the default browser
 brew "defaultbrowser"
+# Load/unload environment variables based on $PWD
+brew "direnv"
 # Secure communications between a client and a DNS resolver
 brew "dnscrypt-proxy"
 # Command-line DNS Client for Humans
@@ -314,8 +316,6 @@ cask "qlvideo"
 cask "quicklook-csv"
 # Quick Look plugin for JSON files
 cask "quicklook-json"
-# Environment for statistical computing and graphics
-cask "r"
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
 # Rime input method engine
