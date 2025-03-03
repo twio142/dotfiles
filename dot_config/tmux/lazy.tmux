@@ -223,6 +223,8 @@ unbind C-o
 bind C-o open
 bind C-t popup-term
 
+bind -n BTab send-keys Escape '[Z'
+
 # modal bindings
 unbind b
 bind C-b choose-buffer -Z
