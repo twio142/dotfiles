@@ -67,6 +67,8 @@ export PATH=$PATH:$GOPATH/bin
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/ripgreprc
+
 # custom completions
 [ -d $ZDOTDIR/completions ] && fpath=($ZDOTDIR/completions $fpath)
 [ -d $ZDOTDIR/functions ] && fpath=($ZDOTDIR/functions $fpath)

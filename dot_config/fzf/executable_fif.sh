@@ -29,7 +29,7 @@ PURPLE=$'\033[35m'
 OFF=$'\033[0m'
 FD_PREFIX="fd -H -L -tf -p "
 FD_SUFFIX=". -X ls -t | sed 's/^\.\//${PURPLE}/' | sed 's/\$/${OFF}/'"
-RG="rg --ignore-vcs -. -L -S -n --column --no-heading -g '!**/.git/**' --color=always"
+RG="rg --ignore-vcs -. -L -S -n --column --no-heading --color=always"
 COPY=pbcopy
 [ -n "$TMUX" ] && COPY="tmux load-buffer -"
 
@@ -44,5 +44,5 @@ fzf --ansi --disabled --query "$INITIAL_QUERY" -m \
     --bind "ctrl-f:unbind(change,ctrl-f)+change-prompt(fzf > )+enable-search+reload($RG . || true)" \
     --bind "enter:$enter" \
     --delimiter : \
-    --preview '[ -z {2} ] && bat --color=always {} || bat --color=always {1} --highlight-line {2}' \
+    --preview '[ -z {2} ] && fzf-preview {} || bat --color=always {1} --highlight-line {2}' \
     --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
