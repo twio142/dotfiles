@@ -72,7 +72,7 @@ require("session"):setup({
 local width = io.popen("tput cols", "r"):read("*a")
 if tonumber(width) and tonumber(width) < 95 then
 	require("toggle-pane"):entry("min-preview")
-	MANAGER.ratio.preview = 0
+	rt.mgr.ratio.preview = 0
 end
 
 function Linemode:size_and_mtime()

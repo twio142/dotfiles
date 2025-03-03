@@ -55,6 +55,9 @@ open_db = [
 osascript = [
 	{ run = 'osascript "$1"', desc = "Run AppleScript" }
 ]
+compress = [
+	{ run = 'ya emit plugin ouch zip', desc = "Compress here" }
+]
 
 [open]
 prepend_rules = [
@@ -62,8 +65,9 @@ prepend_rules = [
 	{ name = "*.m3u", use = ["play", "edit", "reveal"] },
 	{ name = "*.{ass,srt,sub}", use = ["load_sub", "edit"] },
 	{ name = "*.app/", use = ["open", "uninstall_app"] },
+	{ mime = "inode/directory", use = ["open", "reveal", "edit", "compress"] },
 	{ mime = "application/sqlite3", use = ["open_db", "open"] },
-	{ name = "*.scpt", use = ["open", "osascript", "reveal" ]}
+	{ name = "*.scpt", use = ["open", "osascript", "reveal" ] }
 ]
 
 [tasks]
