@@ -10,7 +10,7 @@
 
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)"
-chezmoi init [--ssh] <USER>
+chezmoi init [--ssh] <USER> [--branch <BRANCH>]
 ```
 
 - Sync
