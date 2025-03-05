@@ -47,8 +47,10 @@ bind x kill-pane # skip confirmation to kill pane
 unbind "\~"
 
 set -g default-command "zsh"
-set -ga terminal-overrides ",*-256color:Tc"
 set -g allow-passthrough on
+set -g extended-keys always
+set -g extended-keys-format csi-u
+bind -n BTab send-keys Escape '[Z'
 
 set -g display-time 2000 # 2 seconds for display-time
 set -g mouse on # enable mouse support
