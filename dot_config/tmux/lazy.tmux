@@ -18,6 +18,7 @@ TMUX_FZF_WINDOW_FORMAT="#{?window_active,●,-} #{?#{==:#W,#{pane_current_comman
 TMUX_FZF_SESSION_FORMAT="#{?session_attached,●,-}  #{session_windows}   #{b:session_path} "
 TMUX_FZF_MENU=\
 "edit config\ntmux edit-config\n"\
+"memo\ntmux memo\n"\
 "tmux manual\ntmux tmux-man\n"\
 "btop\ntmux btop\n"\
 "yazi\ntmux yazi\n"\
@@ -211,6 +212,7 @@ set -g command-alias[22] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazyd
 set -g command-alias[23] btop="popup -E -w 95% -h 90% -x 3% '$SHELL -c btop'"
 set -g command-alias[24] open="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_path.sh"
 set -g command-alias[25] popup-term="popup -E -w 80% -d '#{pane_current_path}' -e TMUX_POPUP=1 'zsh -l'"
+set -g command-alias[26] memo="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 fzf-memo"
 
 bind C-r ER
 bind M-h tmux-man

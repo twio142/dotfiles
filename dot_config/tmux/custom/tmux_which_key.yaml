@@ -149,7 +149,7 @@ items:
         command: pasteb
       - name: Jump
         key: j
-        command: run -b "\\#{@fingers-cli} start \\#{pane_id}"
+        command: run -b "#{@fingers-cli} start \\#{pane_id}"
       - name: Extract words
         key: w
         command: run "$TMUX_PLUGIN_MANAGER_PATH/extrakto/scripts/open.sh \\#{pane_id} word"
@@ -208,8 +208,8 @@ items:
   - name: +App
     key: a
     menu:
-      - name: Menu
-        key: m
+      - name: Commands
+        key: '/'
         command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/menu.sh || true"
       - name: Sidebar
         key: s
@@ -229,6 +229,12 @@ items:
       - name: Lazydocker
         key: d
         command: lzd
+      - name: New Memo
+        key: m
+        command: memo new
+      - name: List memos
+        key: M
+        command: memo
       - separator: true
       - name: Reload config
         key: r
