@@ -16,10 +16,10 @@ scrolloff = 5
 
 [opener]
 unzip = [
-	{ run = 'unzip "$1"', desc = "Extract here", for = "unix" }
+	{ run = 'unzip "$0"', desc = "Extract here", for = "unix" }
 ]
 tar = [
-	{ run = 'tar -xzf "$1"', desc = "Extract here", for = "unix" }
+	{ run = 'tar -xzf "$0"', desc = "Extract here", for = "unix" }
 ]
 
 [open]
