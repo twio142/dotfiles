@@ -20,7 +20,7 @@ local function copy_time()
 end
 
 local function help()
-    mp.commandv("run", "osascript", "-l", "JavaScript", "-e", 'Application("com.runningwithcrayons.Alfred").runTrigger("iina_help", {inWorkflow:"com.nyako520.media"})')
+    mp.commandv("run", "osascript", "-l", "JavaScript", "-e", 'Application("com.runningwithcrayons.Alfred").runTrigger("iina_help", {inWorkflow:"com.twio142.media"})')
 end
 
 mp.add_key_binding("Ctrl+c", "copy-time", copy_time)

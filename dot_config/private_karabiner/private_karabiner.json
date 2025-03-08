@@ -531,7 +531,7 @@
                   }
                 ],
                 "from": { "key_code": "right_shift" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.browser-helpers -t share" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.browser-helpers -t share" }],
                 "type": "basic"
               },
               {
@@ -670,7 +670,7 @@
                   "key_code": "n",
                   "modifiers": { "mandatory": ["right_control"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.swift -t aero_next" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.swift -t aero_next" }],
                 "type": "basic"
               },
               {
@@ -774,7 +774,7 @@
                   "key_code": "slash",
                   "modifiers": { "mandatory": ["right_control"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.swift -t aerospace -v mode=win" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.swift -t aerospace -v mode=win" }],
                 "type": "basic"
               },
               {
@@ -890,7 +890,7 @@
                   "key_code": "g",
                   "modifiers": { "mandatory": ["command", "left_control"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.program -t autojump" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.shell -t autojump" }],
                 "type": "basic"
               },
               {
@@ -1013,7 +1013,7 @@
                   "key_code": "return_or_enter",
                   "modifiers": { "mandatory": ["command", "left_control"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.passwords -t %unlock" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.passwords -t %unlock" }],
                 "type": "basic"
               },
               {
@@ -1057,7 +1057,7 @@
                   "key_code": "d",
                   "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.aria2 -t save_url" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.aria2 -t save_url" }],
                 "type": "basic"
               },
               {
@@ -1080,7 +1080,7 @@
                     "shell_command": "/usr/sbin/screencapture -c -i -o"
                   }
                 ],
-                "to_if_held_down": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.syspre -t screenshot" }],
+                "to_if_held_down": [{ "shell_command": "~/.local/bin/altr -w com.twio142.syspre -t screenshot" }],
                 "type": "basic"
               },
               {
@@ -1088,7 +1088,7 @@
                   "key_code": "v",
                   "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t paste_plain" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste_plain" }],
                 "type": "basic"
               },
               {
@@ -1096,7 +1096,7 @@
                   "key_code": "w",
                   "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.syspre -t close_without_save" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.syspre -t close_without_save" }],
                 "type": "basic"
               },
               {
@@ -1792,7 +1792,7 @@
                   }
                 ],
                 "from": { "key_code": "m" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.mailbox -t mailbox" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.mailbox -t mailbox" }],
                 "type": "basic"
               },
               {
@@ -1804,7 +1804,7 @@
                   }
                 ],
                 "from": { "key_code": "n" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.mailbox -t check_new" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.mailbox -t check_new" }],
                 "type": "basic"
               },
               {
@@ -1840,7 +1840,7 @@
                   }
                 ],
                 "from": { "key_code": "t" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.calendars -t today" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.calendars -t today" }],
                 "type": "basic"
               },
               {
@@ -1852,7 +1852,7 @@
                   }
                 ],
                 "from": { "key_code": "x" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.program -t tmux" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.shell -t tmux" }],
                 "type": "basic"
               },
               {
@@ -2065,7 +2065,7 @@
               {
                 "from": { "key_code": "f4" },
                 "to_if_alone": [{ "key_code": "f4" }],
-                "to_if_held_down": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.program -t shell" }],
+                "to_if_held_down": [{ "shell_command": "~/.local/bin/altr -w com.twio142.shell -t shell" }],
                 "type": "basic"
               },
               {
@@ -2395,7 +2395,7 @@
                   "key_code": "z",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t paste -a 0" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 0" }],
                 "type": "basic"
               },
               {
@@ -2403,7 +2403,7 @@
                   "key_code": "x",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t paste -a 1" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 1" }],
                 "type": "basic"
               },
               {
@@ -2411,7 +2411,7 @@
                   "key_code": "c",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t paste -a 2" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 2" }],
                 "type": "basic"
               },
               {
@@ -2419,7 +2419,7 @@
                   "key_code": "v",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t paste -a 3" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 3" }],
                 "type": "basic"
               },
               {
@@ -2427,7 +2427,7 @@
                   "key_code": "a",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a a -v mod=use-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a a -v mod=use-clip" }],
                 "type": "basic"
               },
               {
@@ -2435,7 +2435,7 @@
                   "key_code": "s",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a s -v mod=use-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a s -v mod=use-clip" }],
                 "type": "basic"
               },
               {
@@ -2443,7 +2443,7 @@
                   "key_code": "d",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a d -v mod=use-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a d -v mod=use-clip" }],
                 "type": "basic"
               },
               {
@@ -2451,7 +2451,7 @@
                   "key_code": "f",
                   "modifiers": { "mandatory": ["fn"] }
                 },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a f -v mod=use-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a f -v mod=use-clip" }],
                 "type": "basic"
               },
               {
@@ -2463,7 +2463,7 @@
                   }
                 ],
                 "from": { "key_code": "a" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a a -v mod=register-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a a -v mod=register-clip" }],
                 "type": "basic"
               },
               {
@@ -2475,7 +2475,7 @@
                   }
                 ],
                 "from": { "key_code": "s" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a s -v mod=register-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a s -v mod=register-clip" }],
                 "type": "basic"
               },
               {
@@ -2487,7 +2487,7 @@
                   }
                 ],
                 "from": { "key_code": "d" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a d -v mod=register-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a d -v mod=register-clip" }],
                 "type": "basic"
               },
               {
@@ -2499,7 +2499,7 @@
                   }
                 ],
                 "from": { "key_code": "f" },
-                "to": [{ "shell_command": "~/.local/bin/altr -w com.nyako520.clipboard -t clip -a f -v mod=register-clip" }],
+                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a f -v mod=register-clip" }],
                 "type": "basic"
               },
               {

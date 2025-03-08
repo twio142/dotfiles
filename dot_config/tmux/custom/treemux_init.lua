@@ -163,7 +163,7 @@ require("lazy").setup({
 							vim.notify("altr not found", vim.log.levels.ERROR)
 							return
 						end
-						vim.fn.jobstart({ altr, "-w", "com.nyako520.syspre", "-t", "buffer", "-a", node.path })
+						vim.fn.jobstart({ altr, "-w", "com.twio142.syspre", "-t", "buffer", "-a", node.path })
 					end,
 					add_to_alfred_visual = function(_, nodes)
 						local altr = vim.fn.exepath("altr")
@@ -171,7 +171,7 @@ require("lazy").setup({
 							vim.notify("altr not found", vim.log.levels.ERROR)
 							return
 						end
-						local args = { altr, "-w", "com.nyako520.syspre", "-t", "buffer", "-a", "-" }
+						local args = { altr, "-w", "com.twio142.syspre", "-t", "buffer", "-a", "-" }
 						vim.list_extend(
 							args,
 							vim.tbl_map(function(node)
