@@ -69,6 +69,8 @@ require("session"):setup({
 	sync_yanked = true,
 })
 
+require("my-cmd"):setup()
+
 local width = io.popen("tput cols", "r"):read("*a")
 if tonumber(width) and tonumber(width) < 95 then
 	require("toggle-pane"):entry("min-preview")

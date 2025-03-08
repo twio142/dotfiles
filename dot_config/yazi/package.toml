@@ -20,32 +20,32 @@ hash = "b2f549f7c7f9d69b074d4f7cc957209f"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-cmd"
-rev = "0c2d5d3"
-hash = "77e21ae7d2ed9c2733e1e7cf69459f00"
+rev = "652943c"
+hash = "414f1aecf9b666823918dabae5bda489"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-fzf"
-rev = "0c2d5d3"
-hash = "fa38c09b352751489acd948bbae3c55f"
+rev = "652943c"
+hash = "ef0db64952c7efec9ef9244fbffc8380"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "a1b678d"
+rev = "2bf70d8"
 hash = "9dce00232a0e0e2502565c7aa2b0ed4e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "a1b678d"
-hash = "bcbf72738d4b7fb9a03cac84465b9ba4"
+rev = "2bf70d8"
+hash = "806cb2842b64e976ba2c65a3e3724518"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mactag"
-rev = "a1b678d"
+rev = "2bf70d8"
 hash = "2b3aa04f8c795b6fdc6484fe1c38044f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "a1b678d"
+rev = "2bf70d8"
 hash = "dd97eede8e20e59cd2604e8006e470e2"
 
 [[plugin.deps]]
@@ -55,8 +55,8 @@ hash = "b5816ec1dfe09ff9231532616a27b31d"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:toggle-pane"
-rev = "0c2d5d3"
-hash = "ce98b50f6706dc393aa1c5f7a351ae35"
+rev = "652943c"
+hash = "27cde3da28f1785f7a75c72b1675f487"
 
 [[plugin.deps]]
 use = "twio142/githead"
@@ -65,15 +65,15 @@ hash = "f2a99939ff74b2e7db58f1848172f031"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:advanced-search"
-rev = "0c2d5d3"
-hash = "812e5f45c82f86eab9058f227dbe1ad3"
+rev = "652943c"
+hash = "de4a27c1db4ecb01e1891a82b2954b91"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
-rev = "c023460"
+rev = "b929df6"
 hash = "5dffea1e87c50b18b8bb1599f6d4881a"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "c023460"
+rev = "b929df6"
 hash = "2ac87e1b3a61f5887472899e86535d29"
