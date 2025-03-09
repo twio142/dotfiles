@@ -500,21 +500,21 @@ require("lazy").setup({
 						["<C-d>"] = "",
 						["y"] = {
 							function(state)
-								local path = vim.fn.fnamemodify(state.tree:get_node().path, ":.")
-								vim.fn.setreg("*", path)
-								vim.notify("Yanked path to clipboard: " .. path)
-							end,
-							desc = "yank file path",
-						},
-						["\\y"] = {
-							function(state)
 								local path = state.tree:get_node().path
 								local chan = vim.fn.jobstart({ "tmux", "loadb", "-" }, { stdin = "pipe" })
 								vim.fn.chansend(chan, path)
 								vim.fn.chanclose(chan, "stdin")
-								vim.notify("Yanked path to tmux buffer: " .. path)
+								vim.notify("Yanked: " .. path)
 							end,
 							desc = "yank file path to tmux",
+						},
+						["Y"] = {
+							function(state)
+								local path = vim.fn.fnamemodify(state.tree:get_node().path, ":.")
+								vim.fn.setreg('+', path)
+								vim.notify("Yanked: " .. path)
+							end,
+							desc = "yank file path",
 						},
 						["!"] = {
 							function(state)

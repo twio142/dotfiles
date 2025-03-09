@@ -47,10 +47,10 @@ items:
       - name: Previous
         key: p
         command: previous
-      - name: New
+      - name: Create
         key: c
         command: neww -c "$HOME"
-      - name: New …
+      - name: Create …
         key: C
         command: command-prompt -p "❯" -T command "neww \"%%\""
       - name: Sync panes
@@ -144,9 +144,6 @@ items:
       - name: List
         key: b
         command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/buffer.sh || true"
-      - name: Paste
-        key: p
-        command: pasteb
       - name: Jump
         key: j
         command: run -b "#{@fingers-cli} start \\#{pane_id}"
@@ -159,6 +156,7 @@ items:
       - name: Extract urls
         key: u
         command: run "$TMUX_PLUGIN_MANAGER_PATH/extrakto/scripts/open.sh \\#{pane_id} url"
+      - separator: true
       - name: Copy to clipboard
         key: c
         command: run "tmux show-buffer | pbcopy"
@@ -186,7 +184,7 @@ items:
       - name: Previous
         key: p
         command: switchc -p
-      - name: New
+      - name: Create
         key: c
         command: new
       - name: Rename

@@ -10,7 +10,7 @@ case $1 in
 esac
 
 # Nvim
-nvr --serverlist | while read -r server; do
+nvr --serverlist | grep nvim | while read -r server; do
   nvr --servername $server --nostart -c "set background=$mode"
 done
 

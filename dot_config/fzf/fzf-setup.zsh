@@ -13,8 +13,11 @@ export FZF_COMPLETION_TRIGGER='`'
 export FZF_COMPLETION_OPTS="$FZF_DEFAULT_OPTS"
 
 # CTRL-R: search history
-## ctrl-y -> copy
-export FZF_CTRL_R_OPTS="-d '\t' --with-nth 2.. --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
+## ctrl-y -> yank
+COPY=pbcopy
+[ -n "$TMUX" ] && COPY="tmux load-buffer -"
+export FZF_CTRL_R_OPTS="-d '\t' --with-nth 2.. --bind 'ctrl-y:execute-silent(printf {2..} | $COPY)+abort'"
+unset COPY
 
 # CTRL-T: search files
 # ALT-C: search directories

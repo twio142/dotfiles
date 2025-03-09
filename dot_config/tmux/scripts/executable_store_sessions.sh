@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # store nvim sessions
-nvr --serverlist | while read -r server; do
+nvr --serverlist | grep nvim | while read -r server; do
   nvr --servername $server --nostart -c 'SessionManager save_current_session'
 done
 

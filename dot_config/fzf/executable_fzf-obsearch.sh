@@ -22,7 +22,7 @@ fzf --ansi --disabled --query "$INITIAL_QUERY" -m \
     --color "hl:-1:underline,hl+:-1:underline:reverse" \
     --bind "start:reload:$FD_PREFIX . $FD_SUFFIX" \
     --bind "change:reload:sleep 0.1; $FD_PREFIX {q} $FD_SUFFIX || true; $RG {q} || true" \
-    --bind "ctrl-y:execute-silent(echo '[['{1} | sd '\.md$' ']]' | $COPY)" \
+    --bind "ctrl-y:execute-silent(printf '[['{1} | sd '\.md$' ']]' | $COPY)" \
     --bind "ctrl-f:unbind(change,ctrl-f)+change-prompt(fzf > )+enable-search+reload($RG . || true)" \
     --bind "enter:$enter" \
     --delimiter : \
