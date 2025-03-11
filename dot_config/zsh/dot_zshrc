@@ -5,14 +5,8 @@ stty -ixon
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ ! -z $TMUX && -z $alfred_version && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [[ -n "$TMUX" && -z $alfred_version && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-if [[ -z "$alfred_version" && -z "$YAZI_LEVEL" && -z "$NVIM" && -z "$TMUX_POPUP" ]]; then
-  t=$(echo "evening morning afternoon" | awk -v h="$(gdate +%H)" '{ print (h < 3 || h > 18) ? $1 : (h < 12) ? $2 : $3 }')
-  echo -e "\e[38;5;57m\e[1mGood $t, Shin ฅ^•ﻌ•^ฅ\e[0m"
-  unset t
 fi
 
 # auto-correction.
@@ -59,7 +53,5 @@ source $ZIM_HOME/init.zsh
 
 # To customize prompt, run `p10k configure` or edit $POWERLEVEL9K_CONFIG_FILE.
 [[ -f $POWERLEVEL9K_CONFIG_FILE && -z $alfred_version ]] && source $POWERLEVEL9K_CONFIG_FILE
-
-[[ -n "$TMUX" && -s "/var/mail/$USER" ]] && echo "  You have mail."
 
 source $ZDOTDIR/config.zsh

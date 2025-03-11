@@ -213,4 +213,16 @@ bindkey '^X/' recent-paths
 
 [ -n "$TMUX" ] && _tmux_key_bindings
 
-echo -ne '\e[5 q' # force cursor to blink
+if [ -z $alfred_version ]; then
+  if [ -z $NON_FIRST_SHELL ]; then
+    t=$(echo "evening morning afternoon" | awk -v h="$(gdate +%H)" '{ print (h < 3 || h > 18) ? $1 : (h < 12) ? $2 : $3 }')
+    echo -e "\e[38;5;57m\e[1mGood $t, Shin ฅ^•ﻌ•^ฅ\e[0m"
+    unset t
+    export NON_FIRST_SHELL=1
+    [ -z $TMUX ] || tmux set-environment NON_FIRST_SHELL 1
+  fi
+  if [[ -n "$TMUX" && -s "/var/mail/$USER" ]]; then
+    echo "  You have mail."
+  fi
+  echo -ne '\e[5 q' # force cursor to blink
+fi
