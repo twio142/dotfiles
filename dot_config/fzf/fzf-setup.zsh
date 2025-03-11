@@ -86,7 +86,6 @@ _fzf_comprun() {
     chezmoi)      chezmoi managed -p absolute | fzf --preview "fzf-preview {}" \
                       --bind "ctrl-f:reload(chezmoi status -i files -p absolute | choose 1..)+change-preview(chezmoi diff {})+change-header( Changed files )" "$@" ;;
                   # ctrl-f -> filter changed files
-    euporie*)     fd -e ipynb | fzf --preview "euporie-preview {} 2> /dev/null" "$@" ;;
     *)            fzf --preview "fzf-preview {}" "$@" ;;
   esac
 }

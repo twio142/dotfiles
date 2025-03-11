@@ -97,12 +97,6 @@ function prompt_yazi_level() {
   [ -z $YAZI_LEVEL ] || p10k segment -i '󰇥' -f yellow -t "$YAZI_LEVEL"
 }
 
-euporie_aliases=('euporie' 'euporie-console' 'euporie-hub' 'euporie-notebook' 'euporie-preview')
-for euporie_alias in $euporie_aliases; do
-  alias $euporie_alias=$euporie_alias' --color-scheme=$(~/.local/bin/background) --syntax-theme=gruvbox-$(~/.local/bin/background)'
-done
-unset euporie_aliases euporie_alias
-
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 
 eval "$(zoxide init zsh)"

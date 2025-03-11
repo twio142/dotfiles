@@ -177,8 +177,6 @@ brew "pandoc-crossref"
 brew "php"
 # Python dependency management tool
 brew "pipenv"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
 # Paste PNG into files
 brew "pngpaste"
 # PDF rendering library (based on the xpdf-3.0 code base)
