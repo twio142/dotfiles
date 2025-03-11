@@ -15,7 +15,7 @@ TMUX_FZF_OPTIONS="-p -w 90% -h 70% -m --preview-window=up,70% ${FZF_DEFAULT_OPTS
 TMUX_FZF_ORDER="session|window|pane|buffer"
 TMUX_FZF_PANE_FORMAT="#{?pane_active,●,-} #{pane_current_command}#{?pane_marked,\t󰃀,}\t #{b:pane_current_path} "
 TMUX_FZF_WINDOW_FORMAT="#{?window_active,●,-} #{?#{==:#W,#{pane_current_command}},#W,#W (#{pane_current_command})}\t #{window_panes}#{?window_marked_flag,  󰃀,}   #{b:pane_current_path} "
-TMUX_FZF_SESSION_FORMAT="#{?session_attached,●,-}  #{session_windows}   #{b:session_path} "
+TMUX_FZF_SESSION_FORMAT="#{?session_attached,󰍹 #{session_attached},-}  #{session_windows}   #{b:session_path} "
 TMUX_FZF_MENU=\
 "edit config\ntmux edit-config\n"\
 "memo\ntmux memo\n"\

@@ -100,8 +100,8 @@ items:
   - name: +Layout
     key: l
     menu:
-      - name: Next
-        key: n
+      - name: Switch layout
+        key: \\
         command: nextl
         transient: true
       - name: Previous
@@ -120,7 +120,7 @@ items:
         key: "-"
         command: "splitw -v -l 35% -c #{pane_current_path}"
       - name: Vsplit
-        key: \\
+        key: "|"
         command: "splitw -h -c #{pane_current_path}"
       - separator: true
       - name: Swap left
