@@ -43,22 +43,28 @@ require("mactag"):setup({
 	},
 })
 
-THEME.git = THEME.git or {}
-THEME.git.modified_sign = ""
-THEME.git.added_sign = "󰐕"
-THEME.git.untracked_sign = ""
-THEME.git.deleted_sign = "✖"
-THEME.git.ignored_sign = ""
+th.mgr.cwd = ui.Style():fg("blue"):bold()
+th.git = th.git or {}
+th.git.modified_sign = ""
+th.git.added_sign = "󰐕"
+th.git.untracked_sign = ""
+th.git.deleted_sign = "✖"
+th.git.ignored_sign = ""
 require("git"):setup()
 
 require("githead"):setup({
 	branch_prefix = "",
 	branch_borders = "",
 	branch_symbol = "",
+	branch_color = "bright green",
 	commit_symbol = "@",
+	commit_color = "bright green",
 	behind_symbol = "󱦳",
+	behind_color = "bright green",
 	ahead_symbol = "󱦲",
+	ahead_color = "bright green",
 	stashes_symbol = "*",
+	stashes_color = "bright green",
 	state_symbol = "~",
 	staged_symbol = "+",
 	unstaged_symbol = "!",
@@ -100,7 +106,7 @@ function Status:name()
 
 	local linked = ""
 	if h.link_to ~= nil then
-    local home = os.getenv("HOME")
+		local home = os.getenv("HOME")
 		linked = " → " .. tostring(h.link_to):gsub("^" .. home .. "/", "~/")
 	end
 	return ui.Line(" " .. h.name .. linked)

@@ -22,38 +22,38 @@ tab_size = 2
 edit = [
 	{ run = 'nvim "$@"', block = true, for = "unix", desc = "Edit" },
 	{ run = "nvim %*",  block = true, for = "windows", desc = "Edit" },
-	{ run = '[ -f "$1" ] && { code "${1:h}"; sleep 1; code -g "$1"; } || code "$1"', desc = "Open in VSCode" }
+	{ run = 'code "$PWD"; code -g "$@"', desc = "Open in VSCode" }
 ]
 extract = [
-	{ run = 'ouch d -y "$1" || open "$1"', desc = "Extract here", for = "unix" },
+	{ run = 'for x in "$@"; do ouch d -y "$x" || open "$x"; done', desc = "Extract here", for = "unix" },
 	{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
 ]
 reveal = [
-	{ run = 'xdg-open "$(dirname "$1")"',           desc = "Reveal", for = "linux" },
-	{ run = 'open -R "$1"',                         desc = "Reveal", for = "macos" },
-	{ run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
+	{ run = 'xdg-open "$(dirname "$0")"',           desc = "Reveal", for = "linux" },
+	{ run = 'open -R "$0"',                         desc = "Reveal", for = "macos" },
+	{ run = 'explorer /select,"%0"', orphan = true, desc = "Reveal", for = "windows" },
 ]
 play = [
 	{ run = 'open "$@"', for = "macos", desc = "Play" },
 	# { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
 	{ run = 'mpv --force-window %*', orphan = true, for = "windows" },
-	{ run = 'l=$(echo "$1" | grep -Eq "\.m3u$" && echo loadlist || echo loadfile); ~/.local/bin/iina $l "$1" append', desc = "Append to playlist" }
+	{ run = '''for x in "$@"; do ~/.local/bin/iina load$(echo "$x" | awk -F. '{print($NF=="m3u")?"list":"file"}') "$x" append; done''', desc = "Append to playlist" }
 ]
 load_sub = [
-	{ run = '~/.local/bin/iina sub-add "$1"', orphan = true, desc = "Load subtitle" }
+	{ run = 'for x in "$@"; do ~/.local/bin/iina sub-add "$x"; done', orphan = true, desc = "Load subtitle" }
 ]
 uninstall_app = [
-	{ run = 'open "$1" -a AppCleaner', desc = "Uninstall app" }
+	{ run = 'open "$0" -a AppCleaner', desc = "Uninstall app" }
 ]
 image = [
-	{ run = '~/.local/bin/copy-img "$1"', desc = "Copy image" },
-	{ run = '~/.local/share/npm/bin/picgo u "$1"', desc = "Upload image" }
+	{ run = '~/.local/bin/copy-img "$0"', desc = "Copy image" },
+	{ run = '~/.local/share/npm/bin/picgo u "$0"', desc = "Upload image" }
 ]
 open_db = [
-	{ run = 'lazysql "$1"', block = true, desc = "Open database" }
+	{ run = 'lazysql "$0"', block = true, desc = "Open database" }
 ]
 osascript = [
-	{ run = 'osascript "$1"', desc = "Run AppleScript" }
+	{ run = 'osascript "$0"', desc = "Run AppleScript" }
 ]
 compress = [
 	{ run = 'ya emit plugin ouch zip', desc = "Compress here" }
