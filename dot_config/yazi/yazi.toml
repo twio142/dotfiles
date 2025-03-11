@@ -61,6 +61,7 @@ compress = [
 
 [open]
 prepend_rules = [
+  { name = "*.md", use = ["open", "edit", "reveal"] },
 	{ mime = "image/*", use = ["open", "reveal", "image"] },
 	{ name = "*.m3u", use = ["play", "edit", "reveal"] },
 	{ name = "*.{ass,srt,sub}", use = ["load_sub", "edit"] },
