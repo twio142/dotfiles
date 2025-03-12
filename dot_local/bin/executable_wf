@@ -1,6 +1,7 @@
 #!/bin/zsh
+
 info=${1:a}/info.plist
-[ -f $info ] && {
+if [[ -f "$info" ]]; then
     cacheDir=~/Library/Caches/com.runningwithcrayons.Alfred/Workflow\ Data
     dataDir=~/Library/Application\ Support/Alfred/Workflow\ Data
     cd $1 &> /dev/null
@@ -13,17 +14,36 @@ info=${1:a}/info.plist
     export alfred_workflow_uid=${1:t}
     export alfred_workflow_bundleid=$(defaults read $info bundleid)
     echo Workflow: $alfred_workflow_name
-    [ -z $alfred_workflow_bundleid ] || {
+    [[ -z $alfred_workflow_bundleid ]] || {
         export alfred_workflow_cache=$cacheDir/$alfred_workflow_bundleid
-            export alfred_workflow_data=$dataDir/$alfred_workflow_bundleid
-        }
-        defaults read $info variables 2> /dev/null | sed "1d" | sed "$ d" | while read l; do
-        eval "export ${l/ = /=}" 2> /dev/null
-    done
-}
+        export alfred_workflow_data=$dataDir/$alfred_workflow_bundleid
+    }
+    if defaults read "$info" variables &> /dev/null; then
+        while read -r l; do
+            l=${l/%;}
+            l=${l/ = /=}
+            key=${l%%=*}
+            value=${l#*=}
+            [[ "$key" =~ ^\".*\"$ ]] && key="${key:1:-1}"
+            [[ "$value" =~ ^\".*\"$ ]] && value="${value:1:-1}"
+            [[ "$value" =~ ^\'.*\'$ ]] && value="${value:1:-1}"
+            export "$key=$value" &> /dev/null
+        done < <(defaults read "$info" variables 2> /dev/null | sed '1d;$d')
+    fi
+fi
+
 prefs=${1:a}/prefs.plist
-[ -f $prefs ] && {
-    defaults read $prefs 2> /dev/null | sed "1d" | sed "$ d" | while read l; do
-    eval "export ${l/ = /=}" 2> /dev/null
-done
-}
+if [[ -f "$prefs" ]]; then
+    if defaults read "$prefs" &> /dev/null; then
+        while read -r l; do
+            l=${l/%;}
+            l=${l/ = /=}
+            key=${l%%=*}
+            value=${l#*=}
+            [[ "$key" =~ ^\".*\"$ ]] && key="${key:1:-1}"
+            [[ "$value" =~ ^\".*\"$ ]] && value="${value:1:-1}"
+            [[ "$value" =~ ^\'.*\'$ ]] && value="${value:1:-1}"
+            export "$key=$value" &> /dev/null
+        done < <(defaults read "$prefs" 2> /dev/null | sed '1d;$d')
+    fi
+fi
