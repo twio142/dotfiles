@@ -638,7 +638,7 @@
                   "key_code": "h",
                   "modifiers": { "mandatory": ["right_control"] }
                 },
-                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=w' -g" }],
+                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=w' -g; sleep 0.5; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                 "type": "basic"
               },
               {
@@ -646,7 +646,7 @@
                   "key_code": "j",
                   "modifiers": { "mandatory": ["right_control"] }
                 },
-                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=s' -g" }],
+                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=s' -g; sleep 0.5; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                 "type": "basic"
               },
               {
@@ -654,7 +654,7 @@
                   "key_code": "k",
                   "modifiers": { "mandatory": ["right_control"] }
                 },
-                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=n' -g" }],
+                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=n' -g; sleep 0.5; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                 "type": "basic"
               },
               {
@@ -662,7 +662,7 @@
                   "key_code": "l",
                   "modifiers": { "mandatory": ["right_control"] }
                 },
-                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=e' -g" }],
+                "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=e' -g; sleep 0.5; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                 "type": "basic"
               },
               {
@@ -742,7 +742,7 @@
                   "key_code": "h",
                   "modifiers": { "mandatory": ["right_control", "shift"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move left" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move left; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                 "type": "basic"
               },
               {
@@ -750,7 +750,7 @@
                   "key_code": "j",
                   "modifiers": { "mandatory": ["right_control", "shift"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move down" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move down; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                 "type": "basic"
               },
               {
@@ -758,7 +758,7 @@
                   "key_code": "k",
                   "modifiers": { "mandatory": ["right_control", "shift"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move up" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move up; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                 "type": "basic"
               },
               {
@@ -766,7 +766,7 @@
                   "key_code": "l",
                   "modifiers": { "mandatory": ["right_control", "shift"] }
                 },
-                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move right" }],
+                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move right; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                 "type": "basic"
               },
               {
