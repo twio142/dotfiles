@@ -85,7 +85,7 @@ items:
       - name: Mark
         key: m
         command: selectp -m
-      - name: Sync
+      - name: Toggle sync
         key: s
         command: set -p synchronize-panes
       - name: Kill
@@ -104,17 +104,28 @@ items:
         key: \\
         command: nextl
         transient: true
-      - name: Previous
-        key: p
-        command: prevl
-        transient: true
       - name: Spread evenly
         key: "="
         command: selectl -E
-      - name: Rotate
-        key: o
-        command: rotatew
-        transient: true
+      - name: +Resize
+        key: r
+        menu:
+        - name: Resize left
+          key: h
+          command: resizep -L 8
+          transient: true
+        - name: Resize down
+          key: j
+          command: resizep -D 8
+          transient: true
+        - name: Resize up
+          key: k
+          command: resizep -U 8
+          transient: true
+        - name: Resize right
+          key: l
+          command: resizep -R 8
+          transient: true
       - separator: true
       - name: Split
         key: "-"
@@ -123,6 +134,10 @@ items:
         key: "|"
         command: "splitw -h -c #{pane_current_path}"
       - separator: true
+      - name: Rotate
+        key: o
+        command: rotatew
+        transient: true
       - name: Swap left
         key: h
         command: swapp -t "{left-of}"
