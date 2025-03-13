@@ -1034,7 +1034,7 @@
             ]
           },
           {
-            "description": "✧ A → Launch Alfred, ✧ C → Merge Clipboard, ✧ D → Download, ✧ R → Reload Hammerspoon, ✧ S → Screenshot, ✧ V → Paste Plaintext, ✧ W → Close Without Save",
+            "description": "✧ A → Launch Alfred, ✧ C → Merge Clipboard, ✧ D → Download, ✧ S → Screenshot, ✧ V → Paste Plaintext, ✧ W → Close Without Save",
             "manipulators": [
               {
                 "from": {
@@ -1046,26 +1046,10 @@
               },
               {
                 "from": {
-                  "key_code": "c",
-                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
-                },
-                "to": [{ "shell_command": "open hammerspoon://clipboard_merge -g" }],
-                "type": "basic"
-              },
-              {
-                "from": {
                   "key_code": "d",
                   "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
                 },
                 "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.aria2 -t save_url" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "r",
-                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
-                },
-                "to": [{ "shell_command": "open hammerspoon://reload -g" }],
                 "type": "basic"
               },
               {
@@ -1097,14 +1081,6 @@
                   "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
                 },
                 "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.syspre -t close_without_save" }],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "key_code": "tab",
-                  "modifiers": { "mandatory": ["left_gui", "left_control", "left_option", "left_shift"] }
-                },
-                "to": [{ "shell_command": "~/.local/bin/alfred '``'" }],
                 "type": "basic"
               }
             ]
