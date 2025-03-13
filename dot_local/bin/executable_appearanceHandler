@@ -15,10 +15,12 @@ nvr --serverlist | grep nvim | while read -r server; do
 done
 
 # Tmux
-tmux set -g @catppuccin_flavor "$flavor"
-tmux run ${XDG_CONFIG_HOME}/tmux/plugins/catppuccin-tmux/catppuccin.tmux
-tmux set -g @fingers-backdrop-style "fg=$color,bright"
-tmux run ${XDG_CONFIG_HOME}/tmux/plugins/tmux-fingers/tmux-fingers.tmux &
+tmux set -g @BACKGROUND $mode && {
+  tmux set -g @catppuccin_flavor "$flavor"
+  tmux run ${XDG_CONFIG_HOME}/tmux/plugins/catppuccin-tmux/catppuccin.tmux
+  tmux set -g @fingers-backdrop-style "fg=$color,bright"
+  tmux run ${XDG_CONFIG_HOME}/tmux/plugins/tmux-fingers/tmux-fingers.tmux &
+}
 
 # yazi theme
 DIR=$XDG_CONFIG_HOME/yazi

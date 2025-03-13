@@ -30,7 +30,7 @@ TMUX_FZF_MENU=\
 "toggle clipboard\ntmux toggle-clipboard\n"
 
 # catppuccin
-if 'test "$(background)" = light' 'set -g @catppuccin_flavor "latte"' 'set -g @catppuccin_flavor "mocha"'
+if -F "#{==:#{@BACKGROUND},light}" 'set -g @catppuccin_flavor "latte"' 'set -g @catppuccin_flavor "mocha"'
 # latte, frappe, macchiato or mocha
 set -g @catppuccin_window_default_text "#W"
 set -g @catppuccin_window_default_color "#{thm_fg}"
@@ -59,7 +59,7 @@ set -g @catppuccin_directory_icon ""
 set -g @catppuccin_custom_plugin_dir "$XDG_CONFIG_HOME/tmux/custom/catppuccin"
 set -g @catppuccin_menu_style "bg=default"
 set -g @catppuccin_menu_selected_style "fg=#{thm_bg},bg=#{thm_magenta}"
-set -g @catppuccin_mode_style "fg=#{thm_fg},bg=#{?#{==:#{@catppuccin_flavor},latte},#c6dcfb,#282099}"
+set -g @catppuccin_mode_style "fg=#{thm_fg},bg=#{?#{==:#{@BACKGROUND},light},#c6dcfb,#282099}"
 
 # extrakto
 set -g @extrakto_fzf_header "f c o g"
@@ -76,7 +76,7 @@ set -g @extrakto_editor "nvim"
 set -g @extrakto_filter_order "word line-trim url all"
 
 # tmux-fingers
-if "[ $(background) = light ]" 'set -g @fingers-backdrop-style "fg=white,bright"' 'set -g @fingers-backdrop-style "fg=black,bright"'
+if -F "#{==:#{@BACKGROUND},light}" 'set -g @fingers-backdrop-style "fg=white,bright"' 'set -g @fingers-backdrop-style "fg=black,bright"'
 
 run "$XDG_CONFIG_HOME/tmux/plugins/tpm/tpm" &
 # Prefix I   install
@@ -189,8 +189,7 @@ bind -n WheelDownPane if -F "#{mouse_any_flag}" 'send C-e' 'if -F "#{alternate_o
 
 # command aliases
 set -g command-alias[10] EF="neww -S -n config 'nvim $XDG_CONFIG_HOME/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/lazy.tmux'"
-set -g command-alias[11] ER="source $XDG_CONFIG_HOME/tmux/tmux.conf \; source $XDG_CONFIG_HOME/tmux/lazy.tmux \;
-display 'Config reloaded'"
+set -g command-alias[11] ER="source $XDG_CONFIG_HOME/tmux/tmux.conf \; source $XDG_CONFIG_HOME/tmux/lazy.tmux \; display 'Config reloaded'"
 set -g command-alias[12] man="splitw -v $XDG_CONFIG_HOME/tmux/scripts/man.sh"
 set -g command-alias[13] tmux-man="splitw -v $XDG_CONFIG_HOME/tmux/scripts/man.sh tmux"
 set -g command-alias[14] ssh="neww $XDG_CONFIG_HOME/tmux/scripts/ssh.sh"

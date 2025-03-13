@@ -3,21 +3,12 @@ vim.o.laststatus = 0
 vim.o.shadafile = "NONE"
 vim.o.termguicolors = true
 
-local fg
-vim.fn.jobstart({ vim.fn.expand("~/.local/bin/background") }, {
-	on_stdout = function(_, data, _)
-		if fg then
-			return
-		end
+vim.fn.jobstart({ "tmux", "show", "-gqv", "@BACKGROUND" }, {
+	on_stdout = function(_, data)
 		if data and #data[1] > 0 then
-			local bg = vim.fn.trim(data[1])
-			if bg == "light" then
-				fg = "#000000"
-			elseif bg == "dark" then
-				fg = "#ffffff"
-			end
+			local fg = data[1]:match("light") and "#000000" or "#ffffff"
+      vim.api.nvim_set_hl(0, "Normal", { fg = fg or "#999999", bg = "NONE", ctermbg = "NONE" })
 		end
-		vim.api.nvim_set_hl(0, "Normal", { fg = fg or "#999999", bg = "NONE", ctermbg = "NONE" })
 	end,
 })
 

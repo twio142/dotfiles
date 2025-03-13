@@ -6,7 +6,6 @@ export LESS="-r"
 export LESSHISTFILE=$XDG_STATE_HOME/less/history
 export PAGER="bat --style=plain --color=always --paging=always --pager=less"
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind='ctrl-d:preview-half-page-down' --bind='ctrl-u:preview-half-page-up' --bind='alt-j:jump'"
-export LS_COLORS="$(vivid generate one-light)"
 
 BOLD=$'\033[1;36m'
 OFF=$'\033[0m'
