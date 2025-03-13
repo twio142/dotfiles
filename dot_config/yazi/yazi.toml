@@ -39,6 +39,9 @@ play = [
 	{ run = 'mpv --force-window %*', orphan = true, for = "windows" },
 	{ run = '''for x in "$@"; do ~/.local/bin/iina load$(echo "$x" | awk -F. '{print($NF=="m3u")?"list":"file"}') "$x" append; done''', desc = "Append to playlist" }
 ]
+play_audio = [
+  { run = 'afplay "$0"', orphan = true, for = "macos", desc = "Play audio" }
+]
 load_sub = [
 	{ run = 'for x in "$@"; do ~/.local/bin/iina sub-add "$x"; done', orphan = true, desc = "Load subtitle" }
 ]
@@ -46,8 +49,8 @@ uninstall_app = [
 	{ run = 'open "$0" -a AppCleaner', desc = "Uninstall app" }
 ]
 image = [
-	{ run = '~/.local/bin/copy-img "$0"', desc = "Copy image" },
-	{ run = '~/.local/share/npm/bin/picgo u "$0"', desc = "Upload image" }
+	{ run = '~/.local/bin/copy-img "$0"', desc = "Copy to clipboard" },
+	{ run = '~/.local/share/npm/bin/picgo -c $XDG_CONFIG_HOME/picgo/config.json u "$0" | grep -qF "[PicGo SUCCESS]" && afplay /System/Library/Sounds/Purr.aiff', orphan = true, desc = "Upload image" }
 ]
 open_db = [
 	{ run = 'lazysql "$0"', block = true, desc = "Open database" }
@@ -61,6 +64,7 @@ compress = [
 
 [open]
 prepend_rules = [
+  { mime = "audio/*", use = ["play", "play_audio", "reveal"] },
   { name = "*.md", use = ["open", "edit", "reveal"] },
 	{ mime = "image/*", use = ["open", "reveal", "image"] },
 	{ name = "*.m3u", use = ["play", "edit", "reveal"] },
