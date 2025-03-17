@@ -51,8 +51,6 @@ brew "glib"
 brew "libxcb"
 # X.Org: Core X11 protocol client library
 brew "libx11"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.12"
 # Versatile and fast Unicode/ASCII/ANSI graphics renderer
 brew "chafa"
 # Manage your dotfiles across multiple diverse machines, securely
@@ -91,6 +89,8 @@ brew "nettle"
 brew "unbound"
 # Multi-format archive and compression library
 brew "libarchive"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
 # Fastest and safest AV1 video encoder
 brew "rav1e"
 # Play, record, convert, and stream audio and video
@@ -111,6 +111,8 @@ brew "git-delta"
 brew "git-flow"
 # Git extension for versioning large files
 brew "git-lfs"
+# Prevents you from committing sensitive information to a git repo
+brew "git-secrets"
 # Render markdown on the CLI
 brew "glow"
 # GNU Pretty Good Privacy (PGP) package
@@ -135,6 +137,8 @@ brew "iperf3"
 brew "jpeg"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Jupyter notebooks as Markdown documents, Julia, Python or R scripts
+brew "jupytext"
 # Pager program similar to more
 brew "less"
 # Configuration file processing library
@@ -161,8 +165,6 @@ brew "neovim-remote"
 brew "nmap"
 # Retrieves currently playing media, and simulates media actions
 brew "nowplaying-cli"
-# Ncurses based sudoku game
-brew "nudoku"
 # Tools for one-time password authentication systems
 brew "oath-toolkit"
 # Open source suite of directory software
@@ -209,6 +211,8 @@ brew "tmux"
 brew "trash", link: true
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
 # Generator for LS_COLORS with support for multiple color themes
 brew "vivid"
 # Check your $HOME for unwanted files and directories
@@ -320,8 +324,6 @@ cask "sf-symbols"
 cask "squirrel"
 # Quicklook extension for source files
 cask "syntax-highlight"
-# Utility for producing audio feedback when typing
-cask "tickeys"
 # Run commands and display their output on the desktop
 cask "ubersicht"
 # Open-source code editor
