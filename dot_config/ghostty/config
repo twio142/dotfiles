@@ -690,8 +690,8 @@ keybind = alt+backspace=text:\x17
 keybind = alt+delete=esc:d
 keybind = super+z=text:\x18\x75
 keybind = super+t=ignore
-keybind = super+ctrl+l=text:\x00n
-keybind = super+ctrl+h=text:\x00\x10
+keybind = ctrl+tab=text:\x00n
+keybind = ctrl+shift+tab=text:\x00\x10
 keybind = super+alt+ctrl+shift+space=text:\x00
 keybind = super+[=text:\x00\x5b
 keybind = super+]=text:\x00\x5d

@@ -542,7 +542,7 @@
                                 ],
                                 "from": {
                                     "key_code": "j",
-                                    "modifiers": { "mandatory": ["left_control"] }
+                                    "modifiers": { "mandatory": ["right_control"] }
                                 },
                                 "to": [
                                     {
@@ -563,7 +563,7 @@
                                 ],
                                 "from": {
                                     "key_code": "k",
-                                    "modifiers": { "mandatory": ["left_control"] }
+                                    "modifiers": { "mandatory": ["right_control"] }
                                 },
                                 "to": [
                                     {
@@ -584,7 +584,7 @@
                                 ],
                                 "from": {
                                     "key_code": "l",
-                                    "modifiers": { "mandatory": ["left_control"] }
+                                    "modifiers": { "mandatory": ["right_control"] }
                                 },
                                 "to": [{ "key_code": "right_arrow" }],
                                 "type": "basic"
@@ -599,8 +599,8 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "up_arrow",
-                                    "modifiers": { "mandatory": ["right_gui"] }
+                                    "key_code": "u",
+                                    "modifiers": { "mandatory": ["right_control"] }
                                 },
                                 "to": [{ "key_code": "page_up" }],
                                 "type": "basic"
@@ -615,178 +615,10 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "down_arrow",
-                                    "modifiers": { "mandatory": ["right_gui"] }
+                                    "key_code": "d",
+                                    "modifiers": { "mandatory": ["right_control"] }
                                 },
                                 "to": [{ "key_code": "page_down" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.runningwithcrayons.Alfred"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["right_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.runningwithcrayons.Alfred"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "j",
-                                    "modifiers": { "mandatory": ["right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "down_arrow",
-                                        "modifiers": ["right_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.runningwithcrayons.Alfred"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "k",
-                                    "modifiers": { "mandatory": ["right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "up_arrow",
-                                        "modifiers": ["right_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.runningwithcrayons.Alfred"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": ["right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["right_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.runningwithcrayons.Alfred"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "1",
-                                    "modifiers": { "mandatory": ["left_control"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "1",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.runningwithcrayons.Alfred"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "2",
-                                    "modifiers": { "mandatory": ["left_control"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "2",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.runningwithcrayons.Alfred"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "3",
-                                    "modifiers": { "mandatory": ["left_control"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "3",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.runningwithcrayons.Alfred"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "4",
-                                    "modifiers": { "mandatory": ["left_control"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "4",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
                                 "type": "basic"
                             },
                             {
@@ -800,7 +632,7 @@
                                 ],
                                 "from": {
                                     "key_code": "left_option",
-                                    "modifiers": { "mandatory": ["fn"] }
+                                    "modifiers": { "mandatory": ["right_option"] }
                                 },
                                 "to": [
                                     {
@@ -820,7 +652,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "fn",
+                                    "key_code": "right_option",
                                     "modifiers": { "mandatory": ["left_option"] }
                                 },
                                 "to": [
@@ -848,38 +680,6 @@
                                     {
                                         "key_code": "left_option",
                                         "lazy": true
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Lft ⇧ / Lft ⇧ + MOD → Switch Input Method",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "left_shift" },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_if_alone": {
-                                    "key_code": "a",
-                                    "modifiers": ["left_control", "left_shift", "left_option", "left_command"]
-                                },
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "right_control",
-                                    "modifiers": { "mandatory": ["left_shift"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "x",
-                                        "modifiers": ["left_control", "left_shift", "left_option", "left_command"]
                                     }
                                 ],
                                 "type": "basic"
@@ -968,12 +768,63 @@
                         ]
                     },
                     {
+                        "description": "Lft ⇧ / Lft ⇧ + MOD → Switch Input Method",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "left_shift" },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": {
+                                    "key_code": "a",
+                                    "modifiers": ["left_control", "left_shift", "left_option", "left_command"]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "f20",
+                                    "modifiers": { "mandatory": ["left_shift"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": ["left_control", "left_shift", "left_option", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "MOD ` → ~, MOD A → AeroSpace App Mode, MOD E → Aerospace Expand Mode, MOD F → Make Window Float, MOD H/J/K/L → Focus on Window, MOD N/P → Previous / Next Workspace, MOD S → Aerospace Space Mode, MOD T → Make Window on Top, MOD V → Move / Resize Window, MOD ⇥ → Last Workspace, MOD '/\\ → Toggle Layout Tiling / Accordion, MOD⇧ H/J/K/L → Swap Window, MOD ␣ → AeroSpace Mode",
                         "manipulators": [
                             {
                                 "from": {
+                                    "key_code": "f20",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_option",
+                                        "modifiers": ["left_option"],
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "f20"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
                                     "key_code": "grave_accent_and_tilde",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["left_option", "right_option"] }
                                 },
                                 "to": [
                                     {
@@ -986,7 +837,7 @@
                             {
                                 "from": {
                                     "key_code": "a",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace mode app" }],
                                 "type": "basic"
@@ -994,7 +845,7 @@
                             {
                                 "from": {
                                     "key_code": "e",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace mode expand" }],
                                 "type": "basic"
@@ -1002,7 +853,7 @@
                             {
                                 "from": {
                                     "key_code": "f",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace layout floating tiling" }],
                                 "type": "basic"
@@ -1010,7 +861,7 @@
                             {
                                 "from": {
                                     "key_code": "h",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=w' -g; sleep 0.5; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                                 "type": "basic"
@@ -1018,7 +869,7 @@
                             {
                                 "from": {
                                     "key_code": "j",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=s' -g; sleep 0.5; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                                 "type": "basic"
@@ -1026,7 +877,7 @@
                             {
                                 "from": {
                                     "key_code": "k",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=n' -g; sleep 0.5; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                                 "type": "basic"
@@ -1034,7 +885,7 @@
                             {
                                 "from": {
                                     "key_code": "l",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "open 'hammerspoon://focus_win?d=e' -g; sleep 0.5; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                                 "type": "basic"
@@ -1042,7 +893,7 @@
                             {
                                 "from": {
                                     "key_code": "n",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.swift -t aero_next" }],
                                 "type": "basic"
@@ -1050,7 +901,7 @@
                             {
                                 "from": {
                                     "key_code": "p",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [
                                     {
@@ -1063,7 +914,7 @@
                             {
                                 "from": {
                                     "key_code": "s",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace mode space" }],
                                 "type": "basic"
@@ -1071,7 +922,7 @@
                             {
                                 "from": {
                                     "key_code": "t",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [
                                     {
@@ -1084,7 +935,7 @@
                             {
                                 "from": {
                                     "key_code": "v",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'MoveWinMode:enter()'" }],
                                 "type": "basic"
@@ -1092,7 +943,7 @@
                             {
                                 "from": {
                                     "key_code": "tab",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace workspace-back-and-forth" }],
                                 "type": "basic"
@@ -1100,7 +951,7 @@
                             {
                                 "from": {
                                     "key_code": "backslash",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace layout tiles horizontal vertical" }],
                                 "type": "basic"
@@ -1108,7 +959,7 @@
                             {
                                 "from": {
                                     "key_code": "quote",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace layout accordion horizontal vertical" }],
                                 "type": "basic"
@@ -1116,7 +967,7 @@
                             {
                                 "from": {
                                     "key_code": "h",
-                                    "modifiers": { "mandatory": ["right_control", "shift"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option", "shift"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move left; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                                 "type": "basic"
@@ -1124,7 +975,7 @@
                             {
                                 "from": {
                                     "key_code": "j",
-                                    "modifiers": { "mandatory": ["right_control", "shift"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option", "shift"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move down; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                                 "type": "basic"
@@ -1132,7 +983,7 @@
                             {
                                 "from": {
                                     "key_code": "k",
-                                    "modifiers": { "mandatory": ["right_control", "shift"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option", "shift"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move up; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                                 "type": "basic"
@@ -1140,7 +991,7 @@
                             {
                                 "from": {
                                     "key_code": "l",
-                                    "modifiers": { "mandatory": ["right_control", "shift"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option", "shift"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace move right; /opt/homebrew/bin/aerospace move-mouse window-lazy-center &> /dev/null" }],
                                 "type": "basic"
@@ -1148,7 +999,7 @@
                             {
                                 "from": {
                                     "key_code": "slash",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.swift -t aerospace -v mode=win" }],
                                 "type": "basic"
@@ -1156,7 +1007,7 @@
                             {
                                 "from": {
                                     "key_code": "spacebar",
-                                    "modifiers": { "mandatory": ["right_control"] }
+                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [
                                     {
@@ -1169,19 +1020,12 @@
                         ]
                     },
                     {
-                        "description": "⇪⌘ B → Bob, ⇪⌘ D → Define, ⇪⌘ E → DeHelper, ⇪⌘ F → Fantastical, ⇪⌘ G → Autojump, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ R → Alfred Recent Path, ⇪ ⇥ → List Windows",
+                        "description": "⇪⌘ B → Bob, ⇪⌘ D → DeHelper, ⇪⌘ E → Define, ⇪⌘ F → Fantastical, ⇪⌘ G → Autojump, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ R → Alfred Recent Path, ⇪ ⇥ → List Windows",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "b",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [
                                     { "shell_command": "pgrep -qx Bob || open -b com.hezongyidev.Bob" },
@@ -1193,18 +1037,15 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "d",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": ["left_control", "left_shift", "left_command"]
+                                    },
                                     {
                                         "key_code": "d",
                                         "modifiers": ["left_control", "left_option", "left_shift"]
@@ -1213,22 +1054,11 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "e",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [
-                                    {
-                                        "key_code": "e",
-                                        "modifiers": ["left_control", "left_option", "left_shift", "left_command"]
-                                    },
                                     {
                                         "key_code": "e",
                                         "modifiers": ["left_control", "left_option", "left_shift"]
@@ -1237,52 +1067,25 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "f",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [{ "shell_command": "osascript -l JavaScript -e \"Application('System Events').processes['Fantastical Helper'].menuBars[1].menuBarItems[0].click();\"" }],
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "g",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.shell -t autojump" }],
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    },
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.mitchellh.ghostty"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "h",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [
                                     {
@@ -1293,22 +1096,9 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    },
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.mitchellh.ghostty"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "l",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [
                                     {
@@ -1319,31 +1109,17 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "m",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [{ "shell_command": "~/.local/bin/altr -w com.folded.menubar -t search" }],
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "p",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [
                                     { "shell_command": "pgrep -qx ChatGPT || open -b com.openai.chat" },
@@ -1355,16 +1131,9 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "r",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [
                                     {
@@ -1375,31 +1144,17 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "return_or_enter",
-                                    "modifiers": { "mandatory": ["command", "left_control"] }
+                                    "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.passwords -t %unlock" }],
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "tab",
-                                    "modifiers": { "mandatory": ["left_control"] }
+                                    "modifiers": { "mandatory": ["right_control"] }
                                 },
                                 "to": [{ "shell_command": "~/.local/bin/alfred '``'" }],
                                 "type": "basic"
@@ -2177,7 +1932,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "p" },
-                                "to": [{ "shell_command": "~/.local/bin/alfred pcn" }],
+                                "to": [{ "shell_command": "~/.local/bin/alfred pcq" }],
                                 "type": "basic"
                             },
                             {
@@ -2232,45 +1987,24 @@
                                 },
                                 "to": [
                                     {
-                                        "set_variable": {
-                                            "name": "caps_lock_hit",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "left_control",
+                                        "key_code": "right_control",
                                         "lazy": true
-                                    }
-                                ],
-                                "to_after_key_up": [
-                                    {
-                                        "set_variable": {
-                                            "name": "caps_lock_hit",
-                                            "value": 0
-                                        }
                                     }
                                 ],
                                 "to_if_alone": [{ "key_code": "escape" }],
                                 "to_if_held_down": [
                                     {
-                                        "key_code": "left_shift",
+                                        "key_code": "left_control",
                                         "lazy": true,
-                                        "modifiers": ["left_option", "left_command", "left_control"]
+                                        "modifiers": ["left_option", "left_command", "left_shift"]
                                     }
                                 ],
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_hit",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "grave_accent_and_tilde",
-                                    "modifiers": { "mandatory": ["left_control"] }
+                                    "modifiers": { "mandatory": ["right_control"] }
                                 },
                                 "to": [{ "shell_command": "~/.local/bin/alfred '~'" }],
                                 "type": "basic"
@@ -2568,14 +2302,22 @@
                                 "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.runningwithcrayons.Alfred"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "left_control",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "right_control",
-                                        "modifiers": ["left_control"]
+                                        "key_code": "left_control",
+                                        "lazy": true
                                     }
                                 ],
                                 "to_if_alone": [
@@ -2618,19 +2360,6 @@
                                         }
                                     ]
                                 },
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 3
-                                    }
-                                ],
-                                "from": { "key_code": "fn" },
-                                "to_after_key_up": [{ "key_code": "left_control" }],
-                                "to_if_held_down": [{ "shell_command": "~/.local/bin/alfred" }],
                                 "type": "basic"
                             }
                         ]
@@ -2847,12 +2576,12 @@
                     "identifiers": { "is_keyboard": true },
                     "simple_modifications": [
                         {
-                            "from": { "key_code": "grave_accent_and_tilde" },
-                            "to": [{ "key_code": "right_control" }]
-                        },
-                        {
                             "from": { "key_code": "non_us_backslash" },
                             "to": [{ "key_code": "grave_accent_and_tilde" }]
+                        },
+                        {
+                            "from": { "key_code": "grave_accent_and_tilde" },
+                            "to": [{ "key_code": "f20" }]
                         }
                     ]
                 }
