@@ -21,10 +21,18 @@ mp.observe_property("fullscreen", "bool", function(name, fs)
     end
 end)
 
--- If loaded file is paused or at 99%, unpause and or reset pos
 mp.register_event("file-loaded", function()
-    if mp.get_property_native("percent-pos") and mp.get_property_native("percent-pos") > 99 then
+    -- If loaded file is paused or at 99%, unpause and or reset pos
+    local pos = mp.get_property_native("percent-pos")
+    if pos and pos > 99 then
         mp.commandv("seek", 0.0, "absolute")
+    elseif not pos or pos == 0 then
+        -- if streaming a url and find `?t=` or `&t=`, seek to the time
+        local url = mp.get_property("path")
+        local time = url:match("[?&]t=(%d+%.?%d*)$") or url:match("[?&]t=(%d+%.?%d*)&")
+        if time and tonumber(time) > 0 then
+            mp.commandv("seek", tonumber(time), "absolute")
+        end
     end
     if mp.get_property_bool("pause") == true then
         mp.commandv("cycle", "pause")
