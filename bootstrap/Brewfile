@@ -304,8 +304,6 @@ cask "omnidisksweeper"
 cask "orbstack"
 # Read, annotate, edit, convert, create, OCR, fill forms and sign PDFs
 cask "pdf-reader-pro"
-# VPN client focusing on security
-cask "protonvpn"
 # Quick Look plugin for mobile apps and provisioning profiles
 cask "provisionql"
 # Quick Look generator for Markdown files
