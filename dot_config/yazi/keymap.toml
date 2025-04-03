@@ -147,6 +147,10 @@ prepend_keymap = [
 prepend_keymap = [
   { on = "<esc>", run = "close", desc = "Cancel input" },
   { on = "?", run = "help", desc = "Open help" },
+  { on = "<down>", run = "mgr:arrow 1", desc = "Move cursor down" },
+  { on = "<up>", run = "mgr:arrow -1", desc = "Move cursor up" },
+  { on = "<C-f>", run = [ "mgr:enter", "kill bol", "kill eol" ], desc = "Enter the child directory" },
+  { on = "<C-b>", run = [ "mgr:leave", "kill bol", "kill eol" ], desc = "Go back to the parent directory" },
 ]
 
 [confirm]
