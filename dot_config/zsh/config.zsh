@@ -40,6 +40,7 @@ docker() {
   esac
 }
 
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
@@ -60,7 +61,6 @@ export NODE_PATH="$XDG_DATA_HOME"/npm/lib/node_modules # $(npm root -g)
 export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
 export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
-# export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
 export GOPATH=$XDG_DATA_HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -94,7 +94,7 @@ mamba() {
 
 # custom p10k segments
 function prompt_yazi_level() {
-  [ -z $YAZI_LEVEL ] || p10k segment -i '󰇥' -f yellow -t "$YAZI_LEVEL"
+  [ -z $YAZI_LEVEL ] || p10k segment -i 󰇥 -f yellow -t "$YAZI_LEVEL"
 }
 
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
@@ -112,6 +112,51 @@ chpwd_functions=(auto-ls $chpwd_functions)
 export PATH="$HOME/.local/bin:$PATH"
 
 WORDCHARS=${WORDCHARS//[\/]}
+
+# vi mode
+
+function zle-keymap-select {
+  case $KEYMAP in
+    vicmd|visual) echo -ne '\e[1 q' ;;
+    # viopp) echo -ne '\e[3 q' ;;
+    *)     echo -ne '\e[5 q' ;;
+  esac
+}
+
+function zle-line-init {
+  zle-keymap-select
+}
+
+zle -N zle-keymap-select
+zle -N zle-line-init
+
+for m in vicmd visual viopp; do
+  bindkey -M $m H vi-first-non-blank
+  bindkey -M $m L end-of-line
+done
+
+autoload -U select-quoted
+zle -N select-quoted
+autoload -U select-bracketed
+zle -N select-bracketed
+
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+  for c in {a,i}{\[,\],\{\},\(,\)}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
+
+autoload -Uz surround
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+
+bindkey -a 'ds' delete-surround
+bindkey -a 'cs' change-surround
+bindkey -a 'S' add-surround
 
 # tmux
 
@@ -150,7 +195,6 @@ _tmux_key_bindings() {
   zle -N _tmux_prev_mark
   zle -N _tmux_next_mark
   bindkey '^[[' _tmux_copy_mode
-  bindkey '^[v' _tmux_copy_mode
   bindkey '^[/' _tmux_find
   bindkey '^[]' _tmux_paste
   bindkey '^[ ' _tmux_wk_menu
@@ -192,6 +236,7 @@ bindkey '^[d' kill-word
 bindkey '^[h' run-help
 bindkey '^[k' kill-line
 bindkey '^[x' execute-named-cmd
+bindkey '^[v' vi-cmd-mode
 
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
@@ -224,5 +269,4 @@ if [ -z $alfred_version ]; then
   if [[ -n "$TMUX" && -s "/var/mail/$USER" ]]; then
     echo "  You have mail."
   fi
-  echo -ne '\e[5 q' # force cursor to blink
 fi
