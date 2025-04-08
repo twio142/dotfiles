@@ -2,12 +2,12 @@
 
 [manager]
 prepend_keymap = [
-  { on = "<Tab>", run = [ "toggle", "arrow 1" ], desc = "Toggle selection" },
-  { on = "<BackTab>", run = [ "toggle --state=off", "arrow -1" ], desc = "Toggle selection" },
-  { on = "<A-j>", run = [ "toggle", "arrow 1" ], desc = "Toggle selection" },
-  { on = "<A-k>", run = [ "toggle --state=off", "arrow -1" ], desc = "Toggle selection" },
+  { on = "<Tab>", run = [ "toggle", "arrow next" ], desc = "Toggle selection" },
+  { on = "<BackTab>", run = [ "toggle --state=off", "arrow prev" ], desc = "Toggle selection" },
+  { on = "<A-j>", run = [ "toggle", "arrow next" ], desc = "Toggle selection" },
+  { on = "<A-k>", run = [ "toggle --state=off", "arrow prev" ], desc = "Toggle selection" },
   { on = "<A-a>", run = "toggle_all", desc = "Toggle select all" },
-  { on = "<A-h>", run = 'shell -- ya emit toggle --state=off "${@: -1}"', desc = "Toggle select all" },
+  { on = "<A-h>", run = 'shell -- ya emit toggle --state=off "${@: -1}"', desc = "De-select last item" },
   { on = "i", run = "spot", desc = "Inspect file" },
   { on = "e", run = 'shell --block -- nvim "$@"', desc = "Edit file" },
   { on = "<Enter>", run = "plugin my-cmd 'smart enter'", desc = "Open shell / edit file" },
@@ -20,7 +20,8 @@ prepend_keymap = [
   { on = "<C-d>", run = "seek 5", desc = "Seek down 5 units in preview" },
   { on = "<C-u>", run = "seek -5", desc = "Seek up 5 units in preview" },
   { on = [ "g", "c" ], run = "noop" },
-  { on = [ "g", "o" ], run = 'shell -- ya emit reveal "$(realpath "$0")"', desc = "Go to original" },
+  { on = [ "g", "f" ], run = "noop" },
+  { on = [ "g", "o" ], run = "follow", desc = "Go to original" },
   { on = [ "g", "p" ], run = 'shell -- ya emit reveal "$(pbpaste)"', desc = "Go to copied path" },
   { on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Go interactively" },
   { on = [ "g", "r" ], run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"', desc = "Go to git repo root" },
@@ -30,10 +31,6 @@ prepend_keymap = [
   { on = [ "y", "p" ], run = "shell -- [ -z $TMUX ] && ya emit copy path || printf $0 | tmux loadb -", desc = "Yank file path" },
   { on = [ "y", "f" ], run = 'shell -- [ -z $TMUX ] && ya emit copy filename || printf "$(basename "$0")" | tmux loadb -', desc = "Yank filename" },
   { on = "<Esc>", run = "plugin my-cmd 'smart esc'", desc = "Unyank, exit visual mode, clear selected, or cancel search" },
-  { on = "j", run = "plugin my-cmd 'smart down'", desc = "Move cursor down" },
-  { on = "k", run = "plugin my-cmd 'smart up'", desc = "Move cursor up" },
-  { on = "<Down>", run = "plugin my-cmd 'smart down'", desc = "Move cursor down" },
-  { on = "<Up>", run = "plugin my-cmd 'smart up'", desc = "Move cursor up" },
   { on = "<", run = "back", desc = "Back" },
   { on = ">", run = "forward", desc = "Forward" },
   { on = "J", run = "plugin my-cmd 'smart parent-down'", desc = "Go down in parent dir" },
@@ -52,7 +49,7 @@ prepend_keymap = [
   { on = "<C-k>", run = "shell -- [ -z $TMUX ] || tmux selectp -U" },
   { on = "<C-l>", run = "shell -- [ -z $TMUX ] || tmux selectp -R" },
   { on = [ "w", "u" ], run = "shell --block -- dust -C -w $(stty size < /dev/tty | awk '{print $2}') -n $(stty size < /dev/tty | awk '{print $1 - 2}') . | less -R", desc = "Disk usage" },
-  { on = [ "w", "t" ], run = "tasks_show", desc = "Show task manager" },
+  { on = [ "w", "t" ], run = "tasks:show", desc = "Show task manager" },
   { on = [ "w", "m" ], run = "plugin mount", desc = "List mount points" },
   { on = [ "\\", "g" ], run = "plugin my-fzf z",        desc = "Go to a directory" },
   { on = [ "\\", "f" ], run = "plugin my-fzf fd",       desc = "Search files" },
@@ -133,8 +130,8 @@ prepend_keymap = [
 prepend_keymap = [
   { on = "?", run = "help", desc = "Open help" },
   { on = "i", run = "close", desc = "Close the spot" },
-  { on = "J", run = "swipe 1", desc = "Swipe to next file" },
-  { on = "K", run = "swipe -1", desc = "Swipe to previous file" },
+  { on = "<down>", run = "swipe 1", desc = "Swipe to next file" },
+  { on = "<up>", run = "swipe -1", desc = "Swipe to previous file" },
   { on = "y", run = "copy cell", desc = "Yank selected cell" },
 ]
 
@@ -147,8 +144,8 @@ prepend_keymap = [
 prepend_keymap = [
   { on = "<esc>", run = "close", desc = "Cancel input" },
   { on = "?", run = "help", desc = "Open help" },
-  { on = "<down>", run = "mgr:arrow 1", desc = "Move cursor down" },
-  { on = "<up>", run = "mgr:arrow -1", desc = "Move cursor up" },
+  { on = "<down>", run = "mgr:arrow next", desc = "Move cursor down" },
+  { on = "<up>", run = "mgr:arrow prev", desc = "Move cursor up" },
   { on = "<C-f>", run = [ "mgr:enter", "kill bol", "kill eol" ], desc = "Enter the child directory" },
   { on = "<C-b>", run = [ "mgr:leave", "kill bol", "kill eol" ], desc = "Go back to the parent directory" },
 ]
