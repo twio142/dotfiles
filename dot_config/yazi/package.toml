@@ -1,17 +1,17 @@
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-cmd"
-rev = "03c5fb8"
-hash = "333d2bcfe45adf035a5d6c8a93a20db1"
+rev = "e82066b"
+hash = "4f8c7610a12d3e7bd76f5def8a2ed2ba"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "2730199"
+rev = "b12a9ab"
 hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "2730199"
-hash = "e0d2c8d7e7afe5b82270367098d1a821"
+rev = "b12a9ab"
+hash = "e0ada736ea676c2bbb3ec705a49526ef"
 
 [[plugin.deps]]
 use = "twio142/githead"
@@ -20,7 +20,7 @@ hash = "f2a99939ff74b2e7db58f1848172f031"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:toggle-pane"
-rev = "03c5fb8"
+rev = "e82066b"
 hash = "accee18265871ddaaf9fb1d582aa12c9"
 
 [[flavor.deps]]
