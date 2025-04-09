@@ -1,0 +1,18 @@
+#!/bin/bash
+
+[ -e "$1" ] || { echo "File not found" >&2; exit 1; }
+
+name="$(basename "$1")"
+
+if [ -d "$1" ]; then
+  tar="$name.tar.gz"
+  ouch -q -H compress "$1" "$tar" || { echo "Failed to create backup" >&2; exit 1; }
+  1="$tar"
+fi
+
+backup="$name.$(date +%Y-%m-%d-%H%M%S).backup"
+sshenc -p ~/.ssh/id_rsa.pub < "$1" > "$backup" || { echo "Failed to encrypt backup" >&2; }
+
+[ -f "$tar" ] && rm "$tar"
+
+[ -f "$backup" ] && echo "Backup created: $backup"
