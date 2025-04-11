@@ -17,21 +17,17 @@ done
 # Tmux
 tmux set -g @BACKGROUND $mode && {
   tmux set -g @catppuccin_flavor "$flavor"
-  tmux run ${XDG_CONFIG_HOME}/tmux/plugins/catppuccin-tmux/catppuccin.tmux
   tmux set -g @fingers-backdrop-style "fg=$color,bright"
+  tmux run ${XDG_CONFIG_HOME}/tmux/plugins/catppuccin-tmux/catppuccin.tmux
   tmux run ${XDG_CONFIG_HOME}/tmux/plugins/tmux-fingers/tmux-fingers.tmux &
 }
 
 # yazi theme
-DIR=$XDG_CONFIG_HOME/yazi
+DIR=$XDG_CONFIG_HOME/yazi/flavors
 if [ -d $DIR ]; then
-  echo "[flavor]" > $DIR/theme.toml
-  echo "light = \"catppuccin-$flavor\"" >> $DIR/theme.toml
-  echo "dark = \"catppuccin-$flavor\"" >> $DIR/theme.toml
+  rm $DIR/catppuccin.yazi &> /dev/null
+  ln -s $DIR/catppuccin-$flavor.yazi $DIR/catppuccin.yazi
 fi
-
-# Hammerspoon
-hs -A -c "ConsoleDM()"
 
 # lsd theme
 DIR=$XDG_CONFIG_HOME/lsd
@@ -40,7 +36,10 @@ if [ -f $DIR/${mode}.yaml ]; then
 fi
 
 # Btop theme
-FILE=$XDG_CONFIG_HOME/btop/btop.conf
+FILE=/opt/homebrew/share/btop/themes/gruvbox_${1}.theme
 if [ -f $FILE ]; then
-  sd '(^color_theme = .*)light|dark' "\${1}$mode" $FILE
+  ln -sf $FILE $XDG_CONFIG_HOME/btop/themes/gruvbox.theme
 fi
+
+# Hammerspoon
+hs -A -c "ConsoleDM()"
