@@ -10,12 +10,12 @@ hash = "1b2f25c9a34b98e596c65bd3e84c51ef"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-cmd"
-rev = "648ac5e"
-hash = "1fb5c56c9e8e1da62c40f27b1b581a8f"
+rev = "f65bfb3"
+hash = "1d1ce93c4f6e16a1be12483e9e0e7c2b"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-fzf"
-rev = "648ac5e"
+rev = "f65bfb3"
 hash = "1c49be74ed07e13c468f70d93372a9d3"
 
 [[plugin.deps]]
@@ -35,32 +35,32 @@ hash = "dd97eede8e20e59cd2604e8006e470e2"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:toggle-pane"
-rev = "648ac5e"
+rev = "f65bfb3"
 hash = "accee18265871ddaaf9fb1d582aa12c9"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:advanced-search"
-rev = "648ac5e"
+rev = "f65bfb3"
 hash = "c769b1b0193e44037cfe59469c6c2782"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:git"
-rev = "648ac5e"
+rev = "f65bfb3"
 hash = "86e56edcd49de94f2871d00754089223"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:searchjump"
-rev = "648ac5e"
+rev = "f65bfb3"
 hash = "968c79d21dfb20259bd154afc0ecb7f2"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:miller"
-rev = "648ac5e"
+rev = "f65bfb3"
 hash = "b5816ec1dfe09ff9231532616a27b31d"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:githead"
-rev = "648ac5e"
+rev = "f65bfb3"
 hash = "f2a99939ff74b2e7db58f1848172f031"
 
 [[flavor.deps]]
