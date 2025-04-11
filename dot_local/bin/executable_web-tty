@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+# Start a web terminal using ttyd and tunnel it via cloudflared.
+
+ttyd -p 8167 -W -m 1 -t rendererType=canvas -t "fontFamily=FiraCode Nerd Font" -t 'theme={"background":"transparent"}' -t fontSize=12 -t enableTrzsz=true tmux &
+cloudflared --config $XDG_CONFIG_HOME/cloudflared/config.yml tunnel run
