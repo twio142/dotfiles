@@ -467,7 +467,7 @@
                                 "from": { "key_code": "k" },
                                 "to": [
                                     { "key_code": "k" },
-                                    { "mouse_key": { "vertical_wheel": -30 } }
+                                    { "mouse_key": { "vertical_wheel": -20 } }
                                 ],
                                 "type": "basic"
                             },
@@ -483,7 +483,7 @@
                                 "from": { "key_code": "j" },
                                 "to": [
                                     { "key_code": "j" },
-                                    { "mouse_key": { "vertical_wheel": 30 } }
+                                    { "mouse_key": { "vertical_wheel": 20 } }
                                 ],
                                 "type": "basic"
                             },
@@ -1122,7 +1122,6 @@
                                     "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [
-                                    { "shell_command": "pgrep -qx ChatGPT || open -b com.openai.chat" },
                                     {
                                         "key_code": "p",
                                         "modifiers": ["control", "option", "shift", "command"]
@@ -1498,134 +1497,6 @@
                         ]
                     },
                     {
-                        "description": "Special Characters",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.Shuangpin" }],
-                                        "type": "input_source_if"
-                                    }
-                                ],
-                                "from": { "key_code": "open_bracket" },
-                                "to": [
-                                    {
-                                        "key_code": "open_bracket",
-                                        "modifiers": ["right_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.Shuangpin" }],
-                                        "type": "input_source_if"
-                                    }
-                                ],
-                                "from": { "key_code": "close_bracket" },
-                                "to": [
-                                    {
-                                        "key_code": "close_bracket",
-                                        "modifiers": ["right_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.Shuangpin" }],
-                                        "type": "input_source_if"
-                                    },
-                                    {
-                                        "name": "space_held",
-                                        "type": "variable_unless",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "backslash" },
-                                "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- '\\'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.Shuangpin" }],
-                                        "type": "input_source_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "backslash",
-                                    "modifiers": { "mandatory": ["right_shift"] }
-                                },
-                                "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- 、" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.Shuangpin" }],
-                                        "type": "input_source_if"
-                                    }
-                                ],
-                                "from": { "key_code": "grave_accent_and_tilde" },
-                                "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'hs.eventtap.keyStrokes(_cli._args[6])' -- \\`" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "input_sources": [{ "language": "en" }],
-                                        "type": "input_source_if"
-                                    },
-                                    {
-                                        "bundle_identifiers": [
-                                            "md.obsidian"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "hyphen",
-                                    "modifiers": { "mandatory": ["right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "hyphen",
-                                        "modifiers": ["option", "shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "input_sources": [{ "language": "de" }],
-                                        "type": "input_source_if"
-                                    },
-                                    {
-                                        "bundle_identifiers": [
-                                            "md.obsidian"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "slash",
-                                    "modifiers": { "mandatory": ["right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "slash",
-                                        "modifiers": ["option", "shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "; a/o/u/s/e → ä/ö/ü/ß/€",
                         "manipulators": [
                             {
@@ -1842,7 +1713,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "j" },
-                                "to": [{ "mouse_key": { "vertical_wheel": 25 } }],
+                                "to": [{ "mouse_key": { "vertical_wheel": 20 } }],
                                 "type": "basic"
                             },
                             {
@@ -1869,7 +1740,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "k" },
-                                "to": [{ "mouse_key": { "vertical_wheel": -25 } }],
+                                "to": [{ "mouse_key": { "vertical_wheel": -20 } }],
                                 "type": "basic"
                             },
                             {
