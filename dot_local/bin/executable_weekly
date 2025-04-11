@@ -4,29 +4,27 @@ export TERM=xterm-256color
 source ${XDG_CONFIG_HOME:-~/.config}/zsh/.zshrc &> /dev/null
 cd &> /dev/null
 
-# 调用 `brew upgrade`, `brew cleanup`
+# Upgrade homebrew packages
 brew cu -a -y
 brew update
 brew cleanup
 brew bundle dump --describe --force --file=${XDG_DATA_HOME:-~/.local/share}/chezmoi/bootstrap/Brewfile
 brew upgrade
 
-# 文件计数
 file_count=0
 link_count=0
 incomplete_count=0
 
-# 清理 HomeBrew Cask 下载缓存
+# Clean up cask downloads
 for cask_link in $(find ~/Library/Caches/Homebrew/Cask -type l)
 do
-    # 将 Cask 软件包移至废纸篓
     let file_count++
     trash "$(realpath $cask_link)"
     let link_count++
     rm $cask_link
 done
 
-# 清理 HomeBrew 下载缓存
+# Clean up downloads
 for link in $(find ~/Library/Caches/Homebrew -type l)
 do
     let file_count++
@@ -35,30 +33,39 @@ do
     rm $link
 done
 
-# 获取 *.incomplete 文件数量
+# Clean up incomplete downloads
 incomplete_count=$(ls -l ~/Library/Caches/Homebrew/downloads/*.incomplete 2> /dev/null | wc -l)
-# 清理未完成的下载
 [ $incomplete_count -gt 0 ] && rm ~/Library/Caches/Homebrew/downloads/*.incomplete
 
-# 复数输出函数
 plural() {
     [ $1 -gt 1 ] && echo "$1 ${2}s" || echo "$1 $2"
 }
 
-# 输出消息提示
 echo "Pruned $(plural $link_count "symbolic link"), $(plural $file_count "file") and $(plural $incomplete_count "incomplete download") from ~/Library/Caches/Homebrew"
 
+# Upgrade app store apps
+mas upgrade
+
+# Upgrade neovim plugins
 nvim --headless '+Lazy! sync' +qa
 nvim --headless '+MasonToolsUpdateSync' +qa
 
+# Upgrade ProperTree
 git -C ~/Projects/ProperTree pull
+# Upgrade Rime
 git -C ~/Library/Rime fetch --depth=1
 ~/Library/Rime/.git/hooks/post-fetch
-mas upgrade
+# Upgrade zsh plugins
 zimfw uninstall -q
 zimfw upgrade
 zimfw update
+# Upgrade tmux plugins
 $XDG_CONFIG_HOME/tmux/plugins/tpm/scripts/update_plugin_prompt_handler.sh all
+# Upgrade yazi plugins
 ya pack -u
+# Upgrade gh plugins
 command -v gh &> /dev/null && gh extension upgrade --all
+# Upgrade npm global packages
+cmd=$(ncu -g -u | grep '^npm -g install') && eval $cmd || true
+
 exec zsh
