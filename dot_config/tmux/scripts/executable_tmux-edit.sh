@@ -2,7 +2,7 @@
 
 # Open files in nvim in the current pane if it is nvim
 # Otherwise open in a new window
-# Usage: [NEWW=1] [SESS=...] [PID=...] tmux_edit <file>...
+# Usage: [NEWW=1] [SESS=...] [PID=...] tmux-edit <file>...
 # NEWW=1: Open in a new window
 # SESS: Session name. If given, PID is ignored
 # PID: Client PID

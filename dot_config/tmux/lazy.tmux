@@ -19,7 +19,7 @@ TMUX_FZF_SESSION_FORMAT="#{?session_attached,󰍹 #{session_attached},-}  #{s
 TMUX_FZF_MENU=\
 "edit config\ntmux edit-config\n"\
 "memo\ntmux memo\n"\
-"tmux manual\ntmux tmux-man\n"\
+"tmux manual\ntmux man tmux\n"\
 "btop\ntmux btop\n"\
 "yazi\ntmux yazi\n"\
 "lazygit\ntmux lazygit\n"\
@@ -32,30 +32,30 @@ TMUX_FZF_MENU=\
 # catppuccin
 if -F "#{==:#{@BACKGROUND},light}" 'set -g @catppuccin_flavor "latte"' 'set -g @catppuccin_flavor "mocha"'
 # latte, frappe, macchiato or mocha
-set -g @catppuccin_window_default_text "#W"
+set -g @catppuccin_window_default_text "#($XDG_CONFIG_HOME/tmux/scripts/window-name.sh #W)"
 set -g @catppuccin_window_default_color "#{thm_fg}"
-set -g @catppuccin_window_current_text "#W"
+set -g @catppuccin_window_current_text "#[fg=#{thm_orange}]#($XDG_CONFIG_HOME/tmux/scripts/window-name.sh #W)#[fg=default]"
 set -g @catppuccin_window_current_background "#{thm_bg}"
-set -g @catppuccin_window_status "icon"
-set -g @catppuccin_icon_window_activity "󰏤"
-set -g @catppuccin_icon_window_bell "󰂞"
-set -g @catppuccin_icon_window_last "○"
-set -g @catppuccin_icon_window_current "#[fg=#{thm_orange}]●#[fg=default]"
-set -g @catppuccin_icon_window_zoom ""
+set -g @catppuccin_window_status icon
+set -g @catppuccin_icon_window_activity 󰏤
+set -g @catppuccin_icon_window_bell 󰂞
+set -g @catppuccin_icon_window_last 
+set -g @catppuccin_icon_window_current null
+set -g @catppuccin_icon_window_zoom 
 #            
-set -g @catppuccin_window_right_separator ""
+set -g @catppuccin_window_right_separator 
 set -g @catppuccin_window_middle_separator " █"
-set -g @catppuccin_window_number_position "right"
-set -g @catppuccin_status_background "default"
+set -g @catppuccin_window_number_position right
+set -g @catppuccin_status_background default
 set -g @catppuccin_status_modules_right "directory git ssh"
-set -g @catppuccin_status_modules_left "session"
-set -g @catppuccin_status_fill "all"
-set -g @catppuccin_status_left_separator ""
-set -g @catppuccin_status_right_separator "null"
-set -g @catppuccin_status_connect_separator "yes"
+set -g @catppuccin_status_modules_left session
+set -g @catppuccin_status_fill all
+set -g @catppuccin_status_left_separator 
+set -g @catppuccin_status_right_separator null
+set -g @catppuccin_status_connect_separator yes
 set -g @catppuccin_session_text "#S "
 set -g @catppuccin_directory_text "#{b:pane_current_path} "
-set -g @catppuccin_directory_icon ""
+set -g @catppuccin_directory_icon 
 set -g @catppuccin_custom_plugin_dir "$XDG_CONFIG_HOME/tmux/custom/catppuccin"
 set -g @catppuccin_menu_style "bg=default"
 set -g @catppuccin_menu_selected_style "fg=#{thm_bg},bg=#{thm_magenta}"
@@ -79,7 +79,7 @@ set -g @extrakto_filter_order "word line-trim url all"
 if -F "#{==:#{@BACKGROUND},light}" 'set -g @fingers-backdrop-style "fg=white,bright"' 'set -g @fingers-backdrop-style "fg=black,bright"'
 
 run "$XDG_CONFIG_HOME/tmux/plugins/tpm/tpm" &
-# Prefix I   install
+# prefix I   install
 # prefix U   update
 # prefix M-u remove
 
@@ -190,23 +190,21 @@ bind -n WheelDownPane if -F "#{mouse_any_flag}" 'send C-e' 'if -F "#{alternate_o
 # command aliases
 set -g command-alias[10] EF="neww -S -n config 'nvim $XDG_CONFIG_HOME/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/lazy.tmux'"
 set -g command-alias[11] ER="source $XDG_CONFIG_HOME/tmux/tmux.conf \; source $XDG_CONFIG_HOME/tmux/lazy.tmux \; display 'Config reloaded'"
-set -g command-alias[12] man="splitw -v $XDG_CONFIG_HOME/tmux/scripts/man.sh"
-set -g command-alias[13] tmux-man="splitw -v $XDG_CONFIG_HOME/tmux/scripts/man.sh tmux"
-set -g command-alias[14] ssh="neww $XDG_CONFIG_HOME/tmux/scripts/ssh.sh"
-set -g command-alias[15] toggle-status="if 'tmux show -q status \\; show -gq status | grep -q off' 'set status on' 'set status off'"
-set -g command-alias[16] toggle-clipboard="if 'tmux show -g set-clipboard | grep -q on' 'set -g set-clipboard off; display \"System clipboard OFF\"' 'set -g set-clipboard on; display \"System clipboard ON\"'"
-set -g command-alias[17] toggle-mouse="if 'tmux show -q mouse \\; show -gq mouse | grep -q off' 'set mouse on' 'set mouse off'"
-set -g command-alias[18] yazi-popup="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 'nvim -u $XDG_CONFIG_HOME/tmux/custom/yazi_init.lua'"
-set -g command-alias[19] yazi="neww -c '#{pane_current_path}' yazi"
-set -g command-alias[20] lzg="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_lazygit.sh"
-set -g command-alias[21] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazydocker' 'display \"Docker not running\"'"
-set -g command-alias[22] btop="popup -E -w 95% -h 90% -x 3% '$SHELL -c btop'"
-set -g command-alias[23] open="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open_path.sh"
-set -g command-alias[24] popup-term="popup -E -w 80% -d '#{pane_current_path}' -e TMUX_POPUP=1 'zsh -l'"
-set -g command-alias[25] memo="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 fzf-memo"
+set -g command-alias[12] man="splitw -v -e MANPAGER='sh -c \"col -bx | bat -l man --paging always\"' man"
+set -g command-alias[13] ssh="neww -n  $XDG_CONFIG_HOME/tmux/scripts/ssh.sh"
+set -g command-alias[14] toggle-status="if 'tmux show -q status \\; show -gq status | grep -q off' 'set status on' 'set status off'"
+set -g command-alias[15] toggle-clipboard="if 'tmux show -g set-clipboard | grep -q on' 'set -g set-clipboard off; display \"System clipboard OFF\"' 'set -g set-clipboard on; display \"System clipboard ON\"'"
+set -g command-alias[16] toggle-mouse="if 'tmux show -q mouse \\; show -gq mouse | grep -q off' 'set mouse on' 'set mouse off'"
+set -g command-alias[17] yazi-popup="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 'nvim -u $XDG_CONFIG_HOME/tmux/custom/yazi_init.lua'"
+set -g command-alias[18] yazi="neww -c '#{pane_current_path}' yazi"
+set -g command-alias[19] lzg="popup -E -w 95% -h 90% -x 3% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open-lazygit.sh"
+set -g command-alias[20] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -x 3% lazydocker' 'display \"Docker not running\"'"
+set -g command-alias[21] btop="popup -E -w 95% -h 90% -x 3% '$SHELL -c btop'"
+set -g command-alias[22] open="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open-path.sh"
+set -g command-alias[23] popup-term="popup -E -w 80% -d '#{pane_current_path}' -e TMUX_POPUP=1 'zsh -l'"
+set -g command-alias[24] memo="popup -E -w 95% -h 90% -x 3% -e TMUX_POPUP=1 fzf-memo"
 
 bind C-r ER
-bind M-h tmux-man
 bind -n F3 if -F "#{==:#{pane_current_command},nvim}" "send F3" yazi-popup
 bind -n C-F3 yazi
 bind Tab last

@@ -1,13 +1,13 @@
 #!/bin/zsh
 
 # Check the frontmost process of the session of the given client
-# Usage: [NEWW=1] [SESS=...] [PID=...] tmux_run [cd|ssh|nvim] ...
+# Usage: [NEWW=1] [SESS=...] [PID=...] tmux-run [cd|ssh|nvim] ...
 # NEWW=1: Run command in a new window
 # PID: Client PID
 # SESS: Session name. If given, PID is ignored
 # cd: Change to the directory; otherwise send the command to the shell
 # ssh: Open an ssh connection to the given host
-# nvim: Run tmux_edit
+# nvim: Run tmux-edit
 
 getSession() {
   # if no client_pid is given, return current session
@@ -36,10 +36,10 @@ if [[ "$1" = ssh && -n "$2" ]]; then
   exit 0
 fi
 
-# if the command is nvim, run tmux_edit
+# if the command is nvim, run tmux-edit
 if [[ "$1" = nvim ]]; then
   shift
-  ~/.local/bin/tmux_edit "$@"
+  ~/.local/bin/tmux-edit "$@"
   exit 0
 fi
 

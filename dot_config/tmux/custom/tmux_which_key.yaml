@@ -96,7 +96,7 @@ items:
         command: breakp
       - name: Respawn
         key: R
-        command: run $XDG_CONFIG_HOME/tmux/scripts/restart_pane.sh
+        command: run $XDG_CONFIG_HOME/tmux/scripts/restart-pane.sh
   - name: +Layout
     key: l
     menu:
@@ -267,7 +267,7 @@ items:
       - separator: true
       - name: Store sessions
         key: S
-        command: run $XDG_CONFIG_HOME/tmux/scripts/store_sessions.sh
+        command: run $XDG_CONFIG_HOME/tmux/scripts/store-sessions.sh
       - name: Restore sessions
         key: R
         command: run $TMUX_PLUGIN_MANAGER_PATH/tmux-resurrect/scripts/restore.sh
@@ -283,7 +283,7 @@ items:
         command: lscm
       - name: Tmux manual
         key: t
-        command: tmux-man
+        command: man tmux
       - name: Man page
         key: h
         command: command-prompt -p man "man %%"

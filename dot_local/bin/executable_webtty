@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# Start a web terminal using ttyd and tunnel it via cloudflared.
+# MODE=share to share the current tmux session.
+# Additional arguments are passed to ttyd.
+
+case $(background) in
+  light) bg=white ;;
+  *) bg=transparent ;;
+esac
+
+case $MODE in
+  share) args=("$@" tmux attach -t "$(tmux display -p '#S')") ;;
+  *)     args=(-W -m 1 -t enableTrzsz=true "$@" tmux) ;;
+esac
+
+ttyd -p 8167 -t 'fontFamily=NerdFont,FiraCode Nerd Font' -t fontSize=12 -t "theme={\"background\":\"$bg\"}" "${args[@]}" &
+cloudflared --config $XDG_CONFIG_HOME/cloudflared/config.yml tunnel run

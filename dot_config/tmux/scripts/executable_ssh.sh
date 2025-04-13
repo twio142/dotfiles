@@ -17,6 +17,5 @@ if [[ "$#" -gt 1 && "$1" != - ]]; then
   ssh "$_first"
 else
   [ "$1" = - ] && shift
-  tmux renamew "$1"
   ssh "$@"
 fi

@@ -61,6 +61,7 @@ zimfw upgrade
 zimfw update
 # Upgrade tmux plugins
 $XDG_CONFIG_HOME/tmux/plugins/tpm/scripts/update_plugin_prompt_handler.sh all
+tmux set -g status on &> /dev/null
 # Upgrade yazi plugins
 ya pack -u
 # Upgrade gh plugins

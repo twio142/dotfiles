@@ -7,7 +7,7 @@ if [ -n "$NVIM" ]; then
   nvr -cc quit "$@"
   exit 0
 elif [ -n "$TMUX_POPUP" ]; then
-  ~/.local/bin/tmux_edit "$@"
+  ~/.local/bin/tmux-edit "$@"
   tmux popup -C
 else
   nvim "$@"
