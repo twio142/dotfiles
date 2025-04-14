@@ -1,4 +1,5 @@
 tap "buo/cask-upgrade"
+tap "cloudflare/cloudflare"
 tap "cormacrelf/tap"
 tap "dimentium/autoraise"
 tap "finestructure/hummingbird"
@@ -33,8 +34,6 @@ brew "asdf"
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c@76"
 # Secure and free password manager for all of your devices
 brew "bitwarden-cli"
 # Connect and disconnect Bluetooth devices
@@ -51,6 +50,8 @@ brew "glib"
 brew "libxcb"
 # X.Org: Core X11 protocol client library
 brew "libx11"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c@76"
 # Versatile and fast Unicode/ASCII/ANSI graphics renderer
 brew "chafa"
 # Manage your dotfiles across multiple diverse machines, securely
@@ -59,6 +60,8 @@ brew "chezmoi"
 brew "choose-rust"
 # Tool for emulating mouse and keyboard events
 brew "cliclick"
+# Cloudflare Tunnel client (formerly Argo Tunnel)
+brew "cloudflared"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Apjanke's fork of the classic cowsay project
@@ -81,6 +84,8 @@ brew "dnscrypt-proxy"
 brew "doggo"
 # More intuitive version of du in rust
 brew "dust"
+# Like neofetch, but much faster because written mostly in C
+brew "fastfetch"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Low-level cryptographic library
@@ -113,8 +118,6 @@ brew "git-flow"
 brew "git-lfs"
 # Prevents you from committing sensitive information to a git repo
 brew "git-secrets"
-# Render markdown on the CLI
-brew "glow"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
@@ -187,6 +190,10 @@ brew "poppler"
 brew "powerlevel10k"
 # Protocol buffers (Google's data interchange format)
 brew "protobuf"
+# Rsync for cloud storage
+brew "rclone"
+# SVG rendering tool and library
+brew "resvg"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Intuitive find & replace CLI
@@ -211,6 +218,10 @@ brew "tmux"
 brew "trash", link: true
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Simple file transfer tools, similar to lrzsz (rz/sz), and compatible with tmux
+brew "trzsz-go"
+# Command-line tool for sharing terminal over the web
+brew "ttyd", link: false
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Generator for LS_COLORS with support for multiple color themes
@@ -254,8 +265,6 @@ cask "alt-tab"
 cask "apparency"
 # Application uninstaller
 cask "appcleaner"
-# Chromium based browser
-cask "arc"
 # Menu bar icon organiser
 cask "bartender"
 # Utility to create and modify archives
@@ -288,10 +297,14 @@ cask "karabiner-elements"
 cask "keka"
 # Open-source keystroke visualiser
 cask "keycastr"
+# Backup/restore tool
+cask "kopiaui"
 # Open-source firewall to block unknown outgoing connections
 cask "lulu"
 # Adaptive brightness for external displays
 cask "lunar"
+# Smooths scrolling and set mouse scroll directions independently
+cask "mos"
 # Add more gestures for Trackpad and Magic Mouse
 cask "multitouch"
 # Screensaver displaying artwork based on Spotify or Last.fm profile data
@@ -304,6 +317,8 @@ cask "omnidisksweeper"
 cask "orbstack"
 # Read, annotate, edit, convert, create, OCR, fill forms and sign PDFs
 cask "pdf-reader-pro"
+# Apple Notes extension
+cask "pronotes"
 # Quick Look plugin for mobile apps and provisioning profiles
 cask "provisionql"
 # Quick Look generator for Markdown files
@@ -333,12 +348,12 @@ mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
 mas "Bob", id: 1630034110
 mas "Dark Reader for Safari", id: 1438243180
-mas "Encrypto", id: 935235287
 mas "Folder Preview", id: 6698876601
-mas "Keynote 讲演", id: 409183694
+mas "Keynote讲演", id: 409183694
 mas "Keyword Search", id: 1558453954
-mas "Numbers 表格", id: 409203825
-mas "Pages 文稿", id: 409201541
+mas "Numbers表格", id: 409203825
+mas "Obsidian Web Clipper", id: 6720708363
+mas "Pages文稿", id: 409201541
 mas "Pixelmator Pro", id: 1289583905
 mas "Remote Mouse", id: 403195710
 mas "Spark", id: 1176895641
@@ -350,6 +365,7 @@ mas "WireGuard", id: 1451685025
 vscode "animaapp.vscode-anima"
 vscode "asvetliakov.vscode-neovim"
 vscode "davidanson.vscode-markdownlint"
+vscode "docker.docker"
 vscode "eamodio.gitlens"
 vscode "figma.figma-vscode-extension"
 vscode "formulahendry.code-runner"
@@ -359,6 +375,7 @@ vscode "github.copilot-chat"
 vscode "github.copilot-workspace"
 vscode "github.github-vscode-theme"
 vscode "github.remotehub"
+vscode "github.vscode-github-actions"
 vscode "github.vscode-pull-request-github"
 vscode "golang.go"
 vscode "gruntfuggly.todo-tree"
