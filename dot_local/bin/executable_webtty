@@ -14,5 +14,14 @@ case $MODE in
   *)     args=(-W -m 1 -t enableTrzsz=true "$@" tmux) ;;
 esac
 
+set -m
+
 ttyd -p 8167 -t 'fontFamily=NerdFont,FiraCode Nerd Font' -t fontSize=12 -t "theme={\"background\":\"$bg\"}" "${args[@]}" &
-cloudflared --config $XDG_CONFIG_HOME/cloudflared/config.yml tunnel run
+ttyd_pid=$!
+
+cloudflared --config $XDG_CONFIG_HOME/cloudflared/config.yml tunnel run &
+cf_pid=$!
+
+trap 'kill $ttyd_pid $cloudflared_pid 2>/dev/null' EXIT INT TERM
+
+wait $ttyd_pid $cloudflared_pid
