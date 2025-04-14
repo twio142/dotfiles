@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-tmux source $XDG_CONFIG_HOME/tmux/lazy.tmux
+tmux source $XDG_CONFIG_HOME/tmux/lazy.tmux &
 
 if [ -n "$SSH_CONNECTION" ]; then
   # ssh session
@@ -10,19 +10,15 @@ if [ -n "$SSH_CONNECTION" ]; then
   tmux set -g clipboard on
   tmux has -t ssh 2> /dev/null || tmux rename ssh
 else
-  client=$(ps -o ppid= -p $(ps -o ppid= -p $(tmux display -p '#{client_pid}')))
-  # vscode session
-  if (ps -p $client -o comm= | grep -q 'Visual Studio Code'); then
-    dir=$(tmux display -p '#{session_path}')
-    if (tmux has -t code/${dir:t} 2> /dev/null); then
-      if [ $(tmux display -t code/${dir:t} -p '#{session_attached}') = 0 ]; then
-        tmp=$(tmux display -p '#S')
-        tmux attach -t code/${dir:t}
-        tmux kill-session -t $tmp
+  sess=$(tmux display -p '#S')
+  if test "$sess" -gt 0 2>/dev/null ; then
+    # numbered session
+    names=$(tmux list-sessions -F '#S')
+    for i in $(seq 0 $(($sess-1))); do
+      if ! echo $names | grep -Fxq $i; then
+        tmux rename $i
+        break
       fi
-    else
-      tmux rename code/${dir:t}
-    fi
+    done
   fi
 fi
-
