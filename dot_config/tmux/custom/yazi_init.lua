@@ -3,11 +3,11 @@ vim.o.laststatus = 0
 vim.o.shadafile = "NONE"
 vim.o.termguicolors = true
 
-vim.fn.jobstart({ "tmux", "show", "-gqv", "@BACKGROUND" }, {
+vim.fn.jobstart({ "background" }, {
 	on_stdout = function(_, data)
 		if data and #data[1] > 0 then
 			local fg = data[1]:match("light") and "#000000" or "#ffffff"
-      vim.api.nvim_set_hl(0, "Normal", { fg = fg or "#999999", bg = "NONE", ctermbg = "NONE" })
+			vim.api.nvim_set_hl(0, "Normal", { fg = fg or "#999999", bg = "NONE", ctermbg = "NONE" })
 		end
 	end,
 })

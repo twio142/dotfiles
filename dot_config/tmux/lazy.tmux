@@ -10,7 +10,7 @@ set -g @resurrect-restore 'C-®'
 
 # tmux-fzf
 TMUX_FZF_LAUNCH_KEY="C-f"
-FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer='
+FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer= '
 TMUX_FZF_OPTIONS="-p -w 90% -h 70% -m --preview-window=up,70% ${FZF_DEFAULT_OPTS}"
 TMUX_FZF_ORDER="session|window|pane|buffer"
 TMUX_FZF_PANE_FORMAT="#{?pane_active,●,-} #{pane_current_command}#{?pane_marked,\t󰃀,}\t #{b:pane_current_path} "
@@ -30,11 +30,11 @@ TMUX_FZF_MENU=\
 "toggle clipboard\ntmux toggle-clipboard\n"
 
 # catppuccin
-if -F "#{==:#{@BACKGROUND},light}" 'set -g @catppuccin_flavor "latte"' 'set -g @catppuccin_flavor "mocha"'
+run 'tmux set -g @catppuccin_flavor "#{?@DARK,mocha,latte}"'
 # latte, frappe, macchiato or mocha
-set -g @catppuccin_window_default_text "#($XDG_CONFIG_HOME/tmux/scripts/window-name.sh #W)"
-set -g @catppuccin_window_default_color "#{thm_fg}"
-set -g @catppuccin_window_current_text "#[fg=#{thm_orange}]#($XDG_CONFIG_HOME/tmux/scripts/window-name.sh #W)#[fg=default]"
+set -g @catppuccin_window_default_text "#($XDG_CONFIG_HOME/tmux/custom/catppuccin/proc.sh #W)"
+set -g @catppuccin_window_default_fill "none"
+set -g @catppuccin_window_current_text "#[fg=#{thm_orange}]#($XDG_CONFIG_HOME/tmux/custom/catppuccin/proc.sh #W)#[fg=default]"
 set -g @catppuccin_window_current_background "#{thm_bg}"
 set -g @catppuccin_window_status icon
 set -g @catppuccin_icon_window_activity 󰏤
@@ -42,24 +42,23 @@ set -g @catppuccin_icon_window_bell 󰂞
 set -g @catppuccin_icon_window_last 
 set -g @catppuccin_icon_window_current null
 set -g @catppuccin_icon_window_zoom 
-#            
+#             █
 set -g @catppuccin_window_right_separator 
-set -g @catppuccin_window_middle_separator " █"
+set -g @catppuccin_window_middle_separator " "
+set -g @catppuccin_window_current_middle_separator " █"
 set -g @catppuccin_window_number_position right
 set -g @catppuccin_status_background default
-set -g @catppuccin_status_modules_right "directory git ssh"
+set -g @catppuccin_status_modules_right "dir git ssh"
 set -g @catppuccin_status_modules_left session
 set -g @catppuccin_status_fill all
 set -g @catppuccin_status_left_separator 
 set -g @catppuccin_status_right_separator null
 set -g @catppuccin_status_connect_separator yes
 set -g @catppuccin_session_text "#S "
-set -g @catppuccin_directory_text "#{b:pane_current_path} "
-set -g @catppuccin_directory_icon 
 set -g @catppuccin_custom_plugin_dir "$XDG_CONFIG_HOME/tmux/custom/catppuccin"
 set -g @catppuccin_menu_style "bg=default"
 set -g @catppuccin_menu_selected_style "fg=#{thm_bg},bg=#{thm_magenta}"
-set -g @catppuccin_mode_style "fg=#{thm_fg},bg=#{?#{==:#{@BACKGROUND},light},#c6dcfb,#282099}"
+setw mode-style "fg=#{?@DARK,#cdd6f4,#4c4f69},bg=#{?@DARK,#282099,#c6dcfb}"
 
 # extrakto
 set -g @extrakto_fzf_header "f c o g"
@@ -76,7 +75,7 @@ set -g @extrakto_editor "nvim"
 set -g @extrakto_filter_order "word line-trim url all"
 
 # tmux-fingers
-if -F "#{==:#{@BACKGROUND},light}" 'set -g @fingers-backdrop-style "fg=white,bright"' 'set -g @fingers-backdrop-style "fg=black,bright"'
+run 'tmux set -g @fingers-backdrop-style "fg=#{?@DARK,black,white},bright"'
 
 run "$XDG_CONFIG_HOME/tmux/plugins/tpm/tpm" &
 # prefix I   install

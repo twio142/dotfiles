@@ -1,2 +1,6 @@
 #!/bin/zsh
-(defaults read -g AppleInterfaceStyle &> /dev/null) && echo -n dark || echo -n light
+case "$1" in
+  '')    defaults read -g AppleInterfaceStyle &> /dev/null && printf dark || printf light ;;
+  dark)  defaults read -g AppleInterfaceStyle &> /dev/null ;;
+  light) defaults read -g AppleInterfaceStyle &> /dev/null && exit 1 || exit 0 ;;
+esac

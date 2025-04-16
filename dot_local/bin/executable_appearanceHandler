@@ -4,8 +4,8 @@ export PATH=$HOME/.local/bin:/opt/homebrew/opt/ruby/bin:$PATH:/opt/homebrew/bin
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 
 case $1 in
-  light) mode=$1 flavor=latte color=white;;
-  dark)  mode=$1 flavor=mocha color=black;;
+  light) mode=$1 flavor=latte env=0 color=white;;
+  dark)  mode=$1 flavor=mocha env=1 color=black;;
   *)     exit 1 ;;
 esac
 
@@ -15,10 +15,10 @@ nvr --serverlist | grep nvim | while read -r server; do
 done
 
 # Tmux
-tmux set -g @BACKGROUND $mode && {
+tmux set -g @DARK $env && {
   tmux set -g @catppuccin_flavor "$flavor"
   tmux set -g @fingers-backdrop-style "fg=$color,bright"
-  tmux run ${XDG_CONFIG_HOME}/tmux/plugins/catppuccin-tmux/catppuccin.tmux
+  tmux run ${XDG_CONFIG_HOME}/tmux/plugins/tmux/catppuccin.tmux
   tmux run ${XDG_CONFIG_HOME}/tmux/plugins/tmux-fingers/tmux-fingers.tmux &
 }
 
