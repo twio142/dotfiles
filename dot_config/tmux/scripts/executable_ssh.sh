@@ -8,14 +8,13 @@ if [ -z "$1" ]; then
   exit 1
 fi
 if [[ "$#" -gt 1 && "$1" != - ]]; then
-  _first=$1
+  tmux neww ssh $1
   shift
   for i in "$@"; do
     tmux splitw -v "ssh $i"
   done
   tmux selectl -E
-  ssh "$_first"
 else
   [ "$1" = - ] && shift
-  ssh "$@"
+  tmux neww ssh "$@"
 fi

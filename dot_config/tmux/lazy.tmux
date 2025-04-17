@@ -190,7 +190,7 @@ bind -n WheelDownPane if -F "#{mouse_any_flag}" 'send C-e' 'if -F "#{alternate_o
 set -g command-alias[10] EF="neww -S -n config 'nvim $XDG_CONFIG_HOME/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/lazy.tmux'"
 set -g command-alias[11] ER="source $XDG_CONFIG_HOME/tmux/tmux.conf \; source $XDG_CONFIG_HOME/tmux/lazy.tmux \; display 'Config reloaded'"
 set -g command-alias[12] man="splitw -v -e MANPAGER='sh -c \"col -bx | bat -l man --paging always\"' man"
-set -g command-alias[13] ssh="neww -n  $XDG_CONFIG_HOME/tmux/scripts/ssh.sh"
+set -g command-alias[13] ssh="neww -d $XDG_CONFIG_HOME/tmux/scripts/ssh.sh"
 set -g command-alias[14] toggle-status="if 'tmux show -q status \\; show -gq status | grep -q off' 'set status on' 'set status off'"
 set -g command-alias[15] toggle-clipboard="if 'tmux show -g set-clipboard | grep -q on' 'set -g set-clipboard off; display \"System clipboard OFF\"' 'set -g set-clipboard on; display \"System clipboard ON\"'"
 set -g command-alias[16] toggle-mouse="if 'tmux show -q mouse \\; show -gq mouse | grep -q off' 'set mouse on' 'set mouse off'"

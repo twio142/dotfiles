@@ -6,7 +6,7 @@ case "$1" in
   curl)     echo " " ;;
   deno)     echo " " ;;
   docker|lazydocker)
-            echo " " ;;
+            echo " " ;;
   git|lazygit)
             echo "󰊢 " ;;
   gh)       echo " " ;;
@@ -15,12 +15,14 @@ case "$1" in
   lua)      echo "󰢱 " ;;
   node)     echo " " ;;
   nvim)     echo " " ;;
-  python*|conda|mamba)
+  [Pp]ython*|conda|mamba)
             echo " " ;;
-  ruby)     echo " " ;;
-  ssh)      echo " " ;;
+  ruby)     echo "󰴭 " ;;
+  scli)     echo "󰀘 " ;;
+  ssh)      echo "󰢹 " ;;
   sqlite3|lazysql)
-            echo " " ;;
+            echo " " ;;
+  sudo)     echo " " ;;
   swift*)   echo "󰛥 " ;;
   tmux)     echo " " ;;
   '[tmux]') echo " " ;;
