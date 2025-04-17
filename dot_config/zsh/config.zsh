@@ -47,7 +47,7 @@ export HOMEBREW_NO_INSECURE_REDIRECT=1
 # export HOMEBREW_CASK_OPTS=--require-sha
 export HOMEBREW_NO_ENV_HINTS=1
 # export HOMEBREW_NO_AUTO_UPDATE=1
-export PYTHON3_HOST_PROG=$HOME/.local/bin/python3
+export PYTHON3_HOST_PROG=/usr/local/bin/python3
 export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
 
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
@@ -185,7 +185,7 @@ _tmux_paste() {
   CURSOR=${#BUFFER}
 }
 _tmux_wk_menu() { tmux show-wk-menu-root }
-_tmux_prev_mark() { tmux copy-mode \; send -X search-backward "^❯ " }
+_tmux_prev_mark() { tmux copy-mode \; send -X search-backward "^❯ " \; send -X search-again }
 _tmux_next_mark() { tmux copy-mode \; send -X search-forward "^❯ " }
 _tmux_key_bindings() {
   zle -N _tmux_copy_mode
@@ -270,3 +270,5 @@ if [ -z $alfred_version ]; then
     echo "  You have mail."
   fi
 fi
+
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)" || true
