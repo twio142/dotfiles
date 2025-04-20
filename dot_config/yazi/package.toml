@@ -1,7 +1,7 @@
 [[plugin.deps]]
 use = "DreamMaoMao/bookmarks"
-rev = "8358020"
-hash = "ef1e65875d3c0e8dd56ad3e78b3dcb20"
+rev = "fa65ba2"
+hash = "cbce5906c0644dedda0c40bfc95c2678"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
@@ -10,58 +10,58 @@ hash = "5b9dea47776a30946cfbf83232d18fb1"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-cmd"
-rev = "7a92d6e"
+rev = "5666a80"
 hash = "31c8856431c529f1c149ae5c1aa7fe30"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-fzf"
-rev = "7a92d6e"
+rev = "5666a80"
 hash = "1c49be74ed07e13c468f70d93372a9d3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "b12a9ab"
+rev = "4b027c7"
 hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mactag"
-rev = "b12a9ab"
+rev = "4b027c7"
 hash = "f4ee8d1a119fc869ffcd7e8a71b1469e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "b12a9ab"
+rev = "4b027c7"
 hash = "dd97eede8e20e59cd2604e8006e470e2"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:toggle-pane"
-rev = "7a92d6e"
-hash = "accee18265871ddaaf9fb1d582aa12c9"
+rev = "5666a80"
+hash = "6e96c0951edfd80e2ed0f464fe67cca7"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:advanced-search"
-rev = "7a92d6e"
+rev = "5666a80"
 hash = "c769b1b0193e44037cfe59469c6c2782"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:git"
-rev = "7a92d6e"
+rev = "5666a80"
 hash = "86e56edcd49de94f2871d00754089223"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:searchjump"
-rev = "7a92d6e"
-hash = "968c79d21dfb20259bd154afc0ecb7f2"
+rev = "5666a80"
+hash = "c357b4df91164bf401a9a02bbda0f1e1"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:miller"
-rev = "7a92d6e"
-hash = "b5816ec1dfe09ff9231532616a27b31d"
+rev = "5666a80"
+hash = "2bbaef7d805c7ab48d8414fe3092e1c7"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:githead"
-rev = "7a92d6e"
-hash = "f2a99939ff74b2e7db58f1848172f031"
+rev = "5666a80"
+hash = "f84acc87a485a237477608acc6b7bae9"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
