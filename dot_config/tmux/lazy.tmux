@@ -1,7 +1,5 @@
-set-environment -g PATH "~/.local/bin:$PATH"
-
 #### Plugins ####
-# tmux-resurrect 
+# tmux-resurrect
 set -g @resurrect-strategy-nvim 'session'
 set -g @resurrect-strategy-vim 'session'
 set -g @resurrect-capture-pane-contents 'on'
@@ -30,7 +28,7 @@ TMUX_FZF_MENU=\
 "toggle clipboard\ntmux toggle-clipboard\n"
 
 # catppuccin
-run 'tmux set -g @catppuccin_flavor "#{?@DARK,mocha,latte}"'
+set -gF @catppuccin_flavor "#{?@DARK,mocha,latte}"
 # latte, frappe, macchiato or mocha
 set -g @catppuccin_window_default_text "#($XDG_CONFIG_HOME/tmux/custom/catppuccin/proc.sh #W)"
 set -g @catppuccin_window_default_fill "none"
@@ -75,7 +73,7 @@ set -g @extrakto_editor "nvim"
 set -g @extrakto_filter_order "word line-trim url all"
 
 # tmux-fingers
-run 'tmux set -g @fingers-backdrop-style "fg=#{?@DARK,black,white},bright"'
+set -gF @fingers-backdrop-style "fg=#{?@DARK,black,white},bright"
 
 run "$XDG_CONFIG_HOME/tmux/plugins/tpm/tpm" &
 # prefix I   install
