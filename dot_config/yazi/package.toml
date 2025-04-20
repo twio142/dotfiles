@@ -1,7 +1,7 @@
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-cmd"
-rev = "e82066b"
-hash = "4f8c7610a12d3e7bd76f5def8a2ed2ba"
+rev = "7a92d6e"
+hash = "31c8856431c529f1c149ae5c1aa7fe30"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
@@ -20,7 +20,7 @@ hash = "f2a99939ff74b2e7db58f1848172f031"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:toggle-pane"
-rev = "e82066b"
+rev = "7a92d6e"
 hash = "accee18265871ddaaf9fb1d582aa12c9"
 
 [[flavor.deps]]
