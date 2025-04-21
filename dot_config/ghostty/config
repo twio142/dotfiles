@@ -51,8 +51,10 @@
 # new windows, tabs, etc.
 font-family = "FiraCode Nerd Font Propo"
 font-family = "PingFang SC"
-font-family-italic = "JetBrainsMono Nerd Font Propo"
-font-family-bold-italic = "JetBrainsMono Nerd Font Propo"
+font-family-italic = "JetBrainsMonoNL Nerd Font Propo"
+font-family-italic = "TsangerJinKai01"
+font-family-bold-italic = "JetBrainsMonoNL Nerd Font Propo"
+font-family-bold-italic = "TsangerJinKai01"
 
 # The named font style to use for each of the requested terminal font styles.
 # This looks up the style based on the font style string advertised by the
