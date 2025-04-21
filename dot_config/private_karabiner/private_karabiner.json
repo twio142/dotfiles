@@ -2323,7 +2323,7 @@
                                     "key_code": "a",
                                     "modifiers": { "mandatory": ["fn"] }
                                 },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a a -v mod=use-clip" }],
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a a -v mode=use-clip" }],
                                 "type": "basic"
                             },
                             {
@@ -2331,7 +2331,7 @@
                                     "key_code": "s",
                                     "modifiers": { "mandatory": ["fn"] }
                                 },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a s -v mod=use-clip" }],
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a s -v mode=use-clip" }],
                                 "type": "basic"
                             },
                             {
@@ -2339,7 +2339,7 @@
                                     "key_code": "d",
                                     "modifiers": { "mandatory": ["fn"] }
                                 },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a d -v mod=use-clip" }],
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a d -v mode=use-clip" }],
                                 "type": "basic"
                             },
                             {
@@ -2347,7 +2347,7 @@
                                     "key_code": "f",
                                     "modifiers": { "mandatory": ["fn"] }
                                 },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a f -v mod=use-clip" }],
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a f -v mode=use-clip" }],
                                 "type": "basic"
                             },
                             {
@@ -2359,7 +2359,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "a" },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a a -v mod=register-clip" }],
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a a -v mode=register-clip" }],
                                 "type": "basic"
                             },
                             {
@@ -2371,7 +2371,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "s" },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a s -v mod=register-clip" }],
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a s -v mode=register-clip" }],
                                 "type": "basic"
                             },
                             {
@@ -2383,7 +2383,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "d" },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a d -v mod=register-clip" }],
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a d -v mode=register-clip" }],
                                 "type": "basic"
                             },
                             {
@@ -2395,7 +2395,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "f" },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a f -v mod=register-clip" }],
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a f -v mode=register-clip" }],
                                 "type": "basic"
                             },
                             {
