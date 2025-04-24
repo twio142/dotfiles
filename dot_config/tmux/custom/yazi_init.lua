@@ -16,10 +16,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	once = true,
 	pattern = "*",
 	callback = function()
-		local path = vim.fn.argv()[1]
-		path = (path and path ~= "") and path or vim.fn.getcwd()
+		local path = vim.fn.argv(0)
+		path = path ~= "" and path or vim.fn.getcwd()
 		vim.cmd("startinsert")
-		vim.fn.termopen({ "yazi", path }, {
+		vim.fn.jobstart({ "yazi", path }, {
+			term = true,
 			on_exit = function()
 				vim.cmd("q")
 			end,
