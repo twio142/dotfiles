@@ -97,6 +97,10 @@ function prompt_yazi_level() {
   [ -z $YAZI_LEVEL ] || p10k segment -i 󰇥 -f yellow -t "$YAZI_LEVEL"
 }
 
+function prompt_alfred_workflow() {
+  [ -z $alfred_workflow_name ] || p10k segment -i 󰮤 -f '#9F55EB' -t "$alfred_workflow_name"
+}
+
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 
 eval "$(zoxide init zsh)"
