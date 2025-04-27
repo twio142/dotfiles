@@ -71,8 +71,10 @@ get_git_status() {
     [ "$dirty" -gt 0 ] && dirty=" !${dirty// }" || dirty=''
     new=$(git -C "$cwd" ls-files --others --exclude-standard | wc -l)
     [ "$new" -gt 0 ] && new=" ?${new// }" || new=''
-    ahead=$(git -C "$cwd" rev-list --count HEAD "^$(git -C "$cwd" for-each-ref --format '%(upstream:short)' $(git -C "$cwd" symbolic-ref -q HEAD))" 2> /dev/null)
-    behind=$(git -C "$cwd" rev-list --count $(git -C "$cwd" for-each-ref --format '%(upstream:short)' $(git -C "$cwd" symbolic-ref -q HEAD)) ^HEAD 2> /dev/null)
+    symref=$(git -C "$cwd" symbolic-ref -q HEAD) && {
+      ahead=$(git -C "$cwd" rev-list --count HEAD "^$(git -C "$cwd" for-each-ref --format '%(upstream:short)' "$symref")" 2> /dev/null);
+      behind=$(git -C "$cwd" rev-list --count $(git -C "$cwd" for-each-ref --format '%(upstream:short)' "$symref") ^HEAD 2> /dev/null);
+    } || true
     [ "$ahead" -gt 0 ] && ahead="󱦲$ahead" || ahead=''
     [ "$behind" -gt 0 ] && behind="󱦳$behind" || behind=''
     [ -n "$ahead$behind" ] && sep=" " || sep=''
