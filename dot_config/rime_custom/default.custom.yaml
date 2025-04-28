@@ -16,6 +16,7 @@ patch:
     - { when: has_menu, accept: Control+l, send: Page_Down }
     - { when: paging, accept: Control+u, send: Page_Up }
     - { when: has_menu, accept: Control+d, send: Page_Down }
+    - { when: has_menu, accept: backslash, send: 2 }
     - { when: composing, accept: Control+k, send: Up }
     - { when: composing, accept: Control+j, send: Down }
     - { when: composing, accept: Control+p, send: Up }
