@@ -28,7 +28,7 @@ git_current_branch() {
 lzd() {
   docker ps &> /dev/null && lazydocker || { echo "Docker not running" >&2; return 1 }
 }
-timezsh() {
+timesh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
