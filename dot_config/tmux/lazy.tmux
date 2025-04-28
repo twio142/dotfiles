@@ -56,7 +56,7 @@ set -g @catppuccin_session_text "#S "
 set -g @catppuccin_custom_plugin_dir "$XDG_CONFIG_HOME/tmux/custom/catppuccin"
 set -g @catppuccin_menu_style "bg=default"
 set -g @catppuccin_menu_selected_style "fg=#{thm_bg},bg=#{thm_magenta}"
-setw mode-style "fg=#{?@DARK,#cdd6f4,#4c4f69},bg=#{?@DARK,#282099,#c6dcfb}"
+setw -g mode-style "fg=#{?@DARK,#cdd6f4,#4c4f69},bg=#{?@DARK,#282099,#c6dcfb}"
 
 # extrakto
 set -g @extrakto_fzf_header "f c o g"
