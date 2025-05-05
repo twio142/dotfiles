@@ -178,6 +178,7 @@ bind -T copy-mode-vi m send -X set-mark
 bind -T copy-mode-vi ` send -X jump-to-mark
 bind -T copy-mode-vi r run -b "#{@fingers-cli} start #{pane_id}"
 bind -T copy-mode-vi s run -b "#{@fingers-cli} start #{pane_id} --mode jump"
+bind C-j run -b "#{@fingers-cli} start #{pane_id} --patterns url,path --main-action :open:"
 bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "pbcopy"
 bind -n DoubleClick1Pane select-pane -t = \; if-shell -F "#{||:#{pane_in_mode},#{mouse_any_flag}}" { send-keys -M } { copy-mode -H ; send-keys -X select-word ; run-shell -d 0.3 ; send-keys -X copy-pipe-and-cancel pbcopy }
 bind -n TripleClick1Pane select-pane -t = \; if-shell -F "#{||:#{pane_in_mode},#{mouse_any_flag}}" { send-keys -M } { copy-mode -H ; send-keys -X select-line ; run-shell -d 0.3 ; send-keys -X copy-pipe-and-cancel pbcopy }
@@ -210,8 +211,6 @@ unbind C-o
 bind C-o open
 bind -n C-F4 popup-term
 
-bind -n BTab send-keys Escape '[Z'
-
 # modal bindings
 unbind b
 bind C-b choose-buffer -Z
@@ -234,3 +233,5 @@ bind C-g lzg
 bind a run "tmux #{@wk_cmd_show} #{@wk_menu_app}"
 bind C-l run "tmux #{@wk_cmd_show} #{@wk_menu_layout}"
 bind C-h run "tmux #{@wk_cmd_show} #{@wk_menu_help}"
+
+bind ? copy-mode \; send "/"
