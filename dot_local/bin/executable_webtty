@@ -5,8 +5,8 @@
 # Additional arguments are passed to ttyd.
 
 case $(background) in
-  light) bg=white ;;
-  *) bg=transparent ;;
+  light) bg=white fg=black;;
+  *) bg=transparent fg=#d2d2d2 ;;
 esac
 
 case $MODE in
@@ -16,7 +16,7 @@ esac
 
 set -m
 
-ttyd -p 8167 -t 'fontFamily=NerdFont,FiraCode Nerd Font' -t fontSize=12 -t "theme={\"background\":\"$bg\"}" "${args[@]}" &
+ttyd -p 8167 -t 'fontFamily=NerdFont,FiraCode Nerd Font' -t fontSize=12 -t "theme={\"background\":\"$bg\",\"foreground\":\"$fg\"}" "${args[@]}" &
 ttyd_pid=$!
 
 cloudflared --config $XDG_CONFIG_HOME/cloudflared/config.yml tunnel run &
