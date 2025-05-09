@@ -48,7 +48,7 @@ fi
 
 # 1. Use chafa
 if command -v chafa > /dev/null; then
-  chafa -f ${FORMATTER:-symbols} -s "$dim" -c full "$file"
+  chafa -s "$dim" -c full "$file"
   # Add a new line character so that fzf can display multiple images in the preview window
   echo
 
