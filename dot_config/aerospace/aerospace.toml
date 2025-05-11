@@ -206,15 +206,15 @@ e = ['mode expand']
 space = ['move-mouse window-lazy-center']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-slash = ["exec-and-forget altr -w com.twio142.swift -t aerospace", 'mode main'] # list windows
+slash = ['exec-and-forget altr -w com.twio142.swift -t aerospace', 'mode main'] # list windows
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 minus = 'resize smart -50'
 shift-equal = 'resize smart +50'
-equal = 'balance-sizes'
+equal = ['balance-sizes', 'mode main']
 
 z = ['fullscreen', 'mode main']
-f4 = 'macos-native-fullscreen'
+f4 = ['exec-and-forget aerospace macos-native-fullscreen', 'mode main']
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
@@ -244,7 +244,7 @@ esc = ['reload-config', 'mode main']
 
 [mode.space.binding]
 tab = ['workspace-back-and-forth', 'mode main']
-slash = ["exec-and-forget altr -w com.twio142.swift -t aerospace", 'mode main'] # list spaces
+slash = ['exec-and-forget altr -w com.twio142.swift -t aerospace', 'mode main'] # list spaces
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 a = ['workspace A', 'mode main']
