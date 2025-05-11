@@ -229,8 +229,6 @@ brew "ttyd", link: false
 brew "uv"
 # Generator for LS_COLORS with support for multiple color themes
 brew "vivid"
-# Check your $HOME for unwanted files and directories
-brew "xdg-ninja"
 # JavaScript package manager
 brew "yarn"
 # Blazing fast terminal file manager written in Rust, based on async I/O
@@ -298,8 +296,6 @@ cask "jitouch"
 cask "karabiner-elements"
 # File archiver
 cask "keka"
-# Open-source keystroke visualiser
-cask "keycastr"
 # Backup/restore tool
 cask "kopiaui"
 # Open-source firewall to block unknown outgoing connections
