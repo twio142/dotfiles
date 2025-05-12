@@ -4,6 +4,7 @@ const { antfu } = require('@antfu/eslint-config');
 
 module.exports = antfu({
   formatters: true,
+  typescript: true,
 }, {
   rules: {
     'style/semi': ['error', 'always'],
