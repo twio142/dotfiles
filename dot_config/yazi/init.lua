@@ -107,9 +107,9 @@ function Status:name()
 	local linked = ""
 	if h.link_to ~= nil then
 		local home = os.getenv("HOME")
-		linked = " → " .. tostring(h.link_to):gsub("^" .. home .. "/", "~/")
+		linked = " → " .. tostring(h.link_to):gsub("^" .. home, "~")
 	end
-	return ui.Line(" " .. h.name .. linked)
+	return ui.Line({ " " .. h.name, ui.Span(linked):italic() })
 end
 
 -- -- Show ownership in status bar
