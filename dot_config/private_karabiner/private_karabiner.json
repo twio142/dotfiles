@@ -865,7 +865,7 @@
                         ]
                     },
                     {
-                        "description": "MOD ` → ~, MOD A → AeroSpace App Mode, MOD E → Aerospace Expand Mode, MOD F → Make Window Float, MOD H/J/K/L → Focus on Window, MOD N/P → Previous / Next Workspace, MOD S → Aerospace Space Mode, MOD T → Make Window on Top, MOD V → Move / Resize Window, MOD ⇥ → Last Workspace, MOD '/\\ → Toggle Layout Tiling / Accordion, MOD⇧ H/J/K/L → Swap Window, MOD ␣ → AeroSpace Mode",
+                        "description": "MOD ` → ~, MOD A → AeroSpace App Mode, MOD E → Aerospace Expand Mode, MOD F → Make Window Float, MOD H/J/K/L → Focus on Window, MOD N/P → Previous / Next Workspace, MOD S → Aerospace Space Mode, MOD V → Move / Resize Window, MOD ⇥ → Last Focused, MOD '/\\ → Toggle Layout Tiling / Accordion, MOD⇧ H/J/K/L → Swap Window, MOD ␣ → AeroSpace Mode",
                         "manipulators": [
                             {
                                 "from": {
@@ -982,19 +982,6 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "t",
-                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "t",
-                                        "modifiers": ["left_control", "left_command", "left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
                                     "key_code": "v",
                                     "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
@@ -1006,7 +993,7 @@
                                     "key_code": "tab",
                                     "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace workspace-back-and-forth" }],
+                                "to": [{ "shell_command": "/opt/homebrew/bin/aerospace focus-back-and-forth" }],
                                 "type": "basic"
                             },
                             {
@@ -1081,7 +1068,7 @@
                         ]
                     },
                     {
-                        "description": "⇪⌘ B → Bob, ⇪⌘ D → DeHelper, ⇪⌘ E → Define, ⇪⌘ F → Fantastical, ⇪⌘ G → Autojump, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ R → Alfred Recent Path, ⇪ ⇥ → List Windows",
+                        "description": "⇪⌘ B → Bob, ⇪⌘ D → DeHelper, ⇪⌘ E → Define, ⇪⌘ F → Fantastical, ⇪⌘ G → Autojump, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ R → Alfred Recent Path, ⇪ ⇥ → Show Windows Hints",
                         "manipulators": [
                             {
                                 "from": {
@@ -1216,7 +1203,7 @@
                                     "key_code": "tab",
                                     "modifiers": { "mandatory": ["right_control"] }
                                 },
-                                "to": [{ "shell_command": "~/.local/bin/alfred '``'" }],
+                                "to": [{ "shell_command": "open -g hammerspoon://window_hints" }],
                                 "type": "basic"
                             }
                         ]
@@ -1709,7 +1696,7 @@
                         ]
                     },
                     {
-                        "description": "Hold ␣ B → Bitwarden, Hold ␣ J/K → Scroll ↑/↓, Hold ␣ M → Mailbox, Hold ␣ N → Mailbox Check New, Hold ␣ O → Obsidian Vault, Hold ␣ P → Podcasts, Hold ␣ T → Today, Hold ␣ X → Manage Tmux, Hold ␣ \\ → Control Center",
+                        "description": "Hold ␣ B → Bitwarden, Hold ␣ J/K → Scroll ↑/↓, Hold ␣ M → Mailbox, Hold ␣ N → Mailbox Check New, Hold ␣ O → Obsidian Vault, Hold ␣ P → Podcasts, Hold ␣ T → Today, Hold ␣ X → Manage Tmux, Hold ␣ \\ → Control Center, Hold ␣ ⇥ → List Windows",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1890,6 +1877,18 @@
                                 ],
                                 "from": { "key_code": "backslash" },
                                 "to": [{ "shell_command": "~/.local/bin/alfred ^" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "space_held",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "tab" },
+                                "to": [{ "shell_command": "~/.local/bin/alfred '``'" }],
                                 "type": "basic"
                             }
                         ]

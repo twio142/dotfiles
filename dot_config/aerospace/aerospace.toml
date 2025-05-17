@@ -206,7 +206,7 @@ e = ['mode expand']
 space = ['move-mouse window-lazy-center']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-slash = ['exec-and-forget altr -w com.twio142.swift -t aerospace', 'mode main'] # list windows
+slash = ['exec-and-forget open -g hammerspoon://window_hints', 'mode main']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 minus = 'resize smart -50'
@@ -238,7 +238,8 @@ p = ['exec-and-forget open -a Pixelmator && sleep 0.5 && aerospace move-mouse wi
 s = ['exec-and-forget open -a Skim && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
 v = ['exec-and-forget open -a Visual\ Studio\ Code && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
 x = ['exec-and-forget altr -w com.twio142.shell -t shell && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-slash = ['exec-and-forget open -g hammerspoon://window_hints', 'mode main']
+z = ['exec-and-forget open -a Zotero && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
+slash = ['exec-and-forget alfred \`', 'mode main']
 
 esc = ['reload-config', 'mode main']
 
