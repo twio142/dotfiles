@@ -3,9 +3,11 @@
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+export FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/fzfrc"
+
 ## ctrl-d / ctrl-u: scroll preview
 ## alt-j: jump
-export FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer= --bind="ctrl-d:preview-half-page-down" --bind="ctrl-u:preview-half-page-up" --bind="alt-j:jump"'
+FZF_DEFAULT_OPTS='--layout=reverse --cycle --inline-info --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1 --pointer= --bind="ctrl-d:preview-half-page-down" --bind="ctrl-u:preview-half-page-up" --bind="alt-j:jump"'
 
 # Use ` as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER='`'
