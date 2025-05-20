@@ -66,12 +66,14 @@ chpwd_functions=(auto-lsd $chpwd_functions)
 
 eval "$(zoxide init zsh)"
 zle -N __zoxide_zi
-bindkey '^[g' __zoxide_zi
+bindkey '^[j' __zoxide_zi
 
 bindkey '^[[1;3C' forward-word
 bindkey '^[[1;3D' backward-word
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
+bindkey '^F' forward-word
+bindkey '^B' backward-word
 bindkey 'jh' vi-cmd-mode
 bindkey '^[k' kill-line
 bindkey '^U' backward-kill-line
