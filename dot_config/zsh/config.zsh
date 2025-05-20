@@ -9,6 +9,7 @@ alias leet='nvim leetcode'
 alias tree='tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__'
 alias reconfig='exec zsh'
 alias gping='gping --vertical-margin "$((($(tput lines) - 20) / 2))" --clear'
+alias cm=chezmoi
 
 back() { cd $OLDPWD }
 co() { 1="$*"; gh copilot suggest "$1" }
