@@ -191,8 +191,7 @@ _fzf_locate() {
 }
 zle -N _fzf_locate
 
-bindkey '^[t' fzf-file-widget
-bindkey '^[g' _autojump_fzf
+bindkey '^[j' _autojump_fzf
 bindkey '^[r' _fzf_repos
 bindkey '^[l' _fzf_locate
 # bindkey '^Xi' _fzf_image

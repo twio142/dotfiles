@@ -1068,7 +1068,7 @@
                         ]
                     },
                     {
-                        "description": "⇪⌘ B → Bob, ⇪⌘ D → DeHelper, ⇪⌘ E → Define, ⇪⌘ F → Fantastical, ⇪⌘ G → Autojump, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ R → Alfred Recent Path, ⇪ ⇥ → Show Windows Hints",
+                        "description": "⇪⌘ B → Bob, ⇪⌘ D → DeHelper, ⇪⌘ E → Define, ⇪⌘ F → Fantastical, ⇪⌘ J → Autojump, ⇪⌘ H/L → Prev/Next Tab, ⇪⌘ M → Menu Bar Search, ⇪⌘ P → ChatGPT, ⇪⌘ R → Alfred Recent Path, ⇪ ⇥ → Show Windows Hints",
                         "manipulators": [
                             {
                                 "from": {
@@ -1124,7 +1124,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "g",
+                                    "key_code": "j",
                                     "modifiers": { "mandatory": ["command", "right_control"] }
                                 },
                                 "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.shell -t autojump" }],
