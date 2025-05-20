@@ -33,7 +33,6 @@ prepend_keymap = [
   { on = ">", run = "forward", desc = "Forward" },
   { on = "J", run = "plugin my-cmd 'smart parent-down'", desc = "Go down in parent dir" },
   { on = "K", run = "plugin my-cmd 'smart parent-up'", desc = "Go up in parent dir" },
-  { on = "N", run = "plugin my-cmd 'smart N'", desc = "Go to previous found / Create a file" },
   { on = "<C-v>", run = "plugin my-cmd 'smart vsplit'", desc = "Open file in vsplit" },
   { on = "<C-s>", run = "plugin my-cmd 'smart split'", desc = "Open file in split" },
   { on = "<C-g>", run = 'shell --block lazygit', desc = "LazyGit" },
@@ -41,10 +40,10 @@ prepend_keymap = [
   { on = "<C-b>", run = 'arrow -50%', desc = "Move cursor up half page" },
   { on = "}", run = "plugin my-cmd 'smart create-tab'", desc = "Create new tab" },
   { on = "]", run = "plugin my-cmd 'smart next-tab'", desc = "Switch to next tab" },
-  { on = [ "\\", "g" ], run = "plugin zoxide", desc = "Go to a directory" },
+  { on = [ "\\", "j" ], run = "plugin zoxide", desc = "Jump to path" },
   { on = [ "\\", "f" ], run = "plugin fzf", desc = "Search files" },
   { on = [ "\\", "F" ], run = "search --via=fd --args=--no-ignore-vcs", desc = "Search files" },
-  { on = [ "\\", "s" ], run = "search --via=rg --args=--no-ignore-vcs", desc = "Search file contents" },
+  { on = [ "\\", "g" ], run = "search --via=rg --args=--no-ignore-vcs", desc = "Grep file contents" },
   { on = [ "M", "." ], run = "linemode size_and_mtime", desc = "Linemode: size & mtime" },
   { on = [ "M", "s" ], run = "linemode size",           desc = "Linemode: size" },
   { on = [ "M", "p" ], run = "linemode permissions",    desc = "Linemode: permissions" },
@@ -106,6 +105,8 @@ prepend_keymap = [
   { on = "i", run = "close", desc = "Close the spot" },
   { on = "<down>", run = "swipe 1", desc = "Swipe to next file" },
   { on = "<up>", run = "swipe -1", desc = "Swipe to previous file" },
+  { on = "<C-j>", run = "swipe 1", desc = "Swipe to next file" },
+  { on = "<C-k>", run = "swipe -1", desc = "Swipe to previous file" },
   { on = "y", run = "copy cell", desc = "Yank selected cell" },
 ]
 
@@ -128,6 +129,8 @@ prepend_keymap = [
 [cmp]
 prepend_keymap = [
   { on = "?", run = "help", desc = "Open help" },
+  { on = "<C-k>", run = "arrow prev", desc = "Previous item" },
+  { on = "<C-j>", run = "arrow next", desc = "Next item" },
 ]
 
 [filter]
