@@ -1315,7 +1315,7 @@ macos-titlebar-style = hidden
 # will be treated as *Alt* regardless of this setting. (i.e. `alt+ctrl+a`).
 #
 # This does not work with GLFW builds.
-macos-option-as-alt = left
+macos-option-as-alt = right
 
 # Whether to enable the macOS window shadow. The default value is true.
 # With some window managers and window transparency settings, you may

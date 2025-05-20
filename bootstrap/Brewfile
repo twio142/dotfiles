@@ -51,8 +51,6 @@ brew "glib"
 brew "libxcb"
 # X.Org: Core X11 protocol client library
 brew "libx11"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c@76"
 # Versatile and fast Unicode/ASCII/ANSI graphics renderer
 brew "chafa"
 # Manage your dotfiles across multiple diverse machines, securely
@@ -133,6 +131,8 @@ brew "lua"
 brew "highlight"
 # Configurable static site generator
 brew "hugo"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c@76"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # Update of iperf: measures TCP, UDP, and SCTP bandwidth
@@ -364,6 +364,7 @@ mas "WireGuard", id: 1451685025
 vscode "animaapp.vscode-anima"
 vscode "asvetliakov.vscode-neovim"
 vscode "davidanson.vscode-markdownlint"
+vscode "denoland.vscode-deno"
 vscode "docker.docker"
 vscode "eamodio.gitlens"
 vscode "figma.figma-vscode-extension"

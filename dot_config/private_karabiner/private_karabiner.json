@@ -701,7 +701,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "right_option",
+                                        "key_code": "left_option",
                                         "lazy": true
                                     }
                                 ],
@@ -722,7 +722,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "right_option",
+                                        "key_code": "left_option",
                                         "lazy": true
                                     }
                                 ],
@@ -738,12 +738,12 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "right_option",
+                                    "key_code": "left_option",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_option",
+                                        "key_code": "right_option",
                                         "lazy": true
                                     }
                                 ],

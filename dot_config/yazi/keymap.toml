@@ -33,12 +33,12 @@ prepend_keymap = [
   { on = [ "y", "x" ], run = "yank --cut", desc = "Cut files" },
   { on = [ "y", "p" ], run = 'shell -- [ -z $TMUX ] && ya emit copy path || printf "$0" | tmux loadb -', desc = "Yank file path" },
   { on = [ "y", "f" ], run = 'shell -- [ -z $TMUX ] && ya emit copy filename || printf "$(basename "$0")" | tmux loadb -', desc = "Yank filename" },
+  { on = "<A-y>", run = 'copy path', desc = "Yank file path" },
   { on = "<Esc>", run = "plugin my-cmd 'smart esc'", desc = "Unyank, exit visual mode, clear selected, or cancel search" },
   { on = "<", run = "back", desc = "Back" },
   { on = ">", run = "forward", desc = "Forward" },
   { on = "J", run = "plugin my-cmd 'smart parent-down'", desc = "Go down in parent dir" },
   { on = "K", run = "plugin my-cmd 'smart parent-up'", desc = "Go up in parent dir" },
-  { on = "N", run = "plugin my-cmd 'smart N'", desc = "Go to previous found / Create a file" },
   { on = "<C-v>", run = "plugin my-cmd 'smart vsplit'", desc = "Open file in vsplit" },
   { on = "<C-s>", run = "plugin my-cmd 'smart split'", desc = "Open file in split" },
   { on = "<C-e>", run = '''shell --block -- nvim "+lua require('mini.files').open('$0')"''', desc = "Open file explorer" },
@@ -91,9 +91,8 @@ prepend_keymap = [
   { on = "f", run = "plugin advanced-search filter",       desc = "Filter" },
   { on = "F", run = "plugin advanced-search smart_filter", desc = "Smart filter" },
   { on = ["g", "/"], run = "plugin advanced-search git_changes", desc = "Git changes" },
-  { on = "a", run = 'shell -- alfred "$0"', desc = "Show file in Alfred" },
+  { on = "A", run = 'shell -- alfred "$0"', desc = "Show file in Alfred" },
   { on = "=", run = 'shell -- altr -w com.twio142.syspre -t buffer -a - "$@"', desc = "Add file to Alfred buffer" },
-  { on = "A", run = 'shell -- altr -w com.twio142.alfred -t action -a - "$@"', desc = "Action on file in Alfred" },
   { on = [ "<Space>", "/" ], run = "plugin my-fzf selected", desc = "List selected files" },
   { on = ["<Space>", "c"], run = "plugin my-cmd 'on_selection copy'", desc = "Copy here" },
   { on = ["<Space>", "C"], run = "plugin my-cmd 'on_selection copy-force'", desc = "Force-copy here" },
@@ -138,6 +137,8 @@ prepend_keymap = [
   { on = "i", run = "close", desc = "Close the spot" },
   { on = "<down>", run = "swipe 1", desc = "Swipe to next file" },
   { on = "<up>", run = "swipe -1", desc = "Swipe to previous file" },
+  { on = "<C-k>", run = "swipe -1", desc = "Swipe to previous file" },
+  { on = "<C-j>", run = "swipe 1", desc = "Swipe to next file" },
   { on = "y", run = "copy cell", desc = "Yank selected cell" },
 ]
 
@@ -152,6 +153,8 @@ prepend_keymap = [
   { on = "?", run = "help", desc = "Open help" },
   { on = "<down>", run = "mgr:arrow next", desc = "Move cursor down" },
   { on = "<up>", run = "mgr:arrow prev", desc = "Move cursor up" },
+  { on = "<C-k>", run = "mgr:arrow prev", desc = "Previous item" },
+  { on = "<C-j>", run = "mgr:arrow next", desc = "Next item" },
   { on = "<C-f>", run = [ "mgr:enter", "kill bol", "kill eol" ], desc = "Enter the child directory" },
   { on = "<C-b>", run = [ "mgr:leave", "kill bol", "kill eol" ], desc = "Go back to the parent directory" },
 ]
@@ -159,11 +162,14 @@ prepend_keymap = [
 [confirm]
 prepend_keymap = [
   { on = "?", run = "help", desc = "Open help" },
+	{ on = "d", run = "close --submit", desc = "Submit the confirm" },
 ]
 
 [cmp]
 prepend_keymap = [
   { on = "?", run = "help", desc = "Open help" },
+  { on = "<C-k>", run = "arrow prev", desc = "Previous item" },
+  { on = "<C-j>", run = "arrow next", desc = "Next item" },
 ]
 
 [filter]
