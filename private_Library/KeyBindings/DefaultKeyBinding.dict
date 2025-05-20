@@ -1,3 +1,6 @@
 {
     "^w" = (deleteWordBackward:);
+    "^f" = (moveWordForward:);
+    "^b" = (moveWordBackward:);
+    "^u" = (deleteToBeginningOfLine:);
 }

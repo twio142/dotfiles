@@ -233,8 +233,8 @@ zle -N _back
 bindkey '^[,' _back
 bindkey ' ' magic-space
 
-bindkey '^[b' backward-word
-bindkey '^[f' forward-word
+bindkey '^B' backward-word
+bindkey '^F' forward-word
 bindkey '^[e' edit-command-line
 bindkey '^[d' kill-word
 bindkey '^[h' run-help
