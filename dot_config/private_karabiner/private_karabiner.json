@@ -763,29 +763,12 @@
                                     },
                                     {
                                         "bundle_identifiers": [
-                                            "company.thebrowser.Browser",
-                                            "com.apple.Safari"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": { "key_code": "right_shift" },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.browser-helpers -t share" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "r_shift",
-                                        "type": "variable_if",
-                                        "value": true
-                                    },
-                                    {
-                                        "bundle_identifiers": [
                                             "com.microsoft.VSCode",
                                             "md.obsidian",
                                             "abnerworks.Typora",
-                                            "com.colliderli.iina"
+                                            "com.colliderli.iina",
+                                            "company.thebrowser.Browser",
+                                            "com.apple.Safari"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -865,7 +848,7 @@
                         ]
                     },
                     {
-                        "description": "MOD ` → ~, MOD A → AeroSpace App Mode, MOD E → Aerospace Expand Mode, MOD F → Make Window Float, MOD H/J/K/L → Focus on Window, MOD N/P → Previous / Next Workspace, MOD S → Aerospace Space Mode, MOD V → Move / Resize Window, MOD ⇥ → Last Focused, MOD '/\\ → Toggle Layout Tiling / Accordion, MOD⇧ H/J/K/L → Swap Window, MOD ␣ → AeroSpace Mode",
+                        "description": "MOD ` → ~, MOD A → AeroSpace App Mode, MOD E → Aerospace Expand Mode, MOD F → Make Window Float, MOD H/J/K/L → Focus on Window, MOD N/P → Previous / Next Workspace, MOD S → Aerospace Space Mode, MOD ⇥ → Last Focused, MOD '/\\ → Toggle Layout Tiling / Accordion, MOD⇧ H/J/K/L → Swap Window, MOD ␣ → AeroSpace Mode",
                         "manipulators": [
                             {
                                 "from": {
@@ -978,14 +961,6 @@
                                     "modifiers": { "mandatory": ["right_option", "left_option"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/aerospace mode space" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "v",
-                                    "modifiers": { "mandatory": ["right_option", "left_option"] }
-                                },
-                                "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'MoveWinMode:enter()'" }],
                                 "type": "basic"
                             },
                             {

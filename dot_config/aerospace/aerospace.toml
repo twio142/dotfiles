@@ -204,6 +204,7 @@ a = ['mode app']
 s = ['mode space']
 e = ['mode expand']
 space = ['move-mouse window-lazy-center']
+v = ['exec-and-forget /usr/local/bin/hs -A -c "MoveWinMode:enter()"', 'mode main']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 slash = ['exec-and-forget open -g hammerspoon://window_hints', 'mode main']
