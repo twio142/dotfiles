@@ -50,7 +50,8 @@ uninstall_app = [
 ]
 image = [
 	{ run = '~/.local/bin/copy-img "$0"', desc = "Copy to clipboard" },
-	{ run = '~/.local/share/npm/bin/picgo -c $XDG_CONFIG_HOME/picgo/config.json u "$0" | grep -qF "[PicGo SUCCESS]" && afplay /System/Library/Sounds/Purr.aiff', orphan = true, desc = "Upload image" }
+	{ run = '~/.local/share/npm/bin/picgo -c $XDG_CONFIG_HOME/picgo/config.json u "$0" | grep -qF "[PicGo SUCCESS]" && afplay /System/Library/Sounds/Purr.aiff', orphan = true, desc = "Upload image" },
+	{ run = 'exiftool -all= -overwrite_original "$@"', desc = "Strip metadata" }
 ]
 open_db = [
 	{ run = 'lazysql "$0"', block = true, desc = "Open database" }

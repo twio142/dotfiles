@@ -19,6 +19,7 @@ prepend_keymap = [
   { on = "Q", run = "quit", desc = "Exit" },
   { on = "<C-d>", run = "seek 5", desc = "Seek down 5 units in preview" },
   { on = "<C-u>", run = "seek -5", desc = "Seek up 5 units in preview" },
+  { on = [ "c", "m" ], run = "plugin chmod", desc = "Chmod on selected files" },
   { on = [ "g", "c" ], run = "noop" },
   { on = [ "g", "f" ], run = "noop" },
   { on = [ "g", "a" ], run = [ 'shell -- git add "$@"', "shell --block -- ya emit render" ], desc = "Git add file" },

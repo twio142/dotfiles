@@ -63,6 +63,11 @@ use = "twio142/yazi-plugins:bookmarks"
 rev = "c8843ce"
 hash = "fff498e9a7f5c23c67747e8a101b2b71"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "55bf699"
+hash = "2f1053f89d1a301a648ab181d0948e38"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
 rev = "02f3fc6"
