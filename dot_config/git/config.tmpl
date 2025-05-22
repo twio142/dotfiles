@@ -16,6 +16,7 @@
   quotepath = false
   excludesfile = ~/.config/git/ignore
   pager = delta --$(~/.local/bin/background)
+  attributesfile = ~/.config/git/attributes
 [fetch]
   recurseSubmodules = true
 [diff]
@@ -23,6 +24,14 @@
   colorMoved = default
 [difftool]
   prompt = false
+[diff "plist"]
+  textconv = plutil -convert xml1 -o -
+[diff "zip"]
+  textconv = ouch list -t -y
+[diff "image"]
+  textconv = exiftool -s2 -common -FileModifyDate -ColorType -Software
+[diff "pdf"]
+  textconv = "f() { pdftotext -layout \"$1\" -; }; f"
 [interactive]
   diffFilter = delta --$(~/.local/bin/background) --color-only --features=interactive
 [delta]

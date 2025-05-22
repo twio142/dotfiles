@@ -1,0 +1,8 @@
+*.plist diff=plist
+*.pdf diff=pdf
+*.jpg diff=image
+*.jpeg diff=image
+*.png diff=image
+*.gif diff=image
+*.zip diff=zip
+*.tar.gz diff=zip

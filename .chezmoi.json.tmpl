@@ -20,5 +20,12 @@
     "GITHUB_USER": "twio142",
     "GITHUB_EMAIL": "64556708+twio142@users.noreply.github.com",
     "GIT_USER_SIGNINGKEY": "44703707F9B90BDE"
-  }
+  },
+  "textconv": [
+    {
+      "pattern": "**/*.plist",
+      "command": "plutil",
+      "args": ["-convert", "xml1", "-o", "-", "-"]
+    }
+  ]
 }
