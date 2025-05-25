@@ -12,8 +12,6 @@ alias gping='gping --vertical-margin "$((($(tput lines) - 20) / 2))" --clear'
 alias cm=chezmoi
 
 back() { cd $OLDPWD }
-co() { 1="$*"; gh copilot suggest "$1" }
-coe() { 1="$*"; gh copilot explain "$1" }
 lc() {
   1=${1:a}
   [ -d $1 ] && cd $1 || cd ${1:h};
@@ -73,6 +71,9 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/ripgreprc
 # custom completions
 [ -d $ZDOTDIR/completions ] && fpath=($ZDOTDIR/completions $fpath)
 [ -d $ZDOTDIR/functions ] && fpath=($ZDOTDIR/functions $fpath)
+for x in $ZDOTDIR/functions/*; do
+  autoload -Uz "${x:t}"
+done
 
 # asdf
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
@@ -192,6 +193,12 @@ _tmux_paste() {
 _tmux_wk_menu() { tmux show-wk-menu-root }
 _tmux_prev_mark() { tmux copy-mode \; send -X search-backward "^❯ " \; send -X search-again }
 _tmux_next_mark() { tmux copy-mode \; send -X search-forward "^❯ " }
+_tmux_copilot() {
+  tmux popup -E -w 80% -h 12 -e TMUX_POPUP=1 "source $ZDOTDIR/functions/ghcs; ghcs"
+  zle push-line
+  BUFFER=$(tmux show-buffer -b gh-copilot)
+  tmux delete-buffer -b gh-copilot
+}
 _tmux_key_bindings() {
   zle -N _tmux_copy_mode
   zle -N _tmux_find
@@ -199,10 +206,12 @@ _tmux_key_bindings() {
   zle -N _tmux_wk_menu
   zle -N _tmux_prev_mark
   zle -N _tmux_next_mark
+  zle -N _tmux_copilot
   bindkey '^[[' _tmux_copy_mode
   bindkey '^[/' _tmux_find
   bindkey '^[]' _tmux_paste
   bindkey '^[ ' _tmux_wk_menu
+  bindkey '^[i' _tmux_copilot
   bindkey '^[[1;3A' _tmux_prev_mark
   bindkey '^[[1;3B' _tmux_next_mark
   bindkey '^[[1;3C' forward-word

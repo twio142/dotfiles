@@ -5,11 +5,9 @@ data=~/Projects/Uebersicht/Memos.widget/lib/data.json
 
 if [ "$1" = new ]; then
   file=/tmp/memo.0.md
-  nvim $file +startinsert && [ -f $file ] && {
+  trap 'rm -f "$file"' EXIT
+  nvim +startinsert -- $file && [ -f $file ] &&
     cat $file | $scpt new &> /dev/null || true;
-    rm $file;
-  }
-
   exit
 fi
 
