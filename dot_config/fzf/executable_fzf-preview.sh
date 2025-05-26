@@ -14,7 +14,7 @@ file=${1/#\~\//$HOME/}
 type=$(file --dereference --mime -- "$file")
 
 if [ -d "$1" ]; then
-  tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__ "$1"
+  lsd --config-file=$XDG_CONFIG_HOME/lsd/tree.yaml -- "$1"
   exit
 elif [[ ! $type =~ image/ ]]; then
   if (command -v ouch > /dev/null) && (echo $type | grep -Eq "application\/(.*zip|x-tar|x-bzip2?|x-7z-compressed|x-rar|x-xz)" ); then

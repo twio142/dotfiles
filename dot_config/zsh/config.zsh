@@ -6,7 +6,7 @@ alias t='tmux'
 alias ipy='ipython'
 alias lzg='lazygit'
 alias leet='nvim leetcode'
-alias tree='tree -atrC -L 4 -I .DS_Store -I .git -I node_modules -I __pycache__'
+alias tree='lsd --config-file=$XDG_CONFIG_HOME/lsd/tree.yaml'
 alias reconfig='exec zsh'
 alias gping='gping --vertical-margin "$((($(tput lines) - 20) / 2))" --clear'
 alias cm=chezmoi

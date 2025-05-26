@@ -63,8 +63,12 @@ icons:
 
 # == Ignore Globs ==
 # A list of globs to ignore when listing.
-# ignore-globs:
-#   - .git
+ignore-globs:
+  - .git
+  - .DS_Store
+  - node_modules
+  - __pycache__
+  - .build
 
 # == Indicators ==
 # Whether to add indicator characters to certain listed files.
@@ -75,7 +79,7 @@ indicators: true
 # Which layout to use. "oneline" might be a bit confusing here and should be
 # called "one-per-line". It might be changed in the future.
 # Possible values: grid, tree, oneline
-layout: grid
+layout: tree
 
 # == Recursion ==
 recursion:
@@ -84,7 +88,7 @@ recursion:
   enabled: false
   # How deep the recursion should go. This has to be a positive integer. Leave
   # it unspecified for (virtually) infinite.
-  # depth: 3
+  depth: 4
 
 # == Size ==
 # Specifies the format of the size column.
@@ -100,7 +104,7 @@ size: default
 sorting:
   # Specify what to sort by.
   # Possible values: extension, name, time, size, version
-  column: version
+  column: time
   # Whether to reverse the sorting.
   # Possible values: false, true
   reverse: false
