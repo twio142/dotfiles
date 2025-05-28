@@ -3,7 +3,8 @@
 case "$1" in
   bash)     echo " " ;;
   btop)     echo "󰓅 " ;;
-  curl)     echo " " ;;
+  curl|curlie)
+            echo " " ;;
   deno)     echo " " ;;
   docker|lazydocker)
             echo " " ;;
@@ -15,7 +16,7 @@ case "$1" in
   lua)      echo "󰢱 " ;;
   node)     echo " " ;;
   nvim)     echo " " ;;
-  [Pp]ython*|conda|mamba)
+  [Pp]ython*|conda|mamba|uv)
             echo " " ;;
   ruby)     echo "󰴭 " ;;
   scli)     echo "󰀘 " ;;
