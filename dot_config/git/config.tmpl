@@ -9,16 +9,31 @@
   email = {{ env "GITHUB_EMAIL" }}
   name = {{ env "GITHUB_USER" }}
   signingkey = {{ env "GIT_USER_SIGNINGKEY" }}
+[commit]
+  gpgSign = true
 [color]
   ui = true
 [core]
+  compression = 9
+  whitespace = error
+  preloadindex = true
   autocrlf = input
   quotepath = false
   excludesfile = ~/.config/git/ignore
   pager = delta --$(~/.local/bin/background)
   attributesfile = ~/.config/git/attributes
+[advice]
+  addEmptyPathspec = false
+  pushNonFastForward = false
+  statusHints = false
+[status]
+  branch = true
+  showStash = true
 [fetch]
   recurseSubmodules = true
+[push]
+  default = current
+  followTags = true
 [diff]
   tool = nvimdiff
   colorMoved = default
@@ -56,7 +71,14 @@
 [mergetool "diffview"]
   cmd = ~/.config/lazygit/edit.sh -c DiffviewOpen
 [pull]
-  ff = only
+  default = current
+  rebase = true
+[rebase]
+  autoStash = true
+[branch]
+  sort = -committerdate
+[tag]
+  sort = -taggerdate
 [gitflow "branch"]
   master = main
   develop = develop
