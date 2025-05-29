@@ -83,6 +83,8 @@ brew "dnscrypt-proxy"
 brew "doggo"
 # More intuitive version of du in rust
 brew "dust"
+# Perl lib for reading and writing EXIF metadata
+brew "exiftool"
 # Like neofetch, but much faster because written mostly in C
 brew "fastfetch"
 # Simple, fast and user-friendly alternative to find
@@ -149,8 +151,6 @@ brew "less"
 brew "libconfig"
 # Rime Input Method Engine
 brew "librime"
-# X.Org: X Toolkit Intrinsics library
-brew "libxt"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Package manager for the Lua programming language
@@ -181,6 +181,8 @@ brew "pandoc"
 brew "pandoc-crossref"
 # General-purpose scripting language
 brew "php"
+# Pinentry for GPG on Mac
+brew "pinentry-mac"
 # Python dependency management tool
 brew "pipenv"
 # Paste PNG into files
@@ -219,8 +221,6 @@ brew "tlrc"
 brew "tmux"
 # CLI tool that moves files or folder to the trash
 brew "trash", link: true
-# Display directories as trees (with optional color/HTML output)
-brew "tree"
 # Simple file transfer tools, similar to lrzsz (rz/sz), and compatible with tmux
 brew "trzsz-go"
 # Command-line tool for sharing terminal over the web
@@ -254,8 +254,6 @@ brew "jorgerojas26/lazysql/lazysql"
 brew "laishulu/homebrew/macism"
 # mouseless terminal interaction
 brew "morantron/tmux-fingers/tmux-fingers"
-# DeepLX is a permanently free DeepL API client written in Golang.
-brew "owo-network/brew/deeplx"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "aerospace"
 # Application launcher and productivity software
@@ -306,8 +304,6 @@ cask "lunar"
 cask "mos"
 # Add more gestures for Trackpad and Magic Mouse
 cask "multitouch"
-# Screensaver displaying artwork based on Spotify or Last.fm profile data
-cask "musaicfm"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Finds large, unwanted files and deletes them
@@ -382,6 +378,7 @@ vscode "gruntfuggly.todo-tree"
 vscode "ionutvmi.path-autocomplete"
 vscode "kortina.vscode-markdown-notes"
 vscode "mdickin.markdown-shortcuts"
+vscode "ms-azuretools.vscode-containers"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-python.debugpy"
 vscode "ms-python.python"
