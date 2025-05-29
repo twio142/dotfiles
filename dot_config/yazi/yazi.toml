@@ -3,7 +3,7 @@
 # https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/yazi-default.toml
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
-[manager]
+[mgr]
 ratio = [2, 5, 5]
 sort_by = "mtime"
 sort_reverse = true
@@ -87,10 +87,29 @@ suppress_preload = false
 [plugin]
 prepend_previewers = [
 	{ mime = "image/vnd.djvu", run = "noop" },
-	# Archive
-	{ mime = "application/{zip,gzip,tar,bzip*,7z-compressed,xz,rar}", run = "ouch" },
-	{ mime = "text/csv", run = "miller" },
-	{ name = "*.csv", run = "miller" },
+	{ mime = "image/icns", run = 'piper -- exiftool -s2 -common -ExifImageHeight -ExifImageWidth "$1"' },
+	{ name = "*.plist", run = 'piper -- plutil -convert xml1 -o - "$1" | bat -l xml' },
+	{ mime = "application/{zip,gzip,tar,bzip*,7z-compressed,xz,rar}", run = 'piper -- ouch l -t -y "$1" | sed "1s/^Archive: .*\//󰞹 /" ' },
+	{ name = "*.ipynb", run = '''piper -- ext=$(cat "$1" | jq -r '.metadata.language_info.file_extension // ".py"'); jupytext "$1" --to auto -o - | bat -l "${ext:1}" ''' },
+	{ mime = "application/sqlite3", run = 'piper -- sqlite3 "$1" ".schema" | bat -l sql' },
+	{ name = "*.m3u", run = 'piper -- cat "$1" | bat -l hosts' },
+	{ mime = "text/csv", run = 'piper -- mlr --icsv --opprint -C --key-color 208 --value-color grey70 cat "$1"' },
+	{ name = "*.csv", run = ''' piper --
+		ss=(, ";" "|", "	")
+		vs=("${ss[@]}")
+		read -r fl < "$1"
+		while IFS= read -r l; do
+			nvs=()
+			for s in "${vs[@]}"; do
+				fc=$(echo "$fl" | grep -o "$s" | wc -l)
+				cc=$(echo "$l" | grep -o "$s" | wc -l)
+				[[ "$fc" -eq "$cc" && "$cc" -gt 0 ]] && nvs+=("$s")
+			done
+			vs=("${nvs[@]}")
+			[[ ${#vs[@]} -eq 1 ]] && break
+		done < "$1"
+		mlr --icsv --opprint -C --key-color 208 --ifs "${vs[0]}" --value-color grey70 cat "$1"
+		''' },
 ]
 
 prepend_fetchers = [
@@ -102,6 +121,9 @@ prepend_fetchers = [
 
 [which]
 sort_by = "key"
+
+[input]
+cursor_blink = true
 
 [log]
 enabled = false

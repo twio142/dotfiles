@@ -714,7 +714,6 @@ keybind = super+j=text:\x00\x0a
 keybind = super+f=text:\x00\x3f
 keybind = super+i=esc:i
 keybind = super+shift+r=reload_config
-keybind = ctrl+f3=text:\x1b[1;5R
 keybind = global:cmd+f4=toggle_quick_terminal
 
 # Horizontal window padding. This applies padding between the terminal cells

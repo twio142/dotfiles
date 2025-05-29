@@ -1,79 +1,74 @@
 [[plugin.deps]]
-use = "ndtoan96/ouch"
-rev = "2496cd9"
-hash = "5b9dea47776a30946cfbf83232d18fb1"
-
-[[plugin.deps]]
 use = "twio142/yazi-plugins:my-cmd"
-rev = "c8843ce"
-hash = "31c8856431c529f1c149ae5c1aa7fe30"
+rev = "8aa0e54"
+hash = "24e45e688c402eab0b76cf885d20ef0b"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-fzf"
-rev = "c8843ce"
-hash = "1c49be74ed07e13c468f70d93372a9d3"
+rev = "8aa0e54"
+hash = "a59308f54c8f3f7685e3d71c1b9cc4d1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "55bf699"
-hash = "1f3dad061209081a6b04dd6ff2cb06c7"
+rev = "63f9650"
+hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mactag"
-rev = "55bf699"
-hash = "f4ee8d1a119fc869ffcd7e8a71b1469e"
+rev = "63f9650"
+hash = "6e0cbddb97038ea95f04f9de0944c175"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "55bf699"
-hash = "dd97eede8e20e59cd2604e8006e470e2"
+rev = "63f9650"
+hash = "c0b6cd7dc830b96e77e5c8a71eec7926"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:toggle-pane"
-rev = "c8843ce"
-hash = "6e96c0951edfd80e2ed0f464fe67cca7"
+rev = "8aa0e54"
+hash = "c86a857730fa0d9319b8967f99068c97"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:advanced-search"
-rev = "c8843ce"
-hash = "54427cb279f9c50b05708bfc7100735c"
+rev = "8aa0e54"
+hash = "8fe82568a94a707786594aadf6ca8880"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:git"
-rev = "c8843ce"
-hash = "86e56edcd49de94f2871d00754089223"
+rev = "8aa0e54"
+hash = "aba43e5ecc150b89c2124e45231fb26a"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:searchjump"
-rev = "c8843ce"
-hash = "c357b4df91164bf401a9a02bbda0f1e1"
-
-[[plugin.deps]]
-use = "twio142/yazi-plugins:miller"
-rev = "c8843ce"
-hash = "c5b5eb9fc0fac0424f2c187e7fd511dc"
+rev = "8aa0e54"
+hash = "bc23bc3efc0f0e639b0d85bfa10cb2f2"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:githead"
-rev = "c8843ce"
-hash = "f84acc87a485a237477608acc6b7bae9"
+rev = "8aa0e54"
+hash = "a255ad681d2fa372b40569d1d85bf051"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:bookmarks"
-rev = "c8843ce"
-hash = "fff498e9a7f5c23c67747e8a101b2b71"
+rev = "8aa0e54"
+hash = "4e552f9b2012414f4bd024469fbeab3f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "55bf699"
-hash = "2f1053f89d1a301a648ab181d0948e38"
+rev = "63f9650"
+hash = "d0ad0c1946b46a30c8489735fe8de41c"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "63f9650"
+hash = "2bdc137505b8d9a0cc867a57d0e99b01"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
-rev = "02f3fc6"
-hash = "5dffea1e87c50b18b8bb1599f6d4881a"
+rev = "d04a298"
+hash = "a4d508772dc7b20d739a2f9a1d2d396f"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "02f3fc6"
-hash = "2ac87e1b3a61f5887472899e86535d29"
+rev = "d04a298"
+hash = "288a0dedd5d13b28605cf82c05326dcd"

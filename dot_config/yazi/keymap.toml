@@ -1,6 +1,6 @@
 # https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
 
-[manager]
+[mgr]
 prepend_keymap = [
   { on = "<Tab>", run = [ "toggle", "arrow next" ], desc = "Toggle selection" },
   { on = "<BackTab>", run = [ "toggle", "arrow prev" ], desc = "Toggle selection" },
@@ -22,14 +22,14 @@ prepend_keymap = [
   { on = [ "c", "m" ], run = "plugin chmod", desc = "Chmod on selected files" },
   { on = [ "g", "c" ], run = "noop" },
   { on = [ "g", "f" ], run = "noop" },
-  { on = [ "g", "a" ], run = [ 'shell -- git add "$@"', "shell --block -- ya emit render" ], desc = "Git add file" },
+  { on = [ "g", "a" ], run = [ 'shell -- git add "$@"', "shell --block -- ya emit render", 'toggle_all --state=off' ], desc = "Git add file" },
   { on = [ "g", "A" ], run = [ "shell -- git add --all", "shell --block -- ya emit render" ], desc = "Git add all" },
-  { on = [ "g", "u" ], run = [ 'shell -- git restore --staged "$@"', "shell --block -- ya emit render" ], desc = "Git unstage file" },
+  { on = [ "g", "u" ], run = [ 'shell -- git restore --staged "$@"', "shell --block -- ya emit render", 'toggle_all --state=off' ], desc = "Git unstage file" },
   { on = [ "g", "o" ], run = "follow", desc = "Go to original" },
   { on = [ "g", "p" ], run = 'shell -- ya emit reveal "$(pbpaste)"', desc = "Go to copied path" },
   { on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Go interactively" },
   { on = [ "g", "r" ], run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"', desc = "Go to git repo root" },
-  { on = [ "g", "d" ], run = 'shell --block -- git diff "$0" | delta --$(background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1)  | less -R', desc = "Git diff" },
+  { on = [ "g", "d" ], run = 'shell --block -- git diff "$0" | delta --$(background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1) | less -R', desc = "Git diff" },
   { on = [ "y", "c" ], run = "yank", desc = "Copy files" },
   { on = [ "y", "x" ], run = "yank --cut", desc = "Cut files" },
   { on = [ "y", "p" ], run = 'shell -- [ -z $TMUX ] && ya emit copy path || printf "$0" | tmux loadb -', desc = "Yank file path" },

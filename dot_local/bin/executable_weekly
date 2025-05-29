@@ -63,7 +63,7 @@ zimfw update
 $XDG_CONFIG_HOME/tmux/plugins/tpm/scripts/update_plugin_prompt_handler.sh all
 tmux set -g status on &> /dev/null
 # Upgrade yazi plugins
-ya pack -u
+ya pkg upgrade
 # Upgrade gh plugins
 command -v gh &> /dev/null && gh extension upgrade --all
 # Upgrade npm global packages

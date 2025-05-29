@@ -78,9 +78,25 @@ require("session"):setup({
 require("my-cmd"):setup()
 
 local width = io.popen("tput cols", "r"):read("*a")
-if tonumber(width) and tonumber(width) < 95 then
-	require("toggle-pane"):entry("min-preview")
-	rt.mgr.ratio.preview = 0
+if tonumber(width) then
+	if tonumber(width) < 95 then
+		require("toggle-pane"):entry("min-preview")
+		rt.mgr.ratio.preview = 0
+	else
+		-- Show ownership in status bar
+		Status:children_add(function()
+			local h = cx.active.current.hovered
+			if h == nil or ya.target_family() ~= "unix" then
+				return ""
+			end
+			return ui.Line({
+				ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("magenta"),
+				":",
+				ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
+				" ",
+			})
+		end, 500, Status.RIGHT)
+	end
 end
 
 function Linemode:size_and_mtime()
@@ -111,17 +127,3 @@ function Status:name()
 	end
 	return ui.Line({ " " .. h.name, ui.Span(linked):italic() })
 end
-
--- -- Show ownership in status bar
--- Status:children_add(function()
--- 	local h = cx.active.current.hovered
--- 	if h == nil or ya.target_family() ~= "unix" then
--- 		return ""
--- 	end
--- 	return ui.Line({
--- 		ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("magenta"),
--- 		":",
--- 		ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
--- 		" ",
--- 	})
--- end, 500, Status.RIGHT)
