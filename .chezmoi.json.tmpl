@@ -2,5 +2,13 @@
 {
   "env": {
     "TMUX_THEME_COLOR": "{{ $color }}"
+  },
+  "hooks": {
+    "apply": {
+      "pre": {
+        "command": "ya",
+        "args": ["pkg", "upgrade"]
+      }
+    }
   }
 }
