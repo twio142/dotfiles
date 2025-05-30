@@ -54,7 +54,7 @@ export DENO_INSTALL="$XDG_CACHE_HOME"/deno
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
-export LESSHISTFILE="$XDG_STATE_HOME"/less/history
+export LESSHISTFILE=/dev/null
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export NODE_PATH="$XDG_DATA_HOME"/npm/lib/node_modules # $(npm root -g)
 export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history

@@ -1,11 +1,5 @@
 #!/bin/zsh
 
-export PATH="$HOME/.local/bin:$PATH"
-export EDITOR=nvim
-export LESS="-r"
-export LESSHISTFILE=$XDG_STATE_HOME/less/history
-export PAGER="bat --style=plain --color=always --paging=always --pager=less"
-
 BOLD=$'\033[1;36m'
 OFF=$'\033[0m'
 
