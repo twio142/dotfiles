@@ -1,6 +1,6 @@
 # https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
 
-[manager]
+[mgr]
 prepend_keymap = [
   { on = "<Tab>", run = [ "toggle", "arrow next" ], desc = "Toggle selection" },
   { on = "<BackTab>", run = [ "toggle --state=off", "arrow prev" ], desc = "Toggle selection" },
