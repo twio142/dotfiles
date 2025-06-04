@@ -52,11 +52,11 @@ on-focused-monitor-changed = ['move-mouse window-lazy-center']
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
 inner.horizontal = 0
-inner.vertical =   0
-outer.left =       0
-outer.bottom =     0
-outer.top =        0
-outer.right =      0
+inner.vertical = 0
+outer.left = 0
+outer.bottom = 0
+outer.top = 0
+outer.right = 0
 
 [exec]
 inherit-env-vars = true
@@ -151,7 +151,9 @@ R = 'secondary'
 # alt-slash = 'layout tiles horizontal vertical'
 # alt-comma = 'layout accordion horizontal vertical'
 
-alt-shift-p = ['exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around prev'] # previous non-empty workspace
+alt-shift-p = [
+  'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around prev',
+] # previous non-empty workspace
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 # alt-h = 'focus left'
@@ -186,20 +188,70 @@ f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling
 d = ['close', 'mode main'] # close window
 ctrl-d = ['close-all-windows-but-current', 'mode main'] # close all other windows
 tab = ['workspace-back-and-forth', 'mode main']
-b = ['exec-and-forget aerospace list-workspaces --monitor focused --empty --visible no | aerospace move-node-to-workspace --wrap-around next --focus-follows-window', 'mode main'] # break window from current workspace
-c = ['exec-and-forget aerospace list-workspaces --monitor focused --empty --visible no | aerospace workspace --wrap-around next', 'mode main'] # go to an empty workspace
-n = ['exec-and-forget altr -w com.twio142.swift -t aero_next', 'mode main'] # next non-empty workspace / new empty workspace
-p = ['exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around prev', 'mode main'] # previous non-empty workspace
-m = ['move-node-to-monitor --wrap-around next --focus-follows-window', 'mode main'] # move window to next monitor
-shift-m = ['move-workspace-to-monitor --wrap-around next', 'mode main'] # move workspace to next monitor
-h = ['focus left', 'mode main', 'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center']
-j = ['focus down', 'mode main', 'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center']
-k = ['focus up', 'mode main', 'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center']
-l = ['focus right', 'mode main', 'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center']
-shift-h = ['move left', 'mode main', 'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center']
-shift-j = ['move down', 'mode main', 'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center']
-shift-k = ['move up', 'mode main', 'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center']
-shift-l = ['move right', 'mode main', 'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center']
+b = [
+  'exec-and-forget aerospace list-workspaces --monitor focused --empty --visible no | aerospace move-node-to-workspace --wrap-around next --focus-follows-window',
+  'mode main',
+] # break window from current workspace
+c = [
+  'exec-and-forget aerospace list-workspaces --monitor focused --empty --visible no | aerospace workspace --wrap-around next',
+  'mode main',
+] # go to an empty workspace
+n = [
+  'exec-and-forget altr -w com.twio142.swift -t aero_next',
+  'mode main',
+] # next non-empty workspace / new empty workspace
+p = [
+  'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around prev',
+  'mode main',
+] # previous non-empty workspace
+m = [
+  'move-node-to-monitor --wrap-around next --focus-follows-window',
+  'mode main',
+] # move window to next monitor
+shift-m = [
+  'move-workspace-to-monitor --wrap-around next',
+  'mode main',
+] # move workspace to next monitor
+h = [
+  'focus left',
+  'mode main',
+  'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center',
+]
+j = [
+  'focus down',
+  'mode main',
+  'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center',
+]
+k = [
+  'focus up',
+  'mode main',
+  'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center',
+]
+l = [
+  'focus right',
+  'mode main',
+  'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center',
+]
+shift-h = [
+  'move left',
+  'mode main',
+  'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center',
+]
+shift-j = [
+  'move down',
+  'mode main',
+  'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center',
+]
+shift-k = [
+  'move up',
+  'mode main',
+  'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center',
+]
+shift-l = [
+  'move right',
+  'mode main',
+  'exec-and-forget sleep 0.5 && aerospace move-mouse window-lazy-center',
+]
 a = ['mode app']
 s = ['mode space']
 e = ['mode expand']
@@ -229,17 +281,50 @@ l = ['join-with right', 'mode main']
 esc = ['reload-config', 'mode main']
 
 [mode.app.binding]
-a = ['exec-and-forget open -a Arc && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-f = ['exec-and-forget open -a Finder && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-c = ['exec-and-forget open -a ChatGPT && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-i = ['exec-and-forget open -a IINA && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-m = ['exec-and-forget open -a Spark && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-o = ['exec-and-forget open -a Obsidian && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-p = ['exec-and-forget open -a Pixelmator && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-s = ['exec-and-forget open -a Skim && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-v = ['exec-and-forget open -a Visual\ Studio\ Code && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-x = ['exec-and-forget altr -w com.twio142.shell -t shell && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
-z = ['exec-and-forget open -a Zotero && sleep 0.5 && aerospace move-mouse window-lazy-center', 'mode main']
+a = [
+  'exec-and-forget open -a Arc && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
+f = [
+  'exec-and-forget open -a Finder && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
+c = [
+  'exec-and-forget open -a ChatGPT && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
+i = [
+  'exec-and-forget open -a IINA && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
+m = [
+  'exec-and-forget open -a Spark && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
+o = [
+  'exec-and-forget open -a Obsidian && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
+p = [
+  'exec-and-forget open -a Pixelmator && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
+s = [
+  'exec-and-forget open -a Skim && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
+v = [
+  'exec-and-forget open -a Visual\ Studio\ Code && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
+x = [
+  'exec-and-forget altr -w com.twio142.shell -t shell && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
+z = [
+  'exec-and-forget open -a Zotero && sleep 0.5 && aerospace move-mouse window-lazy-center',
+  'mode main',
+]
 slash = ['exec-and-forget alfred \`', 'mode main']
 
 esc = ['reload-config', 'mode main']

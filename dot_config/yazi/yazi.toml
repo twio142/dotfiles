@@ -20,60 +20,50 @@ tab_size = 2
 
 [opener]
 edit = [
-	{ run = 'nvim "$@"', block = true, for = "unix", desc = "Edit" },
-	{ run = "nvim %*",  block = true, for = "windows", desc = "Edit" },
-	{ run = 'code "$PWD"; code -g "$@"', desc = "Open in VSCode" }
+  { run = 'nvim "$@"', block = true, for = "unix", desc = "Edit" },
+  { run = "nvim %*", block = true, for = "windows", desc = "Edit" },
+  { run = 'code "$PWD"; code -g "$@"', desc = "Open in VSCode" },
 ]
 extract = [
-	{ run = 'for x in "$@"; do ouch d -y "$x" || open "$x"; done', desc = "Extract here", for = "unix" },
-	{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
+  { run = 'for x in "$@"; do ouch d -y "$x" || open "$x"; done', desc = "Extract here", for = "unix" },
+  { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
 ]
 reveal = [
-	{ run = 'xdg-open "$(dirname "$0")"',           desc = "Reveal", for = "linux" },
-	{ run = 'open -R "$0"',                         desc = "Reveal", for = "macos" },
-	{ run = 'explorer /select,"%0"', orphan = true, desc = "Reveal", for = "windows" },
+  { run = 'xdg-open "$(dirname "$0")"', desc = "Reveal", for = "linux" },
+  { run = 'open -R "$0"', desc = "Reveal", for = "macos" },
+  { run = 'explorer /select,"%0"', orphan = true, desc = "Reveal", for = "windows" },
 ]
 play = [
-	{ run = 'open "$@"', for = "macos", desc = "Play" },
-	# { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
-	{ run = 'mpv --force-window %*', orphan = true, for = "windows" },
-	{ run = '''for x in "$@"; do ~/.local/bin/iina load$(echo "$x" | awk -F. '{print($NF=="m3u")?"list":"file"}') "$x" append; done''', desc = "Append to playlist" }
+  { run = 'open "$@"', for = "macos", desc = "Play" },
+  # { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+  { run = 'mpv --force-window %*', orphan = true, for = "windows" },
+  { run = '''for x in "$@"; do ~/.local/bin/iina load$(echo "$x" | awk -F. '{print($NF=="m3u")?"list":"file"}') "$x" append; done''', desc = "Append to playlist" },
 ]
-play_audio = [
-  { run = 'afplay "$0"', orphan = true, for = "macos", desc = "Play audio" }
-]
+play_audio = [{ run = 'afplay "$0"', orphan = true, for = "macos", desc = "Play audio" }]
 load_sub = [
-	{ run = 'for x in "$@"; do ~/.local/bin/iina sub-add "$x"; done', orphan = true, desc = "Load subtitle" }
+  { run = 'for x in "$@"; do ~/.local/bin/iina sub-add "$x"; done', orphan = true, desc = "Load subtitle" },
 ]
-uninstall_app = [
-	{ run = 'open "$0" -a AppCleaner', desc = "Uninstall app" }
-]
+uninstall_app = [{ run = 'open "$0" -a AppCleaner', desc = "Uninstall app" }]
 image = [
-	{ run = '~/.local/bin/copy-img "$0"', desc = "Copy to clipboard" },
-	{ run = '~/.local/share/npm/bin/picgo -c $XDG_CONFIG_HOME/picgo/config.json u "$0" | grep -qF "[PicGo SUCCESS]" && afplay /System/Library/Sounds/Purr.aiff', orphan = true, desc = "Upload image" },
-	{ run = 'exiftool -all= -overwrite_original "$@"', desc = "Strip metadata" }
+  { run = '~/.local/bin/copy-img "$0"', desc = "Copy to clipboard" },
+  { run = '~/.local/share/npm/bin/picgo -c $XDG_CONFIG_HOME/picgo/config.json u "$0" | grep -qF "[PicGo SUCCESS]" && afplay /System/Library/Sounds/Purr.aiff', orphan = true, desc = "Upload image" },
+  { run = 'exiftool -all= -overwrite_original "$@"', desc = "Strip metadata" },
 ]
-open_db = [
-	{ run = 'lazysql "$0"', block = true, desc = "Open database" }
-]
-osascript = [
-	{ run = 'osascript "$0"', desc = "Run AppleScript" }
-]
-compress = [
-	{ run = 'ya emit plugin ouch zip', desc = "Compress here" }
-]
+open_db = [{ run = 'lazysql "$0"', block = true, desc = "Open database" }]
+osascript = [{ run = 'osascript "$0"', desc = "Run AppleScript" }]
+compress = [{ run = 'ya emit plugin ouch zip', desc = "Compress here" }]
 
 [open]
 prepend_rules = [
   { mime = "audio/*", use = ["play", "play_audio", "reveal"] },
   { name = "*.md", use = ["open", "edit", "reveal"] },
-	{ mime = "image/*", use = ["open", "reveal", "image"] },
-	{ name = "*.m3u", use = ["play", "edit", "reveal"] },
-	{ name = "*.{ass,srt,sub}", use = ["load_sub", "edit"] },
-	{ name = "*.app/", use = ["open", "uninstall_app"] },
-	{ mime = "inode/directory", use = ["open", "reveal", "edit", "compress"] },
-	{ mime = "application/sqlite3", use = ["open_db", "open"] },
-	{ name = "*.scpt", use = ["open", "osascript", "reveal" ] }
+  { mime = "image/*", use = ["open", "reveal", "image"] },
+  { name = "*.m3u", use = ["play", "edit", "reveal"] },
+  { name = "*.{ass,srt,sub}", use = ["load_sub", "edit"] },
+  { name = "*.app/", use = ["open", "uninstall_app"] },
+  { mime = "inode/directory", use = ["open", "reveal", "edit", "compress"] },
+  { mime = "application/sqlite3", use = ["open_db", "open"] },
+  { name = "*.scpt", use = ["open", "osascript", "reveal"] },
 ]
 
 [tasks]
@@ -86,15 +76,15 @@ suppress_preload = false
 
 [plugin]
 prepend_previewers = [
-	{ mime = "image/vnd.djvu", run = "noop" },
-	{ mime = "image/icns", run = 'piper -- exiftool -s2 -common -ExifImageHeight -ExifImageWidth "$1"' },
-	{ name = "*.plist", run = 'piper -- plutil -convert xml1 -o - "$1" | bat -l xml' },
-	{ mime = "application/{zip,gzip,tar,bzip*,7z-compressed,xz,rar}", run = 'piper -- ouch l -t -y "$1" | sed "1s/^Archive: .*\//󰞹 /" ' },
-	{ name = "*.ipynb", run = '''piper -- ext=$(cat "$1" | jq -r '.metadata.language_info.file_extension // ".py"'); jupytext "$1" --to auto -o - | bat -l "${ext:1}" ''' },
-	{ mime = "application/sqlite3", run = 'piper -- sqlite3 "$1" ".schema" | bat -l sql' },
-	{ name = "*.m3u", run = 'piper -- cat "$1" | bat -l hosts' },
-	{ mime = "text/csv", run = 'piper -- mlr --icsv --opprint -C --key-color 208 --value-color grey70 cat "$1"' },
-	{ name = "*.csv", run = ''' piper --
+  { mime = "image/vnd.djvu", run = "noop" },
+  { mime = "image/icns", run = 'piper -- exiftool -s2 -common -ExifImageHeight -ExifImageWidth "$1"' },
+  { name = "*.plist", run = 'piper -- plutil -convert xml1 -o - "$1" | bat -l xml' },
+  { mime = "application/{zip,gzip,tar,bzip*,7z-compressed,xz,rar}", run = 'piper -- ouch l -t -y "$1" | sed "1s/^Archive: .*\//󰞹 /" ' },
+  { name = "*.ipynb", run = '''piper -- ext=$(cat "$1" | jq -r '.metadata.language_info.file_extension // ".py"'); jupytext "$1" --to auto -o - | bat -l "${ext:1}" ''' },
+  { mime = "application/sqlite3", run = 'piper -- sqlite3 "$1" ".schema" | bat -l sql' },
+  { name = "*.m3u", run = 'piper -- cat "$1" | bat -l hosts' },
+  { mime = "text/csv", run = 'piper -- mlr --icsv --opprint -C --key-color 208 --value-color grey70 cat "$1"' },
+  { name = "*.csv", run = ''' piper --
 		ss=(, ";" "|", "	")
 		vs=("${ss[@]}")
 		read -r fl < "$1"
@@ -113,10 +103,10 @@ prepend_previewers = [
 ]
 
 prepend_fetchers = [
-	{ id = "git", name = "*", run = "git" },
-	{ id = "git", name = "*/", run = "git" },
-	{ id = "mactag", name = "*", run = "mactag" },
-	{ id = "mactag", name = "*/", run = "mactag" },
+  { id = "git", name = "*", run = "git" },
+  { id = "git", name = "*/", run = "git" },
+  { id = "mactag", name = "*", run = "mactag" },
+  { id = "mactag", name = "*/", run = "mactag" },
 ]
 
 [which]
@@ -124,6 +114,3 @@ sort_by = "key"
 
 [input]
 cursor_blink = true
-
-[log]
-enabled = false
