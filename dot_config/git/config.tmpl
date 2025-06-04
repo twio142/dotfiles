@@ -79,14 +79,30 @@
   sort = -committerdate
 [tag]
   sort = -taggerdate
-[gitflow "branch"]
-  master = main
-  develop = develop
-[gitflow "prefix"]
-  feature = feature/
-  release = release/
-  hotfix = hotfix/
-  support = support/
-  versiontag = v
 [gc]
   reflogExpire = 60.days
+[alias]
+	append = town append
+	compress = town compress
+	contribute = town contribute
+	diff-parent = town diff-parent
+	hack = town hack
+	delete = town delete
+	observe = town observe
+	park = town park
+	prepend = town prepend
+	propose = town propose
+	rename = town rename
+	repo = town repo
+	set-parent = town set-parent
+	ship = town ship
+	sync = town sync
+[git-town]
+  main-branch = main
+  perennial-branches = main develop
+	feature-regex = feature/.+
+  contribution-regex = patch[/-].+
+	new-branch-type = feature
+	ship-strategy = squash-merge
+	sync-feature-strategy = rebase
+	offline = false

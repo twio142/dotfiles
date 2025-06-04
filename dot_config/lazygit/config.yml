@@ -47,29 +47,108 @@ git:
   overrideGpg: true
 keybinding:
   universal:
-    optionMenu: '?'
-    optionMenu-alt1: '?'
-    openRecentRepos: '<c-g>'
+    optionMenu: "?"
+    optionMenu-alt1: "?"
+    openRecentRepos: "<c-g>"
+  branches:
+    viewGitFlowOptions: <disabled>
 customCommands:
-  - key: 'P'
+  - key: "P"
     context: "remotes"
     command: "git push {{.SelectedRemote.Name}}"
     description: "Push to remote"
-  - key: 'p'
+  - key: "p"
     context: "remotes"
     command: "git pull {{.SelectedRemote.Name}}"
     description: "Pull from remote"
-  - key: '<c-o>'
+  - key: "<c-o>"
     context: "remotes"
-    command: |
-      {{range .SelectedRemote.Urls}}
-        url=$(echo {{.}} | perl -pe 's/.+(git(hub|lab).com)[:\/]([^\/]+\/[^\/]+?)/https:\/\/\1\/\3/g'); [ -z $url ] || open $url
-      {{end}}
+    command: "git town repo {{.SelectedRemote.Name}}"
     description: "Open remote in browser"
-  - key: '<c-y>'
+  - key: "<c-y>"
     context: "remotes"
     command: |
       {{range .SelectedRemote.Urls}}
         echo -n {{.}} | tmux load-buffer -
       {{end}}
     description: "Copy remote url"
+  - key: "t"
+    description: "Git-Town options"
+    commandMenu:
+      - key: "y"
+        description: "Git-Town sync current branch"
+        context: "localBranches"
+        command: "git-town sync"
+        loadingText: "Syncing"
+        output: log
+      - key: "Y"
+        description: "Git-Town sync all"
+        command: "git-town sync --all"
+        loadingText: "Syncing"
+        output: log
+      - key: "h"
+        context: "localBranches"
+        description: "Git-Town hack"
+        prompts:
+          - type: "input"
+            title: "Enter name of new branch (based off 'main')"
+            key: "BranchName"
+        command: "git-town hack {{.Form.BranchName}}"
+        loadingText: "Hacking"
+        output: log
+      - key: "a"
+        description: "Git-Town append branch"
+        context: "localBranches"
+        prompts:
+          - type: "input"
+            title: "Enter name of new child branch (based off '{{.CheckedOutBranch.Name}}')"
+            key: "BranchName"
+        command: "git-town append {{.Form.BranchName}}"
+        loadingText: "Appending"
+      - key: "A"
+        description: "Git-Town prepend branch"
+        context: "localBranches"
+        prompts:
+          - type: "input"
+            title: "Enter name of new parent branch (based between '{{.CheckedOutBranch.Name}}' and its parent)"
+            key: "BranchName"
+        command: "git-town prepend {{.Form.BranchName}}"
+        loadingText: "Appending"
+        output: log
+      - key: "p"
+        context: "localBranches"
+        description: "Git-Town propose (create a PR)"
+        command: "git-town propose"
+        loadingText: "Creating pull request"
+        output: log
+      - key: "s"
+        context: "localBranches"
+        description: "Git-Town ship (bypass PR)"
+        command: "git-town ship -p"
+        loadingText: "Shipping"
+        output: log
+      - key: "d"
+        context: "localBranches"
+        description: "Git-Town delete (this feature branch and sync)"
+        command: "git-town delete"
+        prompts:
+          - type: "confirm"
+            title: "Delete current feature branch"
+            body: "Are you sure you want to delete the current feature branch?"
+        loadingText: "Deleting Feature Branch"
+        output: log
+      - key: "u"
+        description: "Git-Town undo last command"
+        command: "git-town undo"
+        prompts:
+          - type: "confirm"
+            title: "Undo Last Command"
+            body: "Are you sure you want to undo the last git-town command?"
+        loadingText: "Undoing Git-Town Command"
+        output: log
+      - key: "c"
+        context: "files"
+        description: "Git-Town continue (after resolving merge conflicts)"
+        command: "git-town continue"
+        loadingText: "Continuing"
+        output: log

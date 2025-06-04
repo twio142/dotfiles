@@ -35,6 +35,7 @@
     # os_icon               # os identifier
     dir                     # current directory
     vcs                     # git status
+    git_town                # git town status (https://www.git-town.com/)
     alfred_workflow         # alfred workflow name (custom segment)
     # =========================[ Line #2 ]=========================
     newline                 # \n

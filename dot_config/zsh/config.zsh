@@ -3,23 +3,17 @@ alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 alias t='tmux'
-alias ipy='ipython'
 alias lzg='lazygit'
 alias leet='nvim leetcode'
 alias tree='lsd --config-file=$XDG_CONFIG_HOME/lsd/tree.yaml'
 alias reconfig='exec zsh'
 alias gping='gping --vertical-margin "$((($(tput lines) - 20) / 2))" --clear'
-alias cm=chezmoi
+alias cm='chezmoi'
 
 back() { cd $OLDPWD }
 lc() {
   1=${1:a}
   [ -d $1 ] && cd $1 || cd ${1:h};
-}
-gro() {
-  local url=$(git "$@" config --get remote.${remote:-origin}.url)
-  url=$(echo $url | perl -pe 's/.+(git(hub|lab).com)[:\/]([^\/]+\/[^\/]+?)/https:\/\/\1\/\3/g')
-  [ -z $url ] || open $url
 }
 git_current_branch() {
   git rev-parse --abbrev-ref HEAD
@@ -70,10 +64,6 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/ripgreprc
 
 # custom completions
 [ -d $ZDOTDIR/completions ] && fpath=($ZDOTDIR/completions $fpath)
-[ -d $ZDOTDIR/functions ] && fpath=($ZDOTDIR/functions $fpath)
-for x in $ZDOTDIR/functions/*; do
-  autoload -Uz "${x:t}"
-done
 
 # asdf
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
@@ -101,6 +91,13 @@ function prompt_yazi_level() {
 
 function prompt_alfred_workflow() {
   [ -z $alfred_workflow_name ] || p10k segment -i 󰮤 -f '#9F55EB' -t "$alfred_workflow_name"
+}
+
+function prompt_git_town() {
+  local gt_status=$(git town status --pending)
+  if [[ -n $gt_status ]]; then
+    p10k segment -i  -f '#429998' -t "$gt_status"
+  fi
 }
 
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
@@ -196,8 +193,7 @@ _tmux_next_mark() { tmux copy-mode \; send -X search-forward "^❯ " }
 _tmux_copilot() {
   tmux popup -E -w 80% -h 12 -e TMUX_POPUP=1 "source $ZDOTDIR/functions/ghcs; ghcs"
   zle push-line
-  BUFFER=$(tmux show-buffer -b gh-copilot)
-  tmux delete-buffer -b gh-copilot
+  BUFFER=$(tmux show-buffer -b gh-copilot 2> /dev/null) && tmux delete-buffer -b gh-copilot
 }
 _tmux_key_bindings() {
   zle -N _tmux_copy_mode
