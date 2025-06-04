@@ -1,5 +1,5 @@
 patch:
-  show_notifications_when: appropriate     # 状态通知，可设为全开（always）全关（never）  
+  show_notifications_when: appropriate     # 状态通知，可设为全开（always）全关（never）
   us_keyboard_layout: true                 # 美式键盘布局
   style/horizontal: false                  # 候选词竖排
   style/candidate_list_layout: stacked     # stacked | linear  候选项排列方向
@@ -44,7 +44,7 @@ patch:
       hilited_corner_radius: 0                # 高亮圆角
       line_spacing: 6                         # 行间距(适用于竖排)
       border_height: 0                        # 窗口上下高度，大于圆角半径才生效
-      border_width: 0                         # 窗口左右宽度，大于圆角半径才生效 
+      border_width: 0                         # 窗口左右宽度，大于圆角半径才生效
       font_face: "Symbols Nerd Font"          # 候选词字体
       font_point: 13                          # 候选字大小
       label_font_point: 11                    # 候选编号大小

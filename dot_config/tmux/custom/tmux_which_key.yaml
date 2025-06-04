@@ -110,22 +110,22 @@ items:
       - name: +Resize
         key: r
         menu:
-        - name: Resize left
-          key: h
-          command: resizep -L 8
-          transient: true
-        - name: Resize down
-          key: j
-          command: resizep -D 8
-          transient: true
-        - name: Resize up
-          key: k
-          command: resizep -U 8
-          transient: true
-        - name: Resize right
-          key: l
-          command: resizep -R 8
-          transient: true
+          - name: Resize left
+            key: h
+            command: resizep -L 8
+            transient: true
+          - name: Resize down
+            key: j
+            command: resizep -D 8
+            transient: true
+          - name: Resize up
+            key: k
+            command: resizep -U 8
+            transient: true
+          - name: Resize right
+            key: l
+            command: resizep -R 8
+            transient: true
       - separator: true
       - name: Split
         key: "-"
@@ -222,7 +222,7 @@ items:
     key: a
     menu:
       - name: Commands
-        key: '/'
+        key: "/"
         command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/menu.sh || true"
       - name: Popup terminal
         key: t
