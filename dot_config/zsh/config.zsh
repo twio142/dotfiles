@@ -203,9 +203,9 @@ _tmux_wk_menu() { tmux show-wk-menu-root }
 _tmux_prev_mark() { tmux copy-mode \; send -X search-backward "^❯ " \; send -X search-again }
 _tmux_next_mark() { tmux copy-mode \; send -X search-forward "^❯ " }
 _tmux_copilot() {
-  tmux popup -E -w 80% -h 12 -e TMUX_POPUP=1 "source $ZDOTDIR/functions/ghcs; ghcs"
+  local scpt=$($XDG_CONFIG_HOME/tmux/scripts/gh-copilot.sh popup) || return 1
   zle push-line
-  BUFFER=$(tmux show-buffer -b gh-copilot 2> /dev/null) && tmux delete-buffer -b gh-copilot
+  BUFFER=$scpt
 }
 _tmux_key_bindings() {
   zle -N _tmux_copy_mode
