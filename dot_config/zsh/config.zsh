@@ -102,6 +102,18 @@ function prompt_git_town() {
 
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 
+pts() {
+  # List open TCP ports with fzf
+  local copy=pbcopy
+  [ -n "$TMUX" ] && copy='tmux loadb -'
+  lsof -Pwni tcp | iconv -f latin1 | sd 'UÌ\\x88ber' 'Übersicht' | fzf -m --header-lines=1 \
+    --accept-nth=2 \
+    --preview='ps -o command= -p {2}' --preview-window=down,3,wrap \
+    --bind 'ctrl-\:toggle-preview' \
+    --bind "ctrl-y:execute-silent(printf {2} | $copy)" \
+    --bind 'ctrl-x:execute-silent(echo {+2} | xargs kill -9)+reload(lsof -Pwni tcp)'
+}
+
 eval "$(zoxide init zsh)"
 
 alias ls='lsd'

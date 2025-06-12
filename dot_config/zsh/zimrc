@@ -2,6 +2,7 @@ zstyle ':zim:zmodule' use 'degit'
 
 zmodule environment
 
+zmodule Aloxaf/fzf-tab
 zmodule z-shell/F-Sy-H
 zmodule marlonrichert/zsh-autocomplete --no-submodules
 zmodule ohmyzsh/ohmyzsh -r lib --source key-bindings.zsh

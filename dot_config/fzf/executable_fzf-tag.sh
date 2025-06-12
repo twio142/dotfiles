@@ -51,8 +51,8 @@ _fzf_tag() {
   fzf -m --preview 'fzf-preview {}' --preview-window=up,60% \
     --header "$(make_header $1)" \
     --bind "start:reload(tag -f $1 -A)" \
-    --bind "ctrl-l:reload('$exec' --next)+transform-header:('$exec' --header-next)" \
-    --bind "ctrl-h:reload('$exec' --prev)+transform-header:('$exec' --header-prev)"
+    --bind "ctrl-n:reload('$exec' --next)+transform-header:('$exec' --header-next)" \
+    --bind "ctrl-p:reload('$exec' --prev)+transform-header:('$exec' --header-prev)"
 }
 
 case $1 in
