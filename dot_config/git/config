@@ -11,9 +11,12 @@
 [color]
   ui = true
 [core]
+  compression = 9
+  whitespace = error
+  preloadindex = true
   autocrlf = input
   quotepath = false
-  pager = delta --$(~/.local/bin/background)
+  pager = delta
 [fetch]
   recurseSubmodules = true
 [diff]
@@ -22,7 +25,7 @@
 [difftool]
   prompt = false
 [interactive]
-  diffFilter = delta --$(~/.local/bin/background) --color-only --features=interactive
+  diffFilter = delta --color-only --features=interactive
 [delta]
   navigate = true
   features = decorations unobtrusive-line-numbers
@@ -41,5 +44,7 @@
 [merge]
   tool = nvimdiff
   conflictStyle = diff3
+  ff = false
 [pull]
-  ff = only
+  default = current
+  rebase = true
