@@ -29,6 +29,8 @@ brew "readline"
 brew "sqlite"
 # Download with resuming and segmented downloading
 brew "aria2"
+# Distributed revision control system
+brew "git"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -43,8 +45,6 @@ brew "bluetoothconnector"
 brew "blueutil"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
-# Software library to render fonts
-brew "freetype"
 # Core application library for C
 brew "glib"
 # X.Org: Interface to the X Window System protocol
@@ -63,12 +63,6 @@ brew "cliclick"
 brew "cloudflared"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# Apjanke's fork of the classic cowsay project
-brew "cowsay"
-# Asynchronous event library
-brew "libevent"
-# YAML Parser
-brew "libyaml"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Power of curl, ease of use of httpie
@@ -89,14 +83,14 @@ brew "exiftool"
 brew "fastfetch"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Asynchronous event library
+brew "libevent"
 # Low-level cryptographic library
 brew "nettle"
 # Validating, recursive, caching DNS resolver
 brew "unbound"
 # Multi-format archive and compression library
 brew "libarchive"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.12"
 # Fastest and safest AV1 video encoder
 brew "rav1e"
 # Play, record, convert, and stream audio and video
@@ -109,8 +103,6 @@ brew "findutils"
 brew "fzf"
 # GitHub command-line tool
 brew "gh"
-# Distributed revision control system
-brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
 # Extensions to follow Vincent Driessen's branching model
@@ -119,6 +111,8 @@ brew "git-flow"
 brew "git-lfs"
 # Prevents you from committing sensitive information to a git repo
 brew "git-secrets"
+# High-level command-line interface for Git
+brew "git-town"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
@@ -133,22 +127,20 @@ brew "lua"
 brew "highlight"
 # Configurable static site generator
 brew "hugo"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c@76"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # Update of iperf: measures TCP, UDP, and SCTP bandwidth
 brew "iperf3"
-# Image manipulation library
-brew "jpeg"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# YAML Parser
+brew "libyaml"
 # Jupyter notebooks as Markdown documents, Julia, Python or R scripts
 brew "jupytext"
 # Pager program similar to more
 brew "less"
-# Configuration file processing library
-brew "libconfig"
 # Rime Input Method Engine
 brew "librime"
 # Clone of ls with colorful output, file type icons, and more
@@ -177,22 +169,14 @@ brew "openldap"
 brew "ouch"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
-# Pandoc filter for numbering and cross-referencing
-brew "pandoc-crossref"
 # General-purpose scripting language
 brew "php"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
-# Python dependency management tool
-brew "pipenv"
 # Paste PNG into files
 brew "pngpaste"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
-# Theme for zsh
-brew "powerlevel10k"
-# Protocol buffers (Google's data interchange format)
-brew "protobuf"
 # Rsync for cloud storage
 brew "rclone"
 # SVG rendering tool and library
@@ -292,6 +276,8 @@ cask "iina"
 cask "jitouch"
 # Keyboard customiser
 cask "karabiner-elements"
+# Password manager app
+cask "keepassxc"
 # File archiver
 cask "keka"
 # Backup/restore tool
@@ -360,6 +346,7 @@ mas "WireGuard", id: 1451685025
 vscode "animaapp.vscode-anima"
 vscode "asvetliakov.vscode-neovim"
 vscode "davidanson.vscode-markdownlint"
+vscode "dbaeumer.vscode-eslint"
 vscode "denoland.vscode-deno"
 vscode "docker.docker"
 vscode "eamodio.gitlens"
@@ -368,7 +355,6 @@ vscode "formulahendry.code-runner"
 vscode "github.codespaces"
 vscode "github.copilot"
 vscode "github.copilot-chat"
-vscode "github.copilot-workspace"
 vscode "github.github-vscode-theme"
 vscode "github.remotehub"
 vscode "github.vscode-github-actions"
