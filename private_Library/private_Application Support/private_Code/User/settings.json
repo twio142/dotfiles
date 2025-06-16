@@ -1,0 +1,284 @@
+{
+    "telemetry.telemetryLevel": "off",
+    "PandocCiter.CitationFormat": [
+        "author",
+        "title",
+        "journal",
+        "publisher",
+        "booktitle",
+        "year"
+    ],
+    "[markdown]": {
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "other": "on",
+            "strings": "on"
+        },
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    },
+    "editor.fontFamily": "FiraCode Nerd Font, SF Pro, Menlo, Monaco, monospace",
+    "github.copilot.enable": {
+        "*": true,
+        "markdown": true,
+        "plaintext": false,
+        "yaml": false
+    },
+    "gitlens.defaultDateFormat": "MMMM Do, YYYY HH:mm",
+    "gitlens.defaultDateShortFormat": "DD.MM.YYYY",
+    "gitlens.defaultTimeFormat": "HH:mm",
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.views.branches.showBranchComparison": false,
+    "gitlens.views.tags.files.layout": "tree",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "python.languageServer": "Pylance",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "terminal.integrated.commandsToSkipShell": [
+        "workbench.action.chat.open"
+    ],
+    "terminal.integrated.shellIntegration.enabled": false,
+    "terminal.integrated.defaultProfile.osx": "tmux",
+    "terminal.integrated.profiles.osx": {
+        "tmux": {
+            "path": "tmux",
+            "args": ["new", "-A", "-s", "code/${workspaceFolderBasename}", ";", "set", "escape-time", "10"],
+            "icon": "terminal"
+        },
+    },
+    "terminal.integrated.suggest.enabled": true,
+    "terminal.external.osxExec": "Ghostty.app",
+    "todo-tree.general.statusBar": "top three",
+    "todo-tree.regex.regex": "\\b($TAGS):",
+    "todo-tree.general.tags": [
+        "BUG",
+        "EDITED",
+        "FIXME",
+        "HERE",
+        "TEST",
+        "TODO",
+        "NOTE",
+        "todo"
+    ],
+    "todo-tree.general.tagGroups": {
+        "TODO": [
+            "todo",
+            "TODO"
+        ],
+        "BUG": [
+            "BUG",
+            "FIXME"
+        ],
+    },
+    "todo-tree.highlights.customHighlight": {
+        "EDITED": {
+            "icon": "pencil",
+            "background": "orange",
+            "iconColour": "orange",
+            "rulerColour": "orange"
+        },
+        "BUG": {
+            "icon": "tools",
+            "background": "red",
+            "foreground": "white",
+            "iconColour": "red",
+            "rulerColour": "red"
+        },
+        "HERE": {
+            "icon": "location",
+            "background": "yellow",
+            "iconColour": "yellow",
+            "rulerColour": "yellow",
+            "type": "line"
+        },
+        "TEST": {
+            "icon": "beaker",
+            "background": "lightgreen",
+            "iconColour": "green",
+            "rulerColour": "lightgreen"
+        },
+        "TODO": {
+            "icon": "check-circle",
+            "background": "lightblue",
+            "iconColour": "#27aadd",
+            "rulerColour": "lightblue"
+        },
+        "NOTE": {
+            "icon": "pencil",
+            "background": "#d6c5f5",
+            "iconColour": "#a97ef9",
+            "rulerColour": "#d6c5f5"
+        },
+    },
+    "todo-tree.highlights.defaultHighlight": {
+        "gutterIcon": true,
+        "foreground": "black",
+        "rulerLane": "full"
+    },
+    "vscodeMarkdownNotes.allowPipedWikiLinks": true,
+    "vscodeMarkdownNotes.lowercaseNewNoteFilenames": false,
+    "window.newWindowDimensions": "maximized",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "window.autoDetectColorScheme": true,
+    "workbench.preferredLightColorTheme": "GitHub Light",
+    "zenMode.fullScreen": false,
+    "zenMode.showTabs": "none",
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideStatusBar": false,
+    "gitlens.defaultDateLocale": "en-US",
+    "markdownlint.config": {
+        "MD007": {
+            "indent": 4
+        },
+        "MD013": false,
+        "MD041": false
+    },
+    "[go]": {
+        "editor.defaultFormatter": "golang.go"
+    },
+    "python.analysis.typeCheckingMode": "basic",
+    "workbench.colorTheme": "GitHub Dark Default",
+    "notebook.editorOptionsCustomizations": {
+        "editor.tabSize": 2,
+        "editor.indentSize": 2,
+        "editor.insertSpaces": true
+    },
+    "explorer.fileNesting.patterns": {
+        "*.ts": "${capture}.js",
+        "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+        "*.jsx": "${capture}.js",
+        "*.tsx": "${capture}.ts",
+        "tsconfig.json": "tsconfig.*.json",
+        "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
+        "*.sqlite": "${capture}.${extname}-*",
+        "*.db": "${capture}.${extname}-*",
+        "*.sqlite3": "${capture}.${extname}-*",
+        "*.db3": "${capture}.${extname}-*",
+        "*.sdb": "${capture}.${extname}-*",
+        "*.s3db": "${capture}.${extname}-*"
+    },
+    "lldb.library": "/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/LLDB",
+    "lldb.launch.expressions": "native",
+    "window.customTitleBarVisibility": "windowed",
+    "workbench.startupEditor": "none",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.lineNumbers": "relative",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.enableImages": true,
+    "security.promptForRemoteFileProtocolHandling": false,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.ignoreMissingGitWarning": true,
+    "go.toolsManagement.autoUpdate": true,
+    "python.terminal.activateEnvironment": false,
+    "editor.tabSize": 2,
+    "editor.padding.bottom": 100,
+    "editor.scrollBeyondLastLine": false,
+    "editor.cursorSurroundingLines": 20,
+    "editor.find.addExtraSpaceOnTop": false,
+    "editor.minimap.enabled": false,
+    "window.closeWhenEmpty": true,
+    "terminal.integrated.lineHeight": 1.1,
+    "terminal.integrated.enablePersistentSessions": false,
+    "terminal.integrated.macOptionIsMeta": true,
+    "vscode-neovim.NVIM_APPNAME": "nvim-alt",
+    "vscode-neovim.compositeKeys": {
+        "jh": {
+            "command": "vscode-neovim.escape",
+        },
+    },
+    "vscode-neovim.ctrlKeysForInsertMode": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "f",
+        "h",
+        "j",
+        "m",
+        "n",
+        "o",
+        "r",
+        "t",
+        "u",
+        "w",
+    ],
+    "vscode-neovim.ctrlKeysForNormalMode": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "r",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "/",
+        "]",
+        "right",
+        "left",
+        "up",
+        "down",
+        "backspace",
+        "delete",
+    ],
+    "settingsSync.ignoredExtensions": [],
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "editor.screenReaderAnnounceInlineSuggestion": false,
+    "workbench.preferredDarkColorTheme": "GitHub Dark Default",
+    "editor.linkedEditing": true,
+    "editor.cursorBlinking": "phase",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "zenMode.centerLayout": false,
+    "vim.camelCaseMotion.enable": true,
+    "vim.easymotion": true,
+    "vim.hlsearch": true,
+    "vim.leader": " ",
+    "vim.sneak": true,
+    "vim.sneakReplacesF": true,
+    "vim.showMarksInGutter": true,
+    "editor.accessibilitySupport": "off",
+    "editor.scrollBeyondLastColumn": 15,
+    "notebook.displayOrder": [
+        "text/html"
+    ],
+    "notebook.lineNumbers": "on",
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "workbench.activityBar.location": "hidden",
+    "editor.wordWrap": "bounded",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "chat.editing.confirmEditRequestRetry": false,
+    "editor.wordWrapColumn": 100,
+    "diffEditor.ignoreTrimWhitespace": false,
+}
