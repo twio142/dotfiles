@@ -196,7 +196,7 @@ set -g command-alias[16] toggle-mouse="if 'tmux show -q mouse \\; show -gq mouse
 set -g command-alias[17] yazi-popup="popup -E -w 95% -h 90% -d '#{pane_current_path}' -e TMUX_POPUP=1 nvim -u $XDG_CONFIG_HOME/tmux/custom/yazi_init.lua"
 set -g command-alias[18] yazi="neww -c '#{pane_current_path}' yazi"
 set -g command-alias[19] lzg="popup -E -w 95% -h 90% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open-lazygit.sh"
-set -g command-alias[20] lzd="if 'docker ps' 'popup -E -w 95% -h 90% lazydocker' 'display \"Docker not running\"'"
+set -g command-alias[20] lzd="if 'docker ps' 'popup -E -w 95% -h 90% -d \"#{pane_current_path}\" lazydocker' 'display \"Docker not running\"'"
 set -g command-alias[21] btop="if -F \"#{e|<=:#{client_width},80}\" 'neww btop -p 1' \"popup -E -w 95% -h 90% btop -p 2\""
 set -g command-alias[22] open="popup -E -w 95% -h 90% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open-path.sh"
 set -g command-alias[23] popup-term="run $XDG_CONFIG_HOME/tmux/scripts/popup-term.sh"

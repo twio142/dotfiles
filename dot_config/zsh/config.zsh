@@ -50,11 +50,13 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export LESSHISTFILE=/dev/null
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
 export NODE_PATH="$XDG_DATA_HOME"/npm/lib/node_modules # $(npm root -g)
 export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
 export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
-export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
+export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
+export PHP_HISTFILE="$XDG_STATE_HOME"/php_history
 export GOPATH=$XDG_DATA_HOME/go
 export PATH=$PATH:$GOPATH/bin
 export TERMINFO="$XDG_DATA_HOME"/terminfo
