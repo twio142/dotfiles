@@ -204,6 +204,7 @@ set -g command-alias[24] memo="popup -E -w 95% -h 90% -e TMUX_POPUP=1 fzf-memo"
 
 bind C-r ER
 bind -n F3 if -F "#{==:#{pane_current_command},nvim}" "send F3" yazi-popup
+bind F3 yazi-popup
 bind C-y yazi
 bind Tab last
 bind ` lastp

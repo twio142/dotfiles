@@ -59,8 +59,6 @@ brew "chezmoi"
 brew "choose-rust"
 # Tool for emulating mouse and keyboard events
 brew "cliclick"
-# Cloudflare Tunnel client (formerly Argo Tunnel)
-brew "cloudflared"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
@@ -187,8 +185,6 @@ brew "ripgrep"
 brew "sd"
 # SOcket CAT: netcat on steroids
 brew "socat"
-# Fast, collaborative live terminal sharing over the web
-brew "sshx"
 # Formatting tool for reformatting Swift code
 brew "swiftformat"
 # Change macOS audio source from the command-line
@@ -207,8 +203,6 @@ brew "tmux"
 brew "trash", link: true
 # Simple file transfer tools, similar to lrzsz (rz/sz), and compatible with tmux
 brew "trzsz-go"
-# Command-line tool for sharing terminal over the web
-brew "ttyd", link: false
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Generator for LS_COLORS with support for multiple color themes
@@ -315,9 +309,11 @@ cask "sf-symbols"
 # PDF reader and note-taking application
 cask "skim"
 # Rime input method engine
-cask "squirrel"
+cask "squirrel-app"
 # Quicklook extension for source files
 cask "syntax-highlight"
+# Mesh VPN based on WireGuard
+cask "tailscale-app"
 # Run commands and display their output on the desktop
 cask "ubersicht"
 # Open-source code editor
