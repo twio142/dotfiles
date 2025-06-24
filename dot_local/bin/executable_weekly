@@ -53,8 +53,7 @@ nvim --headless '+MasonToolsUpdateSync' +qa
 # Upgrade ProperTree
 git -C ~/Projects/ProperTree pull
 # Upgrade Rime
-git -C ~/Library/Rime fetch --depth=1
-~/Library/Rime/.git/hooks/post-fetch
+git -C ~/Library/Rime pull --rebase upstream master
 # Upgrade zsh plugins
 zimfw uninstall -q
 zimfw upgrade
