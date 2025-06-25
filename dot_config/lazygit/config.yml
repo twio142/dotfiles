@@ -34,7 +34,7 @@ gui:
       - "#5A7BC6"
 os:
   # editPreset: "nvim-remote"
-  editInTerminal: false
+  editInTerminal: true
   edit: "$XDG_CONFIG_HOME/lazygit/edit.sh {{filename}}"
   editAtLine: "$XDG_CONFIG_HOME/lazygit/edit.sh {{filename}} +{{line}}"
   copyToClipboardCmd: "echo -n {{text}} | tmux load-buffer -"
