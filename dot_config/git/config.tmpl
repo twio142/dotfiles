@@ -6,8 +6,8 @@
   process = git-lfs filter-process
   required = true
 [user]
-  email = comet@multiman
-  name = comet
+  email = {{ .chezmoi.username }}@{{ .chezmoi.hostname }}
+  name = {{ .chezmoi.username }}
 [color]
   ui = true
 [core]
