@@ -10,17 +10,17 @@ hash = "a59308f54c8f3f7685e3d71c1b9cc4d1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "5eea960"
+rev = "2ad42fa"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mactag"
-rev = "5eea960"
+rev = "2ad42fa"
 hash = "f9250493894659b3466c5a8a05f2e584"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "5eea960"
+rev = "2ad42fa"
 hash = "b3f1d6ec3721d4061aad5f69cddb0cf9"
 
 [[plugin.deps]]
@@ -55,12 +55,12 @@ hash = "4e552f9b2012414f4bd024469fbeab3f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "5eea960"
-hash = "a030fe48d91b04341ad2fba9be957df"
+rev = "2ad42fa"
+hash = "1adc12c2b2b025411ab61eb8f0879574"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "5eea960"
+rev = "2ad42fa"
 hash = "2143a53182dbbe935a1abd1623424aa5"
 
 [[flavor.deps]]
