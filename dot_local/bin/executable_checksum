@@ -1,0 +1,23 @@
+# verify sha-256 checksum for the file
+
+sum=$(pbpaste)
+
+file="$1"
+if [ ! -e "$file" ]; then
+  echo "Usage: $0 <file>"
+  exit 1
+fi
+
+cd "$(dirname "$file")" || exit 1
+
+if [ -z "$sum" ]; then
+  echo "No checksum provided. Please copy the checksum to your clipboard."
+  exit 1
+fi
+
+tmpfile=$(mktemp)
+echo "$sum" > "$tmpfile"
+
+shasum -a 256 -c "$tmpfile"
+
+rm "$tmpfile"
