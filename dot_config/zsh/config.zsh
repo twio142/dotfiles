@@ -9,6 +9,7 @@ alias tree='lsd --config-file=$XDG_CONFIG_HOME/lsd/tree.yaml'
 alias reconfig='exec zsh'
 alias gping='gping --vertical-margin "$((($(tput lines) - 20) / 2))" --clear'
 alias cm='chezmoi'
+alias ai='aider -c $XDG_CONFIG_HOME/aider/aider.conf.yml'
 
 back() { cd $OLDPWD }
 lc() {
@@ -46,6 +47,7 @@ export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export DENO_INSTALL="$XDG_CACHE_HOME"/deno
 export PATH="$DENO_INSTALL/bin:$PATH"
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
 
 export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export LESSHISTFILE=/dev/null
