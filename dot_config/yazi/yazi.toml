@@ -15,17 +15,13 @@ show_symlink = true
 scrolloff = 5
 
 [opener]
-unzip = [
-	{ run = 'unzip "$0"', desc = "Extract here", for = "unix" }
-]
-tar = [
-	{ run = 'tar -xzf "$0"', desc = "Extract here", for = "unix" }
-]
+unzip = [{ run = 'unzip "$0"', desc = "Extract here", for = "unix" }]
+tar = [{ run = 'tar -xzf "$0"', desc = "Extract here", for = "unix" }]
 
 [open]
 prepend_rules = [
-	{ mime = "application/zip", use = ["unzip"] },
-	{ name = "*.{tar,tar.*,tgz}", use = ["tar"] },
+  { mime = "application/zip", use = ["unzip"] },
+  { name = "*.{tar,tar.*,tgz}", use = ["tar"] },
 ]
 
 [preview]
@@ -34,6 +30,6 @@ tab_size = 2
 
 [plugin]
 prepend_fetchers = [
-	{ id = "git", name = "*", run = "git" },
-	{ id = "git", name = "*/", run = "git" },
+  { id = "git", name = "*", run = "git" },
+  { id = "git", name = "*/", run = "git" },
 ]

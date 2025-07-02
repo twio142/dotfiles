@@ -2,10 +2,10 @@
 
 [mgr]
 prepend_keymap = [
-  { on = "<Tab>", run = [ "toggle", "arrow next" ], desc = "Toggle selection" },
-  { on = "<BackTab>", run = [ "toggle --state=off", "arrow prev" ], desc = "Toggle selection" },
-  { on = "<A-j>", run = [ "toggle", "arrow next" ], desc = "Toggle selection" },
-  { on = "<A-k>", run = [ "toggle --state=off", "arrow prev" ], desc = "Toggle selection" },
+  { on = "<Tab>", run = ["toggle", "arrow next"], desc = "Toggle selection" },
+  { on = "<BackTab>", run = ["toggle --state=off", "arrow prev"], desc = "Toggle selection" },
+  { on = "<A-j>", run = ["toggle", "arrow next"], desc = "Toggle selection" },
+  { on = "<A-k>", run = ["toggle --state=off", "arrow prev"], desc = "Toggle selection" },
   { on = "<A-a>", run = "toggle_all", desc = "Toggle select all" },
   { on = "<A-h>", run = 'shell -- ya emit toggle --state=off "${@: -1}"', desc = "De-select last item" },
   { on = "i", run = "spot", desc = "Inspect file" },
@@ -18,16 +18,17 @@ prepend_keymap = [
   { on = "Q", run = "quit", desc = "Exit" },
   { on = "<C-d>", run = "seek 5", desc = "Seek down 5 units in preview" },
   { on = "<C-u>", run = "seek -5", desc = "Seek up 5 units in preview" },
-  { on = [ "g", "c" ], run = "noop" },
-  { on = [ "g", "f" ], run = "noop" },
-  { on = [ "g", "o" ], run = "follow", desc = "Go to original" },
-  { on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Go interactively" },
-  { on = [ "g", "r" ], run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"', desc = "Go to git repo root" },
-  { on = [ "g", "d" ], run = 'shell --block -- git diff "$0" | delta --$(background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1)  | less -R', desc = "Git diff" },
-  { on = [ "y", "c" ], run = "yank", desc = "Copy files" },
-  { on = [ "y", "x" ], run = "yank --cut", desc = "Cut files" },
-  { on = [ "y", "p" ], run = "copy path", desc = "Yank file path" },
-  { on = [ "y", "f" ], run = "copy filename", desc = "Yank filename" },
+  { on = ["g", "c"], run = "noop" },
+  { on = ["g", "f"], run = "noop" },
+  { on = ["g", "o"], run = "follow", desc = "Go to original" },
+  { on = ["g", "<Space>"], run = "cd --interactive", desc = "Go interactively" },
+  { on = ["g", "."], run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"', desc = "Go to git repo root" },
+  { on = ["g", "r"], run = 'shell -- git restore "$@"', desc = "Git revert change" },
+  { on = ["g", "d"], run = 'shell --block -- git diff "$0" | delta --$(background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1)  | less -R', desc = "Git diff" },
+  { on = ["y", "c"], run = "yank", desc = "Copy files" },
+  { on = ["y", "x"], run = "yank --cut", desc = "Cut files" },
+  { on = ["y", "p"], run = "copy path", desc = "Yank file path" },
+  { on = ["y", "f"], run = "copy filename", desc = "Yank filename" },
   { on = "<Esc>", run = "plugin my-cmd 'smart esc'", desc = "Unyank, exit visual mode, clear selected, or cancel search" },
   { on = "<", run = "back", desc = "Back" },
   { on = ">", run = "forward", desc = "Forward" },
@@ -40,36 +41,36 @@ prepend_keymap = [
   { on = "<C-b>", run = 'arrow -50%', desc = "Move cursor up half page" },
   { on = "}", run = "plugin my-cmd 'smart create-tab'", desc = "Create new tab" },
   { on = "]", run = "plugin my-cmd 'smart next-tab'", desc = "Switch to next tab" },
-  { on = [ "\\", "j" ], run = "plugin zoxide", desc = "Jump to path" },
-  { on = [ "\\", "f" ], run = "plugin fzf", desc = "Search files" },
-  { on = [ "\\", "F" ], run = "search --via=fd --args=--no-ignore-vcs", desc = "Search files" },
-  { on = [ "\\", "g" ], run = "search --via=rg --args=--no-ignore-vcs", desc = "Grep file contents" },
-  { on = [ "M", "." ], run = "linemode size_and_mtime", desc = "Linemode: size & mtime" },
-  { on = [ "M", "s" ], run = "linemode size",           desc = "Linemode: size" },
-  { on = [ "M", "p" ], run = "linemode permissions",    desc = "Linemode: permissions" },
-  { on = [ "M", "b" ], run = "linemode btime",          desc = "Linemode: btime" },
-  { on = [ "M", "m" ], run = "linemode mtime",          desc = "Linemode: mtime" },
-  { on = [ "M", "o" ], run = "linemode owner",          desc = "Linemode: owner" },
-  { on = [ "M", "n" ], run = "linemode none",           desc = "Linemode: none" },
-  { on = [ "m", "s" ], run = "noop" },
-  { on = [ "m", "p" ], run = "noop" },
-  { on = [ "m", "b" ], run = "noop" },
-  { on = [ "m", "m" ], run = "noop" },
-  { on = [ "m", "o" ], run = "noop" },
-  { on = [ "m", "n" ], run = "noop" },
-  { on = [ "S", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
-  { on = [ "S", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
-  { on = [ "S", "c" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort by created time" },
-  { on = [ "S", "C" ], run = [ "sort btime --reverse", "linemode btime" ],    desc = "Sort by created time (reverse)" },
-  { on = [ "S", "e" ], run = "sort extension --reverse=no",                   desc = "Sort by extension" },
-  { on = [ "S", "E" ], run = "sort extension --reverse",                      desc = "Sort by extension (reverse)" },
-  { on = [ "S", "a" ], run = "sort alphabetical --reverse=no",                desc = "Sort alphabetically" },
-  { on = [ "S", "A" ], run = "sort alphabetical --reverse",                   desc = "Sort alphabetically (reverse)" },
-  { on = [ "S", "n" ], run = "sort natural --reverse=no",                     desc = "Sort naturally" },
-  { on = [ "S", "N" ], run = "sort natural --reverse",                        desc = "Sort naturally (reverse)" },
-  { on = [ "S", "s" ], run = [ "sort size --reverse=no", "linemode size" ],   desc = "Sort by size" },
-  { on = [ "S", "S" ], run = [ "sort size --reverse", "linemode size" ],      desc = "Sort by size (reverse)" },
-  { on = [ "S", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
+  { on = ["\\", "j"], run = "plugin zoxide", desc = "Jump to path" },
+  { on = ["\\", "f"], run = "plugin fzf", desc = "Search files" },
+  { on = ["\\", "F"], run = "search --via=fd --args=--no-ignore-vcs", desc = "Search files" },
+  { on = ["\\", "g"], run = "search --via=rg --args=--no-ignore-vcs", desc = "Grep file contents" },
+  { on = ["M", "."], run = "linemode size_and_mtime", desc = "Linemode: size & mtime" },
+  { on = ["M", "s"], run = "linemode size", desc = "Linemode: size" },
+  { on = ["M", "p"], run = "linemode permissions", desc = "Linemode: permissions" },
+  { on = ["M", "b"], run = "linemode btime", desc = "Linemode: btime" },
+  { on = ["M", "m"], run = "linemode mtime", desc = "Linemode: mtime" },
+  { on = ["M", "o"], run = "linemode owner", desc = "Linemode: owner" },
+  { on = ["M", "n"], run = "linemode none", desc = "Linemode: none" },
+  { on = ["m", "s"], run = "noop" },
+  { on = ["m", "p"], run = "noop" },
+  { on = ["m", "b"], run = "noop" },
+  { on = ["m", "m"], run = "noop" },
+  { on = ["m", "o"], run = "noop" },
+  { on = ["m", "n"], run = "noop" },
+  { on = ["S", "m"], run = ["sort mtime --reverse=no", "linemode mtime"], desc = "Sort by modified time" },
+  { on = ["S", "M"], run = ["sort mtime --reverse", "linemode mtime"], desc = "Sort by modified time (reverse)" },
+  { on = ["S", "c"], run = ["sort btime --reverse=no", "linemode btime"], desc = "Sort by created time" },
+  { on = ["S", "C"], run = ["sort btime --reverse", "linemode btime"], desc = "Sort by created time (reverse)" },
+  { on = ["S", "e"], run = "sort extension --reverse=no", desc = "Sort by extension" },
+  { on = ["S", "E"], run = "sort extension --reverse", desc = "Sort by extension (reverse)" },
+  { on = ["S", "a"], run = "sort alphabetical --reverse=no", desc = "Sort alphabetically" },
+  { on = ["S", "A"], run = "sort alphabetical --reverse", desc = "Sort alphabetically (reverse)" },
+  { on = ["S", "n"], run = "sort natural --reverse=no", desc = "Sort naturally" },
+  { on = ["S", "N"], run = "sort natural --reverse", desc = "Sort naturally (reverse)" },
+  { on = ["S", "s"], run = ["sort size --reverse=no", "linemode size"], desc = "Sort by size" },
+  { on = ["S", "S"], run = ["sort size --reverse", "linemode size"], desc = "Sort by size (reverse)" },
+  { on = ["S", "r"], run = "sort random --reverse=no", desc = "Sort randomly" },
   { on = ["<Space>", "c"], run = "plugin my-cmd 'on_selection copy'", desc = "Copy here" },
   { on = ["<Space>", "C"], run = "plugin my-cmd 'on_selection copy-force'", desc = "Force-copy here" },
   { on = ["<Space>", "m"], run = "plugin my-cmd 'on_selection move'", desc = "Move here" },
@@ -111,9 +112,7 @@ prepend_keymap = [
 ]
 
 [pick]
-prepend_keymap = [
-  { on = "?", run = "help", desc = "Open help" },
-]
+prepend_keymap = [{ on = "?", run = "help", desc = "Open help" }]
 
 [input]
 prepend_keymap = [
@@ -122,9 +121,7 @@ prepend_keymap = [
 ]
 
 [confirm]
-prepend_keymap = [
-  { on = "?", run = "help", desc = "Open help" },
-]
+prepend_keymap = [{ on = "?", run = "help", desc = "Open help" }]
 
 [cmp]
 prepend_keymap = [
@@ -134,11 +131,7 @@ prepend_keymap = [
 ]
 
 [filter]
-prepend_keymap = [
-  { on = "?", run = "help", desc = "Open help" },
-]
+prepend_keymap = [{ on = "?", run = "help", desc = "Open help" }]
 
 [help]
-prepend_keymap = [
-  { on = "/", run = "filter", desc = "Search for help items" },
-]
+prepend_keymap = [{ on = "/", run = "filter", desc = "Search for help items" }]
