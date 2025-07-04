@@ -68,7 +68,7 @@ EOF
 	if gh copilot suggest -t "$TARGET" "$@" -s "$TMPFILE"; then
 		if [ -s "$TMPFILE" ]; then
 			FIXED_CMD="$(cat $TMPFILE)"
-			printf "$FIXED_CMD" | tmux load-buffer -b gh-copilot
+			printf "$FIXED_CMD" | tmux load-buffer -b gh-copilot -
 		fi
 	else
 		return 1
@@ -82,7 +82,7 @@ SCRIPT_PATH="${(%):-%x}"
 if [[ "$1" == popup ]]; then
 	local -a tmp=($(command tmux display-message -p "#{pane_top} #{cursor_y} #{pane_left} #{cursor_x} #{window_height} #{window_width} #{status} #{status-position}"))
 	local cursor_y=$((tmp[1] + tmp[2])) cursor_x=$((tmp[3] + tmp[4])) window_height=$tmp[5] window_width=$tmp[6] window_top=0
-	local popup_height popup_y popup_width popup_x popup_min_size=(60 12)
+	local popup_height popup_y popup_width popup_x popup_min_size=(60 15)
 
 	if [[ $tmp[8] == 'top' ]]; then
 		window_top=$tmp[7]
