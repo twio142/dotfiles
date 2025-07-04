@@ -1,0 +1,33 @@
+bw() {
+  local auth_commands=("get" "list" "sync")
+
+  if [[ " ${auth_commands[@]} " =~ " $1 " ]]; then
+    if [[ -z "$BW_SESSION" ]]; then
+      export BW_SESSION=$(security find-generic-password -w -a "${USER}" -s "bitwarden_cli_session" 2>/dev/null)
+    fi
+
+    local bw_status=$(command bw status | jq -r '.status')
+    local new_session
+
+    if [[ "$bw_status" = unauthenticated ]]; then
+      new_session=$(command bw login --raw)
+      bw_status=$(command bw status | jq -r '.status')
+    fi
+
+    if [[ "$bw_status" = locked ]]; then
+      local pw=$(security find-generic-password -w -s "vault.bitwarden.eu" 2>/dev/null)
+      if [[ -z "$pw" ]]; then
+        new_session=$(command bw unlock --raw)
+      else
+        new_session=$(command bw unlock "$pw" --raw)
+      fi
+    fi
+
+    if [[ $? -eq 0 ]] && [[ -n "$new_session" ]]; then
+      export BW_SESSION="$new_session"
+      security add-generic-password -a "${USER}" -s "bitwarden_cli_session" -w "$BW_SESSION" -U
+    fi
+  fi
+
+  command bw "$@"
+}
