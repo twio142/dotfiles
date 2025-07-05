@@ -14,10 +14,10 @@ end run' "$1" "$2"
 
 for file in "$@"; do
     mime=$(file --mime-type -b "$file")
-    if [[ "$mime" =~ "^application/(x-)?(g?zip|tar|bzip*|7z-compressed|xz|rar)$" ]]; then
-        ouch decompress "$file" || open "$file"
-    elif [[ "${file:e}" =~ "^(dmg|alfredworkflow5?|pkg|epub|ics)" ]]; then
+    if [[ "${file:e}" =~ "^(dmg|alfredworkflow5?|pkg|epub|ics)" ]]; then
         open "$file"
+    elif [[ "$mime" =~ "^application/(x-)?(g?zip|tar|bzip*|7z-compressed|xz|rar)$" ]]; then
+        ouch decompress "$file" || open "$file"
     elif [[ "${file:e}" =~ "^(ass|srt|sub)" ]] || [[ -d "$file" && -n "$(fd -e ass -e srt -e sub . $file)" ]]; then
         move "$file" ~/Movies
     elif [[ "$mime" =~ "^video/" || "${file:e}" = mkv ]]; then
