@@ -11,7 +11,6 @@ alias gping='gping --vertical-margin "$((($(tput lines) - 20) / 2))" --clear'
 alias cm='chezmoi'
 alias ai='aider -c $XDG_CONFIG_HOME/aider/aider.conf.yml'
 
-back() { cd $OLDPWD }
 lc() {
   1=${1:a}
   [ -d $1 ] && cd $1 || cd ${1:h};
@@ -124,7 +123,7 @@ alias ls='lsd'
 auto-ls() {
   emulate -L zsh
   echo
-  ls
+  lsd
 }
 chpwd_functions=(auto-ls $chpwd_functions)
 
