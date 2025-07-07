@@ -99,6 +99,8 @@ brew "figlet"
 brew "findutils"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# Interact with Google Gemini AI models from the command-line
+brew "gemini-cli"
 # GitHub command-line tool
 brew "gh"
 # Syntax-highlighting pager for git and diff output
@@ -165,8 +167,6 @@ brew "openldap"
 brew "ouch"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
-# General-purpose scripting language
-brew "php"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
 # Paste PNG into files
@@ -246,6 +246,10 @@ cask "bartender"
 cask "betterzip"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# Desktop client that supports multiple LLM providers
+cask "cherry-studio"
+# Tool to show live information about the batteries in various devices
+cask "coconutbattery"
 # Chinese-German dictionary
 cask "dehelper"
 # Calendar software

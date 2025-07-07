@@ -1,66 +1,66 @@
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-cmd"
-rev = "8aa0e54"
+rev = "429d566"
 hash = "24e45e688c402eab0b76cf885d20ef0b"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-fzf"
-rev = "8aa0e54"
+rev = "429d566"
 hash = "a59308f54c8f3f7685e3d71c1b9cc4d1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "e5f00e2"
+rev = "b886025"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mactag"
-rev = "e5f00e2"
+rev = "b886025"
 hash = "72dfb25e9d0c015365827431e28df322"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "e5f00e2"
+rev = "b886025"
 hash = "f10a14e823382d90fab5b3ee54cb38fe"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:toggle-pane"
-rev = "8aa0e54"
+rev = "429d566"
 hash = "c86a857730fa0d9319b8967f99068c97"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:advanced-search"
-rev = "8aa0e54"
+rev = "429d566"
 hash = "8fe82568a94a707786594aadf6ca8880"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:git"
-rev = "8aa0e54"
-hash = "aba43e5ecc150b89c2124e45231fb26a"
+rev = "429d566"
+hash = "f5f64e5da2755b92f9fe7db8c7ceaf3e"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:searchjump"
-rev = "8aa0e54"
+rev = "429d566"
 hash = "bc23bc3efc0f0e639b0d85bfa10cb2f2"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:githead"
-rev = "8aa0e54"
+rev = "429d566"
 hash = "a255ad681d2fa372b40569d1d85bf051"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:bookmarks"
-rev = "8aa0e54"
+rev = "429d566"
 hash = "4e552f9b2012414f4bd024469fbeab3f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "e5f00e2"
+rev = "b886025"
 hash = "1adc12c2b2b025411ab61eb8f0879574"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "e5f00e2"
+rev = "b886025"
 hash = "2143a53182dbbe935a1abd1623424aa5"
 
 [[flavor.deps]]
