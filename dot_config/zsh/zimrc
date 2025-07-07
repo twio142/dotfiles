@@ -10,7 +10,6 @@ zmodule ohmyzsh/ohmyzsh -r plugins/brew
 zmodule ohmyzsh/ohmyzsh -r plugins/direnv
 zmodule ohmyzsh/ohmyzsh -r plugins/docker -f completions
 zmodule ohmyzsh/ohmyzsh -r plugins/git
-zmodule ohmyzsh/ohmyzsh -r plugins/git-flow
 zmodule $XDG_CONFIG_HOME/git --source git-town.plugin.zsh
 zmodule ohmyzsh/ohmyzsh -r plugins/npm
 zmodule ohmyzsh/ohmyzsh -r plugins/vscode
