@@ -281,4 +281,12 @@
     "chat.editing.confirmEditRequestRetry": false,
     "editor.wordWrapColumn": 100,
     "diffEditor.ignoreTrimWhitespace": false,
+    "mcp": {
+        "servers": {
+            "github": {
+                "type": "http",
+                "url": "https://api.githubcopilot.com/mcp/"
+            }
+        }
+    },
 }
