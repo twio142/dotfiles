@@ -444,6 +444,231 @@
                         ]
                     },
                     {
+                        "description": "` → ` / 􀆪⇧, Alfred Clipboard Manager, Lft⌘ C Q/W/E/R → Copy Clip",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "tilde_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "1" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 0" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "tilde_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "2" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 1" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "tilde_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "3" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 2" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "tilde_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "4" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 3" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "tilde_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "5" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 4" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "tilde_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "q" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a q -v mode=use-clip" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "tilde_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "w" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a w -v mode=use-clip" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "tilde_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "e" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a e -v mode=use-clip" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "tilde_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "r" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a r -v mode=use-clip" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cmd_c_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "q" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a q -v mode=register-clip" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cmd_c_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "w" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a w -v mode=register-clip" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cmd_c_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "e" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a e -v mode=register-clip" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cmd_c_hit",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "r" },
+                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a r -v mode=register-clip" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "grave_accent_and_tilde" },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "tilde_hit",
+                                            "value": true
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "tilde_hit",
+                                            "value": false
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "grave_accent_and_tilde" }],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "grave_accent_and_tilde",
+                                        "modifiers": ["option", "control", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "cmd_c_hit",
+                                            "value": true
+                                        }
+                                    },
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "cmd_c_hit",
+                                                "value": false
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "cmd_c_hit",
+                                                "value": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Alfred, Finder, Skim, Terminals",
                         "manipulators": [
                             {
@@ -2217,186 +2442,6 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
-                        "description": "` → ` / 􀆪⇧, Alfred Clipboard Manager, Lft⌘ C Q/W/E/R → Copy Clip",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "grave_accent_and_tilde" },
-                                "to": [
-                                    {
-                                        "key_code": "fn",
-                                        "lazy": true,
-                                        "modifiers": ["right_shift"]
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "grave_accent_and_tilde" }],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "grave_accent_and_tilde",
-                                        "modifiers": ["option", "control", "shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "1",
-                                    "modifiers": { "mandatory": ["fn", "right_shift"] }
-                                },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 0" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "2",
-                                    "modifiers": { "mandatory": ["fn", "right_shift"] }
-                                },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 1" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "3",
-                                    "modifiers": { "mandatory": ["fn", "right_shift"] }
-                                },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 2" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "4",
-                                    "modifiers": { "mandatory": ["fn", "right_shift"] }
-                                },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 3" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "5",
-                                    "modifiers": { "mandatory": ["fn", "right_shift"] }
-                                },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t paste -a 4" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "q",
-                                    "modifiers": { "mandatory": ["fn", "right_shift"] }
-                                },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a q -v mode=use-clip" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": { "mandatory": ["fn", "right_shift"] }
-                                },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a w -v mode=use-clip" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "e",
-                                    "modifiers": { "mandatory": ["fn", "right_shift"] }
-                                },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a e -v mode=use-clip" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "r",
-                                    "modifiers": { "mandatory": ["fn", "right_shift"] }
-                                },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a r -v mode=use-clip" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "cmd_c_hit",
-                                        "type": "variable_if",
-                                        "value": true
-                                    }
-                                ],
-                                "from": { "key_code": "q" },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a q -v mode=register-clip" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "cmd_c_hit",
-                                        "type": "variable_if",
-                                        "value": true
-                                    }
-                                ],
-                                "from": { "key_code": "w" },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a w -v mode=register-clip" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "cmd_c_hit",
-                                        "type": "variable_if",
-                                        "value": true
-                                    }
-                                ],
-                                "from": { "key_code": "e" },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a e -v mode=register-clip" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "cmd_c_hit",
-                                        "type": "variable_if",
-                                        "value": true
-                                    }
-                                ],
-                                "from": { "key_code": "r" },
-                                "to": [{ "shell_command": "~/.local/bin/altr -w com.twio142.clipboard -t clip -a r -v mode=register-clip" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "cmd_c_hit",
-                                            "value": true
-                                        }
-                                    },
-                                    {
-                                        "key_code": "c",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "set_variable": {
-                                                "name": "cmd_c_hit",
-                                                "value": false
-                                            }
-                                        }
-                                    ],
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "cmd_c_hit",
-                                                "value": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                "type": "basic"
-                            }
-                        ]
                     }
                 ]
             },
@@ -2459,14 +2504,11 @@
                         "vendor_id": 13364
                     },
                     "ignore": false,
+                    "ignore_vendor_events": true,
                     "simple_modifications": [
                         {
                             "from": { "key_code": "left_control" },
                             "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
-                        },
-                        {
-                            "from": { "key_code": "non_us_backslash" },
-                            "to": [{ "key_code": "f20" }]
                         }
                     ]
                 },
@@ -2478,14 +2520,47 @@
                         "vendor_id": 13364
                     },
                     "ignore": false,
+                    "ignore_vendor_events": true,
                     "simple_modifications": [
                         {
                             "from": { "key_code": "left_control" },
                             "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
+                        }
+                    ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 45930,
+                        "vendor_id": 1133
+                    },
+                    "ignore_vendor_events": true,
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "grave_accent_and_tilde" },
+                            "to": [{ "key_code": "f20" }]
                         },
                         {
                             "from": { "key_code": "non_us_backslash" },
+                            "to": [{ "key_code": "grave_accent_and_tilde" }]
+                        }
+                    ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 50504,
+                        "vendor_id": 1133
+                    },
+                    "ignore_vendor_events": true,
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "grave_accent_and_tilde" },
                             "to": [{ "key_code": "f20" }]
+                        },
+                        {
+                            "from": { "key_code": "non_us_backslash" },
+                            "to": [{ "key_code": "grave_accent_and_tilde" }]
                         }
                     ]
                 }
