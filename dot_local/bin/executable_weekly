@@ -43,6 +43,8 @@ plural() {
 
 echo "Pruned $(plural $link_count "symbolic link"), $(plural $file_count "file") and $(plural $incomplete_count "incomplete download") from ~/Library/Caches/Homebrew"
 
+brew unlink node
+
 # Upgrade app store apps
 mas upgrade
 
