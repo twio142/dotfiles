@@ -51,7 +51,7 @@ image = [
 ]
 open_db = [{ run = 'lazysql "$0"', block = true, desc = "Open database" }]
 osascript = [{ run = 'osascript "$0"', desc = "Run AppleScript" }]
-compress = [{ run = 'ya emit plugin ouch zip', desc = "Compress here" }]
+compress = [{ run = 'for x in "$@"; do ouch c -f zip "$x" "$(basename "$x").zip"; done', desc = "Compress here" }]
 
 [open]
 prepend_rules = [
