@@ -2,7 +2,9 @@
 --cycle
 --inline-info
 --color=fg+:-1,bg+:-1,hl:bright-red,hl+:red,pointer:bright-red,info:-1,prompt:-1
+--ellipsis="…"
 --pointer=
+--scroll-off=5
 --bind="ctrl-d:preview-half-page-down"
 --bind="ctrl-u:preview-half-page-up"
 --bind="alt-j:jump"

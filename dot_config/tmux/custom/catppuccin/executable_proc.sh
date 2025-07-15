@@ -1,6 +1,8 @@
 #!/bin/zsh
 
 case "$1" in
+  alfred|alfred-cli)
+            echo "󰮤 " ;;
   bash)     echo " " ;;
   btop)     echo "󰓅 " ;;
   curl|curlie)

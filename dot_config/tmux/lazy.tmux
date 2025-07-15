@@ -8,7 +8,7 @@ set -g @resurrect-restore 'C-®'
 
 # tmux-fzf
 FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/fzfrc"
-TMUX_FZF_LAUNCH_KEY="C-f"
+TMUX_FZF_LAUNCH_KEY="C-§"
 TMUX_FZF_OPTIONS="-p -w 90% -h 70% -m --preview-window=up,70%"
 TMUX_FZF_ORDER="session|window|pane|buffer"
 TMUX_FZF_PANE_FORMAT="#{?pane_active,●,-} #{pane_current_command}#{?pane_marked,\t󰃀,}\t #{b:pane_current_path} "
@@ -16,6 +16,7 @@ TMUX_FZF_WINDOW_FORMAT="#{?window_active,●,-} #{?#{==:#W,#{pane_current_comman
 TMUX_FZF_SESSION_FORMAT="#{?session_attached,󰍹 #{session_attached},-}  #{session_windows}   #{b:session_path} "
 TMUX_FZF_MENU=\
 "edit config\ntmux edit-config\n"\
+"alfred\ntmux alfred\n"\
 "memo\ntmux memo\n"\
 "tmux manual\ntmux man tmux\n"\
 "btop\ntmux btop\n"\
@@ -201,6 +202,7 @@ set -g command-alias[21] btop="if -F \"#{e|<=:#{client_width},80}\" 'neww btop -
 set -g command-alias[22] open="popup -E -w 95% -h 90% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open-path.sh"
 set -g command-alias[23] popup-term="run $XDG_CONFIG_HOME/tmux/scripts/popup-term.sh"
 set -g command-alias[24] memo="popup -E -w 95% -h 90% -e TMUX_POPUP=1 fzf-memo"
+set -g command-alias[25] alfred="popup -E -w 95% -h 90% -e TMUX_POPUP=1 alfred-cli"
 
 bind C-r ER
 bind -n F3 if -F "#{==:#{pane_current_command},nvim}" "send F3" yazi-popup
@@ -210,7 +212,9 @@ bind Tab last
 bind ` lastp
 unbind C-o
 bind C-o open
-bind -n C-F4 popup-term
+bind F4 popup-term
+bind C-t popup-term
+bind C-f alfred
 
 # modal bindings
 unbind b
