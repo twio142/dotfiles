@@ -2,6 +2,7 @@
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+export fzf_default_completion=fzf-tab-complete
 
 export FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/fzfrc"
 
