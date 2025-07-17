@@ -103,6 +103,12 @@ unbind '"'
 bind - splitw -v -l 35% -c "#{pane_current_path}"
 unbind %
 bind | splitw -h -c "#{pane_current_path}"
+bind -n C-| run-shell " \
+if [ $(( \$(tmux display -p '8*#{pane_width}-20*#{pane_height}') )) -lt 0 ]; then \
+  tmux splitw -v -l 35% -c '#{pane_current_path}'; \
+else \
+  tmux splitw -h -c '#{pane_current_path}'; \
+fi"
 
 # switch panes
 bind h selectp -L
