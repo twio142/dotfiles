@@ -396,13 +396,6 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "mouse_key",
-                                        "type": "variable_if",
-                                        "value": true
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "m",
                                     "modifiers": { "mandatory": ["fn"] }
@@ -412,32 +405,48 @@
                                         "set_variable": {
                                             "name": "mouse_key",
                                             "value": false
-                                        }
+                                        },
+                                        "conditions": [
+                                            {
+                                                "name": "mouse_key",
+                                                "type": "variable_if",
+                                                "value": true
+                                            }
+                                        ]
                                     },
-                                    { "shell_command": "open -g hammerspoon://hud?text=􀺑 " }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "mouse_key",
-                                        "type": "variable_unless",
-                                        "value": true
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "m",
-                                    "modifiers": { "mandatory": ["fn"] }
-                                },
-                                "to": [
                                     {
                                         "set_variable": {
                                             "name": "mouse_key",
                                             "value": true
-                                        }
+                                        },
+                                        "conditions": [
+                                            {
+                                                "name": "mouse_key",
+                                                "type": "variable_unless",
+                                                "value": true
+                                            }
+                                        ]
                                     },
-                                    { "shell_command": "open -g hammerspoon://hud?text=􀺤 " }
+                                    {
+                                        "shell_command": "open -g hammerspoon://hud?text=􀺑 ",
+                                        "conditions": [
+                                            {
+                                                "name": "mouse_key",
+                                                "type": "variable_if",
+                                                "value": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "shell_command": "open -g hammerspoon://hud?text=􀺤 ",
+                                        "conditions": [
+                                            {
+                                                "name": "mouse_key",
+                                                "type": "variable_unless",
+                                                "value": true
+                                            }
+                                        ]
+                                    }
                                 ],
                                 "type": "basic"
                             }
@@ -608,15 +617,8 @@
                                     {
                                         "set_variable": {
                                             "name": "tilde_hit",
-                                            "value": true
-                                        }
-                                    }
-                                ],
-                                "to_after_key_up": [
-                                    {
-                                        "set_variable": {
-                                            "name": "tilde_hit",
-                                            "value": false
+                                            "value": true,
+                                            "key_up_value": false
                                         }
                                     }
                                 ],
@@ -2442,6 +2444,54 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Keychron B1 Pro",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "vendor_id": 13364 }],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.runningwithcrayons.Alfred"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": { "key_code": "left_control" },
+                                "to": [{ "key_code": "fn" }],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "grave_accent_and_tilde",
+                                        "modifiers": ["control", "command", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "vendor_id": 13364 }],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.runningwithcrayons.Alfred"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "fn" }],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2504,13 +2554,7 @@
                         "vendor_id": 13364
                     },
                     "ignore": false,
-                    "ignore_vendor_events": true,
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "left_control" },
-                            "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
-                        }
-                    ]
+                    "ignore_vendor_events": true
                 },
                 {
                     "identifiers": {
@@ -2520,13 +2564,7 @@
                         "vendor_id": 13364
                     },
                     "ignore": false,
-                    "ignore_vendor_events": true,
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "left_control" },
-                            "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
-                        }
-                    ]
+                    "ignore_vendor_events": true
                 },
                 {
                     "identifiers": {
