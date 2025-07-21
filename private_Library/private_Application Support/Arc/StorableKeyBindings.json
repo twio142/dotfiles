@@ -1,0 +1,275 @@
+{
+  "userOverrides" : [
+    {
+      "action" : {
+        "name" : "New Tab…",
+        "identifier" : "newTab"
+      },
+      "default" : {
+        "shortcut" : {
+          "deviceIndependentModifierFlags" : 1048576,
+          "keyEquivalent" : "t"
+        },
+        "priority" : "overrideWebView",
+        "typeTravelTriggers" : [
+          "New Tab…"
+        ]
+      },
+      "source" : "userDefined",
+      "priority" : "overrideWebView",
+      "state" : {
+        "valid" : {
+          "_0" : {
+            "deviceIndependentModifierFlags" : 262144,
+            "keyEquivalent" : "t"
+          }
+        }
+      }
+    },
+    {
+      "action" : {
+        "name" : "Next Space",
+        "identifier" : "focusNextSpace"
+      },
+      "default" : {
+        "priority" : "low",
+        "typeTravelTriggers" : [
+          "Next Space",
+          "Focus Next Space"
+        ],
+        "shortcut" : {
+          "keyEquivalent" : "→",
+          "deviceIndependentModifierFlags" : 1572864
+        }
+      },
+      "source" : "userDefined",
+      "priority" : "low",
+      "state" : {
+        "valid" : {
+          "_0" : {
+            "keyEquivalent" : "→",
+            "deviceIndependentModifierFlags" : 1310720
+          }
+        }
+      }
+    },
+    {
+      "action" : {
+        "name" : "Previous Space",
+        "identifier" : "focusPreviousSpace"
+      },
+      "default" : {
+        "shortcut" : {
+          "deviceIndependentModifierFlags" : 1572864,
+          "keyEquivalent" : "←"
+        },
+        "typeTravelTriggers" : [
+          "Previous Space",
+          "Focus Previous Space"
+        ],
+        "priority" : "low"
+      },
+      "source" : "userDefined",
+      "priority" : "low",
+      "state" : {
+        "valid" : {
+          "_0" : {
+            "keyEquivalent" : "←",
+            "deviceIndependentModifierFlags" : 1310720
+          }
+        }
+      }
+    },
+    {
+      "action" : {
+        "name" : "Next Tab",
+        "identifier" : "selectNextTab"
+      },
+      "default" : {
+        "shortcut" : {
+          "deviceIndependentModifierFlags" : 1572864,
+          "keyEquivalent" : "↓"
+        },
+        "priority" : "overrideWebView",
+        "typeTravelTriggers" : [
+          "Next Tab"
+        ]
+      },
+      "source" : "userDefined",
+      "priority" : "overrideWebView",
+      "state" : {
+        "valid" : {
+          "_0" : {
+            "keyEquivalent" : "↓",
+            "deviceIndependentModifierFlags" : 1310720
+          }
+        }
+      }
+    },
+    {
+      "action" : {
+        "identifier" : "selectPreviousTab",
+        "name" : "Previous Tab"
+      },
+      "default" : {
+        "shortcut" : {
+          "deviceIndependentModifierFlags" : 1572864,
+          "keyEquivalent" : "↑"
+        },
+        "priority" : "overrideWebView",
+        "typeTravelTriggers" : [
+          "Previous Tab"
+        ]
+      },
+      "source" : "userDefined",
+      "priority" : "overrideWebView",
+      "state" : {
+        "valid" : {
+          "_0" : {
+            "deviceIndependentModifierFlags" : 1310720,
+            "keyEquivalent" : "↑"
+          }
+        }
+      }
+    },
+    {
+      "action" : {
+        "identifier" : "copyCurrentURLMarkdown",
+        "name" : "Copy URL as Markdown"
+      },
+      "default" : {
+        "typeTravelTriggers" : [
+          "Copy URL as Markdown",
+          "Copy Link as Markdown",
+          "Copy Markdown"
+        ],
+        "shortcut" : {
+          "keyEquivalent" : "c",
+          "deviceIndependentModifierFlags" : 1703936
+        },
+        "priority" : "overrideWebView"
+      },
+      "source" : "userDefined",
+      "priority" : "overrideWebView",
+      "state" : {
+        "valid" : {
+          "_0" : {
+            "deviceIndependentModifierFlags" : 1310720,
+            "keyEquivalent" : "c"
+          }
+        }
+      }
+    },
+    {
+      "action" : {
+        "identifier" : "previousTab",
+        "name" : "Previous Tab"
+      },
+      "default" : {
+        "priority" : "low",
+        "shortcut" : {
+          "deviceIndependentModifierFlags" : 1048576,
+          "keyEquivalent" : "{"
+        },
+        "typeTravelTriggers" : [
+          "Previous Tab",
+          "Previous Item",
+          "Item Above",
+          "Tab Above"
+        ]
+      },
+      "source" : "userDefined",
+      "priority" : "low",
+      "state" : {
+        "unset" : {
+
+        }
+      }
+    },
+    {
+      "action" : {
+        "name" : "Switch to previous Split View",
+        "identifier" : "switchToPreviousWindowPane"
+      },
+      "default" : {
+        "typeTravelTriggers" : [
+          "Switch to previous Split View",
+          "previous pane"
+        ],
+        "priority" : "low",
+        "shortcut" : {
+          "deviceIndependentModifierFlags" : 393216,
+          "keyEquivalent" : "["
+        }
+      },
+      "source" : "userDefined",
+      "priority" : "low",
+      "state" : {
+        "valid" : {
+          "_0" : {
+            "deviceIndependentModifierFlags" : 262144,
+            "keyEquivalent" : "["
+          }
+        }
+      }
+    },
+    {
+      "action" : {
+        "identifier" : "addSplitView",
+        "name" : "Add Split View"
+      },
+      "default" : {
+        "typeTravelTriggers" : [
+          "Add Split View",
+          "Split View",
+          "Create Split View Pane",
+          "New Split View",
+          "Split"
+        ],
+        "priority" : "promptAfterConsumedByWebView",
+        "shortcut" : {
+          "deviceIndependentModifierFlags" : 393216,
+          "keyEquivalent" : "="
+        }
+      },
+      "source" : "userDefined",
+      "priority" : "promptAfterConsumedByWebView",
+      "state" : {
+        "valid" : {
+          "_0" : {
+            "keyEquivalent" : "\\",
+            "deviceIndependentModifierFlags" : 393216
+          }
+        }
+      }
+    },
+    {
+      "action" : {
+        "name" : "Switch to next Split View",
+        "identifier" : "switchToNextWindowPane"
+      },
+      "default" : {
+        "typeTravelTriggers" : [
+          "Switch to next Split View",
+          "next pane"
+        ],
+        "shortcut" : {
+          "deviceIndependentModifierFlags" : 393216,
+          "keyEquivalent" : "]"
+        },
+        "priority" : "low"
+      },
+      "source" : "userDefined",
+      "priority" : "low",
+      "state" : {
+        "valid" : {
+          "_0" : {
+            "keyEquivalent" : "]",
+            "deviceIndependentModifierFlags" : 262144
+          }
+        }
+      }
+    }
+  ],
+  "version" : 1
+}
