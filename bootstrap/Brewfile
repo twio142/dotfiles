@@ -61,6 +61,10 @@ brew "choose-rust"
 brew "cliclick"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Asynchronous event library
+brew "libevent"
+# YAML Parser
+brew "libyaml"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Power of curl, ease of use of httpie
@@ -81,8 +85,6 @@ brew "exiftool"
 brew "fastfetch"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# Asynchronous event library
-brew "libevent"
 # Low-level cryptographic library
 brew "nettle"
 # Validating, recursive, caching DNS resolver
@@ -133,8 +135,6 @@ brew "imagemagick"
 brew "iperf3"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# YAML Parser
-brew "libyaml"
 # Jupyter notebooks as Markdown documents, Julia, Python or R scripts
 brew "jupytext"
 # Pager program similar to more
@@ -205,6 +205,8 @@ brew "trzsz-go"
 brew "uv"
 # Generator for LS_COLORS with support for multiple color themes
 brew "vivid"
+# Command-line XML and HTML beautifier and content extractor
+brew "xq"
 # JavaScript package manager
 brew "yarn"
 # Blazing fast terminal file manager written in Rust, based on async I/O
@@ -217,8 +219,6 @@ brew "zimfw"
 brew "zoxide"
 # Watcher for macOS 10.14+ light/dark mode changes
 brew "cormacrelf/tap/dark-notify"
-# Focus-follows-mouse for MacOS
-brew "dimentium/autoraise/autoraise", args: ["with-dexperimental_focus_first"]
 # A simple terminal UI for docker, written in Go
 brew "jesseduffield/lazydocker/lazydocker"
 # A simple terminal UI for git commands, written in Go
@@ -240,6 +240,8 @@ cask "alt-tab"
 cask "apparency"
 # Application uninstaller
 cask "appcleaner"
+# Focus-follows-mouse
+cask "autoraiseapp"
 # Menu bar icon organiser
 cask "bartender"
 # Utility to create and modify archives
@@ -252,6 +254,8 @@ cask "cherry-studio"
 cask "coconutbattery"
 # Chinese-German dictionary
 cask "dehelper"
+# Window peeking utility app
+cask "dockdoor"
 # Calendar software
 cask "fantastical"
 # Collaborative team software
