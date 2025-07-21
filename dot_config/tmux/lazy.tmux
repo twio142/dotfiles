@@ -208,7 +208,7 @@ set -g command-alias[21] btop="if -F \"#{e|<=:#{client_width},80}\" 'neww btop -
 set -g command-alias[22] open="popup -E -w 95% -h 90% -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open-path.sh"
 set -g command-alias[23] popup-term="run $XDG_CONFIG_HOME/tmux/scripts/popup-term.sh"
 set -g command-alias[24] memo="popup -E -w 95% -h 90% -e TMUX_POPUP=1 fzf-memo"
-set -g command-alias[25] alfred="popup -E -w 95% -h 90% -e TMUX_POPUP=1 alfred-cli"
+set -g command-alias[25] alfred="popup -E -w 95% -h 90% -e TMUX_POPUP=1 -e PAGER=fzf-preview -e ALFRED_CLI_FILE_BROWSER=yazi 'alfred-cli | tmux loadb -'"
 
 bind C-r ER
 bind -n F3 if -F "#{==:#{pane_current_command},nvim}" "send F3" yazi-popup
