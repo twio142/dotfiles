@@ -402,50 +402,50 @@
                                 },
                                 "to": [
                                     {
+                                        "conditions": [
+                                            {
+                                                "name": "mouse_key",
+                                                "type": "variable_if",
+                                                "value": true
+                                            }
+                                        ],
                                         "set_variable": {
                                             "name": "mouse_key",
                                             "value": false
-                                        },
+                                        }
+                                    },
+                                    {
                                         "conditions": [
                                             {
                                                 "name": "mouse_key",
-                                                "type": "variable_if",
+                                                "type": "variable_unless",
                                                 "value": true
                                             }
-                                        ]
-                                    },
-                                    {
+                                        ],
                                         "set_variable": {
                                             "name": "mouse_key",
                                             "value": true
-                                        },
-                                        "conditions": [
-                                            {
-                                                "name": "mouse_key",
-                                                "type": "variable_unless",
-                                                "value": true
-                                            }
-                                        ]
+                                        }
                                     },
                                     {
-                                        "shell_command": "open -g hammerspoon://hud?text=􀺑 ",
                                         "conditions": [
                                             {
                                                 "name": "mouse_key",
                                                 "type": "variable_if",
                                                 "value": true
                                             }
-                                        ]
+                                        ],
+                                        "shell_command": "open -g hammerspoon://hud?text=􀺑 "
                                     },
                                     {
-                                        "shell_command": "open -g hammerspoon://hud?text=􀺤 ",
                                         "conditions": [
                                             {
                                                 "name": "mouse_key",
                                                 "type": "variable_unless",
                                                 "value": true
                                             }
-                                        ]
+                                        ],
+                                        "shell_command": "open -g hammerspoon://hud?pos=mouse\\&text=􀇰 "
                                     }
                                 ],
                                 "type": "basic"
@@ -616,9 +616,9 @@
                                 "to": [
                                     {
                                         "set_variable": {
+                                            "key_up_value": false,
                                             "name": "tilde_hit",
-                                            "value": true,
-                                            "key_up_value": false
+                                            "value": true
                                         }
                                     }
                                 ],
@@ -995,7 +995,7 @@
                         ]
                     },
                     {
-                        "description": "⇧ Double Tap on Browsers & Editor",
+                        "description": "⇧ Double Tap on Browsers & Editors",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -2112,7 +2112,7 @@
                         ]
                     },
                     {
-                        "description": "⇪ → ⎋ / ⌃, Hold ⇪ → ✧, ↵ ⌫ → ⌦, ⎋ → ⎋ / ⌃⌥, jh → Vim Mode",
+                        "description": "⇪ → ⎋ / ⌃, Hold ⇪ → ✧, ↵ ⌫ → ⌦, ⎋ → ⎋ / ⌃⌥, jh → Vim Mode, power → Lock Screen",
                         "manipulators": [
                             {
                                 "from": {
@@ -2215,6 +2215,16 @@
                                 },
                                 "parameters": { "basic.simultaneous_threshold_milliseconds": 100 },
                                 "to": [{ "shell_command": "/usr/local/bin/hs -A -c 'Vim:enter()'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "power" },
+                                "to": [
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": ["command", "control"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
