@@ -178,7 +178,7 @@ items:
       - name: Load from clipboard
         key: v
         command: run "pbpaste | tmux load-buffer -"
-      - name: Set system clipboard
+      - name: 'Turn system clipboard #{?#{==:#{set-clipboard},on},OFF,ON}'
         key: s
         command: toggle-clipboard
   - name: +Sessions

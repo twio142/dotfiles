@@ -161,7 +161,6 @@ setw -g window-status-bell-style default
 setw -g window-status-activity-style default
 
 # copy mode
-set -s set-clipboard off # disable system clipboard
 setw -g mode-keys vi # vi key bindings in copy mode
 bind v copy-mode # enter copy mode
 bind C-v copy-mode
@@ -197,9 +196,9 @@ set -g command-alias[10] EF="neww -S -n config 'nvim $XDG_CONFIG_HOME/tmux/tmux.
 set -g command-alias[11] ER="source $XDG_CONFIG_HOME/tmux/tmux.conf \; source $XDG_CONFIG_HOME/tmux/lazy.tmux \; display 'Config reloaded'"
 set -g command-alias[12] man="splitw -v -e MANPAGER='sh -c \"col -bx | bat -l man --paging always\"' man"
 set -g command-alias[13] ssh="neww -d $XDG_CONFIG_HOME/tmux/scripts/ssh.sh"
-set -g command-alias[14] toggle-status="if 'tmux show -q status \\; show -gq status | grep -q off' 'set status on' 'set status off'"
-set -g command-alias[15] toggle-clipboard="if 'tmux show -g set-clipboard | grep -q on' 'set -g set-clipboard off; display \"System clipboard OFF\"' 'set -g set-clipboard on; display \"System clipboard ON\"'"
-set -g command-alias[16] toggle-mouse="if 'tmux show -q mouse \\; show -gq mouse | grep -q off' 'set mouse on' 'set mouse off'"
+set -g command-alias[14] toggle-status="if -F \"#{==:#{status},off}\" 'set status on' 'set status off'"
+set -g command-alias[15] toggle-clipboard="if -F \"#{==:#{set-clipboard},on}\" 'set -s set-clipboard off; display \"System clipboard OFF\"' 'set -g set-clipboard on; display \"System clipboard ON\"'"
+set -g command-alias[16] toggle-mouse="if -F \"#{mouse}\" 'set mouse off' 'set mouse on'"
 set -g command-alias[17] yazi-popup="popup -E -w 95% -h 90% -d '#{pane_current_path}' -e TMUX_POPUP=1 nvim -u $XDG_CONFIG_HOME/tmux/custom/yazi_init.lua"
 set -g command-alias[18] yazi="neww -c '#{pane_current_path}' yazi"
 set -g command-alias[19] lzg="popup -E -w 95% -h 90% -d '#{pane_current_path}' -e TMUX_POPUP=1 $XDG_CONFIG_HOME/tmux/scripts/open-lazygit.sh"
