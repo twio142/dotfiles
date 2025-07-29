@@ -132,6 +132,10 @@ export PATH="$HOME/.local/bin:$PATH"
 
 WORDCHARS=${WORDCHARS//[\/]}
 
+zstyle ':completion:*:*:(vim|nvim|v):*' ignored-patterns \
+  '*.pdf' '*.docx' '*.zip' '*.jpg' '*.jpeg' '*.png' '*.gif' \
+  '*.mp3' '*.wav' '*.mp4' '*.mkv' '*.avi' '*.mov' '*.wmv' \
+
 # vi mode
 
 function zle-keymap-select {
@@ -273,8 +277,11 @@ bindkey jh vi-cmd-mode
 
 bindkey '^N' down-line-or-select
 bindkey '^J' down-line-or-select
-bindkey -M menuselect '^J' down-history
 bindkey -M menuselect 'j' down-history
+bindkey -M menuselect 'k' up-history
+bindkey -M menuselect 'h' backward-char
+bindkey -M menuselect 'l' forward-char
+bindkey -M menuselect '^J' down-history
 bindkey -M menuselect '^K' up-history
 
 bindkey '^Xa' _expand_alias
