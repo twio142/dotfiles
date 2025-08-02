@@ -10,7 +10,7 @@ alias reconfig='exec zsh'
 alias gping='gping --vertical-margin "$((($(tput lines) - 20) / 2))" --clear'
 alias cm='chezmoi'
 alias ai='aider -c $XDG_CONFIG_HOME/aider/aider.conf.yml'
-alias af='PAGER=fzf-preview ALFRED_CLI_FILE_BROWSER=yazi alfred-cli'
+alias af='PAGER=fzf-preview alfred-cli'
 
 lc() {
   1=${1:a}
