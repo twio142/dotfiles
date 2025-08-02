@@ -68,6 +68,9 @@ ya pkg upgrade
 # Upgrade gh plugins
 command -v gh &> /dev/null && gh extension upgrade --all
 # Upgrade npm global packages
-cmd=$(ncu -g -u | grep '^npm -g install') && eval $cmd || true
+pkgs=( $(ncu -ugj | jq -r 'to_entries[] | "\(.key)@\(.value)"') )
+if [ ${#pkgs[@]} -gt 0 ]; then
+    npm install -g "${pkgs[@]}"
+fi
 
 exec zsh
