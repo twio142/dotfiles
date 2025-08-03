@@ -5,7 +5,18 @@
 # The purpose of this script is to demonstrate how to preview a file or an
 # image in the preview window of fzf.
 
-if [[ $# -ne 1 ]]; then
+if command -v batcat > /dev/null; then
+  pager="batcat"
+elif command -v bat > /dev/null; then
+  pager="bat"
+else
+  pager="less"
+fi
+
+if [ -p /dev/stdin ]; then
+  cat - | ${pager} "$@"
+  exit
+elif [[ $# -ne 1 ]]; then
   >&2 echo "usage: $0 FILENAME"
   exit 1
 fi
@@ -28,16 +39,11 @@ elif [[ ! $type =~ image/ ]]; then
     exit
   fi
 
-  if command -v batcat > /dev/null; then
-    batname="batcat"
-  elif command -v bat > /dev/null; then
-    batname="bat"
-  else
-    cat "$1"
-    exit
-  fi
+  case "$pager" in
+    less) ${pager} "$1";;
+    *)    ${pager} --style=plain --color=always --pager=never -- "$file" ;;
+  esac
 
-  ${batname} --style=plain --color=always --pager=never -- "$file"
   exit
 fi
 
