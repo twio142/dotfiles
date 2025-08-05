@@ -121,23 +121,25 @@ prepend_keymap = [
   { on = ["t", "a"], run = "plugin mactag add", desc = "Tag files" },
   { on = ["t", "d"], run = "plugin mactag remove", desc = "Untag files" },
   { on = ["t", "t"], run = "shell --block -- fzf-tag | while read f; do ya emit reveal \"$f\"; ya emit toggle --state=on; done", desc = "List tagged files" },
-  { on = "'", run = "plugin bookmarks jump", desc = "Open bookmark" },
-  { on = ["m", "a"], run = "plugin bookmarks save", desc = "Save bookmark" },
-  { on = ["m", "d"], run = "plugin bookmarks delete", desc = "Delete bookmark" },
-  { on = ["m", "c"], run = "plugin bookmarks modify", desc = "Modify bookmark" },
-  { on = ["m", "."], run = '''shell -- cache=$XDG_CONFIG_HOME/yazi/plugins/bookmarks.yazi/bookmarkcache; [ -f "$cache" ] && sed -i '' "/^'/d" $cache; [ -d "$0" ] && is_dir=true || is_dir=false; echo "'\t$0\t<temp>\t$is_dir" >> $cache''', desc = "Save a temporary bookmark" },
+  { on = "'", run = "plugin bookmarks jump", desc = "Go to mark" },
+  { on = ["m", "a"], run = "plugin bookmarks save", desc = "Set mark" },
+  { on = ["m", "d"], run = "plugin bookmarks delete", desc = "Delete mark" },
+  { on = ["m", "c"], run = "plugin bookmarks modify", desc = "Edit mark" },
+  { on = ["m", "."], run = '''shell -- cache=$XDG_CONFIG_HOME/yazi/plugins/bookmarks.yazi/bookmarkcache; [ -f "$cache" ] && sed -i '' "/^'/d" $cache; [ -d "$0" ] && is_dir=true || is_dir=false; echo "'\t$0\t<temp>\t$is_dir" >> $cache''', desc = "Set temp mark" },
 ]
 
 [tasks]
 prepend_keymap = [
   { on = "?", run = "help", desc = "Open help" },
-  { on = "i", run = "inspect", desc = "Inspect the task" },
+  { on = "i", run = "inspect", desc = "Inspect task" },
+  { on = "q", run = "close", desc = "Close window" },
 ]
 
 [spot]
 prepend_keymap = [
   { on = "?", run = "help", desc = "Open help" },
-  { on = "i", run = "close", desc = "Close the spot" },
+  { on = "i", run = "close", desc = "Close spot" },
+  { on = "q", run = "close", desc = "Close spot" },
   { on = "<down>", run = "swipe 1", desc = "Swipe to next file" },
   { on = "<up>", run = "swipe -1", desc = "Swipe to previous file" },
   { on = "<C-k>", run = "swipe -1", desc = "Swipe to previous file" },
@@ -156,14 +158,14 @@ prepend_keymap = [
   { on = "<up>", run = "mgr:arrow prev", desc = "Move cursor up" },
   { on = "<C-k>", run = "mgr:arrow prev", desc = "Previous item" },
   { on = "<C-j>", run = "mgr:arrow next", desc = "Next item" },
-  { on = "<C-f>", run = ["mgr:enter", "kill bol", "kill eol"], desc = "Enter the child directory" },
-  { on = "<C-b>", run = ["mgr:leave", "kill bol", "kill eol"], desc = "Go back to the parent directory" },
+  { on = "<C-f>", run = ["mgr:enter", "kill bol", "kill eol"], desc = "Enter child directory" },
+  { on = "<C-b>", run = ["mgr:leave", "kill bol", "kill eol"], desc = "Go back to parent directory" },
 ]
 
 [confirm]
 prepend_keymap = [
   { on = "?", run = "help", desc = "Open help" },
-  { on = "d", run = "close --submit", desc = "Submit the confirm" },
+  { on = "d", run = "close --submit", desc = "Submit" },
 ]
 
 [cmp]

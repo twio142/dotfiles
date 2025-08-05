@@ -2469,8 +2469,6 @@
                                 "to": [{ "key_code": "fn" }],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "grave_accent_and_tilde",
-                                        "modifiers": ["control", "command", "shift"],
                                         "conditions": [
                                             {
                                                 "bundle_identifiers": [
@@ -2478,7 +2476,9 @@
                                                 ],
                                                 "type": "frontmost_application_unless"
                                             }
-                                        ]
+                                        ],
+                                        "key_code": "grave_accent_and_tilde",
+                                        "modifiers": ["control", "command", "shift"]
                                     }
                                 ],
                                 "type": "basic"
