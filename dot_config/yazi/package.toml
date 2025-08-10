@@ -1,34 +1,34 @@
 [[plugin.deps]]
 use = "twio142/yazi-plugins:my-cmd"
-rev = "429d566"
-hash = "24e45e688c402eab0b76cf885d20ef0b"
+rev = "0b7a596"
+hash = "3fcdd6e13bf217e68b269d94341b3a88"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "b886025"
+rev = "d7588f6"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "b886025"
+rev = "d7588f6"
 hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:toggle-pane"
-rev = "429d566"
+rev = "0b7a596"
 hash = "c86a857730fa0d9319b8967f99068c97"
 
 [[plugin.deps]]
 use = "twio142/yazi-plugins:githead"
-rev = "429d566"
+rev = "0b7a596"
 hash = "a255ad681d2fa372b40569d1d85bf051"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
-rev = "d3fd3a5"
-hash = "a4d508772dc7b20d739a2f9a1d2d396f"
+rev = "26fac8f"
+hash = "8bc144da7080bf91b559188bfe431032"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "d3fd3a5"
-hash = "288a0dedd5d13b28605cf82c05326dcd"
+rev = "26fac8f"
+hash = "a16c1a65b50efbe1ad17c4abe9b992e1"
