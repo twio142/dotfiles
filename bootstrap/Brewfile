@@ -7,16 +7,11 @@ tap "homebrew/bundle"
 tap "homebrew/services"
 tap "homebrew/test-bot"
 tap "jesseduffield/lazydocker"
-tap "jesseduffield/lazygit"
 tap "joelekstrom/repo"
 tap "jorgerojas26/lazysql"
-tap "jstkdng/programs"
 tap "laishulu/homebrew"
-tap "lusrackhall/tap"
 tap "morantron/tmux-fingers"
 tap "nikitabobko/tap"
-tap "owo-network/brew"
-tap "yt-dlp/taps"
 # TIFF library and utilities
 brew "libtiff"
 # High dynamic-range image file format
@@ -137,6 +132,8 @@ brew "iperf3"
 brew "jq"
 # Jupyter notebooks as Markdown documents, Julia, Python or R scripts
 brew "jupytext"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Pager program similar to more
 brew "less"
 # Rime Input Method Engine
@@ -145,6 +142,8 @@ brew "librime"
 brew "lsd"
 # Package manager for the Lua programming language
 brew "luarocks"
+# Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images
+brew "marp-cli"
 # Mac App Store command-line interface
 brew "mas"
 # Fast Cross-Platform Package Manager
@@ -221,8 +220,6 @@ brew "zoxide"
 brew "cormacrelf/tap/dark-notify"
 # A simple terminal UI for docker, written in Go
 brew "jesseduffield/lazydocker/lazydocker"
-# A simple terminal UI for git commands, written in Go
-brew "jesseduffield/lazygit/lazygit"
 # An ncurses-based minesweeper game
 brew "joelekstrom/repo/terminal-mines"
 brew "jorgerojas26/lazysql/lazysql"
@@ -248,8 +245,6 @@ cask "bartender"
 cask "betterzip"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
-# Desktop client that supports multiple LLM providers
-cask "cherry-studio"
 # Tool to show live information about the batteries in various devices
 cask "coconutbattery"
 # Chinese-German dictionary
