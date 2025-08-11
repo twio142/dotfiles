@@ -72,3 +72,8 @@ load_workflow() {
     done < <(plutil -convert json -o - ./prefs.plist | jq -r 'to_entries | .[] | "\(.key)=\("\(.value)" | sub("^~\/"; "'$HOME'/") | sub("\n"; "\\n"; "g"))"')
   fi
 }
+
+mamba_env() {
+  eval "$(mamba shell hook --shell bash)"
+  mamba activate $1
+}
