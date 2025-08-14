@@ -162,8 +162,6 @@ setw -g window-status-activity-style default
 
 # copy mode
 setw -g mode-keys vi # vi key bindings in copy mode
-bind v copy-mode # enter copy mode
-bind C-v copy-mode
 bind -n M-v copy-mode
 bind -T copy-mode-vi v send -X begin-selection # start selection with v
 bind -T copy-mode-vi y send -X copy-selection # copy selection with y
@@ -208,6 +206,7 @@ set -g command-alias[22] open="popup -E -w 95% -h 90% -e TMUX_POPUP=1 $XDG_CONFI
 set -g command-alias[23] popup-term="run $XDG_CONFIG_HOME/tmux/scripts/popup-term.sh"
 set -g command-alias[24] memo="popup -E -w 95% -h 90% -e TMUX_POPUP=1 fzf-memo"
 set -g command-alias[25] alfred="popup -E -w 95% -h 90% -e TMUX_POPUP=1 -e PAGER=fzf-preview 'alfred-cli | tmux loadb -'"
+set -g command-alias[26] paste="run -b 'pbpaste | tmux load-buffer -' \; paste-buffer -d"
 
 bind C-r ER
 bind -n F3 if -F "#{==:#{pane_current_command},nvim}" "send F3" yazi-popup
@@ -220,10 +219,11 @@ bind C-o open
 bind F4 popup-term
 bind C-t popup-term
 bind C-f alfred
+bind C-v paste
 
 # modal bindings
 unbind b
-bind C-b choose-buffer -Z
+bind C-b if -F "#{==:#{prefix2},C-b}" 'send C-b' 'choose-buffer -Z'
 bind b run "tmux #{@wk_cmd_show} #{@wk_menu_buffers}"
 
 unbind s
