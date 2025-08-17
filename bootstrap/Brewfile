@@ -100,6 +100,8 @@ brew "fzf"
 brew "gemini-cli"
 # GitHub command-line tool
 brew "gh"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
 # Git extension for versioning large files
@@ -188,6 +190,8 @@ brew "swiftformat"
 brew "switchaudio-osx"
 # Manipulate and query tags on macOS files
 brew "tag"
+# Modernized, complete, self-contained TeX/LaTeX engine
+brew "tectonic"
 # Send macOS User Notifications from the command-line
 brew "terminal-notifier"
 # Code-search similar to ack
@@ -198,6 +202,8 @@ brew "tlrc"
 brew "tmux"
 # CLI tool that moves files or folder to the trash
 brew "trash", link: true
+# Parser generator tool
+brew "tree-sitter-cli"
 # Simple file transfer tools, similar to lrzsz (rz/sz), and compatible with tmux
 brew "trzsz-go"
 # Extremely fast Python package installer and resolver, written in Rust
@@ -241,6 +247,8 @@ cask "appcleaner"
 cask "autoraiseapp"
 # Menu bar icon organiser
 cask "bartender"
+# Compact TeX distribution as alternative to the full TeX Live / MacTeX
+cask "basictex"
 # Utility to create and modify archives
 cask "betterzip"
 # OpenAI's official ChatGPT desktop app
