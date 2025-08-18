@@ -1,0 +1,28 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/zsh
+
+# asdf
+echo "Installing tools with asdf"
+export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
+export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=.config/asdf/tool-versions
+export PATH="${ASDF_DATA_DIR}/shims:$PATH"
+asdf install
+
+# npm global packages
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
+NPM_GLOBAL_LIST="{{ .chezmoi.sourceDir }}/bootstrap/npm-global.txt"
+if [[ -f "$NPM_GLOBAL_LIST" ]]; then
+  echo "Installing npm global packages"
+  cat "$NPM_GLOBAL_LIST" | grep -Fxv -f <(npm ls -g --depth=0 --json | jq -r '.dependencies | keys[]') | xargs npm install -g
+  rm -rf ~/.npm/ &> /dev/null
+fi
+
+# gh extensions
+GH_EXT_LIST="{{ .chezmoi.sourceDir }}/bootstrap/gh-extensions.txt"
+if [[ -f "$GH_EXT_LIST" ]]; then
+  echo "Installing GitHub CLI extensions"
+  while IFS= read -r ext; do
+    gh extension install "$ext"
+  done < "$GH_EXT_LIST"
+fi
+{{ end -}}

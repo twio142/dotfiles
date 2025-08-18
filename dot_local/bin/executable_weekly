@@ -4,11 +4,13 @@ export TERM=xterm-256color
 source ${XDG_CONFIG_HOME:-~/.config}/zsh/.zshrc &> /dev/null
 cd &> /dev/null
 
+bootstrap_dir="${XDG_DATA_HOME:-~/.local/share}/chezmoi/bootstrap"
+
 # Upgrade homebrew packages
 brew cu -a -y
 brew update
 brew cleanup
-brew bundle dump --describe --force --file=${XDG_DATA_HOME:-~/.local/share}/chezmoi/bootstrap/Brewfile
+brew bundle dump --describe --force --file=$bootstrap_dir/Brewfile
 brew upgrade
 
 file_count=0
@@ -65,12 +67,19 @@ $XDG_CONFIG_HOME/tmux/plugins/tpm/scripts/update_plugin_prompt_handler.sh all
 tmux set -g status on &> /dev/null
 # Upgrade yazi plugins
 ya pkg upgrade
+
 # Upgrade gh plugins
 command -v gh &> /dev/null && gh extension upgrade --all
+gh extension list | cut -f2 >| $bootstrap_dir/gh-extensions.txt
+
 # Upgrade npm global packages
 pkgs=( $(ncu -ugj | jq -r 'to_entries[] | "\(.key)@\(.value)"') )
 if [ ${#pkgs[@]} -gt 0 ]; then
     npm install -g "${pkgs[@]}"
 fi
+npm ls -g --depth=0 --json | jq -r '.dependencies | keys[]' >| $bootstrap_dir/npm-global.txt
+
+# Upgrade uv tools
+uv tool upgrade --all
 
 exec zsh

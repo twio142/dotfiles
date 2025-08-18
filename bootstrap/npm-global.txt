@@ -1,0 +1,14 @@
+@antfu/eslint-config
+eslint
+eslint-plugin-format
+eslint-plugin-prettier
+import-js
+neovim
+npm
+npm-check-updates
+picgo
+pnpm
+prettier
+typescript
+typescript-language-server
+zhlint
