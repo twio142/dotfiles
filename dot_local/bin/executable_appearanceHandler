@@ -36,7 +36,7 @@ if [ -f $DIR/${mode}.yaml ]; then
 fi
 
 # Btop theme
-FILE=/opt/homebrew/share/btop/themes/gruvbox_${1}.theme
+FILE=/opt/homebrew/share/btop/themes/gruvbox_${mode}.theme
 if [ -f $FILE ]; then
   ln -sf $FILE $XDG_CONFIG_HOME/btop/themes/gruvbox.theme
 fi

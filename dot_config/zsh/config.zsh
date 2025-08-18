@@ -11,6 +11,11 @@ alias gping='gping --vertical-margin "$((($(tput lines) - 20) / 2))" --clear'
 alias cm='chezmoi'
 alias af='PAGER=fzf-preview alfred-cli'
 
+gemini() {
+  local THEME=GitHub
+  background light && THEME+=' Light'
+  THEME=${THEME} command gemini "$@"
+}
 lc() {
   1=${1:a}
   [ -d $1 ] && cd $1 || cd ${1:h};
