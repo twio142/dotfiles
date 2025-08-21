@@ -113,7 +113,7 @@ prepend_keymap = [
   { on = ["<Space>", "r"], run = "plugin my-cmd 'on_selection rename'", desc = "Rename" },
   { on = ["<Space>", "<Enter>"], run = "plugin my-cmd 'on_selection enter'", desc = "Enter" },
   { on = ["<Space>", ":"], run = "plugin my-cmd 'on_selection exec'", desc = "Execute" },
-  { on = ["<Space>", "<C-d>"], run = 'shell --block -- [ $# -eq 2 ] && delta --$(~/.local/bin/background) --navigate --tabs=2 --line-numbers --side-by-side --paging=always --width=$(stty size < /dev/tty | choose 1) "$@" | less -R || true', desc = "Diff" },
+  { on = ["<Space>", "<C-d>"], run = "plugin my-cmd 'on_selection diff'", desc = "Diff" },
   { on = ["<Space>", "."], run = 'shell -- ya pub-to 0 select --list "$@"', desc = "Sync" },
   { on = ["z", "p"], run = "plugin toggle-pane max-preview", desc = "Zoom preview" },
   { on = ["z", "o"], run = "plugin toggle-pane ratio-1,5,0", desc = "Hide preview" },
