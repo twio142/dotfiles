@@ -4,6 +4,26 @@
 source <(fzf --zsh)
 export fzf_default_completion=fzf-tab-complete
 
+## FZF-TAB-COMPLETE ##
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# zstyle ':completion:*:descriptions' format '%d'
+zstyle ':fzf-tab:*:descriptions' format '%d'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# custom fzf flags
+zstyle ':fzf-tab:*' fzf-flags --bind=tab:toggle+down,shift-tab:toggle+up
+# To make fzf-tab follow FZF_DEFAULT_OPTS.
+# zstyle ':fzf-tab:*' use-fzf-default-opts yes
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' prefix ''
+
 export FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/fzfrc"
 
 ## ctrl-d / ctrl-u: scroll preview

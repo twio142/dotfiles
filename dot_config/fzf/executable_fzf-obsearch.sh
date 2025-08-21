@@ -7,10 +7,6 @@ PATH=/opt/homebrew/bin:$PATH
 
 VAULT=${VAULT:-$HOME/Documents/Markdown}
 cd $VAULT &> /dev/null || exit 1
-PURPLE=$'\033[35m'
-OFF=$'\033[0m'
-FD_PREFIX="fd -L -tf -e md -p "
-FD_SUFFIX=". -X ls -t | sed 's/^\.\//${PURPLE}/' | sed 's/\$/${OFF}/'"
 RG="rg --ignore-vcs -t markdown -L -S -n --column --no-heading --color=always"
 COPY=pbcopy
 [ -n "$TMUX" ] && COPY="tmux load-buffer -"
@@ -18,10 +14,10 @@ COPY=pbcopy
 [ "$1" = -o ] && { enter="become(for i in {+1..2}; do echo $VAULT/\$i; done)"; shift; } || enter="execute([[ \$(echo {+n} | awk '{print NF}') -gt 1 || -z {2} ]] && nvim {+1} || nvim {1} +{2})"
 INITIAL_QUERY="${*:-}"
 
-fzf --ansi --disabled --query "$INITIAL_QUERY" -m \
+LS_COLORS="$LS_COLORS:*.md=0;35" fd -c always -L -tf -e md -p . --strip-cwd-prefix -X lsd -t |
+  fzf --ansi --disabled --query "$INITIAL_QUERY" -m \
     --color "hl:-1:underline,hl+:-1:underline:reverse" \
-    --bind "start:reload:$FD_PREFIX . $FD_SUFFIX" \
-    --bind "change:reload:sleep 0.1; $FD_PREFIX {q} $FD_SUFFIX || true; $RG {q} || true" \
+    --bind "change:reload:sleep 0.1; $RG {q} || true" \
     --bind "ctrl-y:execute-silent(printf '[['{1} | sd '\.md$' ']]' | $COPY)" \
     --bind "ctrl-f:unbind(change,ctrl-f)+change-prompt(fzf > )+enable-search+reload($RG . || true)" \
     --bind "enter:$enter" \
