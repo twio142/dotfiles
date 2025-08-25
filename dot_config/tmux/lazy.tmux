@@ -220,6 +220,7 @@ bind F4 popup-term
 bind C-t popup-term
 bind C-f alfred
 bind C-v paste
+bind M-n run 'open -a Ghostty -n --args -e zsh'
 
 # modal bindings
 unbind b
