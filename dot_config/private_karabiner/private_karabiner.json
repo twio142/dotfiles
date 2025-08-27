@@ -995,7 +995,7 @@
                         ]
                     },
                     {
-                        "description": "⇧ Double Tap on Browsers & Editors",
+                        "description": "⇧ Double Tap in Editors",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1009,9 +1009,7 @@
                                             "com.microsoft.VSCode",
                                             "md.obsidian",
                                             "abnerworks.Typora",
-                                            "com.colliderli.iina",
-                                            "company.thebrowser.Browser",
-                                            "com.apple.Safari"
+                                            "com.colliderli.iina"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
