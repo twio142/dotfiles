@@ -3,7 +3,7 @@ gui:
   language: auto
   theme:
     activeBorderColor:
-      - default
+      - green
       - bold
     inactiveBorderColor:
       - default
