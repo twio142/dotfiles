@@ -12,7 +12,6 @@ zmodule ohmyzsh/ohmyzsh -r plugins/docker -f completions
 zmodule ohmyzsh/ohmyzsh -r plugins/git
 zmodule $XDG_CONFIG_HOME/git --source git-town.plugin.zsh
 zmodule ohmyzsh/ohmyzsh -r plugins/npm
-zmodule ohmyzsh/ohmyzsh -r plugins/vscode
 zmodule zsh-users/zsh-autosuggestions
 zmodule $ZDOTDIR -f functions -a bw
 zmodule romkatv/powerlevel10k --use degit
