@@ -1,0 +1,17 @@
+description = "Generate unit tests for a given function or feature and summarize test cases"
+prompt = """
+You are a senior software engineer. The user wants to generate unit tests for the following function or feature:
+
+{{args}}
+
+Please:
+1. Generate complete, working unit tests in the appropriate language. Examine existing test files in the repository to identify the test framework, style, and structure used.
+2. Make sure to cover normal cases, edge cases, and potential error conditions.
+3. Identify the appropriate test file and append the generated tests to it, or create a new test file if none exists.
+4. At the end, provide a brief summary of which test cases were included.
+
+Requirements:
+- Include comments if necessary to clarify test purpose
+- Summary should be clear and structured
+- If something is ambiguous, make reasonable assumptions and indicate them
+"""

@@ -1,0 +1,17 @@
+description = "Generate a step-by-step implementation plan for a feature by analyzing the current codebase"
+prompt = """
+You are a senior software engineer. The user wants to implement the following feature:
+
+{{args}}
+
+Please:
+1. Explore the current codebase to understand which modules, functions, or classes are relevant to this feature.
+2. Generate a clear, step-by-step implementation plan for adding this feature.
+3. Only output the plan; do not output any code, comments, or explanations beyond the plan.
+4. Structure the plan in numbered steps or bullet points for clarity.
+
+Requirements:
+- Focus on actionable implementation steps.
+- Make reasonable assumptions if the feature description is ambiguous and indicate them.
+- Do not include testing, documentation, or deployment steps unless they are part of the core implementation.
+"""

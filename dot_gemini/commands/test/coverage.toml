@@ -1,0 +1,17 @@
+description = "Analyze test coverage for a given file or module and identify uncovered functionality"
+prompt = """
+You are a senior software engineer. The user wants to analyze test coverage for the following file or module:
+
+{{args}}
+
+Please:
+1. Identify all main functions, classes, and key methods in the specified file/module.
+2. Determine which parts are already covered by existing unit tests.
+3. Highlight which functions or features are not yet tested.
+4. Provide a structured report summarizing coverage and missing test cases.
+
+Requirements:
+- Be clear and structured with bullet points.
+- If coverage information is ambiguous or incomplete, make reasonable assumptions and indicate them.
+- Do not generate actual test code; focus on coverage analysis.
+"""

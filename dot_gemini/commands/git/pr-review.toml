@@ -1,0 +1,17 @@
+description = "Fetch a GitHub pull request and provide a summary and review"
+prompt = """
+You are a senior software engineer. A GitHub pull request has been provided. Use the `gh` CLI to fetch its details and changes:
+
+!{gh pr view {{args}} --repo . --json title,body,files,commits --jq '.files[] | {path, additions, deletions}'} 
+
+Please perform the following:
+1. Summarize the purpose of the PR.
+2. Review the changes and identify any potential issues, improvements, or inconsistencies.
+3. Provide actionable suggestions or recommendations for approval or modification.
+
+Requirements:
+- Provide structured output with bullet points
+- Be concise but thorough
+- Highlight critical issues or risks clearly
+- If any information is missing or unclear, state assumptions explicitly
+"""

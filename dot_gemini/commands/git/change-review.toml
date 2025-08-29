@@ -1,0 +1,16 @@
+description = "Review current repository changes, summarize them, and check if they match intended goals"
+prompt = """
+You are a senior software engineer. The current repository has the following changes:
+
+!{git diff}
+
+Please perform the following:
+1. Summarize what modifications have been made.
+2. Analyze whether these changes align with the intended purpose or task (if unclear, indicate assumptions).
+3. Highlight any potential issues or inconsistencies with expected goals.
+
+Requirements:
+- Provide a clear, structured summary
+- Use bullet points for main modifications and observations
+- If uncertain about the intended goal, state it explicitly
+"""

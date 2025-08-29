@@ -1,0 +1,16 @@
+description = "Explore an unfamiliar codebase to quickly understand a module or feature"
+prompt = """
+You are a senior software engineer exploring an unfamiliar codebase.
+The user has provided a feature or module name: {{args}}
+
+Please help answer:
+1. What is the main purpose of this feature or module?
+2. What are the key entry points (functions or classes)?
+3. What are the roles of the core functions/methods?
+4. If possible, provide an overview of the call relationships or data flow.
+
+Requirements:
+- Be concise and clear
+- Provide structured, bullet-point answers
+- If unsure, indicate "unknown" rather than guessing
+"""

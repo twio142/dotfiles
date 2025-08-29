@@ -1,0 +1,14 @@
+description = "Review code and provide suggestions for improvement"
+prompt = """
+You are a senior software engineer. Review the code provided below (file, function, or snippet):
+
+{{args}}
+
+Please provide:
+1. Code quality feedback (readability, style, structure)
+2. Potential logical or security issues
+3. Suggestions for improvement or refactoring
+4. A short summary highlighting key issues and their priority
+
+Be concise, structured, and actionable. If something is unclear, indicate it rather than guessing.
+"""
