@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+# A script used by gemini-cli to open files in nvim
+
+# for all arguments, remove any leading `@`
+args=()
+for arg in "$@"; do
+  args+=("${arg#@}")
+done
+set -- "${args[@]}"
+
+if [ -n "$NVIM" ]; then
+  # if running inside nvim, open in the same instance
+  nvr -cc 'wincmd w' --remote-silent "$@"
+elif [ -n "$TMUX" ]; then
+  # if running inside tmux
+  pane=$(tmux list-panes -F '#P #{pane_active} #{pane_current_command} #{pane_pid}' | awk '$2 == "0" && $3 == "nvim" {print $0}' | head -n1)
+  if [ -n "$pane" ]; then
+    # find nvim in another pane in the same window
+    IFS=' ' read -r pane _ _ pid <<< "$pane"
+    until (ps -o command= -p $pid | grep -Eq "^nvim --embed"); do
+      pid=$(pgrep -P $pid 2> /dev/null)
+      [ -z "$pid" ] && return
+    done
+    socket=$(nvr --serverlist | grep "nvim\.$pid\..*")
+    if [ -n "$socket" ]; then
+      nvr --servername $socket --remote-silent "$@"
+      tmux select-pane -t $pane
+      exit 0
+    fi
+  fi
+  # open nvim in a new vertical split
+  tmux split-window -h nvim "$@"
+fi
