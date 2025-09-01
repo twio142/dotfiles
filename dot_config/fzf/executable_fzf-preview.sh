@@ -13,11 +13,12 @@ else
   pager="less"
 fi
 
-if [ -p /dev/stdin ]; then
-  cat - | ${pager} "$@"
-  exit
-elif [[ $# -ne 1 ]]; then
-  >&2 echo "usage: $0 FILENAME"
+if [[ $# -ne 1 ]]; then
+  if [ ! -t 0 ] && read -t 0; then
+    cat - | ${pager}
+  else
+    >&2 echo "usage: $0 FILENAME"
+  fi
   exit 1
 fi
 
