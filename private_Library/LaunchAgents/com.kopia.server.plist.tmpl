@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.kopia.server</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/kopia</string>
+        <string>server</string>
+        <string>start</string>
+        <string>--config-file</string>
+        <string>{{ env "HOME" }}/Library/Application Support/kopia/repository.config</string>
+        <string>--tls-cert-file={{ env "HOME" }}/Library/Application Support/kopia/server.crt</string>
+        <string>--tls-key-file={{ env "HOME" }}/Library/Application Support/kopia/server.key</string>
+    </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>KOPIA_SERVER_USERNAME</key>
+        <string>kopia</string>
+        <key>KOPIA_SERVER_PASSWORD</key>
+        <string>{{ secret "kopia-server-password" }}</string>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>{{ env "HOME" }}/Library/Logs/kopia/cli-logs/kopia-server.log</string>
+    <key>StandardErrorPath</key>
+    <string>{{ env "HOME" }}/Library/Logs/kopia/cli-logs/kopia-server.log</string>
+</dict>
+</plist>

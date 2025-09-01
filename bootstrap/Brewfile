@@ -134,6 +134,8 @@ brew "iperf3"
 brew "jq"
 # Jupyter notebooks as Markdown documents, Julia, Python or R scripts
 brew "jupytext"
+# Fast and secure open-source backup
+brew "kopia"
 # Simple terminal UI for git commands
 brew "lazygit"
 # Pager program similar to more
@@ -283,8 +285,6 @@ cask "karabiner-elements"
 cask "keepassxc"
 # File archiver
 cask "keka"
-# Backup/restore tool
-cask "kopiaui"
 # Open-source firewall to block unknown outgoing connections
 cask "lulu"
 # Adaptive brightness for external displays
