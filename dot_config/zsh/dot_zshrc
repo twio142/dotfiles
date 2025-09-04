@@ -1,3 +1,7 @@
+if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && $- == *i* ]]; then
+  tmux new -A -s ssh
+  exit
+fi
 export TERM=screen-256color
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
