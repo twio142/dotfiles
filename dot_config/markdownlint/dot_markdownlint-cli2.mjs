@@ -1,14 +1,14 @@
 // https://github.com/DavidAnson/markdownlint
 
-import noEmptyLineInList from "./rules/no-empty-line-in-list.mjs";
+import noEmptyLineInList from './rules/no-empty-line-in-list.mjs';
 
 export default {
   // Disable some built-in rules
   config: {
-    "line-length": false,
-    "first-line-heading": false,
-    "no-alt-text": false,
-    "ul-indent": {
+    'line-length': false,
+    'first-line-heading': false,
+    'no-alt-text': false,
+    'ul-indent': {
       indent: 4,
     },
   },
@@ -29,10 +29,10 @@ export default {
   gitignore: true,
 
   // Define glob expressions to use (only valid at root)
-  globs: ["!*bout.md"],
+  globs: ['!*bout.md'],
 
   // Define glob expressions to ignore
-  ignores: ["ignore*.md"],
+  ignores: ['ignore*.md'],
 
   // Use a plugin to recognize math
   markdownItPlugins: [
@@ -40,7 +40,7 @@ export default {
   ],
 
   // Additional paths to resolve module locations from
-  modulePaths: ["./modules"],
+  modulePaths: ['./modules'],
 
   // Disable banner message on stdout (only valid at root)
   noBanner: true,
@@ -52,7 +52,7 @@ export default {
   noProgress: true,
 
   // Use a specific formatter (only valid at root)
-  outputFormatters: [["markdownlint-cli2-formatter-default"]],
+  outputFormatters: [['markdownlint-cli2-formatter-default']],
 
   // Show found files on stdout (only valid at root)
   showFound: true,
