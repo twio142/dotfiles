@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+# Start a web terminal using ttyd.
+# SHARE=1 to share the current tmux session.
+# Additional arguments are passed to ttyd.
+
+# Function to clean up ttyd process on exit
+cleanup() {
+  if [[ -n $ttyd_pid && $(ps -p $ttyd_pid > /dev/null 2>&1; echo $?) -eq 0 ]]; then
+    kill $ttyd_pid
+    wait $ttyd_pid 2>/dev/null
+  fi
+  exit 0
+}
+
+# Set up trap to handle SIGINT (Ctrl-C) and SIGTERM
+trap cleanup SIGINT SIGTERM
+
+if $(background light); then
+  args=(-t 'theme={"background":"white","foreground":"#d2d2d2"}')
+fi
+
+case $SHARE in
+  1) args+=("$@" tmux attach -t "$(tmux display -p '#S')") ;;
+  *) args+=(-W -m 1 -t enableTrzsz=true "$@" tmux) ;;
+esac
+
+ttyd -p 8167 "${args[@]}" &
+ttyd_pid=$!
+
+# Wait for ttyd process to keep script running and allow trap to work
+wait $ttyd_pid
