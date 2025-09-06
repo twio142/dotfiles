@@ -600,6 +600,7 @@ cache_neg_max_ttl = 600
 ##
 ## For example, the following rule in a blocklist file:
 ## *.youtube.* @time-to-sleep
+## facebook.com @work
 ## would block access to YouTube during the times defined by the 'time-to-sleep' schedule.
 ##
 ## {after='21:00', before= '7:00'} matches 0:00-7:00 and 21:00-0:00
