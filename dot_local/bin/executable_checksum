@@ -1,4 +1,5 @@
-# verify sha-256 checksum for the file
+#!/bin/zsh
+# verify SHA checksum for the file
 
 sum=$(pbpaste)
 
@@ -8,16 +9,17 @@ if [ ! -e "$file" ]; then
   exit 1
 fi
 
-cd "$(dirname "$file")" || exit 1
+alg=${sum%%:*}
+hash=${sum#*:}
 
-if [ -z "$sum" ]; then
-  echo "No checksum provided. Please copy the checksum to your clipboard."
+if ! [[ -n "$alg" && -n "$hash" && "$alg" =~ ^sha[0-9]+$ ]]; then
+  echo "Invalid checksum format. Expected format: <algorithm>:<checksum> (e.g., sha256:abcdef...)" >&2
+  echo "Please copy the checksum to your clipboard." >&2
   exit 1
 fi
 
 tmpfile=$(mktemp)
-echo "$sum" > "$tmpfile"
+trap 'rm -f "$tmpfile"' EXIT
 
-shasum -a 256 -c "$tmpfile"
-
-rm "$tmpfile"
+echo "$hash  ${file:a}" > "$tmpfile"
+shasum -a "${alg#sha}" -c "$tmpfile"
