@@ -2,7 +2,7 @@ description = "Review current repository changes, summarize them, and check if t
 prompt = """
 You are a senior software engineer. The current repository has the following changes:
 
-!{git diff}
+!{git diff --staged}
 
 Please perform the following:
 1. Summarize what modifications have been made.
