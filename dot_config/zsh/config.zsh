@@ -1,3 +1,4 @@
+alias ...=../..
 alias gdv='git difftool -y'
 alias v='nvim'
 alias vi='nvim'
