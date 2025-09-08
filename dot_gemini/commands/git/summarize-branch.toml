@@ -1,0 +1,25 @@
+description = "Compare the current branch with main branch and summarize all changes made"
+prompt = """
+You are a senior software engineer.
+
+Current branch:
+
+!{git branch --show-current}
+
+Changes compared to the main branch:
+
+!{git diff origin/HEAD...HEAD --stat}
+
+Commit messages in this branch:
+
+!{git log origin/HEAD..HEAD --oneline}
+
+Please perform the following:
+1. Summarize what modifications have been made in this branch compared to main.
+2. Analyze the purpose of this branch.
+
+Requirements:
+- Use bullet points for main modifications and observations
+- Keep it short and focused
+"""
+
