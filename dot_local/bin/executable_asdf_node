@@ -2,6 +2,6 @@
 
 # symlink to /usr/local/bin/node
 
-export ASDF_DATA_DIR=~/.local/share/asdf;
-export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=.config/asdf/tool-versions;
-${ASDF_DATA_DIR}/shims/node "$@"
+export ASDF_DATA_DIR=${ASDF_DATA_DIR:-$HOME/.local/share/asdf};
+export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=${ASDF_DEFAULT_TOOL_VERSIONS_FILENAME:-.config/asdf/tool-versions};
+exec "${ASDF_DATA_DIR}/shims/node" "$@"

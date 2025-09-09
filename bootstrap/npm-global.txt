@@ -1,4 +1,5 @@
 @antfu/eslint-config
+dclint
 eslint
 eslint-plugin-format
 eslint-plugin-prettier
