@@ -2,7 +2,6 @@ tap "buo/cask-upgrade"
 tap "cloudflare/cloudflare"
 tap "cormacrelf/tap"
 tap "dimentium/autoraise"
-tap "finestructure/hummingbird"
 tap "homebrew/test-bot"
 tap "jesseduffield/lazydocker"
 tap "joelekstrom/repo"
@@ -132,6 +131,8 @@ brew "imagemagick"
 brew "iperf3"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# JSON parser for C
+brew "json-c"
 # Jupyter notebooks as Markdown documents, Julia, Python or R scripts
 brew "jupytext"
 # Fast and secure open-source backup
@@ -142,10 +143,14 @@ brew "lazygit"
 brew "less"
 # Rime Input Method Engine
 brew "librime"
+# C websockets server library
+brew "libwebsockets"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Package manager for the Lua programming language
 brew "luarocks"
+# Python cleanup script for macOS
+brew "mac-cleanup-py"
 # Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images
 brew "marp-cli"
 # Mac App Store command-line interface
@@ -269,8 +274,6 @@ cask "font-fira-code-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-lxgw-bright"
 cask "font-sf-pro"
-# Tool that helps teams design every part of the product experience
-cask "framer"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Desktop automation application
@@ -348,7 +351,6 @@ mas "Tencent Lemon Lite", id: 1449962996
 mas "uBlacklist for Safari", id: 1547912640
 mas "Vimari", id: 1480933944
 mas "WireGuard", id: 1451685025
-vscode "animaapp.vscode-anima"
 vscode "asvetliakov.vscode-neovim"
 vscode "davidanson.vscode-markdownlint"
 vscode "dbaeumer.vscode-eslint"
