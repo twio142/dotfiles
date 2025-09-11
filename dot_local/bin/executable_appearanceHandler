@@ -10,8 +10,8 @@ case $1 in
 esac
 
 # Nvim
-nvr --serverlist | grep nvim | while read -r server; do
-  nvr --servername $server --nostart -c "set background=$mode"
+nvr --serverlist 2>/dev/null | grep nvim | while read -r server; do
+  timeout 2s nvr --servername "$server" --nostart -c "set background=$mode" 2>/dev/null || true
 done
 
 # Tmux

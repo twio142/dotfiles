@@ -9,6 +9,7 @@ tap "jorgerojas26/lazysql"
 tap "laishulu/homebrew"
 tap "morantron/tmux-fingers"
 tap "nikitabobko/tap"
+tap "twio142/tap"
 # TIFF library and utilities
 brew "libtiff"
 # High dynamic-range image file format
@@ -25,6 +26,8 @@ brew "aria2"
 brew "git"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
+# Code searching, linting, rewriting
+brew "ast-grep"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -91,8 +94,12 @@ brew "ffmpeg"
 brew "figlet"
 # Collection of GNU find, xargs, and locate
 brew "findutils"
+# Terminal JSON viewer
+brew "fx"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU awk utility
+brew "gawk"
 # Interact with Google Gemini AI models from the command-line
 brew "gemini-cli"
 # GitHub command-line tool
@@ -229,8 +236,6 @@ brew "yt-dlp"
 brew "zimfw"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# Watcher for macOS 10.14+ light/dark mode changes
-brew "cormacrelf/tap/dark-notify"
 # A simple terminal UI for docker, written in Go
 brew "jesseduffield/lazydocker/lazydocker"
 # An ncurses-based minesweeper game
@@ -240,6 +245,14 @@ brew "jorgerojas26/lazysql/lazysql"
 brew "laishulu/homebrew/macism"
 # mouseless terminal interaction
 brew "morantron/tmux-fingers/tmux-fingers"
+# Watcher for macOS 10.14+ light/dark mode changes
+brew "twio142/tap/dark-notify"
+# Go library for converting Chinese hanzi to pinyin
+brew "twio142/tap/go-pinyin"
+# Language server for text input with rime
+brew "twio142/tap/rime-ls"
+# Command-line tool for sharing terminal over the web
+brew "twio142/tap/ttyd"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "aerospace"
 # Application launcher and productivity software
