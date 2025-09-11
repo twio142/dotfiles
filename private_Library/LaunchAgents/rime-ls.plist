@@ -10,7 +10,9 @@
     <string>rime-ls</string>
     <key>ProgramArguments</key>
     <array>
-	<string>/usr/local/bin/start-rime-ls</string>
+    <string>/bin/sh</string>
+	<string>-c</string>
+	<string>DYLD_LIBRARY_PATH=/opt/homebrew/lib /opt/homebrew/bin/rime_ls --listen 127.0.0.1:9257</string>
     </array>
 </dict>
 </plist>
