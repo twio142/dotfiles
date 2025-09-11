@@ -51,7 +51,20 @@ image = [
 ]
 open_db = [{ run = 'lazysql "$0"', block = true, desc = "Open database" }]
 osascript = [{ run = 'osascript "$0"', desc = "Run AppleScript" }]
-compress = [{ run = 'for x in "$@"; do ouch c -f zip "$x" "$(basename "$x").zip"; done', desc = "Compress here" }]
+compress = [
+  { run = 'for x in "$@"; do ouch c -f zip "$x" "$(basename "$x").zip"; done', desc = "Compress here" },
+]
+fx = [{ run = 'fx "$0"', block = true, desc = "View data structure" }]
+csv_fx = [{ run = 'mlr --icsv --ojson cat "$0" | fx', block = true, desc = "View data structure" }]
+alt_csv_fx = [{ run = '''
+  d=$(head -n 50 "$0" | gawk '{
+    c[";"]+=gsub(/;/,";");
+    c["|"]+=gsub(/\|/,"|");
+    c["\t"]+=gsub(/\t/,"\t");
+  }
+  END { for (d in c) print c[d],d }' | sort -nr | head -n1 | cut -d' ' -f2)
+  mlr --icsv --ojson --ifs "$d" cat "$0" | fx
+  ''', block = true, desc = "View data structure" }]
 
 [open]
 prepend_rules = [
@@ -64,6 +77,10 @@ prepend_rules = [
   { mime = "inode/directory", use = ["open", "reveal", "edit", "compress"] },
   { mime = "application/sqlite3", use = ["open_db", "open"] },
   { name = "*.scpt", use = ["open", "osascript", "reveal"] },
+  { mime = "application/{json,ndjson}", use = ["fx", "edit", "reveal"] },
+  { name = "*.{yaml,yml}", use = ["fx", "edit", "reveal"] },
+  { mime = "text/csv", use = ["csv_fx", "edit", "reveal"] },
+  { name = "*.csv", use = ["alt_csv_fx", "edit", "reveal"] },
 ]
 
 [tasks]
@@ -85,21 +102,13 @@ prepend_previewers = [
   { name = "*.m3u", run = 'piper -- cat "$1" | bat -l hosts' },
   { mime = "text/csv", run = 'piper -- mlr --icsv --opprint -C --key-color 208 --value-color grey70 cat "$1"' },
   { name = "*.csv", run = ''' piper --
-		ss=(, ";" "|", "	")
-		vs=("${ss[@]}")
-		read -r fl < "$1"
-		while IFS= read -r l; do
-			nvs=()
-			for s in "${vs[@]}"; do
-				fc=$(echo "$fl" | grep -o "$s" | wc -l)
-				cc=$(echo "$l" | grep -o "$s" | wc -l)
-				[[ "$fc" -eq "$cc" && "$cc" -gt 0 ]] && nvs+=("$s")
-			done
-			vs=("${nvs[@]}")
-			[[ ${#vs[@]} -eq 1 ]] && break
-		done < "$1"
-		mlr --icsv --opprint -C --key-color 208 --ifs "${vs[0]}" --value-color grey70 cat "$1"
-		''' },
+    d=$(head -n 50 "$1" | gawk '{
+      c[";"]+=gsub(/;/,";");
+      c["|"]+=gsub(/\|/,"|");
+      c["\t"]+=gsub(/\t/,"\t");
+    }
+    END { for (d in c) print c[d],d }' | sort -nr | head -n1 | cut -d' ' -f2)
+		mlr --icsv --opprint -C --key-color 208 --ifs "$d" --value-color grey70 cat "$1" ''' },
 ]
 
 prepend_fetchers = [

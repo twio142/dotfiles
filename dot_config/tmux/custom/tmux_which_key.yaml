@@ -53,6 +53,14 @@ items:
       - name: Create …
         key: C
         command: command-prompt -p "❯" -T command "neww \"%%\""
+      - name: Move left
+        key: h
+        command: run "tmux movew -b -t $(( $(tmux display -p \#I) - 1 ))"
+        transient: true
+      - name: Move right
+        key: l
+        command: run "tmux movew -a -t $(( $(tmux display -p \#I) + 1 ))"
+        transient: true
       - name: Sync panes
         key: s
         command: setw synchronize-panes

@@ -11,6 +11,7 @@ alias reconfig='exec zsh'
 alias gping='gping --vertical-margin "$((($(tput lines) - 20) / 2))" --clear'
 alias cm='chezmoi'
 alias af='PAGER=fzf-preview alfred-cli'
+alias fx='FX_THEME=$(background light && echo 1 || echo 2) fx'
 
 gemini() {
   local THEME=GitHub
