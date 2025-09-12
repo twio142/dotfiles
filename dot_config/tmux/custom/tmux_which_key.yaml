@@ -67,7 +67,28 @@ items:
       - separator: true
       - name: Rename
         key: r
-        command: command-prompt -p "Rename window:" -I "#W" "renamew -- \"%%\""
+        menu:
+          - name: with Command
+            key: c
+            command: run "SET=-w $XDG_CONFIG_HOME/tmux/scripts/window.sh cmd"
+          - name: with Command (all)
+            key: C
+            command: run "SET=-g $XDG_CONFIG_HOME/tmux/scripts/window.sh cmd"
+          - name: with Dir
+            key: d
+            command: run "SET=-w $XDG_CONFIG_HOME/tmux/scripts/window.sh dir"
+          - name: with Dir (all)
+            key: D
+            command: run "SET=-g $XDG_CONFIG_HOME/tmux/scripts/window.sh dir"
+          - name: with Branch
+            key: r
+            command: run "SET=-w $XDG_CONFIG_HOME/tmux/scripts/window.sh branch"
+          - name: with Branch (all)
+            key: R
+            command: run "SET=-g $XDG_CONFIG_HOME/tmux/scripts/window.sh branch"
+          - name: Enter name
+            key: i
+            command: command-prompt -p "Rename window:" -I "#W" "renamew -- \"%%\""
       - name: Kill
         key: q
         command: 'confirm -p "Kill window #W? (y/n)" unlink-window -k'
