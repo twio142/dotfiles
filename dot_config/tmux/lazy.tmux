@@ -31,9 +31,10 @@ TMUX_FZF_MENU=\
 # catppuccin
 set -gF @catppuccin_flavor "#{?@DARK,mocha,latte}"
 # latte, frappe, macchiato or mocha
-set -g @catppuccin_window_default_text "#($XDG_CONFIG_HOME/tmux/custom/catppuccin/proc.sh #W)"
+
+set -g @catppuccin_window_default_text "#($XDG_CONFIG_HOME/tmux/scripts/window.sh #W)"
 set -g @catppuccin_window_default_fill "none"
-set -g @catppuccin_window_current_text "#[fg=#{thm_orange}]#($XDG_CONFIG_HOME/tmux/custom/catppuccin/proc.sh #W)#[fg=default]"
+set -g @catppuccin_window_current_text "#[fg=#{thm_orange}]#($XDG_CONFIG_HOME/tmux/scripts/window.sh #W)#[fg=default]"
 set -g @catppuccin_window_current_background "#{thm_bg}"
 set -g @catppuccin_window_status icon
 set -g @catppuccin_icon_window_activity 󰏤
