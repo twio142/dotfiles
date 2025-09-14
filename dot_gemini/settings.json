@@ -57,7 +57,11 @@
       }
     },
     "deepwiki": {
-      "httpUrl": "https://mcp.deepwiki.com/mcp"
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-deepwiki@latest"
+      ]
     },
     "playwright": {
       "command": "npx",
