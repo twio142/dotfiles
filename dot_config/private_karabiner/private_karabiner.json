@@ -612,6 +612,42 @@
                                 "type": "basic"
                             },
                             {
+                                "from": {
+                                    "simultaneous": [
+                                        { "key_code": "grave_accent_and_tilde" },
+                                        { "key_code": "spacebar" }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "key_up_when": "all"
+                                    }
+                                },
+                                "parameters": { "basic.simultaneous_threshold_milliseconds": 200 },
+                                "to": [
+                                    { "key_code": "grave_accent_and_tilde" },
+                                    { "key_code": "spacebar" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "simultaneous": [
+                                        { "key_code": "grave_accent_and_tilde" },
+                                        { "key_code": "return_or_enter" }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "key_up_when": "all"
+                                    }
+                                },
+                                "parameters": { "basic.simultaneous_threshold_milliseconds": 200 },
+                                "to": [
+                                    { "key_code": "grave_accent_and_tilde" },
+                                    { "key_code": "return_or_enter" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
                                 "from": { "key_code": "grave_accent_and_tilde" },
                                 "to": [
                                     {
