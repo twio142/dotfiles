@@ -1,0 +1,77 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "display": {
+    "separator": " ",
+    "key": {
+      "type": "icon",
+      "width": 4
+    }
+  },
+  "modules": [
+    {
+      "type": "title",
+      "format": "   {#bold_default}About this Mac"
+    },
+    "break",
+    {
+      "type": "os",
+      "keyColor": "green",
+      "format": "{name} {codename} {version} ({arch})"
+    },
+    {
+      "type": "host",
+      "keyColor": "green"
+    },
+    {
+      "type": "cpu",
+      "keyColor": "green"
+    },
+    {
+      "type": "gpu",
+      "keyColor": "green"
+    },
+    {
+      "type": "display",
+      "keyColor": "green"
+    },
+    "break",
+    {
+      "type": "memory",
+      "keyColor": "red"
+    },
+    {
+      "type": "swap",
+      "keyColor": "red"
+    },
+    {
+      "type": "disk",
+      "keyColor": "red"
+    },
+    {
+      "type": "localip",
+      "keyColor": "red"
+    },
+    "break",
+    {
+      "type": "shell",
+      "keyColor": "blue"
+    },
+    {
+      "type": "terminal",
+      "keyColor": "blue"
+    },
+    {
+      "type": "editor",
+      "keyColor": "blue"
+    },
+    {
+      "type": "packages",
+      "keyColor": "blue"
+    },
+    "break",
+    "colors"
+  ],
+  "logo": {
+    "source": "~/.config/fastfetch/logo.txt"
+  }
+}
