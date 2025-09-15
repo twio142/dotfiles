@@ -10,6 +10,7 @@ tap "laishulu/homebrew"
 tap "morantron/tmux-fingers"
 tap "nikitabobko/tap"
 tap "twio142/tap"
+tap "ungive/media-control"
 # TIFF library and utilities
 brew "libtiff"
 # High dynamic-range image file format
@@ -138,8 +139,6 @@ brew "imagemagick"
 brew "iperf3"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# JSON parser for C
-brew "json-c"
 # Jupyter notebooks as Markdown documents, Julia, Python or R scripts
 brew "jupytext"
 # Fast and secure open-source backup
@@ -150,8 +149,6 @@ brew "lazygit"
 brew "less"
 # Rime Input Method Engine
 brew "librime"
-# C websockets server library
-brew "libwebsockets"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Package manager for the Lua programming language
@@ -162,6 +159,8 @@ brew "mac-cleanup-py"
 brew "marp-cli"
 # Mac App Store command-line interface
 brew "mas"
+# Control and observe media playback from the command-line
+brew "media-control"
 # Fast Cross-Platform Package Manager
 brew "micromamba"
 # Like sed, awk, cut, join & sort for name-indexed data such as CSV
@@ -172,8 +171,6 @@ brew "neovim"
 brew "neovim-remote"
 # Port scanning utility for large networks
 brew "nmap"
-# Retrieves currently playing media, and simulates media actions
-brew "nowplaying-cli"
 # Tools for one-time password authentication systems
 brew "oath-toolkit"
 # Open source suite of directory software
