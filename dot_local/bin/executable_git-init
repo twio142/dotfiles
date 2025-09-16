@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+# Initialize a git repository in the current directory, with the git directory stored in ~/Projects.
+
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "Error: This directory is already a git repository."
+  exit 1
+fi
+
+DEFAULT_GIT_DIR_NAME="${${PWD:t:l}// /-}"
+read "GIT_DIR_NAME?Enter git directory name [$DEFAULT_GIT_DIR_NAME]: "
+GIT_DIR_NAME="${GIT_DIR_NAME:-$DEFAULT_GIT_DIR_NAME}"
+
+GIT_DIR="$HOME/Projects/$GIT_DIR_NAME.git"
+mkdir -p "$GIT_DIR"
+git --git-dir="$GIT_DIR" --work-tree="$PWD" init
+echo "gitdir: $GIT_DIR" > "$PWD/.git"
