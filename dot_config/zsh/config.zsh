@@ -215,8 +215,8 @@ _tmux_paste() {
   CURSOR=${#BUFFER}
 }
 _tmux_wk_menu() { tmux show-wk-menu-root }
-_tmux_prev_mark() { tmux copy-mode \; send -X search-backward "^❯ " \; send -X search-again }
-_tmux_next_mark() { tmux copy-mode \; send -X search-forward "^❯ " }
+_tmux_prev_mark() { tmux copy-mode \; send -X previous-prompt }
+_tmux_next_mark() { tmux copy-mode \; send -X next-prompt }
 _tmux_copilot() {
   local scpt=$($XDG_CONFIG_HOME/tmux/scripts/gh-copilot.sh popup) || return 1
   zle push-line
