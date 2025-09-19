@@ -114,6 +114,16 @@ function Linemode:size_and_mtime()
 	return ui.Line(string.format(" %s %s", size and ya.readable_size(size) or "", time))
 end
 
+function Entity:symlink()
+	if not rt.mgr.show_symlink then
+		return ""
+	end
+
+	local to = self._file.link_to
+	local home = os.getenv("HOME")
+	return to and ui.Span(string.format(" → %s", tostring(to):gsub("^" .. home, "~"))):style(th.mgr.symlink_target) or ""
+end
+
 function Status:name()
 	local h = self._tab.current.hovered
 	if not h then

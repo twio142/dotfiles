@@ -95,7 +95,7 @@ suppress_preload = false
 prepend_previewers = [
   { mime = "image/vnd.djvu", run = "noop" },
   { mime = "image/icns", run = 'piper -- exiftool -s2 -common -ExifImageHeight -ExifImageWidth "$1"' },
-  { name = "*.plist", run = 'piper -- plutil -convert xml1 -o - "$1" | bat -l xml' },
+  { name = "*.plist", run = 'piper -- plutil -convert xml1 -o - "$1" | xq -c' },
   { mime = "application/{zip,gzip,tar,bzip*,7z-compressed,xz,rar}", run = 'piper -- ouch l -t -y "$1" | sed "1s/^Archive: .*\//󰞹 /" ' },
   { name = "*.ipynb", run = '''piper -- ext=$(cat "$1" | jq -r '.metadata.language_info.file_extension // ".py"'); jupytext "$1" --to auto -o - | bat -l "${ext:1}" ''' },
   { mime = "application/sqlite3", run = 'piper -- sqlite3 "$1" ".schema" | bat -l sql' },
