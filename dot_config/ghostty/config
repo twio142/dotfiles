@@ -697,8 +697,8 @@ keybind = super+c=text:\x1b\x59
 keybind = ctrl+tab=text:\x00n
 keybind = ctrl+shift+tab=text:\x00\x10
 keybind = super+alt+ctrl+shift+space=text:\x00
-keybind = super+[=text:\x00\x5b
-keybind = super+]=text:\x00\x5d
+keybind = super+BracketLeft=text:\x00\x5b
+keybind = super+BracketRight=text:\x00\x5d
 keybind = ctrl+1=text:\x00\x31
 keybind = ctrl+2=text:\x00\x32
 keybind = ctrl+3=text:\x00\x33
@@ -715,6 +715,7 @@ keybind = super+f=text:\x00\x3f
 keybind = super+i=esc:i
 keybind = super+shift+r=reload_config
 keybind = super+shift+n=text:\x00\x1bn
+keybind = super+ctrl+a=toggle_window_float_on_top
 keybind = global:cmd+f4=toggle_quick_terminal
 
 # Horizontal window padding. This applies padding between the terminal cells
@@ -1451,7 +1452,7 @@ gtk-wide-tabs = true
 #
 # This configuration only has an effect if Ghostty was built with
 # libadwaita support.
-gtk-adwaita = true
+# gtk-adwaita = true
 
 # If `true` (default), applications running in the terminal can show desktop
 # notifications using certain escape sequences such as OSC 9 or OSC 777.
