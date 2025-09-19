@@ -54,8 +54,6 @@ mas upgrade
 nvim --headless '+Lazy! sync' +qa
 nvim --headless '+MasonToolsUpdateSync' +qa
 
-# Upgrade ProperTree
-git -C ~/Projects/ProperTree pull
 # Upgrade Rime
 git -C ~/Library/Rime pull --rebase upstream master
 # Upgrade zsh plugins

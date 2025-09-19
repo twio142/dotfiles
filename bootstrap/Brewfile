@@ -246,6 +246,8 @@ brew "morantron/tmux-fingers/tmux-fingers"
 brew "twio142/tap/dark-notify"
 # Go library for converting Chinese hanzi to pinyin
 brew "twio142/tap/go-pinyin"
+# Cross-platform GUI plist editor written in python
+brew "twio142/tap/propertree"
 # Language server for text input with rime
 brew "twio142/tap/rime-ls"
 # Command-line tool for sharing terminal over the web
