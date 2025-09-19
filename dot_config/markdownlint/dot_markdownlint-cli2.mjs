@@ -20,7 +20,7 @@ export default {
   ],
 
   // Fix any fixable errors
-  fix: true,
+  // fix: true,
 
   // Define a custom front matter pattern
   // frontMatter: "<head>[^]*<\/head>",
