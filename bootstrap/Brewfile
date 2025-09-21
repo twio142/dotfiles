@@ -241,6 +241,8 @@ brew "jorgerojas26/lazysql/lazysql"
 brew "laishulu/homebrew/macism"
 # mouseless terminal interaction
 brew "morantron/tmux-fingers/tmux-fingers"
+# CLI tool for managing battery charging
+brew "twio142/tap/battery"
 # Watcher for macOS 10.14+ light/dark mode changes
 brew "twio142/tap/dark-notify"
 # Go library for converting Chinese hanzi to pinyin
