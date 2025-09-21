@@ -1,6 +1,4 @@
 tap "buo/cask-upgrade"
-tap "cloudflare/cloudflare"
-tap "cormacrelf/tap"
 tap "dimentium/autoraise"
 tap "homebrew/test-bot"
 tap "jesseduffield/lazydocker"
@@ -10,7 +8,6 @@ tap "laishulu/homebrew"
 tap "morantron/tmux-fingers"
 tap "nikitabobko/tap"
 tap "twio142/tap"
-tap "ungive/media-control"
 # TIFF library and utilities
 brew "libtiff"
 # High dynamic-range image file format
@@ -233,6 +230,8 @@ brew "yt-dlp"
 brew "zimfw"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# Focus-follows-mouse for MacOS
+brew "dimentium/autoraise/autoraise", args: ["with-dexperimental_focus_first", "with-dold_activation_method"]
 # A simple terminal UI for docker, written in Go
 brew "jesseduffield/lazydocker/lazydocker"
 # An ncurses-based minesweeper game
@@ -262,10 +261,6 @@ cask "alt-tab"
 cask "apparency"
 # Application uninstaller
 cask "appcleaner"
-# Focus-follows-mouse
-cask "autoraiseapp"
-# Menu bar icon organiser
-cask "bartender"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # Utility to create and modify archives
@@ -294,6 +289,8 @@ cask "hammerspoon"
 cask "iina"
 # Multi-touch gestures editor
 cask "jitouch"
+# Menu bar manager
+cask "jordanbaird-ice"
 # Keyboard customiser
 cask "karabiner-elements"
 # Password manager app
@@ -304,10 +301,6 @@ cask "keka"
 cask "lulu"
 # Adaptive brightness for external displays
 cask "lunar"
-# Smooths scrolling and set mouse scroll directions independently
-cask "mos"
-# Add more gestures for Trackpad and Magic Mouse
-cask "multitouch"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Finds large, unwanted files and deletes them

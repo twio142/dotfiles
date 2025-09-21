@@ -215,7 +215,8 @@
                                     "key_code": "y",
                                     "modifiers": { "mandatory": "right_control" }
                                 },
-                                "to": [{ "mouse_key": { "vertical_wheel": -24 } }],
+                                "to": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?d=up&e=start'" }],
+                                "to_after_key_up": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?e=stop'" }],
                                 "type": "basic"
                             },
                             {
@@ -230,7 +231,8 @@
                                     "key_code": "e",
                                     "modifiers": { "mandatory": "right_control" }
                                 },
-                                "to": [{ "mouse_key": { "vertical_wheel": 24 } }],
+                                "to": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?d=down&e=start'" }],
+                                "to_after_key_up": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?e=stop'" }],
                                 "type": "basic"
                             },
                             {
@@ -2002,7 +2004,8 @@
                                     }
                                 ],
                                 "from": { "key_code": "j" },
-                                "to": [{ "mouse_key": { "vertical_wheel": 20 } }],
+                                "to": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?d=down&e=start'" }],
+                                "to_after_key_up": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?e=stop'" }],
                                 "type": "basic"
                             },
                             {
@@ -2017,7 +2020,8 @@
                                     "key_code": "j",
                                     "modifiers": { "mandatory": ["right_shift"] }
                                 },
-                                "to": [{ "mouse_key": { "vertical_wheel": 90 } }],
+                                "to": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?d=down&e=start&n=5'" }],
+                                "to_after_key_up": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?e=stop'" }],
                                 "type": "basic"
                             },
                             {
@@ -2029,7 +2033,8 @@
                                     }
                                 ],
                                 "from": { "key_code": "k" },
-                                "to": [{ "mouse_key": { "vertical_wheel": -20 } }],
+                                "to": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?d=up&e=start'" }],
+                                "to_after_key_up": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?e=stop'" }],
                                 "type": "basic"
                             },
                             {
@@ -2044,7 +2049,8 @@
                                     "key_code": "k",
                                     "modifiers": { "mandatory": ["right_shift"] }
                                 },
-                                "to": [{ "mouse_key": { "vertical_wheel": -90 } }],
+                                "to": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?d=up&e=start&n=5'" }],
+                                "to_after_key_up": [{ "shell_command": "open -g 'hammerspoon://mouse_scroll?e=stop'" }],
                                 "type": "basic"
                             },
                             {
@@ -2746,7 +2752,7 @@
             "fn_function_keys": [
                 {
                     "from": { "key_code": "f6" },
-                    "to": [{ "key_code": "f13" }]
+                    "to": [{ "key_code": "f18" }]
                 }
             ],
             "name": "Default",
