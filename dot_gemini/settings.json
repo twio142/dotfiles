@@ -1,23 +1,31 @@
 {
-  "preferredEditor": "neovim",
-  "disableAutoUpdate": true,
-  "theme": "${THEME}",
-  "hideBanner": true,
-  "hideWindowTitle": true,
-  "hideTips": true,
-  "ideMode": true,
-  "hasSeenIdeIntegrationNudge": true,
-  "usageStatisticsEnabled": false,
-  "allowedTools": [
-    "run_shell_command(git status)",
-    "run_shell_command(git diff)",
-    "run_shell_command(git log)",
-    "run_shell_command(gvim)"
-  ],
-  "selectedAuthType": "oauth-personal",
-  "excludedProjectEnvVars": [
-    "THEME"
-  ],
+  "tools": {
+    "allowed": [
+      "run_shell_command(git status)",
+      "run_shell_command(git diff)",
+      "run_shell_command(git log)",
+      "run_shell_command(gvim)"
+    ]
+  },
+  "general": {
+    "disableAutoUpdate": true,
+    "preferredEditor": "neovim"
+  },
+  "advanced": {
+    "excludedEnvVars": [
+      "THEME"
+    ]
+  },
+  "ide": {
+    "hasSeenNudge": true,
+    "enabled": true
+  },
+  "ui": {
+    "hideWindowTitle": true,
+    "hideTips": true,
+    "hideBanner": true,
+    "theme": "$THEME"
+  },
   "mcpServers": {
     "obsidian": {
       "command": "uvx",
@@ -69,5 +77,13 @@
         "@playwright/mcp@latest"
       ]
     }
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "privacy": {
+    "usageStatisticsEnabled": false
   }
 }
