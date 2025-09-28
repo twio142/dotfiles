@@ -1,5 +1,18 @@
 #!/bin/zsh
 
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: source $(basename "$0")"
+  echo
+  echo "Performs weekly system maintenance, updates, and cleanup tasks."
+  echo
+  echo "Tasks include:"
+  echo "  - Upgrading Homebrew packages, casks, and Mac App Store apps."
+  echo "  - Cleaning Homebrew caches."
+  echo "  - Updating plugins/extensions for Neovim, Rime, zsh, tmux, yazi, and gh."
+  echo "  - Upgrading global npm packages and uv tools."
+  return 0
+fi
+
 export TERM=xterm-256color
 source ${XDG_CONFIG_HOME:-~/.config}/zsh/.zshrc &> /dev/null
 cd &> /dev/null

@@ -1,6 +1,14 @@
 #!/bin/zsh
 # rp - get real path (case sensitive) of a file
 
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: $(basename "$0") <path>..."
+  echo
+  echo "Resolves and prints the real, case-sensitive path for each given file or directory."
+  echo "Useful on case-insensitive file systems to find the canonical path name."
+  exit 0
+fi
+
 [ -e "${1:a}" ] || { echo "File not found" ; exit 1 }
 
 for o in "${@:a}"; do

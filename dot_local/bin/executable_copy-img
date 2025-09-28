@@ -1,9 +1,14 @@
 #!/usr/bin/osascript -l JavaScript
-// Copy image content to clipboard
+/* Copy image content to clipboard */
 
 ObjC.import('AppKit');
 run=(a)=>{
+  if (['-h', '--help'].includes(a?.[0])) {
+    return `Usage: copy-img <path_to_image_file>\n\nCopies the image at the given path to the system clipboard.`;
+  }
+
   if (!a.length) return;
+
 	const pb = $.NSPasteboard.generalPasteboard;
 	pb.clearContents;
   pb.writeObjects([$.NSImage.alloc.initByReferencingFile(a[0]).js]);

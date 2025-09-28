@@ -7,6 +7,20 @@
 # SESS: Session name. If given, PID is ignored
 # PID: Client PID
 
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: $(basename "$0") [file...]"
+  echo
+  echo "Opens files in Neovim within a tmux session."
+  echo "The script intelligently finds the active pane and attempts to open the files"
+  echo "in an existing nvim instance. If it can't, it opens them in a new tmux window."
+  echo
+  echo "Behavior can be modified with environment variables:"
+  echo "  NEWW=1      Force opening files in a new window."
+  echo "  SESS=<name> Specify the target tmux session name."
+  echo "  PID=<pid>   Specify the client PID to find the target session."
+  exit 0
+fi
+
 open_in_existing_pane() {
   pane=$1
   shift

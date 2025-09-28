@@ -1,79 +1,142 @@
-import Foundation
+#!/usr/bin/swift
+import AppKit
 
-let environment = ProcessInfo.processInfo.environment
-let serviceMap: [String: String] = [
-    "reminders": "'com.apple.reminders.sharingextension'",
-    "notes": "'com.apple.Notes.SharingExtension'",
-    "photos": "hs.sharing.builtinSharingServices.addToIPhoto",
-    "airdrop": "hs.sharing.builtinSharingServices.sendViaAirDrop",
-    "messages": "hs.sharing.builtinSharingServices.composeMessage",
-    "mail": "hs.sharing.builtinSharingServices.composeEmail",
-    "readingList": "hs.sharing.builtinSharingServices.addToSafariReadingList"
-]
+// MARK: - App Delegate & Lifecycle Management
 
-extension Collection {
-    subscript(safe i: Index) -> Element? {
-        return indices.contains(i) ? self[i] : nil
+class SharingDelegate: NSObject, NSApplicationDelegate, NSSharingServiceDelegate {
+  var items: [Any] = []
+  var serviceName: NSSharingService.Name?
+  var recipients: [String]?
+
+  func applicationDidFinishLaunching(_ notification: Notification) {
+    guard let serviceName = self.serviceName else {
+      print("Error: Service name was not resolved.")
+      NSApp.terminate(nil)
+      return
     }
+
+    guard let service = NSSharingService(named: serviceName) else {
+      print("Error: Could not create sharing service for '\(serviceName.rawValue)'.")
+      NSApp.terminate(nil)
+      return
+    }
+
+    service.delegate = self
+    if let recipients = self.recipients, !recipients.isEmpty {
+      service.recipients = recipients
+    }
+
+    if items.isEmpty {
+      // An empty item is required to show compose windows for services like Mail/Messages
+      items.append("")
+    }
+
+    service.perform(withItems: items)
+  }
+
+  func sharingService(_ sharingService: NSSharingService, didShareItems items: [Any]) {
+    // Uncomment for verbose output
+    // print("Successfully shared items.")
+    NSApp.terminate(nil)
+  }
+
+  func sharingService(_ sharingService: NSSharingService, didFailToShareItems items: [Any], error: Error) {
+    print("Error: \(error.localizedDescription)")
+    NSApp.terminate(nil)
+  }
+
+  // Fallback to ensure the script exits if the sharing window is just closed.
+  func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+    return true
+  }
 }
 
-var script = ["local items={}"]
+// MARK: - Argument Parsing & Setup
 
-var service: String?
-var args: [String] = []
-var recipients: [String] = []
+let serviceNameMap: [String: NSSharingService.Name] = [
+  "airdrop": .sendViaAirDrop,
+  "messages": .composeMessage,
+  "mail": .composeEmail,
+  "photos": .addToIPhoto,
+  "readingList": .addToSafariReadingList,
+  // These use the internal identifiers for share sheet extensions
+  "notes": NSSharingService.Name("com.apple.Notes.SharingExtension"),
+  "reminders": NSSharingService.Name("com.apple.reminders.sharingextension")
+]
+
+if CommandLine.arguments.contains("-h") || CommandLine.arguments.contains("--help") {
+  print("""
+  Usage: Sharing.swift -s <service> [options] [items...]\n
+  Shares items (text, files, URLs) using macOS sharing services.\n
+  Options:
+    -s, --service <service>      (Required) The sharing service to use.
+    -r, --recipient <recipient>  A recipient for the share (e.g., for Messages or Mail).
+                                 Can be used multiple times.
+    -h, --help                   Display this help message.\n
+  Available Services:
+  """)
+  serviceNameMap.keys.sorted().forEach { print("  - \($0)") }
+  exit(0)
+}
+
+var itemsToShare: [Any] = []
+var service: NSSharingService.Name?
+var recipients: [String]?
 
 var index = 1
 while index < CommandLine.arguments.count {
-    let arg = CommandLine.arguments[index]
-    index += 1
-    if (arg == "-s" || arg == "--service"), CommandLine.arguments[safe: index] != nil, service == nil {
-        service = serviceMap[CommandLine.arguments[index]]
-        index += 1
-    } else if arg == "-r" || arg == "--recipient", CommandLine.arguments[safe: index] != nil {
-        if !recipients.contains(CommandLine.arguments[index]) {
-            recipients.append(CommandLine.arguments[index])
-        }
-        index += 1
-    } else if FileManager.default.fileExists(atPath: arg) {
-        script.append("table.insert(items, hs.sharing.URL(_cli._args[\(args.count+6)], true))")
-        args.append(arg)
-    } else if arg.range(of: "^[a-zA-Z0-9_-]+://[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*(\\/\\S*)?$", options: .regularExpression) != nil {
-        script.append("table.insert(items, hs.sharing.URL(_cli._args[\(args.count+6)]))")
-        args.append(arg)
+  let arg = CommandLine.arguments[index]
+  switch arg {
+  case "-s", "--service":
+    if let nextArg = CommandLine.arguments[safe: index + 1] {
+      service = serviceNameMap[nextArg]
+      index += 2
     } else {
-        arg.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: "\n").forEach { line in
-            script.append("table.insert(items, hs.styledtext.new(_cli._args[\(args.count+6)]))")
-            args.append(String(line))
-        }
+      index += 1
     }
-}
-
-if service == nil {
-    print("No service specified")
-    exit(1)
-}
-
-var command = "hs.sharing.newShare(\(service!))"
-if recipients.count > 0 {
-    if args.count == 0 {
-        script.append("table.insert(items, hs.styledtext.new(''))")
+  case "-r", "--recipient":
+    if let nextArg = CommandLine.arguments[safe: index + 1] {
+      if recipients == nil { recipients = [] }
+      recipients?.append(nextArg)
+      index += 2
+    } else {
+      index += 1
     }
-    command.append(":recipients({")
-    command.append(recipients.map { "'\($0)'" }.joined(separator: ","))
-    command.append("})")
+  default:
+    if FileManager.default.fileExists(atPath: arg) {
+      itemsToShare.append(URL(fileURLWithPath: arg))
+    } else if let url = URL(string: arg), arg.contains("://") {
+      itemsToShare.append(url)
+    } else {
+      itemsToShare.append(arg)
+    }
+    index += 1
+  }
 }
-script.append("\(command):shareItems(items)")
-print(script.joined(separator: "\n"))
 
-let task = Process()
-task.environment = ProcessInfo.processInfo.environment
-task.executableURL = URL(fileURLWithPath: "/usr/local/bin/hs")
-task.arguments = ["-A", "-c", script.joined(separator: "\n"), "--"] + args
-
-do {
-    try task.run()
-    task.waitUntilExit()
-} catch {
-    print("Failed to run task: \(error)")
+guard let service = service else {
+  print("Error: A service must be specified with -s. Use --help to see available services.")
+  exit(1)
 }
+
+// MARK: - Main Execution
+
+let delegate = SharingDelegate()
+delegate.items = itemsToShare
+delegate.serviceName = service
+delegate.recipients = recipients
+
+// An NSApplication is required to host the sharing service
+let app = NSApplication.shared
+app.setActivationPolicy(.accessory)
+app.delegate = delegate
+app.run()
+
+// MARK: - Helpers
+
+extension Collection {
+  subscript(safe i: Index) -> Element? {
+  return indices.contains(i) ? self[i] : nil
+  }
+}
+

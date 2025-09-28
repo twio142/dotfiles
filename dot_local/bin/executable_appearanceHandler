@@ -6,6 +6,17 @@ XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 case $1 in
   light) mode=$1 flavor=latte env=0 color=white;;
   dark)  mode=$1 flavor=mocha env=1 color=black;;
+  -h|--help)
+    echo "Usage: $(basename "$0") [option]"
+    echo
+    echo "Sets the appearance mode for various applications."
+    echo
+    echo "Options:"
+    echo "  light         Set appearance to light mode."
+    echo "  dark          Set appearance to dark mode."
+    echo "  -h, --help    Display this help message and exit."
+    exit 0
+    ;;
   *)     exit 1 ;;
 esac
 

@@ -1,15 +1,25 @@
 #!/bin/zsh
 
+# FZF Memo - A simple memo manager using fzf and nvim
+
 scpt=~/Projects/Uebersicht/Memos.widget/lib/actions.mjs
 data=~/Projects/Uebersicht/Memos.widget/lib/data.json
 
-if [ "$1" = new ]; then
-  file=/tmp/memo.0.md
-  trap 'rm -f "$file"' EXIT
-  nvim +startinsert -- $file && [ -f $file ] &&
-    cat $file | $scpt new &> /dev/null || true;
-  exit
-fi
+case "$1" in
+  new)
+    file=/tmp/memo.0.md
+    trap 'rm -f "$file"' EXIT
+    nvim +startinsert -- $file && [ -f $file ] &&
+      cat $file | $scpt new &> /dev/null || true;
+    exit 0
+    ;;
+  -h|--help)
+    echo "Usage: $(basename "$0")"
+    echo
+    echo "A simple memo manager using fzf and nvim."
+    exit 0
+    ;;
+esac
 
 COPY=pbcopy
 [ -n "$TMUX" ] && COPY="tmux loadb -"

@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# Open GitHub Copilot suggestions in a tmux popup
+
 ghcs() {
 	FUNCNAME="$funcstack[1]"
 	TARGET="shell"

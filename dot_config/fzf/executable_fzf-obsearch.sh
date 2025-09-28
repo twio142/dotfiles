@@ -5,6 +5,19 @@ PATH=/opt/homebrew/bin:$PATH
 ## by default, open files in vim
 ## with `-o`, write file path to stdout
 
+case "$1" in
+  -h|--help)
+    echo "Usage: $(basename "$0") [-o] [initial query]"
+    echo
+    echo "Search in Obsidian vault using fzf, fd, and ripgrep."
+    echo
+    echo "Options:"
+    echo "  -o, --output   Output the selected file path instead of opening it."
+    echo "  -h, --help     Display this help message and exit."
+    exit 0
+    ;;
+esac
+
 VAULT=${VAULT:-$HOME/Documents/Markdown}
 cd $VAULT &> /dev/null || exit 1
 RG="rg --ignore-vcs -t markdown -L -S -n --column --no-heading --color=always"

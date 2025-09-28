@@ -1,13 +1,20 @@
 #!/bin/zsh
-# verify SHA checksum for the file
+# verify SHA checksum of the file
 
 sum=$(pbpaste)
 
-file="$1"
-if [ ! -e "$file" ]; then
-  echo "Usage: $0 <file>"
-  exit 1
-fi
+case "$1" in
+  -h|--help)
+    echo "Usage: $(basename "$0") <file>"
+    echo
+    echo "Verifies the SHA checksum of the specified file."
+    exit 0
+    ;;
+  *)
+    [ -e "$1" ] || { echo "Usage: $(basename "$0") <file>" >&2; exit 1; }
+    file="$1"
+    ;;
+esac
 
 alg=${sum%%:*}
 hash=${sum#*:}

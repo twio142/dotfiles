@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# copy the current pane in a new window
+# Copy the current pane in a new window
 
 start=$(tmux show -gqv default-command)
 

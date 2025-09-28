@@ -1,6 +1,16 @@
 #!/bin/zsh
 # Update dnscrypt-proxy forwarding rules and blocklists
 
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: $(basename "$0")"
+  echo
+  echo "Updates dnscrypt-proxy forwarding rules and blocklists."
+  echo " - Downloads China-specific domains for forwarding rules."
+  echo " - Downloads a master hosts file for the blocklist."
+  echo " - Calls 'merge-dns-blocked.sh' to apply the new blocklist."
+  exit 0
+fi
+
 ## Configuration
 DIR="$HOME/.config/dnscrypt-proxy"
 BLOCK_DIR="$DIR/blocklists"

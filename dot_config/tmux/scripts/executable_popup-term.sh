@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# Open a popup terminal in tmux, or detach if already in one
+
 SESS=$(tmux display -p '#S')
 if [ "$SESS" = popup ]; then
   tmux detach-client -s popup

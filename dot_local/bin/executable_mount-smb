@@ -2,10 +2,14 @@
 
 # Mounts a remote SMB share using the credentials stored in the macOS Keychain.
 
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <user>@<host>/<dir>" >&2
-    exit 1
-fi
+case "$1" in
+  -h|--help)
+    echo "Usage: "$(basename $0)" <user>@<host>/<dir>" >&2
+    echo
+    echo "Mounts a remote SMB share using the credentials stored in the macOS Keychain."
+    exit 0
+    ;;
+esac
 user=$(echo $1 | cut -d'@' -f1)
 host=$(echo $1 | cut -d'@' -f2 | cut -d'/' -f1)
 dir=$(echo $1 | cut -d'/' -f2-)

@@ -2,6 +2,16 @@
 
 # Initialize a git repository in the current directory, with the git directory stored in ~/Projects.
 
+case "$1" in
+  -h|--help)
+    echo "Usage: $(basename "$0")"
+    echo
+    echo "Initializes a git repository in the current directory."
+    echo "The git directory will be stored in ~/Projects."
+    exit 0
+    ;;
+esac
+
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   echo "Error: This directory is already a git repository."
   exit 1

@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+# On tmux session created hook
+# Sets up session name, key bindings, and clipboard behavior based on SSH status
+# Intended to be run as a tmux hook: set-hook -g session-created 'run-shell <path-to-this-script>'
+
 tmux source $XDG_CONFIG_HOME/tmux/lazy.tmux &
 
 if [ -n "$SSH_CONNECTION" ]; then

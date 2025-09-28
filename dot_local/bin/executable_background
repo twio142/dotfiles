@@ -3,4 +3,16 @@ case "$1" in
   '')    defaults read -g AppleInterfaceStyle &> /dev/null && printf dark || printf light ;;
   dark)  defaults read -g AppleInterfaceStyle &> /dev/null ;;
   light) defaults read -g AppleInterfaceStyle &> /dev/null && exit 1 || exit 0 ;;
+  -h|--help)
+    echo "Usage: $(basename "$0") [option]"
+    echo
+    echo "Checks the current macOS appearance mode."
+    echo
+    echo "Options:"
+    echo "  (no option)   Print 'dark' or 'light' based on the current mode."
+    echo "  dark          Exit with status 0 if in dark mode, else exit with status 1."
+    echo "  light         Exit with status 0 if in light mode, else exit with status 1."
+    echo "  -h, --help    Display this help message and exit."
+    exit 0
+    ;;
 esac

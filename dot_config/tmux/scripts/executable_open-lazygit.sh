@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# Open lazygit in the current or selected git repository
+
 _f() {
   awk '/recentrepos:/ {found=1; next} found && /^[^[:space:]]/ {exit} found {print}' $XDG_STATE_HOME/lazygit/state.yml | \
     sd '^ +- ' '' | \

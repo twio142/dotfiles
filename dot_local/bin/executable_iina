@@ -1,7 +1,22 @@
 #!/bin/zsh
+
 export PATH=/opt/homebrew/bin:$PATH
+
 if [ -z $1 ]; then
-    echo 'Usage: iina [-g <property>] [-s <property> <value>] [<command>]'; exit 1
+    echo "Usage: "$(basename $0)" [-g <property>] [-s <property> <value>] [<command>]"; exit 1
+elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    echo "Usage: "$(basename $0)" [options | command]"
+    echo
+    echo "Command-line controller for IINA media player."
+    echo
+    echo "Options:"
+    echo "  -g <property>          Get the value of a player property."
+    echo "  -s <property> <value>  Set the value of a player property."
+    echo "  -h, --help             Display this help message."
+    echo
+    echo "Command:"
+    echo "  parts of the command to send to IINA."
+    exit 0
 elif [[ $1 = -g && ! -z $2 ]]; then
     1=get_property
 elif [[ $1 = -s && ! -z $2 && ! -z $3 ]]; then 

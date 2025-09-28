@@ -2,8 +2,7 @@
 #
 # https://github.com/junegunn/fzf/blob/master/bin/fzf-preview.sh
 #
-# The purpose of this script is to demonstrate how to preview a file or an
-# image in the preview window of fzf.
+# A script to preview files in fzf.
 
 if command -v batcat > /dev/null; then
   pager="batcat"
@@ -13,12 +12,13 @@ else
   pager="less"
 fi
 
-if [[ $# -ne 1 ]]; then
-  if [ ! -t 0 ] && read -t 0; then
-    cat - | ${pager}
-  else
-    >&2 echo "usage: $0 FILENAME"
-  fi
+if [ $# -ne 1 ] && [ ! -t 0 ] && read -t 0; then
+  cat - | ${pager}
+  exit 0
+elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: "$(basename $0)" <file>" >&2
+  echo
+  echo "Previews the given file in fzf." >&2
   exit 1
 fi
 

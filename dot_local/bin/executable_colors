@@ -5,6 +5,17 @@
 # See http://askubuntu.com/questions/821157/print-a-256-color-test-pattern-in-the-terminal/821163#821163
 
 case "$1" in
+    -h|--help)
+        echo "Usage: $(basename "$0") [options]"
+        echo
+        echo "Prints a 256-color test pattern in the terminal."
+        echo "Each number from 0-255 is printed in its corresponding color."
+        echo
+        echo "Options:"
+        echo "  -fg, --fg    Print numbers in the foreground color only, without background blocks."
+        echo "  -h, --help   Display this help message and exit."
+        exit 0
+        ;;
     -fg|--fg) FG=1 ;;
     *) FG=0 ;;
 esac

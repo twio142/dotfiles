@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 # A script used by gemini-cli to open files in nvim
+# For all arguments, remove any leading `@`
 
-# for all arguments, remove any leading `@`
 args=()
 for arg in "$@"; do
   args+=("${arg#@}")

@@ -1,11 +1,27 @@
 #!/bin/zsh
 
-if [[ $1 = -d || $1 = --decrypt ]]; then
-    output=$(echo $2 | base64 -d | openssl rsautl -decrypt -inkey ~/.ssh/PrivateKey.pem) 
-elif [[ $1 = -e || $1 = --encrypt ]]; then
+case "$1" in
+  -e|--encrypt)
     output=$(echo $2 | openssl rsautl -encrypt -pubin -inkey ~/.ssh/PublicKey.pub | base64)
-else
+    ;;
+  -d|--decrypt)
+    output=$(echo $2 | base64 -d | openssl rsautl -decrypt -inkey ~/.ssh/PrivateKey.pem)
+    ;;
+  -h|--help)
+    echo "Usage: $(basename "$0") [option] <string>"
+    echo
+    echo "Encrypts or decrypts a string using RSA keys."
+    echo
+    echo "Options:"
+    echo "  -e, --encrypt   Encrypt the given string."
+    echo "  -d, --decrypt   Decrypt the given string."
+    echo "  -h, --help      Display this help message and exit."
+    exit 0
+    ;;
+  *)
     echo "Usage: $0 [-d|--decrypt] [-e|--encrypt] <string>"
     exit 1
-fi
+    ;;
+esac
+
 [ -z $output ] || echo -n $output

@@ -1,3 +1,5 @@
+-- Launch yazi in neovim
+
 vim.o.cmdheight = 0
 vim.o.laststatus = 0
 vim.o.shadafile = "NONE"

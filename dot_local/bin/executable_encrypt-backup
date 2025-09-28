@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: $(basename "$0") <file_or_directory>"
+  echo
+  echo "Encrypts a file or directory into a timestamped .backup file."
+  echo "If a directory is given, it is first compressed into a .tar.gz archive."
+  exit 0
+fi
+
 [ -e "$1" ] || { echo "File not found" >&2; exit 1; }
 
 name="$(basename "$1")"

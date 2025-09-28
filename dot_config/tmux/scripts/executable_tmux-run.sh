@@ -9,6 +9,28 @@
 # ssh: Open an ssh connection to the given host
 # nvim: Run tmux-edit
 
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: $(basename "$0") [command] [args...]"
+  echo
+  echo "Runs a command in the current tmux session."
+  echo "The script intelligently finds an empty shell prompt to run
+the command."
+  echo "If it can't, or if NEWW=1 is set, it runs the command in a new
+window."
+  echo
+  echo "Special Commands:"
+  echo "  cd <path>    Changes directory in a new or existing pane."
+  echo "  ssh <host>   Opens a new window and connects to the host."
+  echo "  nvim <file>  Edits a file using the 'tmux-edit.sh' script."
+  echo
+  echo "Environment Variables:"
+  echo "  NEWW=1      Force the command to run in a new window."
+  echo "  SESS=<name> Specify the target tmux session name."
+  echo "  PID=<pid>   Specify the client PID to find the target
+session."
+  exit 0
+fi
+
 getSession() {
   # if no client_pid is given, return current session
   [ -z "$1" ] &&

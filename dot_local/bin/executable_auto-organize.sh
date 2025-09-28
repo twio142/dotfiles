@@ -1,8 +1,14 @@
 #!/bin/zsh
-## Organize new files in ~/Downloads based on their MIME types or extensions.
-## Works with Folder Action Script.
 
 export PATH=/opt/homebrew/bin:$PATH
+
+if [ "$#" -eq 0 ]; then
+    echo "Usage: "$(basename $0)" <file1> <file2> ..." >&2
+    echo
+    echo "Organizes new files in ~/Downloads based on their MIME types or extensions."
+    echo "Works with Folder Action Script."
+    exit 1
+fi
 
 move() {
     [[ -e "$1" && -d "$2" ]] || return 1

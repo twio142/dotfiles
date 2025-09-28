@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-# ssh into a remote host in a new tmux window
-# if multiple hosts are provided, split the window
+# SSH into a remote host in a new tmux window
+# If multiple hosts are provided, split the window
 
 if [ -z "$1" ]; then
   tmux display "hostname required"

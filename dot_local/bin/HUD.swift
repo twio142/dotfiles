@@ -130,6 +130,19 @@ func parseArguments() -> (icon: String?, point: NSPoint?, duration: TimeInterval
         duration = d
       }
       index += 2
+    case "-h", "--help":
+      print("""
+      Usage: HUD [-i|--icon] [ICON] [-p|--point] [POINT] [-d|--duration] [DURATION]
+
+      Shows a heads-up display (HUD).
+
+      Options:
+        -i, --icon       The icon to display (default: 􁾩)
+        -p, --point      The point to display the HUD at, in the format x,y (default: center of screen)
+        -d, --duration   The duration to display the HUD for, in seconds (default: 1.0)
+        -h, --help       Show this help message
+      """)
+      exit(0)
     default:
       index += 1
     }

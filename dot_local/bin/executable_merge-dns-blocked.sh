@@ -12,6 +12,21 @@ if [[ ! -d "$DIR" || ! -f "$BASE_FILE" ]]; then
   exit 1
 fi
 
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: $(basename "$0") [options | [+-]listname ...]"
+  echo
+  echo "Merges DNS blocklists for dnscrypt-proxy from '${DIR/#$HOME/~}'."
+  echo "The final merged file is written to '${FINAL_FILE/#$HOME/~}'."
+  echo
+  echo "Arguments:"
+  echo "  +listname   Adds 'listname.txt' to the final blocklist."
+  echo "  -listname   Removes 'listname.txt' from the final blocklist."
+  echo
+  echo "Options:"
+  echo "  -h, --help  Display this help message and exit."
+  exit 0
+fi
+
 # Read currently opted-in files from FINAL_FILE
 current_opted=()
 if [[ -f "$FINAL_FILE" ]]; then

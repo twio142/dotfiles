@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# Open a directory from zoxide in a new tmux window or pane
+
 BOLD=$'\033[1;36m'
 OFF=$'\033[0m'
 

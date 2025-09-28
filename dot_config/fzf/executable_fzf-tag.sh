@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# list Finder tags with fzf
+# List Finder tags with fzf
 
 tmpfile="/tmp/fzf-tag"
 exec=$0
@@ -56,6 +56,11 @@ _fzf_tag() {
 }
 
 case $1 in
+  -h|--help)
+    echo "Usage: $(basename "$0")"
+    echo
+    echo "List Finder tags with fzf."
+    exit 0 ;;
   --header-*)
     [[ $1 =~ next ]] && tag=$(cycle 1) || tag=$(cycle -1)
     make_header $tag ;;

@@ -4,6 +4,18 @@
 # SHARE=1 to share the current tmux session.
 # Additional arguments are passed to ttyd.
 
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: $(basename "$0")"
+  echo
+  echo "A wrapper script to start a web terminal (ttyd) with tmux."
+  echo "By default, it starts a new tmux session."
+  echo "All options are passed directly to the ttyd command."
+  echo
+  echo "Environment Variables:"
+  echo "  SHARE=1    Attach to the current tmux session to share it, instead of starting a new one."
+  exit 0
+fi
+
 # Function to clean up ttyd process on exit
 cleanup() {
   if [[ -n $ttyd_pid && $(ps -p $ttyd_pid > /dev/null 2>&1; echo $?) -eq 0 ]]; then
