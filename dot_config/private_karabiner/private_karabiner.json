@@ -399,7 +399,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "m",
+                                    "key_code": "k",
                                     "modifiers": { "mandatory": ["fn"] }
                                 },
                                 "to": [
@@ -1095,7 +1095,7 @@
                         ]
                     },
                     {
-                        "description": "Lft ⇧ / Lft ⇧ + MOD → Switch Input Method",
+                        "description": "Lft ⇧ / Lft ⇧ + MOD → Switch Input Method, 🌐+ M → Search Menubar Items",
                         "manipulators": [
                             {
                                 "from": { "key_code": "left_shift" },
@@ -1120,6 +1120,19 @@
                                     {
                                         "key_code": "x",
                                         "modifiers": ["left_control", "left_shift", "left_option", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": { "mandatory": ["fn"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "m",
+                                        "modifiers": ["left_control", "left_shift", "left_command"]
                                     }
                                 ],
                                 "type": "basic"
