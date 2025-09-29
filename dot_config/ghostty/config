@@ -256,7 +256,7 @@ grapheme-width-method = unicode
 # include path separators unless it is an absolute pathname.
 #
 # The first directory is the `themes` subdirectory of your Ghostty
-# configuration directory. This is `$XDG_CONFIG_DIR/ghostty/themes` or
+# configuration directory. This is `$XDG_CONFIG_HOME/ghostty/themes` or
 # `~/.config/ghostty/themes`.
 #
 # The second directory is the `themes` subdirectory of the Ghostty resources
@@ -1242,7 +1242,7 @@ vt-kam-allowed = false
 #
 # Changing this value at runtime and reloading the configuration will only
 # affect new windows, tabs, and splits.
-custom-shader =
+custom-shader = "shaders/cursor_smear.glsl"
 
 # If `true` (default), the focused terminal surface will run an animation
 # loop when custom shaders are used. This uses slightly more CPU (generally
