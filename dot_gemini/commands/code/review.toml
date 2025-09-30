@@ -5,7 +5,7 @@ You are a senior software engineer. Review the code provided below (file, functi
 {{args}}
 
 Please provide:
-1. Code quality feedback (readability, style, structure)
+1. Code quality feedback (correctness, efficiency, security, best practices)
 2. Potential logical or security issues
 3. Suggestions for improvement or refactoring
 4. A short summary highlighting key issues and their priority

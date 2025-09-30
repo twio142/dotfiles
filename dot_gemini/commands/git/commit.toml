@@ -11,7 +11,7 @@ Based on these changes, generate a **Conventional Commit message** following the
 
 Requirements:
 1. Use conventional commit types (feat, fix, docs, style, refactor, test, chore, etc.)
-2. Make the summary concise and clear
+2. Make the summary concise and clear. If the change is minor, be brief.
 3. Optionally provide a body explaining the changes if necessary
 4. Optionally add footers for breaking changes or issue references
 5. Commit the changes with the generated message
