@@ -5,6 +5,7 @@ const { antfu } = require('@antfu/eslint-config');
 module.exports = antfu({
   formatters: true,
   typescript: true,
+  ignores: ['*.md'],
 }, {
   rules: {
     'style/semi': ['error', 'always'],
@@ -12,5 +13,6 @@ module.exports = antfu({
     'no-console': 'off',
     'unicorn/prefer-node-protocol': 'off',
     'node/prefer-global/process': 'off',
+    'yml/quotes': ['error', { prefer: 'double' }],
   },
 });
