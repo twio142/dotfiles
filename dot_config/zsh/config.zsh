@@ -113,7 +113,7 @@ function prompt_git_town() {
 
 source $XDG_CONFIG_HOME/fzf/fzf-setup.zsh
 
-pts() {
+tcp-ports() {
   # List open TCP ports with fzf
   local copy=pbcopy
   [ -n "$TMUX" ] && copy='tmux loadb -'

@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+url=pkmn.li/
+
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: $(basename "$0") [pokemon] [language]"
+  echo
+  echo "Fetches information about a specified Pokémon in the specified language."
+  echo
+  echo "Arguments:"
+  echo "  pokemon    The name of the Pokémon (e.g., pikachu)."
+  echo "  language   The language code (e.g., en, fr, jp)."
+  exit 0
+fi
+
+[ -n "$1" ] && url+="$1"/
+[ -n "$2" ] && url+="?lang=$2"
+
+curl -A curl $url

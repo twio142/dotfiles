@@ -1,5 +1,5 @@
 #!/bin/zsh
-# rp - get real path (case sensitive) of a file
+# realpath, but case sensitive
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
   echo "Usage: $(basename "$0") <path>..."
