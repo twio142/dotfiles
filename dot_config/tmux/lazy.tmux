@@ -9,10 +9,10 @@ set -g @resurrect-restore 'C-®'
 # tmux-fzf
 FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/fzfrc"
 TMUX_FZF_LAUNCH_KEY="C-§"
-TMUX_FZF_OPTIONS="-p -w 90% -h 70% -m --preview-window=up,70%"
+TMUX_FZF_OPTIONS="-p -w 90% -h 70% -m --preview-window=up,70% --ansi"
 TMUX_FZF_ORDER="session|window|pane|buffer"
 TMUX_FZF_PANE_FORMAT="#{?pane_active,●,-} #{pane_current_command}#{?pane_marked,\t󰃀,}\t #{b:pane_current_path} "
-TMUX_FZF_WINDOW_FORMAT="#{?window_active,●,-} #{?#{==:#W,#{pane_current_command}},#W,#W (#{pane_current_command})}\t #{window_panes}#{?window_marked_flag,  󰃀,}   #{b:pane_current_path} "
+TMUX_FZF_WINDOW_FORMAT="#{?window_active,●,-}#{?window_linked, ,} #{pane_current_command}\t #{window_panes}#{?window_marked_flag,  󰃀,}   #{b:pane_current_path} "
 TMUX_FZF_SESSION_FORMAT="#{?session_attached,󰍹 #{session_attached},-}  #{session_windows}   #{b:session_path} "
 TMUX_FZF_MENU=\
 "edit config\ntmux edit-config\n"\
@@ -190,8 +190,8 @@ bind -n WheelUpPane if -F "#{mouse_any_flag}" 'send C-y' 'if -F "#{alternate_on}
 bind -n WheelDownPane if -F "#{mouse_any_flag}" 'send C-e' 'if -F "#{alternate_on}" "send C-e" "send -X cancel"'
 
 # command aliases
-set -g command-alias[10] EF="neww -S -n config 'nvim $XDG_CONFIG_HOME/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/lazy.tmux'"
-set -g command-alias[11] ER="source $XDG_CONFIG_HOME/tmux/tmux.conf \; source $XDG_CONFIG_HOME/tmux/lazy.tmux \; display 'Config reloaded'"
+set -g command-alias[10] edit-config="neww -S -n config 'nvim $XDG_CONFIG_HOME/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/lazy.tmux'"
+set -g command-alias[11] reload-config="source $XDG_CONFIG_HOME/tmux/tmux.conf \; source $XDG_CONFIG_HOME/tmux/lazy.tmux \; display 'Config reloaded'"
 set -g command-alias[12] man="splitw -v -e MANPAGER='sh -c \"col -bx | bat -l man --paging always\"' man"
 set -g command-alias[13] ssh="neww -d $XDG_CONFIG_HOME/tmux/scripts/ssh.sh"
 set -g command-alias[14] toggle-status="if -F \"#{==:#{status},off}\" 'set status on' 'set status off'"
@@ -208,7 +208,7 @@ set -g command-alias[24] memo="popup -E -w 95% -h 90% -e TMUX_POPUP=1 fzf-memo"
 set -g command-alias[25] alfred="popup -E -w 95% -h 90% -e TMUX_POPUP=1 -e PAGER=fzf-preview 'alfred-cli | tmux loadb -'"
 set -g command-alias[26] paste="run -b 'pbpaste | tmux load-buffer -' \; paste-buffer -d"
 
-bind C-r ER
+bind C-r reload-config
 bind -n F3 if -F "#{==:#{pane_current_command},nvim}" "send F3" yazi-popup
 bind F3 yazi-popup
 bind C-y yazi
@@ -241,7 +241,8 @@ bind p run "tmux #{@wk_cmd_show} #{@wk_menu_panes}"
 
 bind C-g lzg
 
-bind a run "tmux #{@wk_cmd_show} #{@wk_menu_app}"
+unbind m
+bind m run "tmux #{@wk_cmd_show} #{@wk_menu_misc}"
 bind C-l run "tmux #{@wk_cmd_show} #{@wk_menu_layout}"
 bind C-h run "tmux #{@wk_cmd_show} #{@wk_menu_help}"
 

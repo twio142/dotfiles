@@ -247,11 +247,11 @@ items:
       - name: Detach others
         key: D
         command: detach -a
-  - name: +App
-    key: a
+  - name: +Misc
+    key: m
     menu:
       - name: Commands
-        key: "/"
+        key: /
         command: run -b "$TMUX_PLUGIN_MANAGER_PATH/tmux-fzf/scripts/menu.sh || true"
       - name: Alfred
         key: f
@@ -280,10 +280,10 @@ items:
       - separator: true
       - name: Reload config
         key: r
-        command: ER
+        command: reload-config
       - name: Edit config
         key: e
-        command: EF
+        command: edit-config
       - name: +Plugins
         key: p
         menu:
