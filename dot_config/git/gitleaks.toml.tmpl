@@ -34,36 +34,36 @@ useDefault = true
 # An array of tables that contain information that define instructions
 # on how to detect secrets
 [[rules]]
-# Unique identifier for this rule
-id = "awesome-rule-1"
+# # Unique identifier for this rule
+# id = "awesome-rule-1"
 
-# Short human-readable description of the rule.
-description = "awesome rule 1"
+# # Short human-readable description of the rule.
+# description = "awesome rule 1"
 
-# Golang regular expression used to detect secrets. Note Golang's regex engine
-# does not support lookaheads.
-regex = '''one-go-style-regex-for-this-rule'''
+# # Golang regular expression used to detect secrets. Note Golang's regex engine
+# # does not support lookaheads.
+# regex = '''one-go-style-regex-for-this-rule'''
 
-# Int used to extract secret from regex match and used as the group that will have
-# its entropy checked if `entropy` is set.
-secretGroup = 3
+# # Int used to extract secret from regex match and used as the group that will have
+# # its entropy checked if `entropy` is set.
+# secretGroup = 3
 
-# Float representing the minimum shannon entropy a regex group must have to be considered a secret.
-entropy = 3.5
+# # Float representing the minimum shannon entropy a regex group must have to be considered a secret.
+# entropy = 3.5
 
-# Golang regular expression used to match paths. This can be used as a standalone rule or it can be used
-# in conjunction with a valid `regex` entry.
-path = '''a-file-path-regex'''
+# # Golang regular expression used to match paths. This can be used as a standalone rule or it can be used
+# # in conjunction with a valid `regex` entry.
+# path = '''a-file-path-regex'''
 
-# Keywords are used for pre-regex check filtering. Rules that contain
-# keywords will perform a quick string compare check to make sure the
-# keyword(s) are in the content being scanned. Ideally these values should
-# either be part of the identiifer or unique strings specific to the rule's regex
-# (introduced in v8.6.0)
-keywords = ["auth", "password", "token"]
+# # Keywords are used for pre-regex check filtering. Rules that contain
+# # keywords will perform a quick string compare check to make sure the
+# # keyword(s) are in the content being scanned. Ideally these values should
+# # either be part of the identiifer or unique strings specific to the rule's regex
+# # (introduced in v8.6.0)
+# keywords = ["auth", "password", "token"]
 
-# Array of strings used for metadata and reporting purposes.
-tags = ["tag", "another tag"]
+# # Array of strings used for metadata and reporting purposes.
+# tags = ["tag", "another tag"]
 
 # ⚠️ In v8.21.0 `[rules.allowlist]` was replaced with `[[rules.allowlists]]`.
 # This change was backwards-compatible: instances of `[rules.allowlist]` still  work.
