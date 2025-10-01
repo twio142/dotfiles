@@ -5,12 +5,12 @@ hash = "3fcdd6e13bf217e68b269d94341b3a88"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "d7588f6"
+rev = "d1c8baa"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "d7588f6"
+rev = "d1c8baa"
 hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
 [[plugin.deps]]
@@ -25,10 +25,10 @@ hash = "a255ad681d2fa372b40569d1d85bf051"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
-rev = "26fac8f"
-hash = "8bc144da7080bf91b559188bfe431032"
+rev = "2d73b79"
+hash = "9e789c612c34f941a2afd42e7ded39f"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "26fac8f"
-hash = "a16c1a65b50efbe1ad17c4abe9b992e1"
+rev = "2d73b79"
+hash = "d4c41d713b325710a9dd5ae86c3f8a5f"

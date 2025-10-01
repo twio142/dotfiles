@@ -1,8 +1,11 @@
-tap "homebrew/bundle"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
+# Cloudflare Tunnel client (formerly Argo Tunnel)
+brew "cloudflared"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Command-line fuzzy finder written in Go
@@ -11,14 +14,24 @@ brew "fzf"
 brew "gcc"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Configurable static site generator
+brew "hugo"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Lazier way to manage everything docker
+brew "lazydocker"
 # Simple terminal UI for git commands
 brew "lazygit"
+# Cross-platform TUI database management tool
+brew "lazysql"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Platform built on V8 to build network applications
+brew "node@22"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Terminal multiplexer
