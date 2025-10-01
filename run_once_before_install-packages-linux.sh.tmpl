@@ -19,7 +19,7 @@ fi
 
 # Install packages
 BREWFILE="{{ .chezmoi.sourceDir }}/bootstrap/Brewfile"
-brew bundle check --file $BREWFILE || brew bundle --no-lock --file $BREWFILE -q
+brew bundle check --file $BREWFILE || brew bundle --file $BREWFILE -q
 
 # Set shell to zsh.
 ZSH="$(brew --prefix)/bin/zsh"
@@ -27,7 +27,7 @@ grep -q $ZSH /etc/shells || sudo sh -c "echo $ZSH >> /etc/shells"
 [ "$SHELL" != "$ZSH" ] && chsh -s $ZSH
 
 # Install nvim configuration
-[ -d $XDG_CONFIG_HOME/nvim ] || git clone git@github.com:{{ env "GITHUB_USER" }}/kickstart.nvim.git -b minimum $XDG_CONFIG_HOME/nvim
+[ -d $XDG_CONFIG_HOME/nvim ] || git clone git@github.com:{{ env "GITHUB_USER" }}/nvim.git -b lite $XDG_CONFIG_HOME/nvim
 git -C $XDG_CONFIG_HOME/nvim pull --ff-only
 
 {{ end -}}
