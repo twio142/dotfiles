@@ -313,8 +313,6 @@ cask "omnidisksweeper"
 cask "orbstack"
 # Apple Notes extension
 cask "pronotes"
-# Quick Look plugin for mobile apps and provisioning profiles
-cask "provisionql"
 # Quick Look generator for Markdown files
 cask "qlmarkdown"
 # Quick Look plugin for plaintext files without an extension
@@ -323,8 +321,6 @@ cask "qlstephen"
 cask "qlvideo"
 # Quick Look plugin for CSV files
 cask "quicklook-csv"
-# Quick Look plugin for JSON files
-cask "quicklook-json"
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
 # PDF reader and note-taking application

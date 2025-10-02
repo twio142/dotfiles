@@ -157,7 +157,7 @@ set -g visual-activity on
 set -g visual-bell off
 set -g menu-border-line "rounded"
 set -g popup-border-style "dim"
-set -g popup-border-line "rounded"
+set -g popup-border-line "padded"
 setw -g window-status-bell-style default
 setw -g window-status-activity-style default
 
