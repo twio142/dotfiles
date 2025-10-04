@@ -166,21 +166,22 @@ api.unmap('gxt');
 api.unmap('gxT');
 
 // Click
-api.mapkey('ci', '#1Click on image or a button', () => {
-  api.Hints.create('img, button', api.Hints.dispatchMouseClick);
-});
-api.mapkey('cI', '#1Inspect image', () => {
-  api.Hints.create('img', (element) => {
-    const event = new MouseEvent('contextmenu', {
-      bubbles: true,
-      cancelable: true,
-      view: window,
-      button: 2,
-      buttons: 2,
-      clientX: 100,
-      clientY: 100
-    });
-    element.dispatchEvent(event);
+api.mapkey('ci', '#1Click on an image', () => {
+  api.Hints.create('img', (element, shiftKey) => {
+    if (shiftKey) {
+      const event = new MouseEvent('contextmenu', {
+        bubbles: true,
+        cancelable: true,
+        view: window,
+        button: 2,
+        buttons: 2,
+        clientX: 100,
+        clientY: 100
+      });
+      element.dispatchEvent(event);
+    } else {
+      api.Hints.dispatchMouseClick(element);
+    }
   });
 });
 api.map('ce', 'L');
@@ -218,13 +219,9 @@ api.mapkey('yi', '#7Yank text of an input', () => {
   });
 });
 api.mapkey('yf', '#7Yank link url', () => {
-  api.Hints.create('*[href]', (element) => {
-    api.Clipboard.write(element.href);
-  });
-});
-api.mapkey('yF', '#7Yank markdown link', () => {
-  api.Hints.create('*[href]', (element) => {
-    api.Clipboard.write(`[${element.textContent}](${element.href})`);
+  api.Hints.create('*[href]', (element, shiftKey) => {
+    const link = shiftKey ? `[${element.textContent}](${element.href})` : element.href;
+    api.Clipboard.write(link);
   });
 });
 api.mapkey('yg', '#7Yank git url', () => {
